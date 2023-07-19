@@ -1,0 +1,171 @@
+.additional-info div {
+    margin-bottom: 20px;
+}
+
+/*estilo boton menu*/
+.boton-menu {
+    position: relative;
+}
+
+.boton-menu .navbar-toggler {
+    background-color: transparent;
+    border: none;
+}
+
+.boton-menu .navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.boton-menu .collapse {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 9999;
+    width: 70%;
+    max-width: 200px;
+    background-color: #2e669e;
+    padding: 20px;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.boton-menu .collapse.show {
+    transform: translateX(0);
+}
+
+.overlay-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.overlay-menu.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.overlay-menu .close-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.overlay-menu .close-menu::before,
+.overlay-menu .close-menu::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 2px;
+    background-color: #fff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.overlay-menu .close-menu::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.overlay-menu .close-menu::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.overlay-menu .close-menu:hover::before,
+.overlay-menu .close-menu:hover::after {
+    background-color: #E51D1F;
+}
+
+.overlay-menu ul.navbar-nav {
+    margin-top: 50px;
+}
+
+.overlay-menu ul.navbar-nav li {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.overlay-menu.show ul.navbar-nav li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.overlay-menu .close-menu {
+    z-index: 9999;
+}
+
+/* footer */
+footer {
+    width: 100%;
+    
+}
+
+#divfooter {
+    background-color: #3b3b3b;
+    padding: 20px 20px 40px 20px;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+  
+}
+
+.modohorizontal {
+    display: flex;
+}
+
+.modovertical {
+    display: flex;
+    flex-direction: column;
+}
+
+#logo {
+    border-radius: 20px;
+    width: 200px;
+    height: 150px;
+    margin-bottom: 20px;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+
+#infofooter {
+    font-family: 'Cabin', sans-serif;
+    padding: 20px;
+    margin-right: 100px;
+}
+
+#descripcionfooter {
+    color: white;
+}
+
+
+#map {
+    border-radius: 20px;
+    width: 800px;
+    height: 500px;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* beneficios*/
+#beneficios {
+    padding-left: 50px;
+    padding-top: 50px;
+}

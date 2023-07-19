@@ -1,0 +1,47 @@
+nav {
+    background-color: white;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding: 20px;
+    border: 2px solid red;
+    border-radius: 12px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+h2 {
+    border: 2px solid red;
+    border-radius: 12px;
+    width: 150px;
+    text-align: center;
+}
+
+.precio {
+    border: 2px solid;
+    border-radius: 12px;
+    height: 30px;
+}
+
+.marca {
+    border: 2px solid;
+    border-radius: 12px;
+    height: 30px;
+}
+
+.envio{
+    border: 2px solid;
+    border-radius: 12px;
+    width: 120px;
+    height: 25px;
+}
