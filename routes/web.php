@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DireccioneController;
-use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\PqrsdController;
@@ -24,10 +24,6 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () { 
-    return view('index'); 
-});
-
 Route::get('producto',[ProductosController::class,'producto'])->name('productos');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -41,7 +37,7 @@ Route::get('/pqrs/create', [PqrsdController::class, 'create'])->name('pqrs.creat
 Route::post('/pqrs', [PqrsdController::class, 'store'])->name('pqrs.store');
 
 Route::get('/iniciar_sesion', [LoginController::class, 'showLoginForm'])->name('login.index');
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');  
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('register', [RegisterController::class, 'index'])->name('registro');
 
@@ -52,8 +48,6 @@ Route::post('departamentos',[PaiseController::class, 'obtenerDepartamento'])->na
 //carga municipios a elegir un departamento.
 Route::post('municipios',[PaiseController::class, 'obtenerMunicipios'])->name('municipios');
 
-//carga los datos personales del usuario.
-Route::get('/perfil/mis_datos',[PersonaController::class, 'index'])->name('mis_datos');
 
 //carga las direcciones del usuario.
 Route::get('/perfil/direcciones',[DireccioneController::class, 'index'])->name('direcciones');
@@ -78,5 +72,17 @@ Route::patch('/perfil/direcciones/{direccion}',[DireccioneController::class, 'up
 Route::get("/cart-show",[App\Http\Controllers\CarritoController::class,'show'])->name("cart.show");
 Route::delete("/destroy/{idProducto}",[App\Http\Controllers\CarritoController::class,'destroy'])->name("cart.destroy");
 Route::post('/Cart-Checkout',[App\Http\Controllers\CarritoController::class,'store'])->name("cart.store");
+
+/////////////////////////////
+///   Rutas confirmadas   ///
+/////////////////////////////
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::post("document_types",[RegisterController::class, 'document_type'])->name("document_type");
+
+//carga los datos personales del usuario.
+Route::get('/perfil/mis_datos',[UserController::class, 'show'])->name('my_data.show')->middleware('auth');
 
 Auth::routes();
