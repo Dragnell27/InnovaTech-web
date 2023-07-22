@@ -24,14 +24,14 @@
     <header>
         <nav class="nav">
             <i class="uil uil-bars navOpenBtn"></i>
-            <a href="{{ route('home') }}" class="logo"><span style="color: red;">In</span>novatech</a>
+            <a href="{{ url('/') }}" class="logo"><span style="color: red;">In</span>novatech</a>
 
             <ul class="nav-links">
                 <i class="uil uil-times navCloseBtn"></i>
                 @auth
                     <li class="links"><a href="{{ route('my_data.show') }}">Mi cuenta</a></li>
                 @else
-                    <li class="links"><a href="{{ url('/iniciar_sesion') }}">Iniciar Sesion</a></li>
+                    <li class="links"><a href="{{ route('login') }}">Iniciar Sesion</a></li>
                 @endauth ()
                 <li class="links"><a href="{{ route('productos') }}">Productos</a></li>
                 <li class="links"><a href="#">Lista De Deseos</a></li>
@@ -70,6 +70,12 @@
                         <a href="{{ Route('cart.show') }}" class="btn btn-primary"> Ver carrito</a>
 
                     </div>
+                </li>
+                @auth
+                    <li class="links"><a href="{{ route('logout') }}">Cerrar sesion</a></li>
+                @endauth ()
+                <li>
+
                 </li>
             </ul>
 

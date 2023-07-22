@@ -23,49 +23,41 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', function () {
+    return view('index');
+});
 
 Route::get('producto',[ProductosController::class,'producto'])->name('productos');
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-
-Route::resource('usuario',UsuarioController::class);
-Route::resource('persona',PersonaController::class);
 
 Route::get('/pqrs', [PqrsdController::class, 'index'])->name('pqrs.index');
 Route::get('/pqrs/create', [PqrsdController::class, 'create'])->name('pqrs.create');
 Route::post('/pqrs', [PqrsdController::class, 'store'])->name('pqrs.store');
 
-Route::get('/iniciar_sesion', [LoginController::class, 'showLoginForm'])->name('login.index');
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-
-Route::get('register', [RegisterController::class, 'index'])->name('registro');
-
 // rutas de perfil
 //carga departamentos a elegir un pais.
-Route::post('departamentos',[PaiseController::class, 'obtenerDepartamento'])->name('departamentos');
+// Route::post('departamentos',[PaiseController::class, 'obtenerDepartamento'])->name('departamentos');
 
-//carga municipios a elegir un departamento.
-Route::post('municipios',[PaiseController::class, 'obtenerMunicipios'])->name('municipios');
+// //carga municipios a elegir un departamento.
+// Route::post('municipios',[PaiseController::class, 'obtenerMunicipios'])->name('municipios');
 
 
-//carga las direcciones del usuario.
-Route::get('/perfil/direcciones',[DireccioneController::class, 'index'])->name('direcciones');
+// //carga las direcciones del usuario.
+// Route::get('/perfil/direcciones',[DireccioneController::class, 'index'])->name('direcciones');
 
-//lleva al formulario para crear direcciones
-Route::get('/perfil/direcciones/create',[DireccioneController::class, 'create'])->name('direcciones.create');
+// //lleva al formulario para crear direcciones
+// Route::get('/perfil/direcciones/create',[DireccioneController::class, 'create'])->name('direcciones.create');
 
-//Guarda una nueva direccion.
-Route::post('perfil/direcciones',[DireccioneController::class, 'store'])->name('direcciones.store');
+// //Guarda una nueva direccion.
+// Route::post('perfil/direcciones',[DireccioneController::class, 'store'])->name('direcciones.store');
 
-//elimina una direccion.
-Route::delete('/perfil/direcciones/{direccion}',[DireccioneController::class, 'destroy'])->name('direcciones.destroy');
+// //elimina una direccion.
+// Route::delete('/perfil/direcciones/{direccion}',[DireccioneController::class, 'destroy'])->name('direcciones.destroy');
 
-//formulario para editar una direccion.
-Route::get('/perfil/direcciones/{direccion}/edit',[DireccioneController::class, 'edit'])->name('direcciones.edit');
+// //formulario para editar una direccion.
+// Route::get('/perfil/direcciones/{direccion}/edit',[DireccioneController::class, 'edit'])->name('direcciones.edit');
 
-//actualizar una direccion
-Route::patch('/perfil/direcciones/{direccion}',[DireccioneController::class, 'update'])->name('direcciones.update');
+// //actualizar una direccion
+// Route::patch('/perfil/direcciones/{direccion}',[DireccioneController::class, 'update'])->name('direcciones.update');
 
 //Rutas del carrito
 
@@ -76,13 +68,15 @@ Route::post('/Cart-Checkout',[App\Http\Controllers\CarritoController::class,'sto
 /////////////////////////////
 ///   Rutas confirmadas   ///
 /////////////////////////////
-Route::get('/', function () {
-    return view('index');
-});
 
+//Ruta de jaider, sirve para cargar los tipos de docuemnto en el registro
 Route::post("document_types",[RegisterController::class, 'document_type'])->name("document_type");
 
-//carga los datos personales del usuario.
+//Ruta de jaider, carga los datos personales del usuario.
 Route::get('/perfil/mis_datos',[UserController::class, 'show'])->name('my_data.show')->middleware('auth');
 
+//Ruta de jaider, permite iniciar sesion y acceser al registro
 Auth::routes();
+
+//ruta de jaider, sirve para cerrar sesion.
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
