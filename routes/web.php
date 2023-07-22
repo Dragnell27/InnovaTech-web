@@ -60,3 +60,11 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //ruta de jaider, agrupa todo el CRUD de direcciones
 Route::middleware('auth')->resource('perfil/direcciones', AddressController::class)->except('show');
+
+//Camilo Alzate Ruta que llama el primer paso de compra
+Route::view('payment-method/pasoUnoMpago','payment-method/pasoUnoMpago')->name('pasoUno');
+Route::view('payment-method/lugarEnvio','payment-method/lugarEnvio')->name('LuEnvio');
+Route::view('payment-method/Metodo-pago','payment-method/Metodo-pago')->name('Mpago');
+Route::view('payment-method/editarDireccion','payment-method/editarDireccion')->name('Edireccion');
+
+
