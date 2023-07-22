@@ -14,21 +14,10 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    {{-- <link rel="stylesheet" href="{{asset('css/app.js')}}"> --}}
-    {{-- <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"> --}}
-    {{-- <link rel="stylesheet" href="{{asset('css/categorias.css')}}"> --}}
-    {{-- <link rel="stylesheet" href="{{asset('css/comentarios.css')}}"> --}}
-    <link rel="stylesheet" href="{{asset('css/header.css')}}">
-    <link rel="stylesheet" href="{{asset('css/index.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('css/inicioSesion.css')}}"> --}}
-    {{-- <link rel="stylesheet" href="{{asset('css/productos.css')}}"> --}}
-    {{-- <link rel="stylesheet" href="{{asset('css/registro.css')}}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
-    {{-- <script src="{{asset('js/app.js')}}"></script>
-    <script src="{{asset('js/bootstrap.js')}}"></script> --}}
-    <script src="{{asset('js/header.js')}}"></script>
-    {{-- <script src="{{asset('js/registro.js')}}"></script>
-    <script src="{{asset('js/ubicaciones.js')}}"></script> --}}
+    <script src="{{ asset('js/header.js') }}"></script>
 </head>
 
 <body>
@@ -39,8 +28,11 @@
 
             <ul class="nav-links">
                 <i class="uil uil-times navCloseBtn"></i>
-
-                <li class="links"><a href="{{ url('/iniciar_sesion')}}">Iniciar Sesion</a></li>
+                @auth
+                    <li class="links"><a href="{{ route('my_data.show') }}">Mi cuenta</a></li>
+                @else
+                    <li class="links"><a href="{{ url('/iniciar_sesion') }}">Iniciar Sesion</a></li>
+                @endauth ()
                 <li class="links"><a href="{{ route('productos') }}">Productos</a></li>
                 <li class="links"><a href="#">Lista De Deseos</a></li>
                 <li class="links"><a href="#">Carrito</a></li>
@@ -48,7 +40,8 @@
                     <form action="{{ Route('cart.show') }}" method="get">
                         <div id="icono">
                             <button type="submit" id="btnCarrito" class="">
-                                <img src="{{ asset('img/Carro-Compras.png') }}" width="25px" height="20px" alt="">
+                                <img src="{{ asset('img/Carro-Compras.png') }}" width="25px" height="20px"
+                                    alt="">
                                 <span class="">
                                     {{-- {{ Cart::getContent()->count() }} --}}
                                     <span class="visually-hidden "></span>
@@ -115,14 +108,14 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+    </script>
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

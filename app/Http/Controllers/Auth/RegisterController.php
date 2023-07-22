@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Param;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -51,7 +52,7 @@ class RegisterController extends Controller
     {
         dd($data);
         return Validator::make($data, [
-            
+
             'document' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -60,7 +61,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8'],
             'param_type' => ['required', 'integer'],
             'param_suscription' => ['required', 'integer'],
-            
+
         ]);
     }
 
@@ -84,5 +85,15 @@ class RegisterController extends Controller
             'param_suscription' => $data['param_suscription'],
             'param_state' => 1,
         ]);
+    }
+
+    public function document_type(){
+        $types = Param::where('paramtype_id',15)->get();
+        return response()->json(
+            [
+                'type'=>$types,
+                'success' => true,
+            ]
+        );
     }
 }
