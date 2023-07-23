@@ -1,17 +1,22 @@
 {{-- jaider --}}
 @extends('layouts.profileMenu')
 @section('content')
-    <form action="{{ route('direcciones.store') }}" method="POST">
+    <form action="{{ route('direcciones.update', $data['address']['id']) }}" method="POST">
         @csrf
-        {{-- jaider --}}
+        @method('patch')
         <div class="container">
+            <h1>Editar dirección</h1>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label class="form-label" for="perfilDepartamento">Departamento</label>
                     <select name="department" required id="perfilDepartamento" class="form-control">
                         <option value="">-- Seleccionar --</option>
                         @foreach ($deparments as $deparment)
-                            <option value="{{ $deparment->id }}">{{ $deparment->name }}</option>
+                            @if ($data['deparment']['id'] == $deparment->id)
+                                <option value="{{ $deparment->id }}" selected>{{ $deparment->name }}</option>
+                            @else
+                                <option value="{{ $deparment->id }}">{{ $deparment->name }}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -19,21 +24,28 @@
                     <label class="form-label" for="perfilMunicipio">Ciudad</label>
                     <select name="param_city" required id="perfilMunicipio" class="form-control">
                         <option value="">-- Seleccionar --</option>
+                        @foreach ($cities as $city)
+                            @if ($data['address']['city']['id'] == $city->id)
+                                <option value="{{ $city->id }}" selected>{{ $city->name }}</option>
+                            @else
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endif
+                        @endforeach
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
                     <label class="form-label me-2" for="perfilBarrio">Barrio</label>
-                    <input name="hood" required id="perfilBarrio" class="form-control" type="text">
+                    <input name="hood" value="{{$data['address']['hood']}}" id="perfilBarrio" class="form-control" type="text">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label me-2" for="perfilDireccion">Direccion</label>
-                    <input name="address" required id="perfilDireccion" class="form-control" type="text">
+                    <input name="address" value="{{$data['address']['address']}}" id="perfilDireccion" class="form-control" type="text">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label me-2" for="perfilPiso">Piso</label>
-                    <input name="floor" id="perfilPiso" class="form-control" type="text">
+                    <input name="floor" value="{{$data['address']['floor']}}" id="perfilPiso" class="form-control" type="text">
                 </div>
             </div>
             <div class="row">

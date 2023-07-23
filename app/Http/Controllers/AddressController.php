@@ -16,8 +16,8 @@ class AddressController extends Controller
     {
         //jaider
         $addresses = Address::where('user_id', Auth::user()->id)->with('city')->get();
-        $deparments = Param::where('paramtype_id',6)->get();
-        return view('profile.address.index',compact('addresses'),compact('deparments'));
+        $deparments = Param::where('paramtype_id', 6)->get();
+        return view('profile.address.index', compact('addresses'), compact('deparments'));
     }
 
     /**
@@ -26,16 +26,17 @@ class AddressController extends Controller
     public function create()
     {
         // jaider
-        $deparments = Param::where('paramtype_id',6)->get();
+        $deparments = Param::where('paramtype_id', 6)->get();
         return view('profile.address.create', compact('deparments'));
     }
 
-    public function cargarCiudades(Request $request){
+    public function cargarCiudades(Request $request)
+    {
         // jaider
-        $cities = Param::where('param_foreign',$request->texto)->get();
+        $cities = Param::where('param_foreign', $request->texto)->get();
         return response()->json(
             [
-                'city'=>$cities,
+                'city' => $cities,
                 'success' => true,
             ]
         );
@@ -47,7 +48,7 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         // jaider
-        $datos=request()->except('_token','department');
+        $datos = request()->except('_token', 'department');
         $datos['user_id'] = Auth::user()->id;
         Address::insert($datos);
         return redirect()->route('direcciones.index');
@@ -66,7 +67,15 @@ class AddressController extends Controller
      */
     public function edit($id)
     {
-        //
+        $address = Address::with('city')->findOrFail($id);
+        $deparment = Param::find($address->city->param_foreign);
+        $deparments = Param::where('paramtype_id', 6)->get();
+        $data = [
+            'address' => $address,
+            'deparment' => $deparment,
+        ];
+        $cities = Param::where('paramtype_id', 7)->where('param_foreign', $data['deparment']['id'])->get();
+        return view('profile.address.edit', compact('deparments'), compact('cities'))->with('data', $data);
     }
 
     /**
@@ -74,7 +83,13 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $address = Address::findOrFail($id);
+        $address->hood = $request->input('hood');
+        $address->address = $request->input('address');
+        $address->floor = $request->input('floor');
+        $address->param_city = $request->input('param_city');
+        $address->save();
+        return redirect()->route('direcciones.index');
     }
 
     /**
