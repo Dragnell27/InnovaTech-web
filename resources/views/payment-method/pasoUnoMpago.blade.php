@@ -55,9 +55,9 @@
                 </div>
                 <div class="col-md-7 col-lg-8">
                     <h2 class="form_titulo">
-                        Ingresa tu direccion</h2>
-                    <p class="form_parrafo">para ver las opciones de <strong>entrega</strong> y <strong>retiro</strong>
-                    </p>
+                        Tus datos </h2>
+                        <strong><p class="form_parrafo">verificalos para ver las opciones de entrega y retiro
+                    </p></strong>
                     <form class="needs-validation" novalidate>
                         <div class="row g-3">
                             <div class="col-sm-6">
