@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DireccioneController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductosController;
@@ -9,7 +9,7 @@ use App\Http\Controllers\PqrsdController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\CarritoController;
-use App\Http\Controllers\PaiseController;
+use App\Http\Controllers\ParamController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -33,32 +33,6 @@ Route::get('/pqrs', [PqrsdController::class, 'index'])->name('pqrs.index');
 Route::get('/pqrs/create', [PqrsdController::class, 'create'])->name('pqrs.create');
 Route::post('/pqrs', [PqrsdController::class, 'store'])->name('pqrs.store');
 
-// rutas de perfil
-//carga departamentos a elegir un pais.
-// Route::post('departamentos',[PaiseController::class, 'obtenerDepartamento'])->name('departamentos');
-
-// //carga municipios a elegir un departamento.
-// Route::post('municipios',[PaiseController::class, 'obtenerMunicipios'])->name('municipios');
-
-
-// //carga las direcciones del usuario.
-// Route::get('/perfil/direcciones',[DireccioneController::class, 'index'])->name('direcciones');
-
-// //lleva al formulario para crear direcciones
-// Route::get('/perfil/direcciones/create',[DireccioneController::class, 'create'])->name('direcciones.create');
-
-// //Guarda una nueva direccion.
-// Route::post('perfil/direcciones',[DireccioneController::class, 'store'])->name('direcciones.store');
-
-// //elimina una direccion.
-// Route::delete('/perfil/direcciones/{direccion}',[DireccioneController::class, 'destroy'])->name('direcciones.destroy');
-
-// //formulario para editar una direccion.
-// Route::get('/perfil/direcciones/{direccion}/edit',[DireccioneController::class, 'edit'])->name('direcciones.edit');
-
-// //actualizar una direccion
-// Route::patch('/perfil/direcciones/{direccion}',[DireccioneController::class, 'update'])->name('direcciones.update');
-
 //Rutas del carrito
 
 Route::get("/cart-show",[App\Http\Controllers\CarritoController::class,'show'])->name("cart.show");
@@ -78,5 +52,11 @@ Route::get('/perfil/mis_datos',[UserController::class, 'show'])->name('my_data.s
 //Ruta de jaider, permite iniciar sesion y acceser al registro
 Auth::routes();
 
+//Ruta de jaider, trae los municipios
+Route::post('ciudades', [AddressController::class, 'cargarCiudades'])->name('cities')->middleware('auth');
+
 //ruta de jaider, sirve para cerrar sesion.
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+//ruta de jaider, agrupa todo el CRUD de direcciones
+Route::middleware('auth')->resource('perfil/direcciones', AddressController::class)->except('show');

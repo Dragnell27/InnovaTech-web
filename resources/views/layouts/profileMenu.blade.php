@@ -1,3 +1,4 @@
+{{-- jaider --}}
 @extends('layouts.contenedor')
 @section('title','perfil')
 @section('component')
@@ -20,7 +21,7 @@
                             <p>Datos personales</p>
                         </div>
                     </a>
-                    <a href="{{route('direcciones')}}">
+                    <a href="{{route('direcciones.index')}}">
                         <div class="form-control mb-2">
                             <p>Direcciones</p>
                         </div>
@@ -35,7 +36,7 @@
                             <p>Mis compras</p>
                         </div>
                     </a>
-                    <a href="">
+                    <a href="{{route('logout')}}">
                         <div class="form-control mb-2">
                             <p>Cerrar sesion</p>
                         </div>
