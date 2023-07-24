@@ -48,10 +48,24 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         // jaider
-        $datos = request()->except('_token', 'department');
-        $datos['user_id'] = Auth::user()->id;
-        Address::insert($datos);
-        return redirect()->route('direcciones.index');
+        $datos = Address::where('user_id', Auth::user()->id)->get();
+
+        if ($datos->count() >= 3) {
+            session()->flash('message', [
+                'text' => 'Ya has alcanzado el límite de direcciones.',
+                'type' => 'warning',
+            ]);
+            return redirect()->route('direcciones.index');
+        } else {
+            $datos = request()->except('_token', 'department');
+            $datos['user_id'] = Auth::user()->id;
+            Address::insert($datos);
+            session()->flash('message', [
+                'text' => 'Dirección guardada exitosamente.',
+                'type' => 'success',
+            ]);
+            return redirect()->route('direcciones.index');
+        }
     }
 
     /**
@@ -100,6 +114,10 @@ class AddressController extends Controller
         // jaider
         $address = Address::findOrFail($id);
         $address->delete();
+        session()->flash('message', [
+            'text' => 'Dirección eliminada',
+            'type' => 'success',
+        ]);
         return redirect()->route('direcciones.index');
     }
 }
