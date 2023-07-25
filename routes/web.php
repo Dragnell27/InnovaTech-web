@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Auth;
 */
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
 Route::get('producto',[ProductosController::class,'producto'])->name('productos');
 
@@ -47,7 +47,7 @@ Route::post('/Cart-Checkout',[App\Http\Controllers\CarritoController::class,'sto
 Route::post("document_types",[RegisterController::class, 'document_type'])->name("document_type");
 
 //Ruta de jaider, carga los datos personales del usuario.
-Route::get('/perfil/mis_datos',[UserController::class, 'show'])->name('my_data.show')->middleware('auth');
+Route::get('/perfil/my_data',[UserController::class, 'show'])->name('my_data.show')->middleware('auth');
 
 //Ruta de jaider, permite iniciar sesion y acceser al registro
 Auth::routes();
@@ -60,3 +60,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //ruta de jaider, agrupa todo el CRUD de direcciones
 Route::middleware('auth')->resource('perfil/direcciones', AddressController::class)->except('show');
+
+//ruta jaider, registro;}
+Route::get('registro',[UserController::class, 'create'])->name('registro.create');
+Route::post('registro',[UserController::class, 'store'])->name('registro.store');

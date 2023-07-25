@@ -50,8 +50,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-
+        $validator = Validator::make($data, [
             'document' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -59,9 +58,17 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
             'param_type' => ['required', 'integer'],
-            'param_suscription' => ['required', 'integer'],
-
+            'aceptarTerminos' => ['accepted'],
         ]);
+
+        // Si hay errores de validación, redirigir de vuelta al formulario de registro con los mensajes de error
+        if ($validator->fails()) {
+            return redirect('registro')
+                ->withErrors($validator) // Agrega los mensajes de error al objeto de sesiones
+                ->withInput(); // Mantén los datos ingresados en el formulario
+        }
+
+        return redirect()->route('index');
     }
 
     /**
@@ -72,6 +79,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if ($data['aceptarTerminos']) {
+            $suscripcion = 20;
+        } else {
+            $suscripcion = 21;
+        }
         return User::create([
             'document' => $data['name'],
             'first_name' => $data['first_name'],
@@ -79,18 +91,20 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'param_type' => $data['param_suscription'],
+            'param_type' => $data['param_type'],
             'param_rol' => 1,
-            'param_suscription' => $data['param_suscription'],
+            'param_suscription' => $suscripcion,
             'param_state' => 1,
+            'param_suscription'
         ]);
     }
 
-    public function document_type(){
-        $types = Param::where('paramtype_id',15)->get();
+    public function document_type()
+    {
+        $types = Param::where('paramtype_id', 15)->get();
         return response()->json(
             [
-                'type'=>$types,
+                'type' => $types,
                 'success' => true,
             ]
         );
