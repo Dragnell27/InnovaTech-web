@@ -5,11 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductosController;
-use App\Http\Controllers\PqrsdController;
+// use App\Http\Controllers\PqrsdController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\CarritoController;
 use App\Http\Controllers\ParamController;
+use App\Http\Controllers\CategoryController;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -29,9 +31,9 @@ Route::get('/', function () {
 
 Route::get('producto',[ProductosController::class,'producto'])->name('productos');
 
-Route::get('/pqrs', [PqrsdController::class, 'index'])->name('pqrs.index');
-Route::get('/pqrs/create', [PqrsdController::class, 'create'])->name('pqrs.create');
-Route::post('/pqrs', [PqrsdController::class, 'store'])->name('pqrs.store');
+// Route::get('/pqrs', [PqrsdController::class, 'index'])->name('pqrs.index');
+// Route::get('/pqrs/create', [PqrsdController::class, 'create'])->name('pqrs.create');
+// Route::post('/pqrs', [PqrsdController::class, 'store'])->name('pqrs.store');
 
 //Rutas del carrito
 
