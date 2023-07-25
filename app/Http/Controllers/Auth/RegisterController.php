@@ -50,7 +50,8 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $validator = Validator::make($data, [
+        return Validator::make($data, [
+
             'document' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -58,7 +59,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
             'param_type' => ['required', 'integer'],
-            'aceptarTerminos' => ['accepted'],
+            'param_suscription' => ['required', 'integer'],
+
         ]);
 
         // Si hay errores de validación, redirigir de vuelta al formulario de registro con los mensajes de error
@@ -79,11 +81,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if ($data['aceptarTerminos']) {
-            $suscripcion = 20;
-        } else {
-            $suscripcion = 21;
-        }
         return User::create([
             'document' => $data['name'],
             'first_name' => $data['first_name'],
@@ -91,20 +88,18 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'param_type' => $data['param_type'],
+            'param_type' => $data['param_suscription'],
             'param_rol' => 1,
-            'param_suscription' => $suscripcion,
+            'param_suscription' => $data['param_suscription'],
             'param_state' => 1,
-            'param_suscription'
         ]);
     }
 
-    public function document_type()
-    {
-        $types = Param::where('paramtype_id', 15)->get();
+    public function document_type(){
+        $types = Param::where('paramtype_id',15)->get();
         return response()->json(
             [
-                'type' => $types,
+                'type'=>$types,
                 'success' => true,
             ]
         );

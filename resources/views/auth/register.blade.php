@@ -19,78 +19,88 @@
                     <form action="{{ route('register') }}" method="post">
                         @csrf
                         <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombres:</label>
-                            <input type="text" id="nombre" name="first_name" class="form-control"
-                                placeholder="Ingresa tu nombre">
-                            @error('first_name')
-                                <small style="color: red">{{ $message }}</small>
+                            <label for="nombre" class="form-label">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control"
+                                placeholder="Ingresa tu nombre" required>
+
+                            @error('nombre')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="apellido" class="form-label">Apellido:</label>
-                            <input type="text" id="apellido" name="last_name" class="form-control"
-                                placeholder="Ingresa tu apellido">
+                            <input type="text" id="apellido" name="apellido" class="form-control"
+                                placeholder="Ingresa tu apellido" required>
 
-                            @error('last_name')
-                                <small style="color: red">{{ $message }}</small>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="tipo_documento" class="form-label">Tipo de documento:</label>
-                            <select id="tipo_documento" name="param_type" class="form-select">
+                            <select id="tipo_documento" name="tipo_documento" class="form-select" required>
 
                             </select>
 
-                            @error('param_type')
-                                <small style="color: red">{{ $message }}</small>
+                            @error('tipo_documento')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="numero_documento" class="form-label">Número de documento:</label>
-                            <input type="text" id="numero_documento" name="document" class="form-control"
-                                placeholder="Ingresa tu numero de documento">
+                            <input type="text" id="numero_documento" name="numero_documento" class="form-control"
+                                placeholder="Ingresa tu numero de documento" required>
 
-                            @error('document')
-                                <small style="color: red">{{ $message }}</small>
+                            @error('numero_documento')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="numero_telefono" class="form-label">Teléfono:</label>
-                            <input type="tel" id="numero_telefono" name="phone" class="form-control"
-                                placeholder="Ingresa tu numero de telefono">
+                            <input type="tel" id="numero_telefono" name="numero_telefono" class="form-control"
+                                placeholder="Ingresa tu numero de telefono" required>
 
-                            @error('phone')
-                                <small style="color: red">{{ $message }}</small>
+                            @error('telefono')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Correo electrónico:</label>
                             <input type="email" id="email" name="email" class="form-control"
-                                placeholder="Ingresa tu correo electronico">
+                                placeholder="Ingresa tu correo electronico" required>
 
                             @error('email')
-                                <small style="color: red">{{ $message }}</small>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="contraseña" class="form-label">Contraseña:</label>
-                            <input type="password" id="contraseña" name="password" class="form-control"
-                                placeholder="Ingresa tu contraseña">
+                            <input type="password" id="contraseña" name="contraseña" class="form-control"
+                                placeholder="Ingresa tu contraseña" required>
 
-                            @error('password')
-                                <small style="color: red">{{ $message }}</small>
+                            @error('contraseña')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" id="aceptarTerminos" name="aceptarTerminos" class="form-check-input">
+                            <input type="checkbox" id="aceptarTerminos" name="aceptarTerminos" class="form-check-input"
+                                required>
                             <label class="form-check-label" for="aceptarTerminos">Acepta los términos y condiciones de
-                                innovatech.com y autorizo el tratamiento de mis datos personales.</label>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" id="aceptarTerminos" name="aceptarNotificaciones"
-                                class="form-check-input">
-                            <label class="form-check-label" for="aceptarTerminos">Acepta recibir notificaciones por medio de
-                                su correo electronico.</label>
+                                innovatech.com y autorizo el tratamiento de mis datos personales</label>
                         </div>
                         <button type="submit" class="btn btn-danger">Registrarse</button>
                     </form>
@@ -125,25 +135,24 @@
 
 <script>
     const csrfToken = "{{ csrf_token() }}";
-    document.addEventListener("DOMContentLoaded", function() {
-        var ruta = "{{ route('document_type') }}"
-        fetch(ruta, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-Token': csrfToken
-            }
+    document.addEventListener("DOMContentLoaded", function(){
+                var ruta = "{{ route('document_type') }}"
+                fetch(ruta, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': csrfToken
+                    }
 
-        }).then(response => {
-            return response.json();
-        }).then(data => {
-            var opciones = '<option value="">-- Seleccionar --</option>';
-            for (let i in data.type) {
-                opciones += `<option value="${data.type[i].id}">${data.type[i].name}</option>`;
-            }
-            document.getElementById("tipo_documento").innerHTML = opciones;
-        }).catch(error => console.error(error));
-    });
+                }).then(response => {
+                    return response.json();
+                }).then(data => {
+                    var opciones = '<option value="">-- Seleccionar --</option>';
+                    for (let i in data.type) {
+                        opciones += `<option value="${data.type[i].id}">${data.type[i].name}</option>`;
+                    }
+                    document.getElementById("tipo_documento").innerHTML = opciones;
+                }).catch(error => console.error(error));
+            });
 </script>
-
 </html>
