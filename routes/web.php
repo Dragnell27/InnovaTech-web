@@ -35,11 +35,13 @@ Route::get('producto',[ProductosController::class,'producto'])->name('productos'
 // Route::get('/pqrs/create', [PqrsdController::class, 'create'])->name('pqrs.create');
 // Route::post('/pqrs', [PqrsdController::class, 'store'])->name('pqrs.store');
 
-//Rutas del carrito
+//Rutas del carrito//
 
-Route::get("/cart-show",[App\Http\Controllers\CarritoController::class,'show'])->name("cart.show");
-Route::delete("/destroy/{idProducto}",[App\Http\Controllers\CarritoController::class,'destroy'])->name("cart.destroy");
-Route::post('/Cart-Checkout',[App\Http\Controllers\CarritoController::class,'store'])->name("cart.store");
+Route::get("/cart-show",[App\Http\Controllers\CtrCarrito::class,'show'])->name("cart.show");
+Route::delete("/destroy/{idProducto}",[App\Http\Controllers\CtrCarrito::class,'destroy'])->name("cart.destroy");
+Route::post('/Cart-Checkout',[App\Http\Controllers\CtrCarrito::class,'store'])->name("cart.store");
+Route::get("update-cart",[App\Http\Controllers\CtrCarrito::class,'updateCart'])->name("update-cart");
+///HASTA aqui// 
 
 /////////////////////////////
 ///   Rutas confirmadas   ///
