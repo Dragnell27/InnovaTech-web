@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-md-6 my-4">
                     <h2 style="color: black">Formulario registro</h2>
-                    <form action="{{ route('registro.store') }}" method="post">
+                    <form action="{{ route('register') }}" method="post">
                         @csrf
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombres:</label>

@@ -63,7 +63,7 @@ class RegisterController extends Controller
 
         // Si hay errores de validación, redirigir de vuelta al formulario de registro con los mensajes de error
         if ($validator->fails()) {
-            return redirect('registro')
+            return redirect('register')
                 ->withErrors($validator) // Agrega los mensajes de error al objeto de sesiones
                 ->withInput(); // Mantén los datos ingresados en el formulario
         }
