@@ -22,7 +22,8 @@ class UserController extends Controller
     }
     public function create()
     {
-        return view('auth.register');
+        $document_types = Param::where('paramtype_id',15)->get();
+        return view('auth.register',compact('document_types'));
     }
 
     /**
@@ -31,24 +32,25 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'document' => ['required', 'string', 'min:7', 'max:12'],
+            'numero_de_documento' => ['required', 'numeric', 'digits_between:7,12'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'min:10','max:10'],
+            'phone' => ['required', 'numeric', 'digits:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
-            'document_type' => ['required', 'integer'],
+            'tipo_de_documento' => ['required', 'integer'],
             'aceptarTerminos' => ['accepted'],
         ]);
+
         $suscripcion = $request['aceptarTerminos'] ? 20 : 21;
         $user = new User();
-        $user->document = $request['document'];
+        $user->document = $request['numero_de_documento'];
         $user->first_name = $request['first_name'];
         $user->last_name = $request['last_name'];
         $user->phone = $request['phone'];
         $user->email = $request['email'];
         $user->password = Hash::make($request['password']);
-        $user->param_type = $request['document_type'];
+        $user->param_type = $request['tipo_de_documento'];
         $user->param_rol = 1;
         $user->param_suscription = $suscripcion;
         $user->param_state = 5;
@@ -78,9 +80,18 @@ class UserController extends Controller
     /**
      * Update the resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        //
+        $suscripcion = $request['aceptarTerminos'] ? 20 : 21;
+        $user = User::findOrFail($id);
+        $user->document = $request['numero_de_documento'];
+        $user->first_name = $request['first_name'];
+        $user->last_name = $request['last_name'];
+        $user->phone = $request['phone'];
+        $user->email = $request['email'];
+        $user->password = Hash::make($request['password']);
+        $user->param_type = $request['tipo_de_documento'];
+        $user->param_suscription = $suscripcion;
     }
 
     /**
@@ -88,6 +99,6 @@ class UserController extends Controller
      */
     public function destroy(): never
     {
-        abort(404);
+        
     }
 }

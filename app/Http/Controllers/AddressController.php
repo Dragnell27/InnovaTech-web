@@ -58,6 +58,7 @@ class AddressController extends Controller
         } else {
             $datos = request()->except('_token', 'department');
             $datos['user_id'] = Auth::user()->id;
+            $datos['param_state'] = 5;
             Address::insert($datos);
             session()->flash('message', [
                 'text' => 'Dirección guardada exitosamente.',
@@ -105,7 +106,7 @@ class AddressController extends Controller
         $address->floor = $request->input('floor');
         $address->param_city = $request->input('param_city');
         $address->save();
-        return redirect()->route('direcciones.index');
+        return redirect()->url('direcciones.index');
     }
 
     /**

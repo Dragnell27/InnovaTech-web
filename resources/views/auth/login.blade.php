@@ -22,7 +22,7 @@
                 <p><input class="my-button2 mt-3" type="submit" value="Iniciar Sesion"></p>
                 <hr color="black">
                 <b>
-                    <p id="titulo">¿No tienes cuenta? <a href="{{ route('register') }}">Registrate</a></p>
+                    <p id="titulo">¿No tienes cuenta? <a href="{{ route('registro.create') }}">Registrate</a></p>
                 </b>
         </form>
     </div>
