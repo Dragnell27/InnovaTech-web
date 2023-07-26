@@ -24,7 +24,7 @@ class CategoryResource extends  JsonResource
             ],
             "colors"=>[
                 $this->param_color
-            ]  
+            ]
 
         ];
     }

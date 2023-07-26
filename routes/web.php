@@ -41,7 +41,7 @@ Route::get("/cart-show",[App\Http\Controllers\CtrCarrito::class,'show'])->name("
 Route::delete("/destroy/{idProducto}",[App\Http\Controllers\CtrCarrito::class,'destroy'])->name("cart.destroy");
 Route::post('/Cart-Checkout',[App\Http\Controllers\CtrCarrito::class,'store'])->name("cart.store");
 Route::get("update-cart",[App\Http\Controllers\CtrCarrito::class,'updateCart'])->name("update-cart");
-///HASTA aqui// 
+///HASTA aqui//
 
 /////////////////////////////
 ///   Rutas confirmadas   ///
@@ -72,7 +72,7 @@ Route::view('payment-method/pasoUnoMpago','payment-method/pasoUnoMpago')->name('
 Route::view('payment-method/lugarEnvio','payment-method/lugarEnvio')->name('LuEnvio');
 //Ruta que llama Metodo de pago
 Route::view('payment-method/Metodo-pago','payment-method/Metodo-pago')->name('Mpago');
-//ruta ruta que llama Editar dirección 
+//ruta ruta que llama Editar dirección
 Route::view('payment-method/editarDireccion','payment-method/editarDireccion')->name('Edireccion');
 
 

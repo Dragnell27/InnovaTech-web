@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AddressCollection;
 use App\Models\Address;
 use App\Models\Param;
 use Illuminate\Http\Request;
@@ -14,10 +15,9 @@ class AddressController extends Controller
      */
     public function index()
     {
-        //jaider
-        $addresses = Address::where('user_id', Auth::user()->id)->with('city')->get();
-        $deparments = Param::where('paramtype_id', 6)->get();
-        return view('profile.address.index', compact('addresses'), compact('deparments'));
+        // jaider
+        $addresses = Address::with('city')->get();
+        return AddressCollection::collection($addresses);
     }
 
     /**
@@ -49,7 +49,6 @@ class AddressController extends Controller
     {
         // jaider
         $datos = Address::where('user_id', Auth::user()->id)->get();
-
         if ($datos->count() >= 3) {
             session()->flash('message', [
                 'text' => 'Ya has alcanzado el límite de direcciones.',
@@ -73,7 +72,10 @@ class AddressController extends Controller
      */
     public function show($id)
     {
-        //
+        $addresses = Address::where('user_id', $id)->with('city')->get();
+        return AddressCollection::collection(
+            $addresses
+        );
     }
 
     /**
