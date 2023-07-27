@@ -48,29 +48,10 @@
                                     <span class="visually-hidden "></span>
                                 </span>
                             </button>
+                        </div>
                     </form>
-                    </div>
-                    <div id="cart-products" style="display: none">
-                        <ul id="prodUl">
-
-                            {{-- @if (Cart::getContent()->count() <= 0) <h3> Tienes 0 articulos en el carrito</h3>
-                                @else
-                                @foreach (Cart::getContent() as $prod)
-                                <li class="liPro">
-                                    <h5>{{ $prod->name }}</h5>
-                                    <div>
-                                        Precio: {{ $prod->price }}
-                                    </div>
-
-                                </li>
-                                <hr>
-                                @endforeach
-                                @endif --}}
-
-                        </ul>
-                        <a href="{{ Route('cart.show') }}" class="btn btn-primary"> Ver carrito</a>
-
-                    </div>
+                    
+                    
                 </li>
                 @auth
                     <li class="links"><a href="{{ route('logout') }}">Cerrar sesion</a></li>

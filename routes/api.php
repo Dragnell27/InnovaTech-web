@@ -18,10 +18,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+//@DarkJ
+//APi para categorias
 Route::apiResource("/category",'App\Http\Controllers\CategoryController');
+//api para productos
+Route::apiResource('/products','App\Http\Controllers\apiControllers\productsController');
+
+//@DarkJ
+
 
 Route::apiResource('/address','App\Http\Controllers\AddressController');
 
 Route::apiResource('/users','App\Http\Controllers\UserController');
+
 
