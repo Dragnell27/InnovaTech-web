@@ -56,13 +56,15 @@ class CarritoController extends Controller
     {
           $id = $request->id;
        
-         $producto = \DB::table('productos')->where('id',$id)->first();
+         $producto = \DB::table('products')->where('id',$id)->first();
         try {
             Cart::add(array(
                 'id' => $producto->id,   //inique row ID
                 'name' => $producto->nombre_producto,
                 'price' =>$producto->precio_venta,
                 'quantity' => $request->quantity?$request->quantity:1,
+                'discount'=> $producto->discount,
+                'image'=>$producto->images,
     
             ));
             session(["cart"=>Cart::getContent()]);
