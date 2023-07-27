@@ -16,7 +16,7 @@
             </div>
             <section style="display: flex;">
                 <div style="width: 300px;">
-                    <a href="{{route('my_data.show')}}">
+                    <a href="{{route('users.show',Auth::user()->id)}}">
                         <div class="form-control mb-2">
                             <p>Datos personales</p>
                         </div>

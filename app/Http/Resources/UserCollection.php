@@ -18,13 +18,14 @@ class UserCollection extends JsonResource
             "id" => $this->id,
             "first_name" => $this->first_name,
             "last_name" => $this->last_name,
+            "document" => $this->document,
             "phone" => $this->phone,
             "email" => $this->email,
             "state" => $this->param_state,
-            'document' => [
-                "id" => $this->document->id,
-                "name" => $this->document->name,
-                "type_id" => $this->document->paramtype_id,
+            'document_type' => [
+                "id" => $this->document_type->id,
+                "name" => $this->document_type->name,
+                "type_id" => $this->document_type->paramtype_id,
             ],
         ];
     }

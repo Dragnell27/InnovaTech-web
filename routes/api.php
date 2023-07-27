@@ -24,11 +24,17 @@ Route::apiResource("/category",'App\Http\Controllers\CategoryController');
 //api para productos
 Route::apiResource('/products','App\Http\Controllers\apiControllers\productsController');
 
+Route::apiResource('/faqs','App\Http\Controllers\apiControllers\faqsController');
+
 //@DarkJ
 
 
-Route::apiResource('/address','App\Http\Controllers\AddressController');
+//@Dragnell
+// api para las direcciones
+Route::apiResource('/address','App\Http\Controllers\apiControllers\ApiAddress');
+//api para los usuarios
+Route::apiResource('/users','App\Http\Controllers\apiControllers\ApiUser');
 
-Route::apiResource('/users','App\Http\Controllers\UserController');
-
-
+//@Jhonmurillo
+//Api para los comentarios
+Route::apiResource('comentario', CommentController::class);

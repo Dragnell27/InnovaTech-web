@@ -51,20 +51,17 @@ ROUTE::view('components/cart/cart-show','components/cart/cart-show');
 //Ruta de jaider, sirve para cargar los tipos de docuemnto en el registro
 Route::post("document_types",[RegisterController::class, 'document_type'])->name("document_type");
 
-//Ruta de jaider, carga los datos personales del usuario.
-Route::get('/perfil/my_data',[UserController::class, 'show'])->name('my_data.show')->middleware('auth');
-
 //Ruta de jaider, permite iniciar sesion y acceser al registro
 Auth::routes();
 
 //Ruta de jaider, trae los municipios
-Route::post('ciudades', [AddressController::class, 'cargarCiudades'])->name('cities')->middleware('auth');
+Route::post('ciudades', [AddressController::class, 'cargarCiudades'])->name('cities');
 
 //ruta de jaider, sirve para cerrar sesion.
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //ruta de jaider, agrupa todo el CRUD de direcciones
-Route::middleware('auth')->resource('perfil/direcciones', AddressController::class)->except('show');
+Route::middleware('auth')->resource('perfil/direcciones', AddressController::class);
 
 
 //Camilo Alzate Ruta que llama el primer paso de compra
@@ -78,7 +75,6 @@ Route::view('payment-method/editarDireccion','payment-method/editarDireccion')->
 
 
 
-//ruta jaider, registro;}
-Route::get('registro',[UserController::class, 'create'])->name('registro.create');
-Route::post('registro',[UserController::class, 'store'])->name('registro.store');
+//ruta jaider, manejo de usuarios;}
+Route::resource('/users', UserController::class);
 

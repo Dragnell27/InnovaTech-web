@@ -7,6 +7,7 @@ use App\Models\Address;
 use App\Models\Param;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class AddressController extends Controller
 {
@@ -15,9 +16,11 @@ class AddressController extends Controller
      */
     public function index()
     {
-        // jaider
-        $addresses = Address::with('city')->get();
-        return AddressCollection::collection($addresses);
+        $addresses = Http::get(env('API').'/address/'.Auth::user()->id);
+        $data = $addresses->json();
+        // dd($data);
+        $deparments = Param::where('paramtype_id', 6)->get();
+        return view('profile.address.index',compact('data'), compact('deparments'));
     }
 
     /**
@@ -73,10 +76,9 @@ class AddressController extends Controller
      */
     public function show($id)
     {
-        $addresses = Address::where('user_id', $id)->with('city')->get();
-        return AddressCollection::collection(
-            $addresses
-        );
+        $addresses = Http::get(env('API').'/address/'.$id);
+        $data = $addresses->json();
+        return view('profile.address.show',compact('data'));
     }
 
     /**
@@ -106,7 +108,11 @@ class AddressController extends Controller
         $address->floor = $request->input('floor');
         $address->param_city = $request->input('param_city');
         $address->save();
-        return redirect()->url('direcciones.index');
+        session()->flash('message', [
+            'text' => 'Dirección editada',
+            'type' => 'success',
+        ]);
+        return redirect()->route('direcciones.index');
     }
 
     /**

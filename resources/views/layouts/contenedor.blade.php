@@ -30,7 +30,7 @@
             <ul class="nav-links">
                 <i class="uil uil-times navCloseBtn"></i>
                 @auth
-                    <li class="links"><a href="{{ route('my_data.show') }}">Mi cuenta</a></li>
+                    <li class="links"><a href="{{ route('users.show',Auth::user()->id) }}">Mi cuenta</a></li>
                 @else
                     <li class="links"><a href="{{ route('login') }}">Iniciar Sesion</a></li>
                 @endauth ()
@@ -50,8 +50,8 @@
                             </button>
                         </div>
                     </form>
-                    
-                    
+
+
                 </li>
                 @auth
                     <li class="links"><a href="{{ route('logout') }}">Cerrar sesion</a></li>

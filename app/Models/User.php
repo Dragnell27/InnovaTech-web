@@ -43,7 +43,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function document()
+    public function document_type()
     {
         return $this->belongsTo(Param::class, 'param_type');
     }
