@@ -37,10 +37,10 @@ Route::get('producto',[ProductosController::class,'producto'])->name('productos'
 
 //Rutas del carrito//
 
-Route::get("/cart-show",[App\Http\Controllers\CtrCarrito::class,'show'])->name("cart.show");
-Route::delete("/destroy/{idProducto}",[App\Http\Controllers\CtrCarrito::class,'destroy'])->name("cart.destroy");
-Route::post('/Cart-Checkout',[App\Http\Controllers\CtrCarrito::class,'store'])->name("cart.store");
-Route::get("update-cart",[App\Http\Controllers\CtrCarrito::class,'updateCart'])->name("update-cart");
+Route::get("/cart-show",[App\Http\Controllers\CarritoController::class,'show'])->name("cart.show");
+Route::delete("/destroy/{idProducto}",[App\Http\Controllers\CarritoController::class,'destroy'])->name("cart.destroy");
+Route::post('/Cart-Checkout',[App\Http\Controllers\CarritoController::class,'store'])->name("cart.store");
+Route::get("update-cart",[App\Http\Controllers\CarritoController::class,'updateCart'])->name("update-cart");
 ROUTE::view('components/cart/cart-show','components/cart/cart-show');
 ///HASTA aqui//
 
