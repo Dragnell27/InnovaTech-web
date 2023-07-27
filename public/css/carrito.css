@@ -47,6 +47,12 @@
     margin-bottom: 20px;
     text-align: center;
  }
+ .buttonsMM{
+    padding: 0; 
+    border: none; 
+    background-color: transparent;
+    
+ }
 
 
 /* CSS del carrito JOAN */
