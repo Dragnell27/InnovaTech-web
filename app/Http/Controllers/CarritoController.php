@@ -65,6 +65,7 @@ class CarritoController extends Controller
                 'quantity' => $request->quantity?$request->quantity:1,
                 'discount'=> $producto->discount,
                 'image'=>$producto->images,
+                'desc'=>$producto->description,
     
             ));
             session(["cart"=>Cart::getContent()]);

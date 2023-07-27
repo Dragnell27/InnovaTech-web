@@ -25,21 +25,29 @@
             </h3>
 
         </div>
-        {{-- @if (Cart::getContent()->count() <= 0) <section> --}}
-        {{-- @else --}}
+        @if (Cart::getContent()->count() <= 0) <section> 
+            <div>
+                <h1>Su carrito está vacio</h1>
+            </div>
+        @else 
         <div class="row g-5 ml-20">
+            @php
+               $datos= Cart::getContent(); 
+              
+               @endphp
+            
             <div class="col-md-5 col-lg-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-danger">Resumen de compra</span>
-                    <small>productos <span class="badge bg-danger rounded-pill">20</span></small>
+                    <small>productos <span class="badge bg-danger rounded-pill">{{ $datos->quantity }}</span></small>
 
                 </h4>
                 <ul class="list-group mb-3">
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
-                            <h6 class="my-0">Nombre de Producto</h6>
-                            <small class="text-body-secondary">En esta parte va el producto y la
-                                descripción</small>
+                            <h6 class="my-0">{{ $datos->name }}</h6>
+                            <img src=" {{ $items->image }}" alt="">
+                            <small class="text-body-secondary">{{ $datos->desc}}</small>
                         </div>
                     </li>
 
@@ -47,7 +55,11 @@
                         <div class="text-success">
                             <h6 class="my-0">Total (COP)</h6>
                         </div>
-                        <span class="text-success">−$200000</span>
+                        @if ($discount==0)
+                        <span class="text-success">−${{ $datos->quantity * $datos->price }}</span>
+                        @else
+                        <span class="text-success">−${{ $datos->quantity * $datos->discount }}</span>
+
                     </li>
                 </ul>
                 <form class="card p-2">
@@ -58,23 +70,19 @@
                     </div>
                 </form>
             </div>
+
             <div class=" col-lg-6  rounded ">
-                {{-- @foreach (Cart::getContent() as $items) --}}
+                 @foreach (Cart::getContent() as $items) 
                 <ul class="list-group mb-3 ">
                     <li class="list-group-item  justify-content-between lh-sm" style="margin-left: 10px;">
                         <table class="">
                             <tbody>
-
                                 <form action="" method="post">
                                     <tr>
                                         <td>
 
                     <li class="d-flex">
-
-                        <h1>
-                            <i class="bi bi-cart4"></i>
-                        </h1>
-
+                       <img src=" {{ $items->image }}" alt="">
                     </li>
                     <li class="d-flex mt-4">
                         <small>
@@ -86,9 +94,7 @@
                     <td>
                         <span>
                             <p>
-
-                                No importa la cantidad de texto el boton siempre esw el mismo
-                                ?
+                                {{ $items->desc }}
                             </p>
                         </span>
                     </td>
@@ -97,8 +103,17 @@
 
                             <span>
                                 <p>
-                                    <strong>valor</strong>
-                                    <strong>valor descuento</strong>
+                                    @if ($discount==0)
+                                    
+                                    <strong>{{ $items->price }}</strong>
+                                    @else
+                                    
+                                    <strong>{{ $items->price }}</strong>
+                                    <strong>{{ $items->discount }}</strong>
+                                        
+                                    @endif
+                                  
+                                   
                                 </p>
                             </span>
 
@@ -116,7 +131,7 @@
                                 <i class="bi bi-plus-circle-fill"></i>
                             </button>
                             &nbsp;&nbsp;
-                            <span class="badge bg-danger rounded-pill">1</span>
+                            <span class="badge bg-danger rounded-pill">{{ $itmes->quantity }}</span>
                             &nbsp;&nbsp;
                             <button class="buttonsMM"><i class="bi bi-dash-circle-fill"></i></button>
                         </li>
@@ -133,12 +148,12 @@
                     </table>
                     </li>
                 </ul>
-                {{-- @endforeach --}}
+                 @endforeach 
 
             </div>
         </div>
 
-        {{-- @endif --}}
+         @endif 
     </main>
     <footer>
         <!-- place footer here -->
