@@ -4,7 +4,7 @@ namespace App\Http\Controllers\apiControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\faq;
 class faqsController extends Controller
 {
     /**
@@ -12,7 +12,7 @@ class faqsController extends Controller
      */
     public function index()
     {
-        //
+        return faq::all();
     }
 
     /**
