@@ -4,6 +4,7 @@ namespace App\Http\Controllers\apiControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\faqs\faqsResource;
 use App\Models\faq;
 class faqsController extends Controller
 {
@@ -12,7 +13,7 @@ class faqsController extends Controller
      */
     public function index()
     {
-        return faq::all();
+        return faqsResource::collection(faq::all());
     }
 
     /**
@@ -34,17 +35,17 @@ class faqsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        return faqsResource::collection(faq::where("id",$id)->get());
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit( $id)
     {
-        //
+        
     }
 
     /**
