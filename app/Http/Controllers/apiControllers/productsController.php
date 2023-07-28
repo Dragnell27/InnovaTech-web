@@ -29,7 +29,7 @@ class productsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            
     }
 
     /**
@@ -37,7 +37,12 @@ class productsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        if ($request->has("name")) {
+
+            return product::all();
+        }else {
+            dd($request);
+        }
     }
 
     /**
