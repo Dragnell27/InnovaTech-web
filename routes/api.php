@@ -24,6 +24,8 @@ Route::apiResource("/category",'App\Http\Controllers\CategoryController');
 //api para productos
 Route::apiResource('/products','App\Http\Controllers\apiControllers\productsController');
 
+Route::apiResource('/faqs','App\Http\Controllers\apiControllers\faqsController');
+
 //@DarkJ
 
 
