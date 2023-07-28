@@ -53,6 +53,15 @@
     background-color: transparent;
     
  }
+ #carritovacio{
+    margin-top: 60px;
+    margin-bottom: 20px;
+    text-align: center;
+ }
+ #icarritovacio{
+    width: 20px;
+   
+ }
 
 
 /* CSS del carrito JOAN */

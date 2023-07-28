@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>Carrito</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,14 +26,16 @@
 
         </div>
         @if (Cart::getContent()->count() <= 0) <section> 
-            <div>
+            <div id="carritovacio">
                 <h1>Su carrito está vacio</h1>
+               <img src="{{ asset('img/carro-vacio.png') }}" alt="">
             </div>
         @else 
+
+        
         <div class="row g-5 ml-20">
             @php
-               $datos= Cart::getContent(); 
-              
+               $datos = Cart::getContent(); 
                @endphp
             
             <div class="col-md-5 col-lg-4 order-md-last">
@@ -43,14 +45,17 @@
 
                 </h4>
                 <ul class="list-group mb-3">
+                    @foreach (Cart::getContent() as $datos )
+                    descuento=precio/100*descuento
+                    precio-descuento
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
                             <h6 class="my-0">{{ $datos->name }}</h6>
-                            <img src=" {{ $items->image }}" alt="">
+                            <img src=" {{ $datos->image }}" alt="">
                             <small class="text-body-secondary">{{ $datos->desc}}</small>
                         </div>
                     </li>
-
+                    @endforeach
                     <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                         <div class="text-success">
                             <h6 class="my-0">Total (COP)</h6>
@@ -58,8 +63,11 @@
                         @if ($discount==0)
                         <span class="text-success">−${{ $datos->quantity * $datos->price }}</span>
                         @else
-                        <span class="text-success">−${{ $datos->quantity * $datos->discount }}</span>
-
+                        @php
+                          $descuento=($datos->price * $datos->discount) /100  
+                        @endphp
+                        <span class="text-success">−${{ ($datos->price * $datos->quantity)-$descuento}}</span>
+                        @endif
                     </li>
                 </ul>
                 <form class="card p-2">
@@ -153,7 +161,9 @@
             </div>
         </div>
 
-         @endif 
+       
+        @endif 
+        
     </main>
     <footer>
         <!-- place footer here -->
