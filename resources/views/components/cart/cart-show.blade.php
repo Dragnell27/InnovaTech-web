@@ -1,20 +1,10 @@
-<!doctype html>
-<html lang="en">
-
+@extends('layouts.contenedor')
+@section('title','Home')
+@section('component')
 <head>
-    <title>Carrito</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/carrito.css') }}">
 </head>
-
-<body>
+<section>
     <header>
         <!-- place navbar here -->
     </header>
@@ -25,19 +15,19 @@
             </h3>
 
         </div>
-        @if (Cart::getContent()->count() <= 0) <section> 
+        @if (Cart::getContent()->count() <= 0) <section>
             <div id="carritovacio">
                 <h1>Su carrito está vacio</h1>
                <img src="{{ asset('img/carro-vacio.png') }}" alt="">
             </div>
-        @else 
+        @else
 
-        
+
         <div class="row g-5 ml-20">
             @php
-               $datos = Cart::getContent(); 
+               $datos = Cart::getContent();
                @endphp
-            
+
             <div class="col-md-5 col-lg-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-danger">Resumen de compra</span>
@@ -64,7 +54,7 @@
                         <span class="text-success">−${{ $datos->quantity * $datos->price }}</span>
                         @else
                         @php
-                          $descuento=($datos->price * $datos->discount) /100  
+                          $descuento=($datos->price * $datos->discount) /100
                         @endphp
                         <span class="text-success">−${{ ($datos->price * $datos->quantity)-$descuento}}</span>
                         @endif
@@ -80,7 +70,7 @@
             </div>
 
             <div class=" col-lg-6  rounded ">
-                 @foreach (Cart::getContent() as $items) 
+                 @foreach (Cart::getContent() as $items)
                 <ul class="list-group mb-3 ">
                     <li class="list-group-item  justify-content-between lh-sm" style="margin-left: 10px;">
                         <table class="">
@@ -112,16 +102,16 @@
                             <span>
                                 <p>
                                     @if ($discount==0)
-                                    
+
                                     <strong>{{ $items->price }}</strong>
                                     @else
-                                    
+
                                     <strong>{{ $items->price }}</strong>
                                     <strong>{{ $items->discount }}</strong>
-                                        
+
                                     @endif
-                                  
-                                   
+
+
                                 </p>
                             </span>
 
@@ -156,14 +146,14 @@
                     </table>
                     </li>
                 </ul>
-                 @endforeach 
+                 @endforeach
 
             </div>
         </div>
 
-       
-        @endif 
-        
+
+        @endif
+
     </main>
     <footer>
         <!-- place footer here -->
@@ -176,6 +166,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
-</body>
-
-</html>
+</section>
+@endsection
