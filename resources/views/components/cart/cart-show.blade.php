@@ -9,35 +9,29 @@
         <!-- place navbar here -->
     </header>
     <main>
-        <div id="CarritoCompraTitulo">
-            <h3> <i class="bi bi-cart4"></i>
-                <span class="text-danger">Carrito de compras</span>
-            </h3>
-
-        </div>
         @if (Cart::getContent()->count() <= 0) <section>
             <div id="carritovacio">
                 <h1>Su carrito está vacio</h1>
                <img src="{{ asset('img/carro-vacio.png') }}" alt="">
             </div>
         @else
+        <div id="CarritoCompraTitulo">
+            <h3> <i class="bi bi-cart4"></i>
+                <span class="text-danger">Carrito de compras</span>
+            </h3>
 
-
+        </div>
         <div class="row g-5 ml-20">
             @php
                $datos = Cart::getContent();
                @endphp
-
             <div class="col-md-5 col-lg-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-danger">Resumen de compra</span>
                     <small>productos <span class="badge bg-danger rounded-pill">{{ $datos->quantity }}</span></small>
-
                 </h4>
                 <ul class="list-group mb-3">
                     @foreach (Cart::getContent() as $datos )
-                    descuento=precio/100*descuento
-                    precio-descuento
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
                             <h6 class="my-0">{{ $datos->name }}</h6>

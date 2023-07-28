@@ -1,5 +1,7 @@
 @extends('layouts.contenedor')
-@vite('resources/css/productos.css')
+<head>
+    <link rel="stylesheet" href="{{ asset('css/producto.css') }}">
+</head>
 @section('title','Producto')
 
     <section class="bg-light" >
