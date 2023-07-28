@@ -35,4 +35,6 @@ Route::apiResource('/address','App\Http\Controllers\apiControllers\ApiAddress');
 //api para los usuarios
 Route::apiResource('/users','App\Http\Controllers\apiControllers\ApiUser');
 
-
+//@Jhonmurillo
+//Api para los comentarios
+Route::apiResource('comentario', CommentController::class);
