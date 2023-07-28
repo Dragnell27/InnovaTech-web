@@ -29,8 +29,10 @@ Route::apiResource('/faqs','App\Http\Controllers\apiControllers\faqsController')
 //@DarkJ
 
 
-Route::apiResource('/address','App\Http\Controllers\AddressController');
-
-Route::apiResource('/users','App\Http\Controllers\UserController');
+//@Dragnell
+// api para las direcciones
+Route::apiResource('/address','App\Http\Controllers\apiControllers\ApiAddress');
+//api para los usuarios
+Route::apiResource('/users','App\Http\Controllers\apiControllers\ApiUser');
 
 
