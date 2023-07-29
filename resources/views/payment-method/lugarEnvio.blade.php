@@ -1,25 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.contenedor')
+@section('title','Home')
+@section('component') 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Innova_tech-Lugar de envio</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     <div class="container">
-        <main>
-            <div class="bg-danger bg-rosy mb-4 rounded">
-                <div class="container mb-3 col-10  card h-75" style="background-color: #F8F8F8">
+     
+            <div class="bg-danger bg-rosy mb-2 rounded">
+                <div class="container mb-3 col-10  card" style="background-color: #F8F8F8">
                     <div class="row justify-content-between ">
                         <div class="col-4">
                             <a href=""class="text-muted text-decoration-none"> <i class="bi bi-geo-alt-fill"></i></a>
-    
                             <span>Dirección <strong>cra50 #56-03 </strong> </span>
                         </div>
                         <div class="col-3">
@@ -34,6 +28,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row g-5">
                 <div class="col-md-5 col-lg-4 order-md-last">
                     <div class="rounded" style="background-color: #F8F8F8;">
@@ -165,6 +160,7 @@
                     </div>
                 </div>
             </div>
+    </div>
 
             <script src="{{ asset('js/app.js') }}"></script>
 </body>
