@@ -5,12 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\WishlistController;
 // use App\Http\Controllers\PqrsdController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\CarritoController;
-use App\Http\Controllers\ParamController;
-use App\Http\Controllers\CategoryController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -77,4 +75,7 @@ route::view('products/singleProduct','products/singleProduct')->name('viewProdu'
 
 //ruta jaider, manejo de usuarios;}
 Route::resource('/users', UserController::class);
+
+//ruta jaider, lista de deseos
+Route::resource('/wishlist', WishlistController::class);
 
