@@ -29,6 +29,15 @@ Route::get('/', function () {
 
 Route::get('producto',[ProductosController::class,'producto'])->name('productos');
 
+
+/// RUTAS DE PQRS
+
+Route::get('/faqs', function () {
+    return view('components.PQRS.FAQS');
+})->name('index');
+
+///AQUI ACABAN LAS RUTAS DE PQRS
+
 // Route::get('/pqrs', [PqrsdController::class, 'index'])->name('pqrs.index');
 // Route::get('/pqrs/create', [PqrsdController::class, 'create'])->name('pqrs.create');
 // Route::post('/pqrs', [PqrsdController::class, 'store'])->name('pqrs.store');
