@@ -35,7 +35,9 @@
                     <li class="links"><a href="{{ route('login') }}">Iniciar Sesion</a></li>
                 @endauth ()
                 <li class="links"><a href="{{ route('productos') }}">Productos</a></li>
-                <li class="links"><a href="{{route('wishlist.show',Auth::user()->id)}}">Lista De Deseos</a></li>
+                <li class="links"><a href="@auth
+                    {{route('wishlist.show',Auth::user()->id)}}
+                @endauth">Lista De Deseos</a></li>
                 <li class="links"><a href="#">Carrito</a></li>
                 <li>
                     <form action="{{ Route('cart.show') }}" method="get">
