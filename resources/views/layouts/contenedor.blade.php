@@ -30,14 +30,17 @@
             <ul class="nav-links">
                 <i class="uil uil-times navCloseBtn"></i>
                 @auth
-                    <li class="links"><a href="{{ route('users.show',Auth::user()->id) }}">Mi cuenta</a></li>
+                    <li class="links"><a href="{{ route('users.show', Auth::user()->id) }}">Mi cuenta</a></li>
                 @else
                     <li class="links"><a href="{{ route('login') }}">Iniciar Sesion</a></li>
                 @endauth ()
                 <li class="links"><a href="{{ route('productos') }}">Productos</a></li>
-                <li class="links"><a href="@auth
-                    {{route('wishlist.show',Auth::user()->id)}}
-                @endauth">Lista De Deseos</a></li>
+                <li class="links"><a
+                        href="@auth
+{{ route('wishlist.show', Auth::user()->id) }}
+                    @else
+                    {{ route('login') }} @endauth">Lista
+                        De Deseos</a></li>
                 <li class="links"><a href="#">Carrito</a></li>
                 <li>
                     <form action="{{ Route('cart.show') }}" method="get">
@@ -58,9 +61,6 @@
                 @auth
                     <li class="links"><a href="{{ route('logout') }}">Cerrar sesion</a></li>
                 @endauth ()
-                <li>
-
-                </li>
             </ul>
 
             <i class="uil uil-search search-icon" id="searchIcon"></i>

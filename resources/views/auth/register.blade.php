@@ -111,9 +111,8 @@
                         </div>
 
                         <div class="mb-3 form-check">
-                            <input type="checkbox" id="aceptarTerminos" name="aceptarTerminos" class="form-check-input"
-                                required>
-                            <label class="form-check-label" for="aceptarTerminos">Acepta recibir notificaciones por medio
+                            <input type="checkbox" id="accept_subscription" name="accept_subscription" class="form-check-input">
+                            <label class="form-check-label" for="accept_subscription">Acepta recibir notificaciones por medio
                                 de
                                 su correo electronico.</label>
                         </div>
