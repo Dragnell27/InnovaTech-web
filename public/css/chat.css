@@ -1,0 +1,32 @@
+#chat-circle{
+    cursor: pointer;
+    bottom: 20px;
+    right: 20px;
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    width: 90px;
+    background-color: hsl(0, 100%, 63%);
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#faqs-container{
+    position: fixed;
+    bottom: 1%;
+    right: 10px;
+    margin-left: 10px;
+    z-index: 3;
+}
+.forms{
+    margin: 5px;
+    border-color: black !important;
+    overflow-y: visible;
+}
+
+.subMessages{
+    font-size: 13px;
+
+}

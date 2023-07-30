@@ -270,5 +270,6 @@
         </div>
     </div>
 </section>
+@include("components.PQRS.FAQS")
 @include('layouts.footer')
 @endsection
