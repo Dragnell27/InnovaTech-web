@@ -86,5 +86,4 @@ route::view('products/singleProduct','products/singleProduct')->name('viewProdu'
 Route::resource('/users', UserController::class);
 
 //ruta jaider, lista de deseos
-Route::resource('/wishlist', WishlistController::class);
-
+Route::middleware('auth')->resource('/wishlist', WishlistController::class);
