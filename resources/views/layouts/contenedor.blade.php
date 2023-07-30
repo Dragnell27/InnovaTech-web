@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
 
     <script src="{{ asset('js/header.js') }}"></script>
 
@@ -46,7 +47,7 @@
                                 <img src="{{ asset('img/Carro-Compras.png') }}" width="25px" height="20px"
                                     alt="">
                                 <span class="">
-                                    {{-- {{ Cart::getContent()->count() }} --}}
+                                   {{ Cart::getContent()->count() }} 
                                     <span class="visually-hidden "></span>
                                 </span>
                             </button>
