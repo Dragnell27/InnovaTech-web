@@ -1,25 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.contenedor')
+@section('title','Home')
+@section('component') 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Innova_tech-Paso uno</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
-<body>
-    <div class="container">
+
+<section class="mt-2">
+    <div class="container"  style="margin-left: 10%">
         <main>
             <div class="row g-5">
-                <div class="col-md-5 col-lg-4 order-md-last">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <div class="col-md-5 col-lg-4 order-md-last"  style="margin-top: 6%">
+                    <h3 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-danger">Resumen de compra</span>
                         <span class="badge bg-danger rounded-pill">3</span>
-                    </h4>
+                    </h3>
                     <ul class="list-group mb-3">
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <div>
@@ -46,7 +40,7 @@
                     <form class="card p-2">
                         <div class="input-group">
                             <a name="" id="" class=" btn btn-primary  btn-lg"
-                                href="{{ route('LuEnvio') }}" role="button">Lugar de envio
+                                href="{{ route('LuEnvio') }}" role="button" style="margin-left: 8%">Lugar de envio
                             </a>&nbsp;&nbsp;
                             <a name="" id="" class="btn btn-warning  btn-lg" href="#"
                             role="button">Descartar</a>
@@ -54,7 +48,7 @@
                     </form>
                 </div>
                 <div class="col-md-7 col-lg-8">
-                    <h2 class="form_titulo">
+                    <h2 style="color:black">
                         Tus datos </h2>
                         <strong><p class="form_parrafo">verificalos para ver las opciones de entrega y retiro
                     </p></strong>
@@ -175,14 +169,4 @@
                         <div>
                             
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-</script>
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
-</body>
-</html>
+</section>

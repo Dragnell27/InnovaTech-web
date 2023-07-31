@@ -14,7 +14,7 @@
     @section('component')
         <div class="container mt-5">
             <div class="row">
-                <div class="col-md-8 my-4">
+                <div class="col-md-12 my-4">
                     <h1 class="mb-4"style="color: black">Formulario de Registro</h1>
                     <form action="{{ route('users.store') }}" method="post">
                         @csrf
@@ -111,9 +111,8 @@
                         </div>
 
                         <div class="mb-3 form-check">
-                            <input type="checkbox" id="aceptarTerminos" name="aceptarTerminos" class="form-check-input"
-                                required>
-                            <label class="form-check-label" for="aceptarTerminos">Acepta recibir notificaciones por medio
+                            <input type="checkbox" id="accept_subscription" name="accept_subscription" class="form-check-input">
+                            <label class="form-check-label" for="accept_subscription">Acepta recibir notificaciones por medio
                                 de
                                 su correo electronico.</label>
                         </div>

@@ -6,9 +6,6 @@ $(".changeQuantity").click(function (e) {
     let operator  = e.target.value;
     switch (operator) {
         case "+":
-
-
-
             let qty  = $("#qty").val();
             Number(qty)
 

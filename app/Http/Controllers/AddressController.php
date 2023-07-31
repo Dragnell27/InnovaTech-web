@@ -16,11 +16,16 @@ class AddressController extends Controller
      */
     public function index()
     {
-        $addresses = Http::get(env('API').'/address/'.Auth::user()->id);
-        $data = $addresses->json();
-        // dd($data);
+        // $addresses = Http::get(env('API') . '/address/' . Auth::user()->id);
+        $addresses = Address::where('user_id', Auth::user()->id)->with('city')->get();
+        $filter = [];
+        foreach ($addresses as $address) {
+            if ($address['param_state'] == 5) {
+                $filter[] = $address;
+            }
+        }
         $deparments = Param::where('paramtype_id', 6)->get();
-        return view('profile.address.index',compact('data'), compact('deparments'));
+        return view('profile.address.index', compact('filter'), compact('deparments'));
     }
 
     /**
@@ -76,9 +81,14 @@ class AddressController extends Controller
      */
     public function show($id)
     {
-        $addresses = Http::get(env('API').'/address/'.$id);
-        $data = $addresses->json();
-        return view('profile.address.show',compact('data'));
+        $addresses = Http::get(env('API') . '/address/' . $id);
+        $data = [];
+        foreach ($addresses as $address) {
+            if ($address['param_state'] == 5) {
+                $data[] = $address;
+            }
+        }
+        return view('profile.address.show', compact('data'));
     }
 
     /**
@@ -122,11 +132,12 @@ class AddressController extends Controller
     {
         // jaider
         $address = Address::findOrFail($id);
-        $address->delete();
+        $address->param_state = 6;
+        $address->save();
         session()->flash('message', [
             'text' => 'Dirección eliminada',
             'type' => 'success',
         ]);
-        return redirect()->route('direcciones.index');
+        return route('direcciones.index');
     }
 }

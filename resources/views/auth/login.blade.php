@@ -17,6 +17,9 @@
             <div class="form-group">
                 <label for="Contraseña"></label>
                 <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                @error('email')
+                    <small style="color: red">Email o contraseña incorrecta</small>
+                @enderror
                 <div><b><a href="#" class="gradient-text  mb-3">Restablecer contraseña</a></b></div>
 
                 <p><input class="my-button2 mt-3" type="submit" value="Iniciar Sesion"></p>

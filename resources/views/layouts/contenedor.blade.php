@@ -1,3 +1,4 @@
+@include('preloader')
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
@@ -13,9 +14,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
 
     <script src="{{ asset('js/header.js') }}"></script>
     <script src="{{ asset('js/sales.js') }}"></script>
@@ -31,12 +33,17 @@
             <ul class="nav-links">
                 <i class="uil uil-times navCloseBtn"></i>
                 @auth
-                    <li class="links"><a href="{{ route('users.show',Auth::user()->id) }}">Mi cuenta</a></li>
+                    <li class="links"><a href="{{ route('users.show', Auth::user()->id) }}">Mi cuenta</a></li>
                 @else
                     <li class="links"><a href="{{ route('login') }}">Iniciar Sesion</a></li>
                 @endauth ()
                 <li class="links"><a href="{{ route('productos') }}">Productos</a></li>
-                <li class="links"><a href="#">Lista De Deseos</a></li>
+                <li class="links"><a
+                        href="@auth
+{{ route('wishlist.show', Auth::user()->id) }}
+                    @else
+                    {{ route('login') }} @endauth">Lista
+                        De Deseos</a></li>
                 <li class="links"><a href="#">Carrito</a></li>
                 <li>
                     <form action="{{ Route('cart.show') }}" method="get">
@@ -45,7 +52,7 @@
                                 <img src="{{ asset('img/Carro-Compras.png') }}" width="25px" height="20px"
                                     alt="">
                                 <span class="">
-                                    {{-- {{ Cart::getContent()->count() }} --}}
+                                   {{ Cart::getContent()->count() }}
                                     <span class="visually-hidden "></span>
                                 </span>
                             </button>
@@ -57,9 +64,6 @@
                 @auth
                     <li class="links"><a href="{{ route('logout') }}">Cerrar sesion</a></li>
                 @endauth ()
-                <li>
-
-                </li>
             </ul>
 
             <i class="uil uil-search search-icon" id="searchIcon"></i>
@@ -82,6 +86,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     </script>
 </body>
 

@@ -4,15 +4,23 @@ namespace App\Http\Controllers\apiControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\faqs\faqsResource;
 use App\Models\faq;
+use App\Models\Param;
 class faqsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($type = null)
     {
-        return faq::all();
+        if(isset($type)){
+            return Param::select("name")->where("paramtype_id",8)->get();
+        }else{
+            return faqsResource::collection(faq::all());
+        }
+       
+       
     }
 
     /**
@@ -34,17 +42,18 @@ class faqsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        dd($id);
+        return faqsResource::collection(faq::where("id",$id)->get());
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit( $id)
     {
-        //
+        
     }
 
     /**

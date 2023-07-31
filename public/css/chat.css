@@ -1,0 +1,71 @@
+#chat-circle{
+    cursor: pointer;
+    bottom: 20px;
+    right: 20px;
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    width: 90px;
+    /* background-color: hsl(0, 100%, 63%); */
+    background-color: red;
+    border-radius: 50%;
+    box-shadow: 1px 1px 9px gray;
+    font-family: 'Cabin', sans-serif;
+    border: 1px solid black !important;
+}
+
+#round-image{
+    background-color: #e10f0f;
+    height: 60px;
+    width: 60px;
+    padding: 1px;
+    border-radius:50%;
+    border: 1px solid black;
+    border-color: black !important;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+
+}
+#chat-circle:hover{
+    box-shadow: 0 0 9px lightblue;
+    transform: scale(1.1);
+    transform:0.5s ;
+    filter: brightness(100%);
+
+}
+
+/* here ends the circle css and starts the chat */
+#faqs-container{
+    position: fixed;
+    bottom: 1%;
+    right: 10px;
+    margin-left: 10px;
+    z-index: 3;
+    opacity: 0; 
+    height: 0; 
+    transition: opacity 1s, height 0.5s;
+
+}
+#closeBtn{
+    cursor: pointer;
+
+}
+.active{
+    /* display: none; */
+    opacity: 1;
+     height: auto;
+}
+.forms{
+    margin: 5px;
+    border-color: black !important;
+    overflow-y: visible;
+}
+
+.subMessages{
+    font-size: 13px;
+
+}
+
+

@@ -5,12 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\WishlistController;
 // use App\Http\Controllers\PqrsdController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\CarritoController;
-use App\Http\Controllers\ParamController;
-use App\Http\Controllers\CategoryController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +28,15 @@ Route::get('/', function () {
 })->name('index');
 
 Route::get('producto',[ProductosController::class,'producto'])->name('productos');
+
+
+/// RUTAS DE PQRS
+
+Route::get('/faqs', function () {
+    return view('components.PQRS.FAQS');
+})->name('index');
+
+///AQUI ACABAN LAS RUTAS DE PQRS
 
 // Route::get('/pqrs', [PqrsdController::class, 'index'])->name('pqrs.index');
 // Route::get('/pqrs/create', [PqrsdController::class, 'create'])->name('pqrs.create');
@@ -73,10 +80,15 @@ Route::view('payment-method/Metodo-pago','payment-method/Metodo-pago')->name('Mp
 //ruta ruta que llama Editar dirección
 Route::view('payment-method/editarDireccion','payment-method/editarDireccion')->name('Edireccion');
 
-
+route::view('products/singleProduct','products/singleProduct')->name('viewProdu');
 
 //ruta jaider, manejo de usuarios;}
 Route::resource('/users', UserController::class);
 
+<<<<<<< HEAD
 //Ruta, manejo de compras
 Route::view('/sales.shopping', 'sales/shopping')->name('sales.shopping');
+=======
+//ruta jaider, lista de deseos
+Route::middleware('auth')->resource('/wishlist', WishlistController::class);
+>>>>>>> cbe19f2457507c22eed6feed510afd5250511082

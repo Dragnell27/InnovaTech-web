@@ -8,17 +8,17 @@
         </div>
     @endisset
     <h1 class="mb-3">Mis Direcciones</h1>
-    @foreach ($data['data'] as $address)
+    @foreach ($filter as $address)
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">
                     @foreach ($deparments as $department)
-                        @if ($address['city']['foreign'] == $department->id)
+                        @if ($address['city']['param_foreign'] == $department->id)
                             {{ $department->name }}
                             @break
                         @endif
                     @endforeach
-                    / {{ $address['city']['city_name'] }}
+                    / {{ $address['city']['name'] }}
                 </h5>
                 <p class="card-text">
                     {{ $address['hood'] }} / {{ $address['address'] }}

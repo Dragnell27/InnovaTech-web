@@ -43,7 +43,7 @@
  } 
  /*Vista de Carrito Camilo Alzate*/
  #CarritoCompraTitulo{
-    margin-top: 20px;
+    margin-top: 120px;
     margin-bottom: 20px;
     text-align: center;
  }
@@ -53,6 +53,12 @@
     background-color: transparent;
     
  }
+ #carritovacio{
+    margin-top: 200px;
+    margin-bottom: 20px;
+    text-align: center;
+ }
+
 
 
 /* CSS del carrito JOAN */
