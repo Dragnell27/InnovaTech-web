@@ -26,17 +26,16 @@
 <body>
     <header>
         <nav class="nav">
-        <a href="{{ url('/') }}"><img src="{{ asset('img/logo-i.png') }}" id="imagen-logo"></a>
-        <a id="btn-menu" onclick="toggleSidebar()" ><img src="{{ asset('img/Menu.png') }}" id="menu-logo"></a>
+            <i class="uil uil-bars navOpenBtn"></i>
+            <a href="{{ url('/') }}" class="logo"><span style="color: red;">In</span>novatech</a>
 
             <ul class="nav-links">
                 <i class="uil uil-times navCloseBtn"></i>
                 @auth
-        <li class="links"><a href="{{ route('my_data.show') }}"> <img src="{{ asset('img/usuario.png') }}" width="25px" height="20px" </a></li>
-
-        @else
-        <li class="links"><a href="{{ route('login') }}">Iniciar Sesion</a></li>
-        @endauth
+                    <li class="links"><a href="{{ route('users.show', Auth::user()->id) }}">Mi cuenta</a></li>
+                @else
+                    <li class="links"><a href="{{ route('login') }}">Iniciar Sesion</a></li>
+                @endauth ()
                 <li class="links"><a href="{{ route('productos') }}">Productos</a></li>
                 <li class="links"><a
                         href="@auth
@@ -52,7 +51,7 @@
                                 <img src="{{ asset('img/Carro-Compras.png') }}" width="25px" height="20px"
                                     alt="">
                                 <span class="">
-                                   {{ Cart::getContent()->count() }} 
+                                   {{ Cart::getContent()->count() }}
                                     <span class="visually-hidden "></span>
                                 </span>
                             </button>
