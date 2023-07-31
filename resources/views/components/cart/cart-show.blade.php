@@ -24,19 +24,26 @@
         <div class="row g-5 ml-20">
             @php
                $datos = Cart::getContent();
+               dd($datos);
                @endphp
             <div class="col-md-5 col-lg-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-danger">Resumen de compra</span>
-                    <small>productos <span class="badge bg-danger rounded-pill">{{ $datos->quantity }}</span></small>
+                
+                    <span class="badge bg-danger rounded-pill">{{ $datos->quantity }}</span>
+
                 </h4>
                 <ul class="list-group mb-3">
                     @foreach (Cart::getContent() as $datos )
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
                             <h6 class="my-0">{{ $datos->name }}</h6>
-                            <img src=" {{ $datos->image }}" alt="">
-                            <small class="text-body-secondary">{{ $datos->desc}}</small>
+
+                            <div class="small-product">
+                                <img src=" {{ $datos->attributes["image"] }}" >
+
+                            </div>
+                            <small class="text-body-secondary">{{ $datos->attributes["desc"]}}</small>
                         </div>
                     </li>
                     @endforeach
@@ -44,13 +51,13 @@
                         <div class="text-success">
                             <h6 class="my-0">Total (COP)</h6>
                         </div>
-                        @if ($discount==0)
-                        <span class="text-success">−${{ $datos->quantity * $datos->price }}</span>
+                        @if ($datos->attributes["discount"]==0)
+                        <span class="text-success" id="resultado">−${{ $datos->quantity * $datos->price }}</span>
                         @else
                         @php
-                          $descuento=($datos->price * $datos->discount) /100
+                          $descuento=($datos->price * $datos->attributes["discount"]) /100
                         @endphp
-                        <span class="text-success">−${{ ($datos->price * $datos->quantity)-$descuento}}</span>
+                        <span class="text-success" id="resultado">${{ ($datos->price * $datos->quantity)-$descuento}}</span>
                         @endif
                     </li>
                 </ul>
@@ -69,12 +76,15 @@
                     <li class="list-group-item  justify-content-between lh-sm" style="margin-left: 10px;">
                         <table class="">
                             <tbody>
-                                <form action="" method="post">
+                              
                                     <tr>
                                         <td>
 
                     <li class="d-flex">
-                       <img src=" {{ $items->image }}" alt="">
+                        <div class="small-product">
+                            <img src=" {{ $items->attributes["image"] }}" >
+
+                        </div>
                     </li>
                     <li class="d-flex mt-4">
                         <small>
@@ -86,7 +96,7 @@
                     <td>
                         <span>
                             <p>
-                                {{ $items->desc }}
+                                {{ $items->attributes["desc"] }}
                             </p>
                         </span>
                     </td>
@@ -95,13 +105,13 @@
 
                             <span>
                                 <p>
-                                    @if ($discount==0)
+                                    @if ($items->attributes["discount"])
 
-                                    <strong>{{ $items->price }}</strong>
+                                    <strong id="precio">{{ $items->price }}</strong>
                                     @else
 
-                                    <strong>{{ $items->price }}</strong>
-                                    <strong>{{ $items->discount }}</strong>
+                                    <strong id="precio">{{ $items->price }}</strong>
+                                    <strong id="precio">{{ $items->attributes["discount"] }}</strong>
 
                                     @endif
 
@@ -119,22 +129,23 @@
                     </td>
                     <td class="mt-2">
                         <li class="d-flex mt-4">
-                            <button class="buttonsMM">
+                            <button class="buttonsMM" id="aumentar">
                                 <i class="bi bi-plus-circle-fill"></i>
                             </button>
+
                             &nbsp;&nbsp;
-                            <span class="badge bg-danger rounded-pill">{{ $itmes->quantity }}</span>
+                            <span class="badge bg-danger rounded-pill mr-2" id="cantidad">{{ $items->quantity }}</span>
                             &nbsp;&nbsp;
-                            <button class="buttonsMM"><i class="bi bi-dash-circle-fill"></i></button>
+                            <button class="buttonsMM"id="disminuir"><i class="bi bi-dash-circle-fill"></i></button>
                         </li>
                         <li class="d-flex mt-4">
-                            <button class="buttonsMM">
+                            <button class="buttonsMM" >
                                 <span>Eliminar</sp>
                             </button>
                         </li>
                     </td>
                     </tr>
-                    </form>
+
 
                     </tbody>
                     </table>
@@ -153,12 +164,9 @@
         <!-- place footer here -->
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
+    <script src="{{asset("js/carrito.js") }}">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
 </section>
+
 @endsection

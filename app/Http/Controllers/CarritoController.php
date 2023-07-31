@@ -72,6 +72,7 @@ class CarritoController extends Controller
                     'discount'=> $producto->discount,
                     'image'=>$producto->images,
                     'desc'=>$producto->description,
+                    
                 ),
                
     
