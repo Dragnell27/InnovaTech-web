@@ -22,6 +22,7 @@ class UserCollection extends JsonResource
             "phone" => $this->phone,
             "email" => $this->email,
             "state" => $this->param_state,
+            "suscription" => $this->param_suscription,
             'document_type' => [
                 "id" => $this->document_type->id,
                 "name" => $this->document_type->name,

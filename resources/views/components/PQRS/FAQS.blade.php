@@ -1,16 +1,10 @@
-<head>
-    <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-    </script>
-</head>
-
-
-<div id="faqs-container" style=""  >
+<div id="faqs-container" style="" class="" >
     <div class="card w-30 border-dark text-bg-light mb-3" style="max-width: 20rem; " style="display: none ">
-        <div class="card-header bg-transparent border-dark">Tienes alguna duda?. Escribenos...</div>
+        <div class="card-header bg-transparent border-dark">Tienes alguna duda?. Escribenos...
+            <span id="closeBtn" class="actionBt">
+                <img src="{{asset('img/flecha-hacia-abajo.png')  }}" alt="" style="margin-left: 20px; padding: 2px" width="25px">
+            </span>
+        </div>
         <div class="card-body text-dark">
             <h6 class="card-title text-center ">Por favor ingresa la siguiente informacion para enviar tu PQRS.</h6>
             <p class="card-text subMessages text-center"> los campos que contienen '*' son obligatorios</p>
@@ -42,8 +36,13 @@
         
     </div>
 </div>
-<div id="chat-container">
+<div id="chat-container" class="actionBt">
     <div id="chat-circle">
-        <i>PQRS</i>
+        <div id="round-image">
+            <img src="{{ asset('img/ventana-de-chat.png') }}" alt="" width="60px" style="padding: 5px">
+        </div>
+        
     </div>
 </div>
+ //js del PQRS
+ <script src="{{ asset('js/faqs.js') }}"></script>

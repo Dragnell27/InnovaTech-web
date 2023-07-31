@@ -17,7 +17,6 @@ class ApiUser extends Controller
 
     public function show($id){
         $user = User::where('id', $id)->with('document_type')->get();
-        // return UserCollection::collection($user);
-        return $user;
+        return UserCollection::collection($user);
     }
 }
