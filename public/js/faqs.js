@@ -1,5 +1,4 @@
 //æuthor DARKJ
-
 var buttons = document.querySelectorAll(".actionBt");
 buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -19,3 +18,4 @@ buttons.forEach((btn) => {
         chatContainer.classList.toggle("active");
     });
 });
+

@@ -42,6 +42,7 @@
                     <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones" alt="..."
                         src="{{ asset('img/Estuche.jpg') }}" width="120" height="120" role="img">
                 </a>
+                
                 <h4 class="fw-normal my-4">Estuches</h4>
             </div>
 
@@ -84,15 +85,20 @@
                     <div class="card mb-4 box-shadow">
                         <img class="card-img-top" src="{{ asset('img/Producto-1.jpg') }}" alt="Thumbnail [100%x225]">
                         <div class="card-body">
+                            @component("components.cart.SendToCart")
+                                
+                            
                             <h4 class="card-title">Samsung Galaxy S23 Ultra</h4>
                             <p class="card-text">Precio $ 6.999.920 COP</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-danger">Ver Producto</button>
                                 </div>
-                                <div class="btn-group">
+                                <input type="hidden" name="id" value="1">
+                                {{--  <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-success">Agregar Al Carrito</button>
-                                </div>
+                                </div>  --}}
+                                @endcomponent
                             </div>
                         </div>
                     </div>
@@ -107,6 +113,7 @@
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-danger">Ver Producto</button>
                                 </div>
+                                <input type="hidden" name="id" value="2">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-success">Agregar Al Carrito</button>
                                 </div>
@@ -125,6 +132,7 @@
                                     <button type="button" class="btn btn-sm btn-danger">Ver Producto</button>
                                 </div>
                                 <div class="btn-group">
+                                    <input type="hidden" name="id" value="3">
                                     <button type="button" class="btn btn-sm btn-success">Agregar Al Carrito</button>
                                 </div>
                             </div>
@@ -142,6 +150,7 @@
                                     <button type="button" class="btn btn-sm btn-danger">Ver Producto</button>
                                 </div>
                                 <div class="btn-group">
+                                    <input type="hidden" name="id" value="4">
                                     <button type="button" class="btn btn-sm btn-success">Agregar Al Carrito</button>
                                 </div>
                             </div>

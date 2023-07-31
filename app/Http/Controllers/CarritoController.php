@@ -1,6 +1,8 @@
 <?php
 
+
 namespace App\Http\Controllers;
+use Cart;
 
 use Illuminate\Http\Request;
 
@@ -55,26 +57,32 @@ class CarritoController extends Controller
     public function store(Request $request)
     {
           $id = $request->id;
+         
        
          $producto = \DB::table('products')->where('id',$id)->first();
+         
         try {
+        
             Cart::add(array(
                 'id' => $producto->id,   //inique row ID
-                'name' => $producto->nombre_producto,
-                'price' =>$producto->precio_venta,
+                'name' => $producto->name,
+                'price' =>$producto->price,
                 'quantity' => $request->quantity?$request->quantity:1,
-                'discount'=> $producto->discount,
-                'image'=>$producto->images,
-                'desc'=>$producto->description,
+                 'discount'=> $producto->discount,
+                 'image'=>$producto->images,
+                 'desc'=>$producto->description,
     
             ));
-            session(["cart"=>Cart::getContent()]);
+        
+            // session(["cart"=>Cart::getContent()]);
     
         } catch (\Throwable $th) {
+            dd($th);
             return back()->with("error","Tuvimos un error y no podemos enviar tu producto al carrito");
+          
         }
       
-
+          
             return back()->with("msj_exitoso", $producto);
     }
 
