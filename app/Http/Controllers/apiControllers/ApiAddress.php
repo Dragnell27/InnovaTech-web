@@ -13,13 +13,12 @@ class ApiAddress extends Controller
 {
     public function index(){
         $addresses = Address::with('city')->get();
-        dd($addresses);
         return AddressCollection::collection($addresses);
     }
 
     public function show($id)
     {
-        $addresses = Address::where('user_id', $id)->with('city')->get();
+        $addresses = Address::where('id', $id)->with('city')->get();
         return AddressCollection::collection($addresses);
     }
 }

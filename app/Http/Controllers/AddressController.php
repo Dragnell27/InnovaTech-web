@@ -16,15 +16,14 @@ class AddressController extends Controller
      */
     public function index()
     {
-        $addresses = Http::get(env('API') . '/address/' . Auth::user()->id);
-        $data = $addresses->json();
+        // $addresses = Http::get(env('API') . '/address/' . Auth::user()->id);
+        $addresses = Address::where('user_id', Auth::user()->id)->with('city')->get();
         $filter = [];
-        foreach ($data['data'] as $address) {
-            if ($address['state'] == 5) {
+        foreach ($addresses as $address) {
+            if ($address['param_state'] == 5) {
                 $filter[] = $address;
             }
         }
-        // dd($data);
         $deparments = Param::where('paramtype_id', 6)->get();
         return view('profile.address.index', compact('filter'), compact('deparments'));
     }
