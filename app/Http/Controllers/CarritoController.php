@@ -68,9 +68,12 @@ class CarritoController extends Controller
                 'name' => $producto->name,
                 'price' =>$producto->price,
                 'quantity' => $request->quantity?$request->quantity:1,
-                 'discount'=> $producto->discount,
-                 'image'=>$producto->images,
-                 'desc'=>$producto->description,
+                'attributes' => array(
+                    'discount'=> $producto->discount,
+                    'image'=>$producto->images,
+                    'desc'=>$producto->description,
+                ),
+               
     
             ));
         
