@@ -139,7 +139,6 @@ class UserController extends Controller
                 $delete->hood = "address - " . $add->id;
                 $delete->address = "address - " . $add->id;
                 $delete->floor = "address - " . $add->id;
-                $delete->param_city = null;
                 $delete->param_state = 6;
                 $delete->save();
             }

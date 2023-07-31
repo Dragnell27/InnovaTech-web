@@ -133,9 +133,6 @@ class AddressController extends Controller
     {
         // jaider
         $address = Address::findOrFail($id);
-        $address->hood = "address - " . $id;
-        $address->address = "address - " . $id;
-        $address->floor = "address - " . $id;
         $address->param_state = 6;
         $address->save();
         session()->flash('message', [
