@@ -24,8 +24,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource("/category",'App\Http\Controllers\CategoryController');
 //api para productos
 Route::apiResource('/products','App\Http\Controllers\apiControllers\productsController');
+Route::get('/faqs/type/{type?}', [App\Http\Controllers\apiControllers\faqsController::class, "index"]);
 
 Route::apiResource('/faqs','App\Http\Controllers\apiControllers\faqsController');
+
 
 //@DarkJ
 

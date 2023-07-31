@@ -6,14 +6,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\faqs\faqsResource;
 use App\Models\faq;
+use App\Models\Param;
 class faqsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($type = null)
     {
-        return faqsResource::collection(faq::all());
+        if(isset($type)){
+            return Param::select("name")->where("paramtype_id",8)->get();
+        }else{
+            return faqsResource::collection(faq::all());
+        }
+       
+       
     }
 
     /**
@@ -37,6 +44,7 @@ class faqsController extends Controller
      */
     public function show($id)
     {
+        dd($id);
         return faqsResource::collection(faq::where("id",$id)->get());
     }
 
