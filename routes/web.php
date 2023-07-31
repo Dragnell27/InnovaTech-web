@@ -78,3 +78,5 @@ Route::view('payment-method/editarDireccion','payment-method/editarDireccion')->
 //ruta jaider, manejo de usuarios;}
 Route::resource('/users', UserController::class);
 
+//Ruta, manejo de compras
+Route::view('/sales.shopping', 'sales/shopping')->name('sales.shopping');

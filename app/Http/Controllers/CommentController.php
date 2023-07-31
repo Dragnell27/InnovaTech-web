@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\Commentcollection;
 use App\Http\Resources\Commentresource;
 use App\Models\Comment;
+use COM;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -45,9 +46,9 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request,$id)
     {
-        
+        $dato = Comment::findOrfail('id',$id);
 
     }
 

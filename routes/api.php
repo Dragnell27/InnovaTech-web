@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\SalesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentController;
 
 
 /*
@@ -38,3 +40,6 @@ Route::apiResource('/users','App\Http\Controllers\apiControllers\ApiUser');
 //@Jhonmurillo
 //Api para los comentarios
 Route::apiResource('comentario', CommentController::class);
+
+//@Jhonmurillo
+Route::apiResource('compras', SalesController::class);

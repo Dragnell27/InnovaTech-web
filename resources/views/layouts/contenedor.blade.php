@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
     <script src="{{ asset('js/header.js') }}"></script>
+    <script src="{{ asset('js/sales.js') }}"></script>
 
 </head>
 

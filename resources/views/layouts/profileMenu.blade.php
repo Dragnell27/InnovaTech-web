@@ -31,7 +31,7 @@
                             <p>Cambiar contraseña</p>
                         </div>
                     </a>
-                    <a href="">
+                    <a href="{{ route('sales.shopping') }}">
                         <div class="form-control mb-2">
                             <p>Mis compras</p>
                         </div>
