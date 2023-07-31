@@ -77,6 +77,47 @@ background-color: white;
 .card img{
 border-radius: 20px;
 }
+.imgContainer img{
+height: 460;
+border-radius: 20px;
+max-width: 100%;
+}
+.imgContainer{
+  padding: 10px;
+  width: 100%;
+}
+.small-product img{
+  width: 100%;
+  border-radius: 20px;
+
+  padding: 8px;
+  margin: 10px 10px 15px;
+  cursor: pointer;
+}
+.small-product{
+  width: 20%;
+  display: flex;
+}
+.my-badge{
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: white;
+  
+  font-size: 15px;
+}
+.my-badge-2{
+  display: inline-block;
+  padding: 5px 5px;
+  border-radius: 15px;
+  font-size: 20px;
+}
+.buttonsMM{
+  padding: 0; 
+  border: none; 
+  background-color: transparent;
+  
+}
 
 
 

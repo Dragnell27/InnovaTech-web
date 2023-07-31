@@ -1,3 +1,4 @@
+@include('preloader')
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
@@ -16,8 +17,10 @@
 
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
 
     <script src="{{ asset('js/header.js') }}"></script>
+
 </head>
 
 <body>
@@ -29,12 +32,17 @@
             <ul class="nav-links">
                 <i class="uil uil-times navCloseBtn"></i>
                 @auth
-                    <li class="links"><a href="{{ route('my_data.show') }}">Mi cuenta</a></li>
+                    <li class="links"><a href="{{ route('users.show', Auth::user()->id) }}">Mi cuenta</a></li>
                 @else
                     <li class="links"><a href="{{ route('login') }}">Iniciar Sesion</a></li>
                 @endauth ()
                 <li class="links"><a href="{{ route('productos') }}">Productos</a></li>
-                <li class="links"><a href="#">Lista De Deseos</a></li>
+                <li class="links"><a
+                        href="@auth
+{{ route('wishlist.show', Auth::user()->id) }}
+                    @else
+                    {{ route('login') }} @endauth">Lista
+                        De Deseos</a></li>
                 <li class="links"><a href="#">Carrito</a></li>
                 <li>
                     <form action="{{ Route('cart.show') }}" method="get">
@@ -43,40 +51,18 @@
                                 <img src="{{ asset('img/Carro-Compras.png') }}" width="25px" height="20px"
                                     alt="">
                                 <span class="">
-                                    {{-- {{ Cart::getContent()->count() }} --}}
+                                   {{ Cart::getContent()->count() }} 
                                     <span class="visually-hidden "></span>
                                 </span>
                             </button>
+                        </div>
                     </form>
-                    </div>
-                    <div id="cart-products" style="display: none">
-                        <ul id="prodUl">
 
-                            {{-- @if (Cart::getContent()->count() <= 0) <h3> Tienes 0 articulos en el carrito</h3>
-                                @else
-                                @foreach (Cart::getContent() as $prod)
-                                <li class="liPro">
-                                    <h5>{{ $prod->name }}</h5>
-                                    <div>
-                                        Precio: {{ $prod->price }}
-                                    </div>
 
-                                </li>
-                                <hr>
-                                @endforeach
-                                @endif --}}
-
-                        </ul>
-                        <a href="{{ Route('cart.show') }}" class="btn btn-primary"> Ver carrito</a>
-
-                    </div>
                 </li>
                 @auth
                     <li class="links"><a href="{{ route('logout') }}">Cerrar sesion</a></li>
                 @endauth ()
-                <li>
-
-                </li>
             </ul>
 
             <i class="uil uil-search search-icon" id="searchIcon"></i>
@@ -86,12 +72,14 @@
             </div>
         </nav>
     </header>
-    
+
     @yield('component')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
+    {{-- agrego el js del carrito --}}
+    <script src="{{ asset('js/carrito.js') }}"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

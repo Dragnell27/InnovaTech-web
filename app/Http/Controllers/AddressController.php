@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AddressCollection;
 use App\Models\Address;
 use App\Models\Param;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class AddressController extends Controller
 {
@@ -14,10 +16,17 @@ class AddressController extends Controller
      */
     public function index()
     {
-        //jaider
-        $addresses = Address::where('user_id', Auth::user()->id)->with('city')->get();
+        $addresses = Http::get(env('API') . '/address/' . Auth::user()->id);
+        $data = $addresses->json();
+        $filter = [];
+        foreach ($data['data'] as $address) {
+            if ($address['state'] == 5) {
+                $filter[] = $address;
+            }
+        }
+        // dd($data);
         $deparments = Param::where('paramtype_id', 6)->get();
-        return view('profile.address.index', compact('addresses'), compact('deparments'));
+        return view('profile.address.index', compact('filter'), compact('deparments'));
     }
 
     /**
@@ -49,7 +58,6 @@ class AddressController extends Controller
     {
         // jaider
         $datos = Address::where('user_id', Auth::user()->id)->get();
-
         if ($datos->count() >= 3) {
             session()->flash('message', [
                 'text' => 'Ya has alcanzado el límite de direcciones.',
@@ -59,6 +67,7 @@ class AddressController extends Controller
         } else {
             $datos = request()->except('_token', 'department');
             $datos['user_id'] = Auth::user()->id;
+            $datos['param_state'] = 5;
             Address::insert($datos);
             session()->flash('message', [
                 'text' => 'Dirección guardada exitosamente.',
@@ -73,7 +82,14 @@ class AddressController extends Controller
      */
     public function show($id)
     {
-        //
+        $addresses = Http::get(env('API') . '/address/' . $id);
+        $data = [];
+        foreach ($addresses as $address) {
+            if ($address['param_state'] == 5) {
+                $data[] = $address;
+            }
+        }
+        return view('profile.address.show', compact('data'));
     }
 
     /**
@@ -103,6 +119,10 @@ class AddressController extends Controller
         $address->floor = $request->input('floor');
         $address->param_city = $request->input('param_city');
         $address->save();
+        session()->flash('message', [
+            'text' => 'Dirección editada',
+            'type' => 'success',
+        ]);
         return redirect()->route('direcciones.index');
     }
 
@@ -113,11 +133,15 @@ class AddressController extends Controller
     {
         // jaider
         $address = Address::findOrFail($id);
-        $address->delete();
+        $address->hood = "address - " . $id;
+        $address->address = "address - " . $id;
+        $address->floor = "address - " . $id;
+        $address->param_state = 6;
+        $address->save();
         session()->flash('message', [
             'text' => 'Dirección eliminada',
             'type' => 'success',
         ]);
-        return redirect()->route('direcciones.index');
+        return route('direcciones.index');
     }
 }

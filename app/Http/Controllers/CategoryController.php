@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use App\Http\Resources\category\CategoryCollection;
 use App\Http\Resources\category\CategoryResource;
-use App\Http\Controllers\categoryCollection;
 
 class CategoryController extends Controller
 {
@@ -15,7 +17,8 @@ class CategoryController extends Controller
     public function index()
 
     { 
-        return Category::all();
+       return CategoryCollection::collection(DB::table("params")->where("paramtype_id","12")->where("param_state","5")->get());
+        // return CategoryResource::collection(Category::all());
         
     }
 
@@ -33,7 +36,7 @@ class CategoryController extends Controller
     public function show($category)
     {
        
-        return Category::where("param_category",$category)->get();
+        return  CategoryResource::collection(Category::where("param_category",$category)->get());
     }
 
     /**

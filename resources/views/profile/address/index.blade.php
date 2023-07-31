@@ -1,36 +1,36 @@
 {{-- jaider --}}
 @extends('layouts.profileMenu')
 @section('content')
-
-@isset(session('message')['text'])
-<div class="alert alert-{{session('message')['type']}} alert-dismissible fade show" role="alert">
-    <strong>Mensaje: </strong> {{session('message')['text']}}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-@endisset
+    @isset(session('message')['text'])
+        <div class="alert alert-{{ session('message')['type'] }} alert-dismissible fade show" role="alert">
+            <strong>Mensaje: </strong> {{ session('message')['text'] }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endisset
     <h1 class="mb-3">Mis Direcciones</h1>
-    @foreach ($addresses as $id)
+    @foreach ($filter as $address)
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">
                     @foreach ($deparments as $department)
-                        @if ($id->city->param_foreign == $department->id)
+                        @if ($address['city']['foreign'] == $department->id)
                             {{ $department->name }}
+                            @break
                         @endif
                     @endforeach
-                    / {{ $id->city->name }}
+                    / {{ $address['city']['city_name'] }}
                 </h5>
                 <p class="card-text">
-                    {{ $id->hood }} / {{ $id->address }}
-                    @if (isset($id->floor))
-                        / Piso: {{ $id->floor }}
+                    {{ $address['hood'] }} / {{ $address['address'] }}
+                    @if (isset($address['floor']))
+                        / Piso: {{ $address['floor'] }}
                     @endif
                 </p>
             </div>
             <div class="card-footer">
                 <div class="float-end mb-1 me-2">
-                    <form action="{{ route('direcciones.destroy', $id) }}" method="post">
-                        <a href="{{ route('direcciones.edit', $id) }}" class="btn btn-warning me-1">Editar</a>
+                    <form action="{{ route('direcciones.destroy', $address['id']) }}" method="post">
+                        <a href="{{ route('direcciones.edit', $address['id']) }}" class="btn btn-warning me-1">Editar</a>
                         @csrf
                         @method('delete')
                         <input type="submit" value="Eliminar" class="btn-danger btn">
