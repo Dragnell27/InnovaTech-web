@@ -3,7 +3,7 @@
 
 {{--  Id  del producto  --}}
     <?php $item = Cart::get(session('msj_exitoso')->id); ?>
-    <div class="card border-success mb-3" id="CartAlert" style="max-width: 600px; margin: 10% auto;">
+    <div class="card border-success mb-3" id="CartAlert" style="max-width: 600px; margin: 10% auto; position: absolute; z-index: 9; top: 50%;left: 50%;transform: translate(-50%, -50%);">
         <div class="row g-0">
             <div class="card-header text-center row">
                 <h5 class="col">
@@ -17,7 +17,7 @@
                 <input type="button" id="btnClose" class="btn-close" aria-label="Close">
             </div>
             <div class="col-md-4">
-                <img src="" class="img-fluid rounded-start" alt="...">
+                <img src="{{ session('msj_exitoso')->images  }}" class="img-fluid rounded-start" alt="...">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
