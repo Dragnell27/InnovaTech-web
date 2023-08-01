@@ -77,7 +77,7 @@
     <div class="red-div">
         <h2>Productos</h2>
     </div>
-
+@include("components.cart.cartAlert")
     <div class="album py-5">
         <div class="container">
             <div class="row">

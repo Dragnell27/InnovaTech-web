@@ -24,26 +24,26 @@
         <div class="row g-5 ml-20">
             @php
                $datos = Cart::getContent();
-               dd($datos);
+         
                @endphp
             <div class="col-md-5 col-lg-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-danger">Resumen de compra</span>
                 
-                    <span class="badge bg-danger rounded-pill">{{ $datos->quantity }}</span>
+                    <span class="badge bg-danger rounded-pill">{{ $datos->count() }}</span>
 
                 </h4>
                 <ul class="list-group mb-3">
-                    @foreach (Cart::getContent() as $datos )
+                    @foreach ($datos as $items )
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
-                            <h6 class="my-0">{{ $datos->name }}</h6>
+                            <h6 class="my-0">{{ $items->name }}</h6>
 
                             <div class="small-product">
-                                <img src=" {{ $datos->attributes["image"] }}" >
+                                <img src=" {{ $items->attributes["image"] }}" >
 
                             </div>
-                            <small class="text-body-secondary">{{ $datos->attributes["desc"]}}</small>
+                            <small class="text-body-secondary">{{ $items->attributes["desc"]}}</small>
                         </div>
                     </li>
                     @endforeach
@@ -51,13 +51,13 @@
                         <div class="text-success">
                             <h6 class="my-0">Total (COP)</h6>
                         </div>
-                        @if ($datos->attributes["discount"]==0)
-                        <span class="text-success" id="resultado">−${{ $datos->quantity * $datos->price }}</span>
+                        @if ($items->attributes["discount"]==0)
+                        <span class="text-success" id="resultado">−${{ $items->quantity * $items->price }}</span>
                         @else
                         @php
-                          $descuento=($datos->price * $datos->attributes["discount"]) /100
+                          $descuento=($items->price * $items->attributes["discount"]) /100
                         @endphp
-                        <span class="text-success" id="resultado">${{ ($datos->price * $datos->quantity)-$descuento}}</span>
+                        <span class="text-success" id="resultado">${{ ($items->price * $items->quantity)-$descuento}}</span>
                         @endif
                     </li>
                 </ul>

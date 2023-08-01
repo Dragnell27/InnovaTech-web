@@ -81,7 +81,7 @@ class CarritoController extends Controller
             // session(["cart"=>Cart::getContent()]);
     
         } catch (\Throwable $th) {
-            dd($th);
+           
             return back()->with("error","Tuvimos un error y no podemos enviar tu producto al carrito");
           
         }
