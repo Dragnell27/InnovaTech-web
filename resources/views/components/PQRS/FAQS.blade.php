@@ -18,10 +18,7 @@
                     required>
                 <select name="param_type" id="param_type" class=" form-select" required>
                     <option value="">Selecciona el tipo</option>
-                    <option value="">Queja</option>
-                    <option value="">Reclamo</option>
-                    <option value="">Sugerencias</option>
-                    <option value="">Pregunta</option>
+                  
                 </select>
                <textarea id="" style="resize: none" cols="20" rows="2" name="body" required class="forms form-control" placeholder="Tu mensaje"></textarea>
                <div class="center text-center"><input type="checkbox" name="" id="" required>
