@@ -85,10 +85,8 @@ route::view('products/singleProduct','products/singleProduct')->name('viewProdu'
 //ruta jaider, manejo de usuarios;}
 Route::resource('/users', UserController::class);
 
-<<<<<<< HEAD
 //Ruta, manejo de compras
 Route::view('/sales.shopping', 'sales/shopping')->name('sales.shopping');
-=======
+
 //ruta jaider, lista de deseos
 Route::middleware('auth')->resource('/wishlist', WishlistController::class);
->>>>>>> cbe19f2457507c22eed6feed510afd5250511082
