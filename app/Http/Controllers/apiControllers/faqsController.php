@@ -46,7 +46,7 @@ class faqsController extends Controller
         $faqs->param_type = $request['tipo_faqs'];
         $faqs->body = $request['cuerpo'];
         $faqs->save();
-        return route('index');
+        return redirect(route('index'));
     }
 
     /**

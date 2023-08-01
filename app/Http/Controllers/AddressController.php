@@ -56,7 +56,7 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         // jaider
-        $datos = Address::where('user_id', Auth::user()->id)->get();
+        $datos = Address::where('user_id', Auth::user()->id)->where('param_state',5)->get();
         if ($datos->count() >= 3) {
             session()->flash('message', [
                 'text' => 'Ya has alcanzado el límite de direcciones.',
@@ -122,7 +122,7 @@ class AddressController extends Controller
             'text' => 'Dirección editada',
             'type' => 'success',
         ]);
-        return redirect()->route('direcciones.index');
+        return redirect(route('direcciones.index'));
     }
 
     /**
@@ -138,6 +138,6 @@ class AddressController extends Controller
             'text' => 'Dirección eliminada',
             'type' => 'success',
         ]);
-        return route('direcciones.index');
+        return redirect(route('direcciones.index'));
     }
 }

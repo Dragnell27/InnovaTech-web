@@ -37,22 +37,24 @@
             <div class="row">
                 <div class="col-md-4">
                     <label class="form-label me-2" for="perfilBarrio">Barrio</label>
-                    <input name="hood" value="{{$data['address']['hood']}}" id="perfilBarrio" class="form-control" type="text">
+                    <input name="hood" value="{{ $data['address']['hood'] }}" id="perfilBarrio" class="form-control"
+                        type="text">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label me-2" for="perfilDireccion">Direccion</label>
-                    <input name="address" value="{{$data['address']['address']}}" id="perfilDireccion" class="form-control" type="text">
+                    <input name="address" value="{{ $data['address']['address'] }}" id="perfilDireccion"
+                        class="form-control" type="text">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label me-2" for="perfilPiso">Piso</label>
-                    <input name="floor" value="{{$data['address']['floor']}}" id="perfilPiso" class="form-control" type="text">
+                    <input name="floor" value="{{ $data['address']['floor'] }}" id="perfilPiso" class="form-control"
+                        type="text">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <a href="{{ route('direcciones.index') }}" class="btn btn-secondary mb-3 mt-4">Volver</a>
-                    <input type="submit" class="btn btn-primary float-end mb-3 mt-4" value="Guardar">
-                </div>
+
+            <div class="float-end mt-3 mb-5">
+                <input type="submit" class="btn btn-primary" value="Guardar datos">
+                <button type="button" class="btn btn-danger" onclick="goBack()">Cancelar</button>
             </div>
         </div>
     </form>

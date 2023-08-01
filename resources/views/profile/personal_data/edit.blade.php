@@ -85,11 +85,6 @@
         </div>
     </form>
     <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
-    <script>
         $(document).ready(function() {
             $.ajax({
                 url: "{{ env('API') . '/users/' . Auth::user()->id }}",
