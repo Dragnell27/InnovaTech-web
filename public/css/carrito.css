@@ -59,13 +59,13 @@
     text-align: center;
  }
  .small-product img{
-    width: 100%;
+    width: 150%;
     border-radius: 20px;
     padding: 8px;
     margin: 5px 5px 5px;
   }
   .small-product{
-    width: 30%;
+    width: 120%;
     display: flex;
   }
 
