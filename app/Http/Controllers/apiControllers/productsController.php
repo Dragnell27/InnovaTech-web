@@ -5,6 +5,7 @@ namespace App\Http\Controllers\apiControllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\product;
+use App\Http\Resources\products\productResouce;
 
 class productsController extends Controller
 {
@@ -35,14 +36,12 @@ class productsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        if ($request->has("name")) {
-
-            return product::all();
-        }else {
-            dd($request);
-        }
+        
+            return productResouce::collection(product::where("id",$id)->get());
+       
+        
     }
 
     /**
