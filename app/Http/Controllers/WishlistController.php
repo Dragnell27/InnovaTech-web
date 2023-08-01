@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
@@ -12,7 +13,8 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        //
+        $wishlist = wishlist::where('user_id', Auth::user()->id)->with('productos')->get();
+        return view('wishlist.show',compact('wishlist'));
     }
 
     /**
@@ -28,7 +30,7 @@ class WishlistController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -36,8 +38,7 @@ class WishlistController extends Controller
      */
     public function show($id)
     {
-        $wishlist = wishlist::where('user_id', $id)->with('productos')->get();
-        return view('wishlist.show',compact('wishlist'));
+
     }
 
     /**

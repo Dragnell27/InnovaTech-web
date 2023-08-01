@@ -44,21 +44,22 @@
                                 <label for="tipo_documento" class="form-label">Tipo de Documento:</label>
                                 <select class="form-select" id="tipo_documento" name="tipo_de_documento" required>
                                     <option value="">--Seleccionar--</option>
-                                @foreach ($document_types as $type)
-                                    <option value="{{ $type->id }}" @if (old('tipo_de_documento') == $type->id) selected @endif>
-                                        {{ $type->name }}</option>
-                                @endforeach
-                            </select>
-                                    @error('tipo_de_documento')
-                                        <small style="color: red">{{ $message }}</small>
-                                    @enderror
+                                    @foreach ($document_types as $type)
+                                        <option value="{{ $type->id }}"
+                                            @if (old('tipo_de_documento') == $type->id) selected @endif>
+                                            {{ $type->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('tipo_de_documento')
+                                    <small style="color: red">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="col-md-6">
                                 <label for="numero_documento" class="form-label">Número de Documento:</label>
                                 <input type="text" value="{{ old('número_de_documento') }}" class="form-control"
-                                    id="numero_documento" name="número_de_documento" placeholder="Ingresa tu numero de documento"
-                                    required>
+                                    id="numero_documento" name="número_de_documento"
+                                    placeholder="Ingresa tu numero de documento" required>
                                 @error('número_de_documento')
                                     <small style="color: red">{{ $message }}</small>
                                 @enderror
@@ -69,7 +70,8 @@
                             <div class="col-md-6">
                                 <label for="numero_telefono" class="form-label">Teléfono:</label>
                                 <input type="tel" value="{{ old('phone') }}" name="phone" class="form-control"
-                                    id="numero_telefono" name="telefono"  placeholder="Ingresa tu numero de telefono" required>
+                                    id="numero_telefono" name="telefono" placeholder="Ingresa tu numero de telefono"
+                                    required>
                                 @error('phone')
                                     <small style="color: red">{{ $message }}</small>
                                 @enderror
@@ -96,8 +98,8 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="password_confirmation" class="form-label">Confirmar contraseña:</label>
-                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"
-                                    placeholder="confirma tu contraseña" required>
+                                <input type="password" class="form-control" id="password_confirmation"
+                                    name="password_confirmation" placeholder="confirma tu contraseña" required>
                                 @error('password')
                                     <small style="color: red">{{ $message }}</small>
                                 @enderror
@@ -111,8 +113,10 @@
                         </div>
 
                         <div class="mb-3 form-check">
-                            <input type="checkbox" id="accept_subscription" name="accept_subscription" class="form-check-input">
-                            <label class="form-check-label" for="accept_subscription">Acepta recibir notificaciones por medio
+                            <input type="checkbox" id="accept_subscription" name="accept_subscription"
+                                class="form-check-input">
+                            <label class="form-check-label" for="accept_subscription">Acepta recibir notificaciones por
+                                medio
                                 de
                                 su correo electronico.</label>
                         </div>

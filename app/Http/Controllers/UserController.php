@@ -69,10 +69,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = Http::get(env('API') . '/users/' . $id);
-        $data = $user->json();
-        // dd($data);
-        return view('profile.personal_data.show', compact('data'));
+        return view('profile.personal_data.show');
     }
 
     /**
@@ -80,10 +77,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $addresses = Http::get(env('API') . '/users/' . $id);
         $document_types = Param::where('paramtype_id', 15)->get();
-        $data = $addresses->json();
-        return view('profile.personal_data.edit', compact('data'), compact('document_types'));
+        return view('profile.personal_data.edit',compact('document_types'));
     }
 
     /**
@@ -126,10 +121,6 @@ class UserController extends Controller
             $user->phone = "user - " . $id;
             $user->email = "user - " . $id;
             $user->password = Hash::make($newPassword);
-            $user->param_type = null;
-            $user->param_rol = null;
-            $user->param_suscription = null;
-            $user->param_state = null;
             $user->save();
 
             $address = Address::where('user_id', $id)->get();

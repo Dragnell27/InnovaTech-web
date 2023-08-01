@@ -19,8 +19,8 @@ class faqsController extends Controller
         }else{
             return faqsResource::collection(faq::all());
         }
-       
-       
+
+
     }
 
     /**
@@ -34,9 +34,19 @@ class faqsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+        //jaider
+        $request->validate([
+            'tipo_faqs' => ['required', 'string', 'max:255'],
+            'cuerpo' => ['required', 'numeric'],
+        ]);
+        $faqs = new faq();
+        $faqs->user_id = $id;
+        $faqs->param_type = $request['tipo_faqs'];
+        $faqs->body = $request['cuerpo'];
+        $faqs->save();
+        return route('index');
     }
 
     /**
@@ -44,7 +54,7 @@ class faqsController extends Controller
      */
     public function show($id)
     {
-        dd($id);
+
         return faqsResource::collection(faq::where("id",$id)->get());
     }
 
@@ -53,7 +63,7 @@ class faqsController extends Controller
      */
     public function edit( $id)
     {
-        
+
     }
 
     /**

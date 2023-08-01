@@ -38,12 +38,7 @@
                     <li class="links"><a href="{{ route('login') }}">Iniciar Sesion</a></li>
                 @endauth ()
                 <li class="links"><a href="{{ route('productos') }}">Productos</a></li>
-                <li class="links"><a
-                        href="@auth
-{{ route('wishlist.show', Auth::user()->id) }}
-                    @else
-                    {{ route('login') }} @endauth">Lista
-                        De Deseos</a></li>
+                <li class="links"><a href="{{ route('wishlist.index') }}">Lista De Deseos</a></li>
                 <li class="links"><a href="#">Carrito</a></li>
                 <li>
                     <form action="{{ Route('cart.show') }}" method="get">
@@ -52,7 +47,7 @@
                                 <img src="{{ asset('img/Carro-Compras.png') }}" width="25px" height="20px"
                                     alt="">
                                 <span class="">
-                                   {{ Cart::getContent()->count() }}
+                                    {{ Cart::getContent()->count() }}
                                     <span class="visually-hidden "></span>
                                 </span>
                             </button>
@@ -86,7 +81,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        < script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" >
+    </script>
     </script>
 </body>
 

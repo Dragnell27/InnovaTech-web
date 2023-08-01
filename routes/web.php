@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\apiControllers\faqsController;
 // use App\Http\Controllers\PqrsdController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -90,3 +91,6 @@ Route::view('/sales.shopping', 'sales/shopping')->name('sales.shopping');
 
 //ruta jaider, lista de deseos
 Route::middleware('auth')->resource('/wishlist', WishlistController::class);
+
+//ruta para faqs
+Route::post('faqs/{id}', [faqsController::class, 'store'])->name('faqs.store');
