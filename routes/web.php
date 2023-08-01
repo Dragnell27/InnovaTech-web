@@ -93,4 +93,4 @@ Route::view('/sales.shopping', 'sales/shopping')->name('sales.shopping');
 Route::middleware('auth')->resource('/wishlist', WishlistController::class);
 
 //ruta para faqs
-Route::post('faqs/{id}', [faqsController::class, 'store'])->name('faqs.store');
+// Route::post('/faqs/{id}', [faqsController::class, 'store'])->name('faqs.store');

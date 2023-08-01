@@ -12,6 +12,8 @@ class faqsController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+   
     public function index($type = null)
     {
         if(isset($type)){
@@ -34,19 +36,38 @@ class faqsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request,$id)
+    public function store(Request $request)
     {
-        //jaider
-        $request->validate([
-            'tipo_faqs' => ['required', 'string', 'max:255'],
-            'cuerpo' => ['required', 'numeric'],
-        ]);
-        $faqs = new faq();
-        $faqs->user_id = $id;
-        $faqs->param_type = $request['tipo_faqs'];
-        $faqs->body = $request['cuerpo'];
-        $faqs->save();
-        return redirect(route('index'));
+     
+
+// Joan modifico esto
+     $id = $request["client_id"];
+
+        //  //jaider
+        
+          try {
+          
+            $request->validate([
+                'type' => ['required', 'string', 'max:255'],// Joan modifico esto
+                'body' => ['required', 'string'],// Joan modifico esto
+            ]);
+            $faqs = new faq();
+            $faqs->user_id = $id;
+          $faqs->param_type = $request['type']; // Joan modifico esto
+          $faqs->body = $request['body'];
+          
+          // Joan modifico esto
+          $faqs->save();
+          } catch (\Throwable $th) {
+            
+          }
+          
+          return redirect(route('index')->with("faqsCreated","El pqrs Se creo"));
+
+            
+
+
+
     }
 
     /**
