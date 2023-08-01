@@ -53,16 +53,17 @@ class faqsController extends Controller
             ]);
             $faqs = new faq();
             $faqs->user_id = $id;
-          $faqs->param_type = $request['type']; // Joan modifico esto
-          $faqs->body = $request['body'];
+            $faqs->param_type = $request['type']; // Joan modifico esto
+            $faqs->body = $request['body'];
+            $faqs->param_state = 10;
           
           // Joan modifico esto
-          $faqs->save();
+            $faqs->save();
           } catch (\Throwable $th) {
             
           }
           
-          return redirect(route('index')->with("faqsCreated","El pqrs Se creo"));
+          return redirect(route('index'));
 
             
 
