@@ -1,7 +1,7 @@
 @extends('layouts.contenedor')
 
 @section('title','Producto')
-
+@section('component')
 <head>
     <link rel="stylesheet" href="{{ asset('css/productos.css') }}">
 </head>
@@ -89,3 +89,5 @@
     </script>
 
 </section>
+@endsection
+
