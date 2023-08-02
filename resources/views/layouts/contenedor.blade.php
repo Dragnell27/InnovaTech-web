@@ -39,7 +39,7 @@
                 @endauth ()
                 <li class="links"><a href="{{ route('productos') }}">Productos</a></li>
                 <li class="links"><a href="{{ route('wishlist.index') }}">Lista De Deseos</a></li>
-                <li class="links"><a href="#">Carrito</a></li>
+               
                 <li>
                     <form action="{{ Route('cart.show') }}" method="get">
                         <div id="icono">
