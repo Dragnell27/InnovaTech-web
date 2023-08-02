@@ -13,11 +13,9 @@
   border-color: gray;
 }
 
-.red-div {
-  background-color: rgb(194, 32, 32);
+.div {
   border-radius: 20px;
   width: 600px;
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
   margin: 0 auto;
   height: 45px;
   display: flex;
@@ -26,16 +24,6 @@
   text-align: center;
   }
 
-.red-div a {
-    color: white;
-    text-decoration: none;
-    cursor: default;
-    width: 400px;
-}
-
-.red-div a:hover {
-  text-decoration: none;
-}
 
 #contenedortitulo{
   margin: 10px 0px 80px 0px;
@@ -103,7 +91,6 @@ max-width: 100%;
   padding: 5px 10px;
   border-radius: 15px;
   color: white;
-  
   font-size: 15px;
 }
 .my-badge-2{
