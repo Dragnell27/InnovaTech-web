@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `params` (
   CONSTRAINT `FK_params_params_2` FOREIGN KEY (`param_state`) REFERENCES `params` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=3284 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla innova_tech_new.params: ~1.183 rows (aproximadamente)
+-- Volcando datos para la tabla innova_tech_new.params: ~1.193 rows (aproximadamente)
 DELETE FROM `params`;
 INSERT INTO `params` (`id`, `paramtype_id`, `name`, `param_foreign`, `param_state`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'Cliente', NULL, 5, '2023-07-14 15:56:35', '2023-07-14 15:56:37'),
@@ -1318,6 +1318,16 @@ INSERT INTO `params` (`id`, `paramtype_id`, `name`, `param_foreign`, `param_stat
 	(1776, 11, 'Rojo', NULL, 5, '2023-07-17 02:22:27', '2023-07-17 20:28:46'),
 	(1777, 11, 'Verde', NULL, 5, '2023-07-18 17:13:32', NULL),
 	(2075, 12, 'Diademas', NULL, 5, '2023-07-21 21:18:26', NULL),
+	(2076, 12, 'Fundas', NULL, 5, '2023-08-02 03:54:43', NULL),
+	(2077, 12, 'Auriculares', NULL, 5, '2023-08-02 03:54:51', NULL),
+	(2078, 12, 'Airpods', NULL, 5, '2023-08-02 03:54:58', NULL),
+	(2079, 12, 'Periféricos de computador', NULL, 5, '2023-08-02 03:55:09', NULL),
+	(2080, 12, 'Soportes para celulares', NULL, 5, '2023-08-02 03:55:49', NULL),
+	(2081, 12, 'Smartwatches', NULL, 5, '2023-08-02 03:55:56', NULL),
+	(2082, 12, 'Protectores de pantalla', NULL, 5, '2023-08-02 03:56:04', NULL),
+	(2083, 12, 'Parlantes', NULL, 5, '2023-08-02 03:56:10', NULL),
+	(2084, 12, 'Cargadores', NULL, 5, '2023-08-02 03:56:17', NULL),
+	(2085, 12, 'Luces', NULL, 5, '2023-08-02 03:56:23', NULL),
 	(2275, 13, 'Efectivo', NULL, 5, '2023-07-18 17:04:30', NULL),
 	(2276, 13, 'Debito', NULL, 5, '2023-07-18 17:08:29', NULL),
 	(2277, 13, 'Crédito', NULL, 5, '2023-07-18 17:08:55', NULL),
