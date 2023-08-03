@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', function () {
     return view('index');
 })->name('index');
@@ -94,3 +95,8 @@ Route::middleware('auth')->resource('/wishlist', WishlistController::class);
 
 //ruta para faqs
 // Route::post('/faqs/{id}', [faqsController::class, 'store'])->name('faqs.store');
+
+//ruta para categorias
+Route::view('components/Categories/category','components/Categories/category');
+//ruta para about
+Route::view('about','about')->name('about');

@@ -1,0 +1,25 @@
+/* Estilos personalizados para la página "Acerca de nosotros" */
+/* Estilo para las secciones de contenido */
+.section-about {
+    margin-bottom: 40px;
+    border-bottom: 2px solid #000000; /* Agregamos un borde inferior para separar las secciones */
+    padding-bottom: 20px; /* Espacio entre el borde y el contenido de la siguiente sección */
+}
+
+/* Estilos para la imagen en la sección "Acerca de nosotros" */
+#mision_empresa {
+    max-width: 90px; /* Establece el ancho máximo de la imagen para que no exceda el ancho del contenedor */
+    height: auto; /* Permite que la altura se ajuste proporcionalmente al ancho para mantener la relación de aspecto */
+    display: block; /* Hace que la imagen sea un elemento de bloque para respetar el tamaño asignado */
+    margin: 0 auto; /* Centra horizontalmente la imagen dentro de su contenedor */
+}
+
+#navbar-navegacion{
+    margin-top: 60px;
+    position: inherit;
+    
+}
+.imagenes{
+    width: 20%;
+    height: 10%;
+}
