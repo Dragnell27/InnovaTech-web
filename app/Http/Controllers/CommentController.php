@@ -10,6 +10,7 @@ use App\Models\product;
 use COM;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CommentController extends Controller
@@ -29,13 +30,13 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_id'=>'required|exists:product_id',
             'comment'=>'required|string',
         ]);
-        $user = auth()->user();
+
+        $product = $request['product_id'];
         $comments = new Comment();
-        $comments->user_id = $user->id;
-        $comments->comments=$request->input('comments');
+        $comments->user_id = Auth::user()->id;
+        $comments->comments=$request->input('comment');
         $comments->starts=$request->input('starts');
         
         $comments->save();

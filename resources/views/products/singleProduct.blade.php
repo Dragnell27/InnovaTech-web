@@ -80,6 +80,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-danger">Agregar comentario</button>
+                <input type="hidden" name="" value="product_id">
                 </form>
             </div>
         </div>
