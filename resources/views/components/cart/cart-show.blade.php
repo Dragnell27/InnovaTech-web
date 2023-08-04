@@ -10,7 +10,21 @@
         <!-- place navbar here -->
     </header>
     <main>
-        @if (Cart::getContent()->count() <= 0) <section>
+
+        @if (Auth::check())
+            <?php
+                $CartItems = Cart::session(Auth::user()->id)->getContent();
+                $CartCount = Cart::session(Auth::user()->id)->getContent()->count();
+            ?>
+
+        @else
+        <?php
+        $CartItems = Cart::getContent();
+        $CartCount = Cart::getContent()->count() ;
+    ?>
+            
+        @endif
+        @if ($CartCount <= 0) <section>
             <div id="carritovacio">
                 <h1>Su carrito está vacio</h1>
                 <img src="{{ asset('img/carro-vacio.png') }}" alt="">
@@ -25,7 +39,7 @@
             <div class="row g-5 ml-20">
 
                 <div class=" col-lg-6  rounded order-md-first ">
-                    @foreach (Cart::getContent() as $items)
+                    @foreach ($CartItems as $items)
                     <div class="container w-100 mb-2">
                         <div class="card w-100">
                             <div class="card w-100">

@@ -47,7 +47,12 @@
                                 <img src="{{ asset('img/Carro-Compras.png') }}" width="25px" height="20px"
                                     alt="">
                                 <span class="">
-                                    {{ Cart::getContent()->count() }}
+                                    @if (Auth::check())
+                                    <?php$CartCount = Cart::session(Auth::user()->id)->getContent()->count();?>
+                                @else
+                                <?php$CartCount = Cart::getContent()->count() ;?>
+                                @endif
+                                    {{ $CartCount }}
                                     <span class="visually-hidden "></span>
                                 </span>
                             </button>
