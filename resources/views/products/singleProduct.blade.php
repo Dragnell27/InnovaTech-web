@@ -2,8 +2,11 @@
 
 @section('title','Producto')
 @section('component')
+
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/productos.css') }}">
+
 </head>
 <section class="bg-light">
     <div class="container pb-5">
@@ -11,7 +14,7 @@
 
             <div class="col-lg-5 mt-5">
                 <div class="imgContainer ">
-                    <img id="imgBox"alt="Card image cap">
+                    <img id="imgBox" alt="Card image cap">
 
                 </div>
                 <div class="small-product">
@@ -26,68 +29,69 @@
             <div class="col-lg-7 mt-5">
                 <div class="card">
                     <div class="card-body">
-                            <div class="text-center">
-                                <h1 id="name"> </h1>
-                            </div>
-                            <div class="text-right">
-                                <h1 class="my-badge bg-danger" id="price"></h1>
+                        <div class="text-center">
+                            <h1 id="name"> </h1>
+                        </div>
+                        <div class="text-right">
+                            <h1 class="my-badge bg-danger" id="price"></h1>
 
                         </div>
-                            <h6>Descripcion:</h6>
-                            <p id="desc"></p>
+                        <h6>Descripcion:</h6>
+                        <p id="desc"></p>
 
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>Color :</h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <h6 class="text-muted"><strong id="color"></strong></h6>
-                                </li>
-                            </ul>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <h6>Color :</h6>
+                            </li>
+                            <li class="list-inline-item">
+                                <h6 class="text-muted"><strong id="color"></strong></h6>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row pb-3">
+                        <div class="col d-grid mb-2">
+                            <button type="submit" class="w-100 btn btn-danger btn-lg" name="submit" value="addtocard">Añadir al carrito</button>
                         </div>
-                        <div class="row pb-3">
-                            <div class="col d-grid mb-2">
-                                <button type="submit" class="w-100 btn btn-danger btn-lg" name="submit"
-                                    value="addtocard">Añadir al carrito</button>
-                            </div>
-                            <div class="text-center">
-                                <a href="http://">agregar a lista de deseos</a>
-                            </div>
+                        <div class="text-center">
+                            <a href="http://">agregar a lista de deseos</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- comentarios -->
-            <div id="contenedorcomentarios" class="container-fluid">
-                <h3 class="text-center">Comentarios</h3>
-                <div class="col-lg-12">
-                    <!-- Aquí se agregarán los comentarios -->
-                    <div id="comentarios"></div>
-                    <!-- Formulario de comentario -->
-                    <form id="comment-form">
-                        <div class="form-group">
-                            <label for="name">Nombre:</label>
-                            <input type="text" class="form-control" id="name" required>
+        </div>
+        <!-- comentarios -->
+        <div id="contenedorcomentarios" class="container-fluid">
+            <h3 class="text-center">Comentarios</h3>
+            <div class="col-lg-12">
+                <!-- Aquí se agregarán los comentarios -->
+                <div id="comentarios"></div>
+                <!-- Formulario de comentario -->
+                <form id="comment-form">
+                    <div class="form-group">
+                        <label for="comment">Comentario:</label>
+                        <textarea class="form-control" id="comment" rows="3" required></textarea>
+                        <div class="star_rating">
+                            <button class="star">&#9734;</button>
+                            <button class="star">&#9734;</button>
+                            <button class="star">&#9734;</button>
+                            <button class="star">&#9734;</button>
+                            <button class="star">&#9734;</button>
+                            
                         </div>
-                        <div class="form-group">
-                            <label for="comment">Comentario:</label>
-                            <textarea class="form-control" id="comment" rows="3" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-danger">Agregar comentario</button>
-                    </form>
-                </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-danger">Agregar comentario</button>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 
     <div class="container-fluid d-flex justify-content-center align-items-center" id="contenedortitulo">
         <div class="div ">
-            <button class="div btn-danger w-100" >Ver Comentarios Del Producto</button>
+            <button class="div btn-danger w-100">Ver Comentarios Del Producto</button>
         </div>
     </div>
-    <script src="{{ asset("js/producto.js") }}">
-    </script>
+<script src="{{ asset('js/producto.js')}}"></script>
 
 </section>
 @endsection
-

@@ -106,15 +106,22 @@ max-width: 100%;
   
 }
 
-
-
-
-
 /*--------------
-botones
+Estrellas comentarios
 --------------*/
-
-
+.star_rating{
+  user-select: none;
+}
+.star{
+  font-size: 2rem;
+  color: #ff9800;
+  background-color: unset;
+  border: none;
+}
+.star:hover{
+  cursor: pointer;
+  color: #ff9800;
+} 
 
 /* -----------
 footer
