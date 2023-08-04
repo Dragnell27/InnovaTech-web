@@ -46,7 +46,7 @@
         
     </div>
 </div>
- //js del PQRS
+ 
  <script src="{{ asset('js/faqs.js') }}"></script>
 
 @endif

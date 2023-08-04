@@ -46,7 +46,7 @@
                                 <ul class="list-inline  mt-2 mb-2 w-100">
 
                                     <li class="list-inline-item "style="margin-right: 15px"> <img
-                                            src=" {{ $items->attributes["image"] }}" ">
+                                            src=" {{ $items->attributes["image"] }}"  width="100px">
                                     </li>
 
                                     <li class="list-inline-item col-4" >
