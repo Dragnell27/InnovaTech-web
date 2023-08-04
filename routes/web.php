@@ -85,7 +85,7 @@ route::view('products/singleProduct','products/singleProduct')->name('productos'
 Route::resource('/users', UserController::class);
 
 //Ruta, manejo de compras
-Route::view('/sales.shopping', 'sales/shopping')->name('sales.shopping');
+Route::view('/sales/shopping', 'sales/shopping')->name('shopping');
 
 //ruta jaider, lista de deseos
 Route::middleware('auth')->resource('/wishlist', WishlistController::class);
