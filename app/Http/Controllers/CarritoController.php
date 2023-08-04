@@ -34,9 +34,10 @@ class CarritoController extends Controller
     public function updateCart(Request $request){
         $id = $request->input("prod_id");
         $cantidad = $request->input("quantity");
-        $precio=$request->input("newPrice"); 
-        // $producto = \DB::table('productos')->where('id',$id)->first();
-  
+        
+        $producto = \DB::table('products')->where('id',$id)->first();
+        $precio= $producto->price * $cantidad;
+       
         if (Auth::check()) {
             $userId = Auth::user()->id;
             Cart::session($userId)->update($id,array(
@@ -166,7 +167,7 @@ class CarritoController extends Controller
             Cart::session($userId)->remove($id);
             session()->forget('cart');
           }else{
-            Cart::remove(456);
+            Cart::remove($id);
             session()->forget('cart');
           }
           

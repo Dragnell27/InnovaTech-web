@@ -40,6 +40,63 @@
 
                 <div class=" col-lg-6  rounded order-md-first ">
                     @foreach ($CartItems as $items)
+
+                
+
+                    <div class="card mb-3" style="max-width: 600px;" id="cartItem">
+                        <div class="row g-0">
+                          <div class="col-md-4">
+                            <img src="{{ $items->attributes['image'] }}" class="img-fluid rounded-start" alt="...">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ $items->name }}</h5>
+                              <div class="card-text"><p>{{  $items->attributes["desc"] }}</p>
+                               <div>
+                                <span >Precio: <span id="priceP">{{ $items->price  }}</span> </span>
+                                <button 
+                                    id="btnDecrement"
+                                    class="changeQuantity"
+                                    name="submitButton" 
+                                    value="-"> -
+                                </button>
+                                
+                                <input 
+                                    type="hidden"
+                                    name="ProductPrice" 
+                                    id="ProductPrice" 
+                                    value="{{ $items->price }}"
+                                />
+
+                                <input 
+                                    width="20px" 
+                                    type="text" 
+                                    id="qty" 
+                                    value="{{ $items->quantity }}"
+                                />  
+
+                                    <input 
+                                    type="hidden" 
+                                    name="id" 
+                                    id="hidden" 
+                                    value="{{ $items->id}}">  
+
+                                <button 
+                                    id="btnIncrement" 
+                                    class="changeQuantity" 
+                                    name="submitButton" 
+                                    value="+"
+                                >+
+                                </button>
+                               </div>
+                              </div>
+                              <p class="card-text"><small class="text-body-secondary"><a href="{{route('cart.destroy',$items->id)  }}">Eliminar</a></small></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
                     <div class="container w-100 mb-2">
                         <div class="card w-100">
                             <div class="card w-100">
@@ -58,8 +115,9 @@
                                             {{ $items->attributes["desc"] }}
                                         </p>
                                     </li>
+                                    
 
-                                    @if ($items->attributes["discount"]==0)
+                                    @if ($items->attributes["discount"]== 0)
                                     <li class="list-inline-item mr-4" style="text-align: right" ><strong id="precio">
                                             {{ $items->price }}
                                         </strong>
@@ -121,7 +179,7 @@
                                 <h6 class="my-0">Total (COP)</h6>
                             </div>
                             @if ($items->attributes["discount"]==0)
-                            <span class="text-success" id="resultado">${{ $items->quantity * $items->price }}</span>
+                            <span class="text-success" id="resultado">${{ $items->price }}</span>
                             @else
                             @php
                             $descuento=($items->price * $items->attributes["discount"]) /100

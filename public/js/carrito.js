@@ -6,12 +6,8 @@ $(document).ready(function () {
         let operator = e.target.value;
         switch (operator) {
             case "+":
-
-
-
                 let qty = $("#qty").val();
                 Number(qty)
-
                 if (qty < 20) {
                     $("#qty").val(Number(qty) + 1);
 
@@ -20,13 +16,12 @@ $(document).ready(function () {
                     var fixedPrice = $("#ProductPrice").val();
                     var updatePrice = Number(fixedPrice) * Number(quantity);
                     $("#priceP").html(updatePrice);
-
-
-
+                    
                     var data = {
                         "prod_id": prod_id,
                         "quantity": quantity,
                         "newPrice": updatePrice
+                      
                     }
 
                     $.ajax({
