@@ -52,7 +52,7 @@
     </div>
 
     <script>
-        $(document).ready(function() {
+        function cargarDatos() {
             $.ajax({
                 url: "{{ env('API') . '/users/' . Auth::user()->id }}",
                 method: 'GET',
@@ -69,6 +69,7 @@
                     console.log('Error al obtener datos de la API:', error);
                 }
             });
-        })
+        }
+        cargarDatos();
     </script>
 @endsection

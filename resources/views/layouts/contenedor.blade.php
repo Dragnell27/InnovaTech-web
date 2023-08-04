@@ -39,7 +39,7 @@
                 @endauth ()
                 <li class="links"><a href="{{ route('productos') }}">Productos</a></li>
                 <li class="links"><a href="{{ route('wishlist.index') }}">Lista De Deseos</a></li>
-               
+
                 <li>
                     <form action="{{ Route('cart.show') }}" method="get">
                         <div id="icono">
@@ -81,6 +81,7 @@
     </script>
     {{-- agrego el js del carrito --}}
     <script src="{{ asset('js/carrito.js') }}"></script>
+    <script src="{{ asset('js/JQuery.min.js') }}"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
