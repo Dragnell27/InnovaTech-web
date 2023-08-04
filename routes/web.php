@@ -29,9 +29,6 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::get('producto',[ProductosController::class,'producto'])->name('productos');
-
-
 /// RUTAS DE PQRS
 
 Route::get('/faqs', function () {
@@ -82,7 +79,7 @@ Route::view('payment-method/Metodo-pago','payment-method/Metodo-pago')->name('Mp
 //ruta ruta que llama Editar dirección
 Route::view('payment-method/editarDireccion','payment-method/editarDireccion')->name('Edireccion');
 
-route::view('products/singleProduct','products/singleProduct')->name('viewProdu');
+route::view('products/singleProduct','products/singleProduct')->name('productos');
 
 //ruta jaider, manejo de usuarios;}
 Route::resource('/users', UserController::class);

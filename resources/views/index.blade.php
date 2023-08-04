@@ -92,7 +92,7 @@
                             <p class="card-text">Precio $ 6.999.920 COP</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-danger">Ver Producto</button>
+                                    <button type="button" onclick="window.location.href='{{ route('productos') }}' " class="btn btn-sm btn-danger">Ver Producto</button>
                                 </div>
                                 <input type="hidden" name="id" value="1">
                                 {{--  <div class="btn-group">
