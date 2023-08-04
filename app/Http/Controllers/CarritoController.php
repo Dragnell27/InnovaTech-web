@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 use Cart;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -11,6 +12,8 @@ class CarritoController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+   
     public function index()
     {
         //  $id = $request->id;
@@ -34,16 +37,35 @@ class CarritoController extends Controller
         $precio=$request->input("newPrice"); 
         // $producto = \DB::table('productos')->where('id',$id)->first();
   
-                 Cart::update($id,array(
-                     "quantity" =>array(
-                        'relative' => false,
-                        'value' => $cantidad
-                     ),
-                     "price"=> $precio
-                    
-                ));
-                session()->forget('cart');
-                session(["cart"=>Cart::getContent()]);
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            Cart::session($userId)->update($id,array(
+                "quantity" =>array(
+                   'relative' => false,
+                   'value' => $cantidad
+                ),
+                "price"=> $precio
+               
+           ));
+           session()->forget('cart');
+           session(["cart"=>Cart::session($userId)->getContent()]);
+
+            # code...
+        }else{
+            Cart::update($id,array(
+                "quantity" =>array(
+                   'relative' => false,
+                   'value' => $cantidad
+                ),
+                "price"=> $precio
+               
+           ));
+           session()->forget('cart');
+
+           session(["cart"=>Cart::getContent()]);
+        }
+                
+               
                 
                
         //   return redirect()->route("/")->with("msj_exitoso",$producto);
@@ -61,22 +83,39 @@ class CarritoController extends Controller
        
          $producto = \DB::table('products')->where('id',$id)->first();
          
+         
         try {
+            if (Auth::check()) {
+                $userId = Auth::user()->id;
+                Cart::session($userId)->add(array(
+                    'id' => $producto->id,   //inique row ID
+                    'name' => $producto->name,
+                    'price' =>$producto->price,
+                    'quantity' => $request->quantity?$request->quantity:1,
+                    'attributes' => array(
+                        'discount'=> $producto->discount,
+                        'image'=>$producto->images,
+                        'desc'=>$producto->description,
+                        
+                    ),
+                ));
+
+            }else{
+                Cart::add(array(
+                    'id' => $producto->id,   //inique row ID
+                    'name' => $producto->name,
+                    'price' =>$producto->price,
+                    'quantity' => $request->quantity?$request->quantity:1,
+                    'attributes' => array(
+                        'discount'=> $producto->discount,
+                        'image'=>$producto->images,
+                        'desc'=>$producto->description,
+                        
+                    ),
+                ));
+            }
         
-            Cart::add(array(
-                'id' => $producto->id,   //inique row ID
-                'name' => $producto->name,
-                'price' =>$producto->price,
-                'quantity' => $request->quantity?$request->quantity:1,
-                'attributes' => array(
-                    'discount'=> $producto->discount,
-                    'image'=>$producto->images,
-                    'desc'=>$producto->description,
-                    
-                ),
-               
-    
-            ));
+           
         
             // session(["cart"=>Cart::getContent()]);
     
@@ -121,9 +160,17 @@ class CarritoController extends Controller
     public function destroy(string $id)
     {
         //
-          Cart::clear();
-          session()->forget('cart');
-        return redirect()->route("cart.show")->with("msj_destroy","El carrito fue vaciado");
+      
+          if (Auth::check()) {
+            $userId =   Auth::user()->id;
+            Cart::session($userId)->remove($id);
+            session()->forget('cart');
+          }else{
+            Cart::remove(456);
+            session()->forget('cart');
+          }
+          
+        return redirect()->route("cart.show")->with("msj_destroy","El elemento fue eliminado");
         
     }
 }

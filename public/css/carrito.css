@@ -19,9 +19,9 @@
 
 }
 .changeQuantity{
-    width: 50px;
-    border: 0px solid    black;
-    font-size: 20px;
+    width: 50px !important;
+    border: 0px solid    black !important;
+    font-size: 20px !important;
 }
 .priceContainer{
 
@@ -70,6 +70,9 @@
   }
 
 
+  #CartAlert{
+    padding: 10px;
+  }
 
 
 /* CSS del carrito JOAN */
