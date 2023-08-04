@@ -40,7 +40,8 @@ Route::get('/faqs', function () {
 // Route::get('/pqrs', [PqrsdController::class, 'index'])->name('pqrs.index');
 // Route::get('/pqrs/create', [PqrsdController::class, 'create'])->name('pqrs.create');
 // Route::post('/pqrs', [PqrsdController::class, 'store'])->name('pqrs.store');
-
+//RUTA INDIVIDUAL DE PRODUCTOS//
+Route::view('products/show_Product','products/show_Product')->name('productos');
 //Rutas del carrito//
 
 Route::get("/cart-show",[App\Http\Controllers\CarritoController::class,'show'])->name("cart.show");
