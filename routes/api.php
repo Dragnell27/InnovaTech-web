@@ -41,7 +41,8 @@ Route::apiResource('/users','App\Http\Controllers\apiControllers\ApiUser');
 
 //@Jhonmurillo
 //Api para los comentarios
+// Route::apiResource('comentario', CommentController::class);
 Route::apiResource('comentario', CommentController::class);
 
 //@Jhonmurillo
-Route::apiResource('compras', SalesController::class);
+Route::apiResource('/compras', SalesController::class);

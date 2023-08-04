@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\Commentcollection;
+use App\Http\Resources\Commentid;
 use App\Http\Resources\Commentresource;
 use App\Models\Comment;
+use App\Models\product;
 use COM;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,6 +19,7 @@ class CommentController extends Controller
      */
     public function index()
     {
+        
         return Commentcollection::collection(DB::table('ratings')->get());
     }
 
@@ -24,14 +28,20 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-       // dd($request->all());
-        $coments = new Comment;
-        $coments->comments =$request->comments;
-        $coments->starts =$request->starts;
-        $coments->user_id =$request->user_id;
-        $coments->product_id =$request->product_id;
-        $coments->save();
-        return $coments;
+        $request->validate([
+            'product_id'=>'required|exists:product_id',
+            'comment'=>'required|string',
+        ]);
+        $user = auth()->user();
+        $comments = new Comment();
+        $comments->user_id = $user->id;
+        $comments->comments=$request->input('comments');
+        $comments->starts=$request->input('starts');
+        
+        $comments->save();
+
+        return ('Comentario creado');
+
     }
 
     /**
@@ -48,7 +58,7 @@ class CommentController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $dato = Comment::findOrfail('id',$id);
+        // $dato = Comment::findOrfail('id',$id);
 
     }
 

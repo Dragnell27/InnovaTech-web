@@ -39,7 +39,7 @@ class SalesController extends Controller
     public function show($id)
     {
         $resultado = SalesResources::collection(DB::table('sales')->where('user_id',$id)->get());
-        return $resultado;
+        return view('sales/shopping',['resultado'=>$resultado]);
     }
 
     /*
