@@ -75,176 +75,124 @@
     </div>
 
     <div class="red-div">
-        <h2>Productos</h2>
+        <h2>Productos Destacados</h2>
     </div>
-@include("components.cart.cartAlert")
-    <div class="album py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="{{ asset('img/Producto-1.jpg') }}" alt="Thumbnail [100%x225]">
-                        <div class="card-body">
-                            @component("components.cart.SendToCart")
+    @include("components.cart.cartAlert")
+    <section class="product" id="carrusel-personalizado">
 
+        <button class="pre-btn"><img src="{{ asset('img/arrow.png') }}" alt=""></button>
+        <button class="nxt-btn"><img src="{{ asset('img/arrow.png') }}" alt=""></button>
 
-                            <h4 class="card-title">Samsung Galaxy S23 Ultra</h4>
-                            <p class="card-text">Precio $ 6.999.920 COP</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                            <button type="button" onclick="window.location.href='{{ route('productos') }}' " class="btn btn-sm btn-danger">Ver Producto</button>
-                                </div>
-                                <input type="hidden" name="id" value="1">
-                                {{--  <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-success">Agregar Al Carrito</button>
-                                </div>  --}}
-                                @endcomponent
-                            </div>
-                        </div>
-                    </div>
+        <div class="product-container">
+        <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
+                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
+                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
+                    <input type="hidden" name="id" value="1">
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="{{ asset('img/Producto-2.jpg') }}" alt="Thumbnail [100%x225]">
-                        <div class="card-body">
-                            <h4 class="card-title">Samsung Galaxy S23 Ultra</h4>
-                            <p class="card-text">Precio $ 6.999.920 COP</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-danger">Ver Producto</button>
-                                </div>
-                                <input type="hidden" name="id" value="2">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-success">Agregar Al Carrito</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                @component("components.cart.SendToCart")
+
+                <div class="product-info">
+                    <h4 class="product-brand">Huawei 30P</h4>
+                    <p class="product-short-description">Telefono 2023</p>
+                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
+                    <br>
+                    <span class="color-descuento">20% Descuento</span>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="{{ asset('img/Producto-3.jpg') }}" alt="Thumbnail [100%x225]">
-                        <div class="card-body">
-                            <h4 class="card-title">Samsung Galaxy S23 Ultra</h4>
-                            <p class="card-text">Precio $ 6.999.920 COP</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-danger">Ver Producto</button>
-                                </div>
-                                <div class="btn-group">
-                                    <input type="hidden" name="id" value="3">
-                                    <button type="button" class="btn btn-sm btn-success">Agregar Al Carrito</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
+                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
+                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
+                    <input type="hidden" name="id" value="1">
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="{{ asset('img/Producto-4.jpg') }}" alt="Thumbnail [100%x225]">
-                        <div class="card-body">
-                            <h4 class="card-title">Samsung Galaxy S23 Ultra</h4>
-                            <p class="card-text">Precio $ 6.999.920 COP</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-danger">Ver Producto</button>
-                                </div>
-                                <div class="btn-group">
-                                    <input type="hidden" name="id" value="4">
-                                    <button type="button" class="btn btn-sm btn-success">Agregar Al Carrito</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="product-info">
+                    <h4 class="product-brand">Audifonos</h4>
+                    <p class="product-short-description">Telefono 2023</p>
+                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
+                    <br>
+                    <span class="color-descuento">20% Descuento</span>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="{{ asset('img/Producto-1.jpg') }}" alt="Thumbnail [100%x225]">
-                        <div class="card-body">
-                            <h4 class="card-title">Samsung Galaxy S23 Ultra</h4>
-                            <p class="card-text">Precio $ 6.999.920 COP</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-danger">Ver Producto</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-success">Agregar Al Carrito</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
+                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
+                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
+                    <input type="hidden" name="id" value="1">
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="{{ asset('img/Producto-2.jpg') }}" alt="Thumbnail [100%x225]">
-                        <div class="card-body">
-                            <h4 class="card-title">Samsung Galaxy S23 Ultra</h4>
-                            <p class="card-text">Precio $ 6.999.920 COP</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-danger">Ver Producto</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-success">Agregar Al Carrito</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="product-info">
+                    <h4 class="product-brand">SmartWatch</h4>
+                    <p class="product-short-description">Telefono 2023</p>
+                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
+                    <br>
+                    <span class="color-descuento">20% Descuento</span>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="{{ asset('img/Producto-3.jpg') }}" alt="Thumbnail [100%x225]">
-                        <div class="card-body">
-                            <h4 class="card-title">Samsung Galaxy S23 Ultra</h4>
-                            <p class="card-text">Precio $ 6.999.920 COP</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-danger">Ver Producto</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-success">Agregar Al Carrito</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
+                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
+                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
+                    <input type="hidden" name="id" value="1">
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="{{ asset('img/Producto-4.jpg') }}" alt="Thumbnail [100%x225]">
-                        <div class="card-body">
-                            <h4 class="card-title">Samsung Galaxy S23 Ultra</h4>
-                            <p class="card-text">Precio $ 6.999.920 COP</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-danger">Ver Producto</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-success">Agregar Al Carrito</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="product-info">
+                    <h4 class="product-brand">Estuche A10s</h4>
+                    <p class="product-short-description">Telefono 2023</p>
+                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
+                    <br>
+                    <span class="color-descuento">20% Descuento</span>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="{{ asset('img/Producto-1.jpg') }}" alt="Thumbnail [100%x225]">
-                        <div class="card-body">
-                            <h4 class="card-title">Samsung Galaxy S23 Ultra</h4>
-                            <p class="card-text">Precio $ 6.999.920 COP</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-danger">Ver Producto</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-success">Agregar Al Carrito</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
+                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
+                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
+                    <input type="hidden" name="id" value="1">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-brand">Banda Smart</h4>
+                    <p class="product-short-description">Telefono 2023</p>
+                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
+                    <br>
+                    <span class="color-descuento">20% Descuento</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
+                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
+                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
+                    <input type="hidden" name="id" value="1">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-brand">Aro De Luz</h4>
+                    <p class="product-short-description">Telefono 2023</p>
+                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
+                    <br>
+                    <span class="color-descuento">20% Descuento</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
+                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
+                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
+                    <input type="hidden" name="id" value="1">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-brand">Samsung A10s</h4>
+                    <p class="product-short-description">Telefono 2023</p>
+                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
+                    <br>
+                    <span class="color-descuento">20% Descuento</span>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <div class="red-div">
         <h2>Informacion</h2>
@@ -271,6 +219,8 @@
         </div>
     </div>
 </section>
+<script src="{{ asset('js/cartas.js')}}"></script>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 @include("components.PQRS.FAQS")
 @include('layouts.footer')
 @endsection
