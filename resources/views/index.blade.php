@@ -264,14 +264,6 @@
             <div class=" col-md-3 col-sm-6 col-12 text-center ">
                 <a href="palinkear.html" class="btn btn-link btn-image">
                     <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones" alt="..."
-                        src="{{ asset('img/Medio-Pago.png') }}" width="120" height="120" role="img">
-                </a>
-                <h4 class="fw-normal my-4">Metodos de pago</h4>
-            </div>
-
-            <div class=" col-md-3 col-sm-6 col-12 text-center ">
-                <a href="palinkear.html" class="btn btn-link btn-image">
-                    <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones" alt="..."
                         src="{{ asset('img/Contacto.jpg') }}" width="120" height="120" role="img">
                 </a>
                 <h4 class="fw-normal my-4">Contacto</h4>
