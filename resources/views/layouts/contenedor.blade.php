@@ -27,9 +27,28 @@
 <body>
     <header>
         <nav class="nav">
-            <i class="uil uil-bars navOpenBtn"></i>
-            <a href="{{ url('/') }}" class="logo"><span style="color: red;">In</span>novatech</a>
+            <div class="class">
+            <a href="{{ url('/') }}"><img src="{{ asset('img/logo-i.png') }}" id="imagen-logo"></a>
+            <a id="btn-menu" onclick="toggleSidebar()"><img src="{{ asset('img/Menu.png') }}" id="menu-logo"></a>
 
+            <div class="sidebar" style="background-color: white;" id="sidebar">
+                <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <span class="fs-4"><img src="{{ asset('img/Logo-i.png') }}" height="50px"></span>
+                    <a class="nav-link" href="#">Mi Cuenta</a>
+                    <a class="nav-link" href="#">Categorias</a>
+                    <a class="nav-link" href="#">Productos</a>
+                    <a class="nav-link" href="#">Lista De Deseos</a>
+                    <a class="nav-link" href="#">Carrito</a>
+                    <hr class="hr-sidebar">
+                    <a class="nav-link" href="#">Fundas</a>
+                    <a class="nav-link" href="#">Audio</a>
+                    <a class="nav-link" href="#">Accesorios Tecnologicos</a>
+                    <a class="nav-link" href="#">Relojes Inteligentes</a>
+                    <a class="nav-link" href="#">Luces</a>
+                    <a class="nav-link" href="#">Cargadores</a>
+                    <a class="nav-link" href="#">Gaming</a>
+            </div>
+        </div>
             <ul class="nav-links">
                 <i class="uil uil-times navCloseBtn"></i>
                 @auth
@@ -58,8 +77,6 @@
                             </button>
                         </div>
                     </form>
-
-
                 </li>
                 @auth
                     <li class="links"><a href="{{ route('logout') }}">Cerrar sesion</a></li>

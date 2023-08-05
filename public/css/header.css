@@ -1,8 +1,6 @@
 /* Google Fonts - Cabin */
 @import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap");
 
-
-
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +11,7 @@
 .sidebar {
     width: 250px;
     height: 100vh;
-    background-color: #FFF;
+    background-color: #fff;
     position: fixed;
     top: 0;
     left: -100%;
@@ -22,6 +20,7 @@
 
 .sidebar.active {
     left: 0;
+    height: 650px;
 }
 
 #btn-menu {
@@ -32,25 +31,25 @@
 }
 
 .search-container {
-  position: relative;
+    position: relative;
 }
 
 #search-bar {
-  padding: 8px 30px 8px 10px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  display: none; /* Inicialmente oculto */
+    padding: 8px 30px 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    display: none; /* Inicialmente oculto */
 }
 
 #search-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
-.search-box{
-  position: relative;
+.search-box {
+    position: relative;
 }
 
 .ba {
@@ -67,6 +66,13 @@
 #menu-logo {
     height: 30px;
     columns: 6;
+    cursor: pointer;
+}
+.hr-sidebar {
+    border: none;
+    height: 5px;
+    color: #000;
+    background-color: #000;
 }
 
 .menu {
@@ -91,8 +97,22 @@ header {
     display: flex;
     align-items: center;
 }
+
 .nav {
     justify-content: space-between;
+}
+.nav-link:hover {
+    color: red;
+}
+.nav-link {
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out;
 }
 a {
     color: #000000;
@@ -234,13 +254,12 @@ a:hover {
         box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
     }
     #mover-mapa {
-      display: block; 
+        display: block;
     }
-      /* Media query para resoluciones menores a 768px (puedes ajustar este valor según tus necesidades) */
+    /* Media query para resoluciones menores a 768px (puedes ajustar este valor según tus necesidades) */
     @media (max-width: 615px) {
-      #mover-mapa {
-        display: none; 
-      }
-}
-
+        #mover-mapa {
+            display: none;
+        }
+    }
 }
