@@ -66,21 +66,23 @@
                 <!-- Aquí se agregarán los comentarios -->
                 <div id="comentarios"></div>
                 <!-- Formulario de comentario -->
-                <form id="comment-form">
+                <form action="{{route('comentarios.store')}}" method="post">
+                    @csrf
                     <div class="form-group">
                         <label for="comment">Comentario:</label>
-                        <textarea class="form-control" id="comment" rows="3" required></textarea>
+                        <textarea class="form-control" name="comment" rows="3" required></textarea>
                         <div class="star_rating">
                             <button class="star">&#9734;</button>
                             <button class="star">&#9734;</button>
                             <button class="star">&#9734;</button>
                             <button class="star">&#9734;</button>
                             <button class="star">&#9734;</button>
-                            
+
                         </div>
                     </div>
+
+                <input type="text" value="1" name="product_id">
                     <button type="submit" class="btn btn-primary btn-danger">Agregar comentario</button>
-                <input type="hidden" name="" value="product_id">
                 </form>
             </div>
         </div>

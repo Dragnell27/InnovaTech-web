@@ -10,7 +10,7 @@ use App\Http\Controllers\apiControllers\faqsController;
 // use App\Http\Controllers\PqrsdController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -97,3 +97,5 @@ Route::middleware('auth')->resource('/wishlist', WishlistController::class);
 Route::view('components/Categories/category','components/Categories/category');
 //ruta para about
 Route::view('about','about')->name('about');
+
+Route::resource('comentarios', CommentController::class);
