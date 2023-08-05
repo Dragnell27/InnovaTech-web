@@ -18,7 +18,7 @@ try {
     document.getElementById("imageTwo").src= producto.images;
     document.getElementById("imageThree").src= producto.images;
     document.getElementById("imagefour").src= producto.images;
- 
+
 } catch (error) {
     console.error('Error al obtener los datos del producto');
 }
@@ -29,9 +29,7 @@ const allStars = document.querySelectorAll(".star");
 allStars.forEach((star, i) => {
     star.onclick = function () {
         let current_star_level = i + 1;
-        
         allStars.forEach((star, j) => {
-            
             console.log(j + 1);
             if (current_star_level >= j + 1) {
                 star.innerHTML = '&#9733';
