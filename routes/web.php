@@ -48,7 +48,7 @@ Route::get("/cart-show",[App\Http\Controllers\CarritoController::class,'show'])-
 Route::get("/destroy/{idProducto}",[App\Http\Controllers\CarritoController::class,'destroy'])->name("cart.destroy");
 Route::post('/Cart-Checkout',[App\Http\Controllers\CarritoController::class,'store'])->name("cart.store");
 Route::get("update-cart",[App\Http\Controllers\CarritoController::class,'updateCart'])->name("update-cart");
-ROUTE::view('components/cart/cart-show','components/cart/cart-show');
+ROUTE::view('components/cart/cart-show','components/cart/cart-show') ->name('cart');
 ///HASTA aqui//
 
 /////////////////////////////
@@ -79,8 +79,6 @@ Route::view('payment-method/lugarEnvio','payment-method/lugarEnvio')->name('LuEn
 Route::view('payment-method/Metodo-pago','payment-method/Metodo-pago')->name('Mpago');
 //ruta ruta que llama Editar dirección
 Route::view('payment-method/editarDireccion','payment-method/editarDireccion')->name('Edireccion');
-
-route::view('products/singleProduct','products/singleProduct')->name('productos');
 
 //ruta jaider, manejo de usuarios;}
 Route::resource('/users', UserController::class);

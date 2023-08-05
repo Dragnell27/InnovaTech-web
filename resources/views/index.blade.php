@@ -87,8 +87,8 @@
         <div class="product-card">
                 <div class="product-image">
                     <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
-                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
-                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
+                    <a href="{{route('productos')}}"><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
+                    <button class="card-btn" onclick="window.location.href='{{ route('cart') }}'">Añadir al Carrito</button>
                     <input type="hidden" name="id" value="1">
                 </div>
                 @component("components.cart.SendToCart")
