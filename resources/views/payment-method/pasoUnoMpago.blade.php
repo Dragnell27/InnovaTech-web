@@ -1,6 +1,6 @@
 @extends('layouts.contenedor')
 @section('title','Home')
-@section('component') 
+@section('component')
 <head>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
@@ -14,29 +14,39 @@
                         <span class="text-danger">Resumen de compra</span>
                         <span class="badge bg-danger rounded-pill">3</span>
                     </h3>
-                    <ul class="list-group mb-3">
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Nombre de Producto</h6>
-                                <small class="text-body-secondary">En esta parte va el producto y la
-                                    descripción</small>
+                    <div>
+                        <ul class="list-group mb-3">
+                            <div id="resumen">
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                                        <div>
+                                            <h6 class="my-0">Nombre de Producto</h6>
+                                            <small class="text-body-secondary">En esta parte va el producto y la
+                                                descripción</small>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
-                        </li>
-                        <li class="list-group-item  justify-content-between">
-                            <a href="" class="text-dark text-decoration-none ">
-                                <span>
-                                    <i class="bi bi-cart4"></i>
-                                    volver al carro
-                                </span>
-                            </a>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-                            <div class="text-success">
-                                <h6 class="my-0">Total (USD)</h6>
-                            </div>
-                            <span class="text-success">−$20</span>
-                        </li>
-                    </ul>
+                            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                                <div class="text-success">
+                                    <h6 class="my-0">Total (USD)</h6>
+                                </div>
+                                <span class="text-success">−$20</span>
+
+                                <li class="list-group-item  justify-content-between text-center">
+                                    <a href="" class="text-dark text-decoration-none ">
+                                        <span>
+                                            <i class="bi bi-cart4"></i>
+                                            volver al carro
+                                        </span>
+                                    </a>
+                                </li>
+                            </li>
+
+                            </ul>
+
+                    </div>
+
                     <form class="card p-2">
                         <div class="input-group">
                             <a name="" id="" class=" btn btn-primary  btn-lg"
@@ -56,8 +66,7 @@
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="firstName"
-                                    placeholder="Escriba su nombre" value="" required>
+                                <input type="text" class="form-control" id="firstName" value="">
                                 <div class="invalid-feedback">
                                     Por favor valide su nombre.
                                 </div>
@@ -167,6 +176,15 @@
                             </div>
                         </div>
                         <div>
-                            
-    <script src="{{ asset('js/app.js') }}"></script>
+
+                            <script>
+                                const url ="{{ env('API') . '/users/' . Auth::user()->id }}";
+                            </script>
+
+
+
+
+
+    <script src="{{ asset('js/compra.js') }}"></script>
+
 </section>
