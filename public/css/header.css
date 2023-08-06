@@ -122,10 +122,12 @@ a {
 }
 a:hover {
     color: red;
+    text-decoration: none;
 }
 .links {
     position: relative;
     top: 8px;
+    list-style: none;
 }
 .nav .logo {
     font-size: 22px;
@@ -192,7 +194,7 @@ a:hover {
     #sidebar-links {
         display: none; /* Oculta el contenedor por defecto */
     }
-    
+
 /* responsive */
 @media screen and (max-width: 1160px) {
     .nav {
