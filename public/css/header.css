@@ -189,6 +189,10 @@ a:hover {
     display: none;
 }
 
+    #sidebar-links {
+        display: none; /* Oculta el contenedor por defecto */
+    }
+    
 /* responsive */
 @media screen and (max-width: 1160px) {
     .nav {
@@ -208,6 +212,9 @@ a:hover {
     }
 }
 @media screen and (max-width: 950px) {
+    #sidebar-links {
+        display: block; /* Muestra el contenedor en pantallas pequeñas */
+    }
     .nav .navOpenBtn,
     .nav .navCloseBtn {
         display: block;
