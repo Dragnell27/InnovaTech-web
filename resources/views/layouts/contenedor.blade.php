@@ -37,7 +37,6 @@
                         @else
                             <li class="links"><a class="ocultar" href="{{ route('login') }}">Iniciar Sesion</a></li>
                         @endauth ()
-                        <!-- Otros enlaces del navbar aquí -->
                         <li class="links"><a class="ocultar" href="{{ route('productos') }}">Productos</a></li>
                         <li class="links"><a class="ocultar" href="{{ route('wishlist.index') }}">Lista De Deseos</a>
                         <li class="links"><a class="ocultar" href="{{ route('cart.show') }}" method="get" >Carrito</a>
