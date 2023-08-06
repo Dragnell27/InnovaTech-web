@@ -87,16 +87,16 @@
         <div class="product-card">
                 <div class="product-image">
                     <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
-                    <a href="{{route('productos')}}"><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
+                   <img id="imageOne" class="product-thumb" alt=""  onclick="window.location.href='{{ route('productos') }}'">
                     <button class="card-btn" onclick="window.location.href='{{ route('cart') }}'">Añadir al Carrito</button>
                     <input type="hidden" name="id" value="1">
                 </div>
                 @component("components.cart.SendToCart")
 
                 <div class="product-info">
-                    <h4 class="product-brand">Huawei 30P</h4>
-                    <p class="product-short-description">Telefono 2023</p>
-                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
+                    <h4 class="product-brand" id="name"></h4>
+                    <p class="product-short-description" id="desc"></p>
+                    <span class="price" id="price">$1.200.000</span><span class="actual-price">$960.000</span>
                     <br>
                     <span class="color-descuento">20% Descuento</span>
                 </div>
@@ -195,6 +195,11 @@
     </section>
 
     <div class="red-div">
+        <h2>Descuentos</h2>
+    </div>
+
+
+    <div class="red-div">
         <h2>Informacion</h2>
     </div>
 
@@ -220,6 +225,7 @@
     </div>
 </section>
 <script src="{{ asset('js/cartas.js')}}"></script>
+<script src="{{ asset('js/producto.js')}}"></script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 @include("components.PQRS.FAQS")
 @include('layouts.footer')
