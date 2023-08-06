@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap');
-
-
 body {
   margin-top: 100px;
 }
@@ -8,13 +6,10 @@ header{
   z-index: 1000;
   position: absolute;
 }
-
-
 /*carrusel*/
 #carrusel{
   margin-bottom: 50px;
 }
-
 .carousel-item img {
   height: auto;
   max-width: 100%;
@@ -22,18 +17,14 @@ header{
   object-fit: cover;
   z-index: 1;
 }
-
 .section{
   border-radius: 20px;
   margin: 30px 15px 70px 15px;
   box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
 }
-
 #section img{
   border-radius: 20px;
 }
-
-
 /*-------------
     TITULO
   ------------*/
@@ -46,19 +37,16 @@ margin: 0 auto;
 text-align: center;
 height: 45px;
 }
-
 h2 {
 font-weight: bold;
 color: white;
 font-family: 'Cabin', sans-serif;
 }
-
 @media (max-width: 600px) {
 .red-div {
   width: 100%;
 }
 }
-
 /*--------------
 botones
 --------------*/
@@ -66,59 +54,38 @@ botones
 color:#E51D1F;
 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
-
-
 .my-3 {
 margin-bottom: 1.5rem;
 }
-
-
 .btn-image {
 background: none;
 border: none;
 padding: 0;
 cursor: pointer;
 transform: translateX(0px);
-
-
 }
-
 .rounded-circle {
 box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
 }
-
-
 .btn-image .img-thumbnail {
 transition: box-shadow 0.5s, transform 0.5s, filter 0.5s;
 }
-
 .btn-image:hover .img-thumbnail {
 box-shadow: 0 0 9px rgba(255, 0, 0, 3);
 transform: scale(1.1);
 filter: brightness(100%);
 }
-
 #contenedorbotones{
 margin: 40px 15px 70px 15px;
 }
-
 /* -----------------
-productos
+Seccion-Productos
 -------------*/
 .product {
     position: relative;
     overflow: hidden;
     padding: 20px;
   }
-
-  .product-category {
-    padding: 0 10vw;
-    font-size: 30px;
-    font-weight: 500;
-    margin-bottom: 40px;
-    text-transform: capitalize;
-  }
-
   .product-container {
     padding: 6vw;
     display: flex;
@@ -126,28 +93,23 @@ productos
     scroll-behavior: smooth;
     overflow-y: hidden;
   }
-
-
   .product-card {
     flex: 0 0 auto;
     width: 250px;
     height: 450px;
     margin-right: 40px;
   }
-
   .product-image {
     position: relative;
     width: 100%;
     height: 350px;
     overflow: hidden;
   }
-
   .product-thumb {
     width: 129%;
     height: 100%;
     object-fit: cover;
   }
-
   .discount-tag {
     position: absolute;
     background: #fff;
@@ -158,7 +120,6 @@ productos
     top: 10px;
     text-transform: capitalize;
   }
-
   .card-btn {
     position: absolute;
     bottom: 3%;
@@ -175,28 +136,23 @@ productos
     cursor: pointer;
     opacity: 0;
   }
-
   .product-card:hover .card-btn {
     opacity: 1;
   }
-
   .card-btn:hover {
     background: #ff7d7d;
     color: #fff;
   }
-
   .product-info {
     width: 100%;
     height: 100px;
     padding-top: 10px;
   }
-
   .product-brand {
     text-transform: uppercase;
     color: #000;
     font-weight: bold;
   }
-
   .product-short-description {
     width: 100%;
     height: 20px;
@@ -206,18 +162,15 @@ productos
     text-transform: capitalize;
     margin: 5px 0;
   }
-
   .price {
     font-weight: 900;
     font-size: 20px;
   }
-
   .actual-price {
     margin-left: 20px;
     opacity: 0.5;
     text-decoration: line-through;
   }
-
   .pre-btn,
   .nxt-btn {
     border: none;
@@ -232,43 +185,35 @@ productos
     cursor: pointer;
     z-index: 8;
   }
-
   .pre-btn {
     left: 0;
     transform: rotate(180deg);
   }
-
   .nxt-btn {
     right: 0;
   }
-
   .pre-btn img,
   .nxt-btn img {
     opacity: 0.2;
   }
-
   .pre-btn:hover img,
   .nxt-btn:hover img {
     opacity: 1;
   }
-
   .collection-container {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
   }
-
   .collection {
     position: relative;
   }
-
   .collection img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-
   .collection p {
     position: absolute;
     top: 50%;
@@ -279,7 +224,6 @@ productos
     font-size: 50px;
     text-transform: capitalize;
   }
-
   .collection:nth-child(3) {
     grid-column: span 2;
     margin-bottom: 10px;
@@ -287,7 +231,6 @@ productos
   .color-descuento{
     color: green;
     font-weight: bold;
-
   }
 /* -----------
 footer
@@ -307,7 +250,6 @@ footer
   border-top-right-radius: 20px;
   box-shadow: 4px -4px 0px rgba(0, 0, 0, 0.2); */
 }
-
 .modohorizontal{
   display: flex;
 }
@@ -335,23 +277,19 @@ footer
   margin-bottom: 20px;
   box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
 }
-
 #infofooter{
   font-family: 'Cabin', sans-serif;
   padding: 20px;
 }
-
 #descripcionfooter{
   color: white;
 }
-
 #map{
   border-radius: 20px;
   width: 100%;
   height: 250px;
   box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
 }
-
 #divcopyright{
   background-color: #8e8e8e;
   /* border-bottom-left-radius: 20px;
@@ -365,10 +303,7 @@ footer
   border-radius: 20px;
   margin: 20px;
 }
-
 /* CARRITO */
-
-
 .imagen{
   background-color:pink ;
   height: 150px;
@@ -376,7 +311,6 @@ footer
   margin: 10px 10px;
   float: left;
   position: relative;
-
 }
 #confirm{
   position:  absolute;
@@ -390,16 +324,13 @@ footer
   height: 400px;
   width: 400px;
 }
-
 .info{
   height: 100px;
   width: 100ch;
   margin: 10px 10px;
   float: left;
-
 }
 #cart-products{
-
   background-color: white;
   position: absolute;
   width: 250px;
@@ -409,7 +340,6 @@ footer
   marker: none;
   color: transparent
 }
-
 .contenedor{
   margin: 10px 10px;
   width: 100%;
@@ -446,14 +376,10 @@ footer
   padding: 0;
   justify-content: end;
   display: inline-block;
-
 }
 #btnCarrito img{
   vertical-align: bottom;
-
-
 }
-
 .mainHeader  > ul {
   display: flex;
   justify-content: space-between;
@@ -467,35 +393,26 @@ footer
   font-size: 25px;
   cursor: pointer;
 }
-
-
 .alerta{
 
   height: 80px;
   display: flex;
   align-items: center;
-
 }
 .head{
     height: 60px !important;
    width: max-content;
    display: flex;
    justify-content: center;
-
-
 }
-
 #ProdName{
     top: 0 !important;
     margin: 0px;
-
 }
 .alerta{
-
   height: 80px;
   display: flex;
   align-items: center;
-
 }
 .head{
     height: 60px !important;
@@ -510,15 +427,12 @@ footer
     display: flex;
     align-items: center;
     height: 50px !important;
-
     justify-content: space-around;
     /* border: 1px solid black; */
     width: 680px;
     border-bottom: 1px solid gray ;
 }
-
 #ProdAlert{
-
     background-color:white;
     height: 280px;
     width: 720px;
@@ -528,7 +442,6 @@ footer
     top: 15%;
     align-content: space-between;
     padding: 10px 10px ;
-
 }
 .item{
     display:flex;
@@ -536,7 +449,6 @@ footer
     text-align: center;
     margin: 0;
     padding: 10px;
-
     margin-left: 5px;
 }
 .body{
@@ -556,11 +468,9 @@ footer
 }
 .cartPrice  p{
     border-bottom: 1px solid gray;
-
 }
 .cartName p{
     border-bottom: 1px solid gray;
-
 }
 .contain{
     display: flex;
@@ -568,8 +478,6 @@ footer
     left: 10%;
     width: 300px;
     justify-content: space-evenly;
-
-
 }
 .botones{
     position: absolute;
