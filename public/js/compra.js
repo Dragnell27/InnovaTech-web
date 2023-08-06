@@ -30,7 +30,7 @@ async function user() {
             const typeId=user.document_type.name +' ' + user.document;
             document.getElementById('identificacion').value=typeId;
             document.getElementById('numTel').value=user.phone;
-            console.log(user);
+
         }else{
         console.error('Error al obtner los datatos del usuario');
 
@@ -39,13 +39,46 @@ async function user() {
         console.error('Error', error);
     }
 }
-async function address(){
-    
-}
+async function DepartmentsName(cityid){
+    try{
+        const response =await fetch("http://localhost/proyecto_web/public/api/address");
+        const data = await response.json();
+        const ciudad= data.data[0].city;
+        let departmentName="Departamento desconocido";
+        ciudad.forEach(city=>{
+            if(city.foraign==cityid){
+                
+            }
+        })
 
+
+        // for(const datacity of ciudad){
+        //     if(datacity.foreign==departmentId){
+        //         return datacity.name || "Departamento Desconocido";
+        //     }
+        // }
+        // return "Departamento Desconocido";
+
+    }catch(error){
+        console.error(`Error al obtener datos de la API: ${error}`);
+        return null;
+    }
+}
+async function address(){
+    const response =await fetch("http://localhost/proyecto_web/public/api/address");
+     const data = await response.json();
+     const address=data.data[0];
+     console.log(address);
+
+}
+async function AdressAdmin(){
+
+}
 window.addEventListener('load', async () => {
     await compra();
     await user();
+ await address();
+    await DepartmentsName();
 });
 
 const select= document.querySelector('#select');

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\DepartmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
@@ -72,6 +73,7 @@ Route::middleware('auth')->resource('perfil/direcciones', AddressController::cla
 
 
 //Camilo Alzate Ruta que llama el primer paso de compra
+Route::get('departments', [DepartmentController::class, 'nameDepartment']);
 Route::view('payment-method/pasoUnoMpago','payment-method/pasoUnoMpago')->name('pasoUno');
 //Ruta que llama Lugar de envio
 Route::view('payment-method/lugarEnvio','payment-method/lugarEnvio')->name('LuEnvio');
