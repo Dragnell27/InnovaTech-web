@@ -98,8 +98,8 @@
                             <div class="col-sm-12 text-center">
                                 <a href="{{ route('users.edit', Auth::user()->id) }}">Modificar datos</a>
                             </div>
-
-                            <div class="col-12 mb-2">
+<hr>
+                            <div class="col-12">
                                 <form action="">
                                     <div class="selectBox">
                                         <div class="select" id="select">
@@ -112,8 +112,8 @@
                                         </div>
                                         <div class="opciones" id="opciones">
                                             <a href="#" class="opcion" style="text-decoration:none; color: inherit;" >
-                                                <button style="width: 100%; border: none;background:white" onclick="mostrarForm('domicilios')">
-                                                <div class="contenidOption">
+                                                <button type="button" style="width: 100%; border: none;background:white" onclick="mostrarForm('domicilios')">
+                                                <div class="contenidOption mt-1">
                                                     <img src="{{ asset('img/logistics-delivery.png') }}">
                                                     <div class="textos">
                                                         <h5 class="titulo">Domicilio</h5>
@@ -123,68 +123,61 @@
                                                 </div>
                                             </button>
                                             </a>
-                                            <a href="#" class="opcion" style="text-decoration:none; color: inherit;" formData="PuntoFi">
-                                                <div class="contenidOption">
-                                                    <img src="{{ asset('img/shopping-store.png') }}">
-                                                    <div class="textos">
-                                                        <h5 class="titulo">Punto Fisico</h5>
-                                                        <p class="descripcion">Acercate a nuestros puntos fisicos y toma
-                                                            tu pedido <i class="bi bi-geo-alt-fill"></i></p>
+                                            <a href="#" class="opcion" style="text-decoration:none; color: inherit;">
+                                                <button type="button" style="width: 100%; border: none;background:white" onclick="mostrarForm('Pfisico')">
+                                                    <div class="contenidOption mt-1">
+                                                        <img src="{{ asset('img/shopping-store.png') }}">
+                                                        <div class="textos">
+                                                            <h5 class="titulo">Punto Fisico</h5>
+                                                            <p class="descripcion">Acercate a nuestros puntos fisicos y toma
+                                                                tu pedido <i class="bi bi-geo-alt-fill"></i></p>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </button>
                                             </a>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                            
-                                <form action="" id="FormDomicilios" class="row g-3 mb-4" style="display: none">
-                                    <div class="col-12 text-center mb-2">
-                                        <div class="col-6">
-                                            <label for="address2" class="form-label">Departamento</label>
-                                        <input type="text" class="intputs text-center" id="address2" readonly onselectstart="return false;"   placeholder="Cra">
-                                    
-                                        </div>
-                                        
-                                        <div class="col-6 text-center mb-2">
-                                            <label for="address2" class="form-label mt-2 ">ciudad</label>
-                                            <input type="text" class="intputs text-center" id="address2">
-                                        </div>
-                                        <div class="col-6 text-center mb-2">
-                                            <label for="address2" class="form-label mt-2 ">Barrio</label>
-                                            <input type="text" class="intputs text-center" id="address2">
-                                        </div>
-                                        <div class="col-6 text-center mb-2">
-                                            <label for="address2" class="form-label mt-2 ">Dirección</label>
-                                            <input type="text" class="intputs text-center" id="address2">
-                                        </div>
-                                        <div class="col-6 text-center mb-2">
-                                            <label for="address2" class="form-label mt-2 ">Piso</label>
-                                            <input type="text" class="intputs text-center" id="address2">
+                            <div class="col-12 text-center mb-2">
+                                <form action="" id="FormDomicilios" class="mb-4" style="display: none">
+                                    <div class="container">
+                                        <div class="row g-3">
+                                            <div class="col-6">
+                                                <label for="address2" class="form-label">Departamento</label>
+                                            <input type="text" class="intputs text-center" id="address2" readonly onselectstart="return false;"   placeholder="Cra">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="address2" class="form-label">ciudad</label>
+                                                <input type="text" class="intputs text-center" id="address2">
+                                            </div>
+
+                                            <div class="col-6">
+                                                <label for="address2" class="form-label mt-2 ">Barrio</label>
+                                                <input type="text" class="intputs text-center" id="address2">
+                                            </div>
+                                               <div class="col-6">
+                                                <label for="address2" class="form-label mt-2 ">Dirección</label>
+                                                <input type="text" class="intputs text-center" id="address2">
+
+                                               </div>
+
+                                               <div class="container-fluid h-100 d-flex align-items-center justify-content-center mt-2">
+                                                <div class=" col-8">
+                                                    <label for="address2" class="form-label mt-2 ">Piso</label>
+                                                    <input type="text" class="intputs text-center" id="address2">
+                                                   </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    
+
                                 </form>
+                            </div>
 
                                 <form action="" id="puntoFisico"class="row mb-4" style="display: none">
-                                    <div class="col-6 text-center mb-2">
-                                        <label for="address2" class="form-label mt-2 ">Barrio</label>
-                                        <input type="text" class="intputs text-center" id="address2">
-                                    </div>
-                                    <div class="col-6 text-center mb-2">
-                                        <label for="address2" class="form-label mt-2 ">Dirección</label>
-                                        <input type="text" class="intputs text-center" id="address2">
-                                    </div>
-                                    <div class="col-6 text-center mb-2">
-                                        <label for="address2" class="form-label mt-2 ">Piso</label>
-                                        <input type="text" class="intputs text-center" id="address2">
-                                    </div>
+
                                 </form>
                             </form>
-                            
-                    
-
-                        
                         </div>
                         <div>
 

@@ -30,10 +30,6 @@ async function user() {
             const typeId=user.document_type.name +' ' + user.document;
             document.getElementById('identificacion').value=typeId;
             document.getElementById('numTel').value=user.phone;
-
-
-
-
             console.log(user);
         }else{
         console.error('Error al obtner los datatos del usuario');
@@ -42,6 +38,9 @@ async function user() {
     } catch (error) {
         console.error('Error', error);
     }
+}
+async function address(){
+    
 }
 
 window.addEventListener('load', async () => {
@@ -70,51 +69,19 @@ opciones.classList.toggle('active');
 
 });
 
-// const mostrarDomi =document.getElementById('mostrarDomi');
-// const mostrarPuntoF =document.getElementById('mostrarPfi');
-// const domicilios =document.getElementById('domicilios');
-// const puntoFisico =document.getElementById('puntoFisico');
-
-// mostrarDomi.addEventListener('click',(event)=>{
-//     event.preventDefault();
-//     domicilios.style.display='block';
-//     domicilios.style.display='none';
-
-// });
-// mostrarPuntoF.addEventListener('click',(event)=>{
-//     event.preventDefault();
-//     puntoFisico.style.display='block';
-//     puntoFisico.style.display='none';
-
-// });
-// const content=document.body;
-
-// content.addEventListener('click',(event)=>{
-// if(event.target.classList.contains('opcion')){
-//     event.preventDefault();
-//     const formId= event.target.getAttribute('formData');
-
-//     document.querySelectorAll('form').forEach((formulario) => {
-//         formulario.style.display = 'none';
-//     });
-//     const formularioMostrar = document.getElementById(`formulario${formId.charAt(0).toUpperCase() + formularioId.slice(1)}`);
-// if (formularioMostrar) {
-//     formularioMostrar.style.display = 'block';
-// }
-// }
-// });
 
 function mostrarForm(tipoLugar) {
-    document.getElementById("FormDomicilios").style.display="none";
-
-if(tipoLugar=='domicilios'){
+document.getElementById("FormDomicilios").style.display="none";
+document.getElementById("puntoFisico").style.display="none";
+if(tipoLugar=="domicilios"){
     document.getElementById("FormDomicilios").style.display="block";
+}else if(tipoLugar=="Pfisico"){
+    document.getElementById("puntoFisico").style.display="block";
+
+}
 }
 
 
-}
 
-
-
-
+// funcion para que cuando yo le de click a un boton o alguna etiqueta me muestre algo, por ejemplo tengo dos botones 1domicilios y 2punto fisico si le doy click al boton domicilio que me muestre un formulario que tenga la direccion y ese tipo de cosas; o si le doy al boton punto fisico tambien me muestre otros input con otros datos todo esto mostrando datos de un api esto se puede con un if y pasandole la funcion al boton con un onclik? pero si l vuelvo a dar al boton
 

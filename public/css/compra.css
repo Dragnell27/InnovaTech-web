@@ -275,7 +275,7 @@ border:2px solid transparent;
 @keyframes fadeIn{
     from{
         transform: translateY(-200px) scale(.5) ;
-    } 
+    }
     to{
         transform: translateY(0) scale(1) ;
 
@@ -285,9 +285,9 @@ border:2px solid transparent;
     width: 100%;
     display:flex;
     align-items: center;
-
     transition: .2s ease all;
-   
+    margin-left: 10px;
+
 }
 .contenidOption .opciones{
     padding: 30px;
@@ -310,7 +310,7 @@ border:2px solid transparent;
 @media screen and( max-width: 800px) {
     .selectBox{
         width: 100%;
-        
+
     }
 }
 
