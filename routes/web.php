@@ -109,3 +109,12 @@ Route::get('/form_password', function () {
 Route::post('/search', [ProductosController::class, 'search'])->name('products.search');
 
 
+//@DARKJ
+
+//Rutas de contact
+
+Route::get('/contact', function () {
+    return view('components.Contact.contact');
+})->name('contact');
+
+//@endDarkj
