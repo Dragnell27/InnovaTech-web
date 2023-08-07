@@ -87,7 +87,7 @@
     <script>
         function cargarDatos() {
             $.ajax({
-                url: "{{ env('API') . '/users/' . Auth::user()->id }}",
+                url: "{{ url('api') . '/users/' . Auth::user()->id }}",
                 method: 'GET',
                 dataType: 'json',
                 success: function(response) {
