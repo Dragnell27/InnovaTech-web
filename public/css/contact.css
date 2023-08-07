@@ -1,0 +1,76 @@
+/* CSS header */
+
+#item-container{
+    display: flex;
+    height: 100px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../img/fondo-banner.png');
+    background-repeat: no-repeat;
+    text-align: center;
+    position: relative;
+    background-size: cover; /* Hacer la imagen de fondo responsive */
+    background-position: center; /* Centrar la imagen de fondo */
+    text-align: center;
+
+
+}
+
+#item-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2); /* Color semi-transparente para el difuminado */
+  }
+#contact-title{
+    z-index: 1;
+}
+#contact-title h1{
+    opacity: 1 !important;
+    font-weight: bold;
+    opacity: 1;
+}
+
+/* Aqui termina el css del HEADER */
+/* AQUI EMPIEZA EL CSS DEL FORM */
+
+#form-container{
+    display: flex;
+    flex-wrap: wrap;
+   
+}
+#send-form{
+    flex: 2;
+    padding: 10px;
+    box-sizing: border-box;
+}
+#info{
+    padding: 10px;
+    flex: 1;
+   
+    box-sizing: border-box;
+   
+}
+.spans{
+    background-color: lightgray;
+
+}
+.ixf{
+    margin: 3px 3px 3px 0px;
+
+}
+
+@media (max-width:800px) {
+    #form-container{
+        flex-direction: column;
+       
+    }
+    
+}
+/* AQUI TERMINA EL FORMULARIO */
+
+/* AQUI EMPIEZA EL CSS DE DIRECCIONES */
