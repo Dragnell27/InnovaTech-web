@@ -84,6 +84,7 @@
         </div>
         <div class="float-end mb-5">
             <input type="submit" value="Guardar datos" class="btn-primary btn">
+            <button type="button" class="btn btn-danger" onclick="goBack()">Cancelar</button>
         </div>
     </form>
 @endsection

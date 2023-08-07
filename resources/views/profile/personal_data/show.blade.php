@@ -5,7 +5,7 @@
         <div>
             <h1 id="datos_personales">Datos personales
                 <a style="border: 0; background: none;" href="{{ route('users.edit', Auth::user()->id) }}">
-                    <i class="bi bi-pencil-square"></i>
+                    <i class="bi bi-pencil-square" style="font-size: 30px"></i>
                 </a>
             </h1>
 
@@ -48,7 +48,6 @@
                 <form action="{{ route('users.destroy',Auth::user()->id) }}" method="post">
                     @csrf
                     @method('delete')
-                    <a class="btn btn-primary" href="{{ route('users.edit', Auth::user()->id) }}">Editar datos</a>
                     <button type="submit" class="btn btn-danger">Eliminar cuenta</button>
                 </form>
             </div>
