@@ -20,7 +20,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        
+
         return Commentcollection::collection(DB::table('ratings')->get());
     }
 
@@ -29,19 +29,21 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'comment'=>'required|string',
-        ]);
+        // $request->validate([
+        //     'comment'=>'required|string',
+        // ]);
 
         $product = $request['product_id'];
         $comments = new Comment();
         $comments->user_id = Auth::user()->id;
+        $comments->product_id = $product;
         $comments->comments=$request->input('comment');
         $comments->starts=$request->input('starts');
-        
-        $comments->save();
+        $comments->param_state = 5;
 
-        return ('Comentario creado');
+        $comments->save();
+        
+        return "Comentario creado";
 
     }
 
