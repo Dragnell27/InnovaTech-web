@@ -1382,7 +1382,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `code` varchar(10) NOT NULL,
   `name` varchar(100) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `price` varchar(255) DEFAULT NULL,
+  `price` float DEFAULT NULL,
   `discount` int(3) unsigned DEFAULT NULL,
   `tax` int(3) unsigned DEFAULT NULL,
   `stock` int(10) unsigned DEFAULT NULL,

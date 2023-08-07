@@ -81,7 +81,7 @@ class AddressController extends Controller
      */
     public function show($id)
     {
-        $addresses = Http::get(env('API') . '/address/' . $id);
+        $addresses = Address::where('user_id', $id)->with('city')->get();
         $data = [];
         foreach ($addresses as $address) {
             if ($address['param_state'] == 5) {

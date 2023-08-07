@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label class="form-label" for="perfilDepartamento">Departamento</label>
+                    <label class="form-label" for="perfilDepartamento">Departamento<strong class="text-danger">*</strong></label>
                     <select name="department" required id="perfilDepartamento" class="form-control">
                         <option value="">-- Seleccionar --</option>
                         @foreach ($deparments as $deparment)
@@ -16,7 +16,7 @@
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label" for="perfilMunicipio">Ciudad</label>
+                    <label class="form-label" for="perfilMunicipio">Ciudad<strong class="text-danger">*</strong></label>
                     <select name="param_city" required id="perfilMunicipio" class="form-control">
                         <option value="">-- Seleccionar --</option>
                     </select>
@@ -24,15 +24,15 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <label class="form-label me-2" for="perfilBarrio">Barrio</label>
+                    <label class="form-label me-2" for="perfilBarrio">Barrio<strong class="text-danger">*</strong></label>
                     <input name="hood" required id="perfilBarrio" class="form-control" type="text">
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label me-2" for="perfilDireccion">Direccion</label>
+                    <label class="form-label me-2" for="perfilDireccion">Direccion<strong class="text-danger">*</strong></label>
                     <input name="address" required id="perfilDireccion" class="form-control" type="text">
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label me-2" for="perfilPiso">Piso</label>
+                    <label class="form-label me-2" for="perfilPiso">Detalles</label>
                     <input name="floor" id="perfilPiso" class="form-control" type="text">
                 </div>
             </div>

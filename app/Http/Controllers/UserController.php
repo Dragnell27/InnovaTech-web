@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserCollection;
 use App\Models\Address;
 use Illuminate\Validation\Rule;
 use App\Models\Param;
@@ -69,7 +68,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('profile.personal_data.show');
+        $user = User::where('id', $id)->with('document_type')->first();
+        return view('profile.personal_data.show', compact('user'));
     }
 
     /**
@@ -77,8 +77,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $user = User::where('id', $id)->with('document_type')->first();
         $document_types = Param::where('paramtype_id', 15)->get();
-        return view('profile.personal_data.edit',compact('document_types'));
+        return view('profile.personal_data.edit', compact('user'), compact('document_types'));
     }
 
     /**
@@ -136,5 +137,24 @@ class UserController extends Controller
             Auth::logout();
             return redirect(route('index'));
         }
+    }
+
+    public function changePassword(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+
+        if (Hash::check($request->old_password, $user->password)) {
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+            return "cambio exitoso";
+            return redirect()->back()->with('success', 'Contraseña cambiada exitosamente.');
+        }
+        return "cambio error";
+        return redirect()->back()->withErrors(['old_password' => 'La contraseña antigua no es correcta.']);
     }
 }

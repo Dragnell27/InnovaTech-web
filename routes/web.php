@@ -98,3 +98,14 @@ Route::view('components/Categories/category','components/Categories/category');
 Route::view('about','about')->name('about');
 
 Route::resource('comentarios', CommentController::class);
+
+//Rutas para cambiar contraseña
+Route::post('/change-password', [UserController::class, 'changePassword'])->name('change.password');
+Route::get('/form_password', function () {
+    return view('profile.contraseña.update');
+})->name('cambiar_contraseña')->middleware('auth');
+
+// algoritmo de busqueda, debe recibir formulario donde el input tenga el name query
+Route::post('/search', [ProductosController::class, 'search'])->name('products.search');
+
+
