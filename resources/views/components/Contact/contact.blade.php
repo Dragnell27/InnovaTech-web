@@ -1,10 +1,7 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-</script>
+@extends('layouts.contenedor')
+@section('title','Contácto')
+@section('component')
 <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
-<title>Contácto</title>
 
 <div id="item-container">
     <div id="contact-title">
@@ -14,23 +11,23 @@
 <div class="container">
     <div id="form-container">
         <div id="send-form">
-            <h2 class="title-contact">Escríbenos</h2>
+            <h2 class="title-contact">Escríbenos!!</h2>
             <form action="">
                 <div class="mb-3">
-                    <input type="text" name="name" id="name" placeholder="Nombre *" class="form-control ixf">
+                    <input type="text" name="name" id="name" placeholder="Nombre *" class="form-control ixf" required>
                     <div class="input-group mb-3">
                         <span class="input-group-text spans" style="margin: 3px 0">@</span>
 
                         <input type="email" name="" id="" placeholder="Email *"
-                            class="form-control ixf">
+                            class="form-control ixf" required>
 
                         <span class=" input-group-text spans"
                             style="margin: 3px 0; border-radius: 4px 0 0 4px ;">#</span>
 
                         <input type="tel" name="" id="" placeholder="Telefono *"
-                            class="form-control ixf" style="margin-right: 0px !important">
+                            class="form-control ixf" style="margin-right: 0px !important" required>
                     </div>
-                    <textarea name="body" id="body" cols="20" rows="5" class="form-control" placeholder="mensaje"></textarea>
+                    <textarea name="body" id="body" cols="20" rows="5" class="form-control" placeholder="Mensaje*" required></textarea>
                 </div>
                 <input type="button" value="Enviar" class="btn btn-primary ">
 
@@ -61,7 +58,7 @@
     </div>
 
     <div class="contact-footer">
-        <h3 class="title-contact">¿En qué te ayudamos? </h3>
+        <h2 class="title-contact">¿En qué te ayudamos? </h2>
         <div class="row">
             <div class="col-sm-4 mb-3 mb-sm-0">
               <div class="card">
@@ -95,3 +92,6 @@
 
 
 </div>
+
+@include('layouts.footer')
+@endsection
