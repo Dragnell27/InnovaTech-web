@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 <footer>
     <div id="divfooter">
         <div class="modovertical1" id="infofooter">
@@ -6,8 +9,15 @@
             </div>
             <div id="descripcionfooter">
                 <p style="color: white;">NIT 900.726.066-7 <br>CLL 52 3-80 LOCAL 210 CC. Unico Outlet, Cali.<br>
-                    Ventas@innovatechdeoccidente.com <br>+57 314 650 66 30</p><br>
+                    Ventas@innovatechdeoccidente.com <br> +57 3117622089</p>
+        <section>
+              <a class="btn text-white btn-floating" href="https://www.facebook.com/profile.php?id=100066452395079&mibextid=LQQJ4d" role="button" target="_blank"><i class="bi bi-facebook"></i></a>
+              <a class="btn text-white btn-floating" href="https://api.whatsapp.com/send?phone=+573117622089" role="button" target="_blank"><i class="bi bi-whatsapp"></i></a>
+              <a class="btn text-white btn-floating"  href="https://instagram.com/innovatechcol?igshid=MzRlODBiNWFlZA==" role="button" target="_blank"><i class="bi bi-instagram"></i></a>
+        </section>
+
             </div>
+
         </div>
         <div class="modovertical2" id="mover-mapa">
             <b>
@@ -21,7 +31,7 @@
                 allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
-    <div id="divcopyright" class="text-center p-3" class="modovertical">
+    <div id="divcopyright" class="text-center" class="modovertical">
         <p style="color: white;"><b>© 2023 - TODOS LOS DERECHOS RESERVADOS</b></p>
     </div>
 </footer>
