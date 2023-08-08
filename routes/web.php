@@ -33,7 +33,7 @@ Route::get('/', function () {
 
 Route::get('/faqs', function () {
     return view('components.PQRS.FAQS');
-})->name('index');
+})->name('faqs');
 
 ///AQUI ACABAN LAS RUTAS DE PQRS
 

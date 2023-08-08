@@ -1,8 +1,8 @@
 //æuthor DARKJ
 window.addEventListener("load", async ()=>{
     // consumo al API de pqrs, debo cambiar el url cuando se compre el hosting
-        const url ="http://localhost:8012/proyecto_web/public/api/faqs/type/1";
-       const response = await fetch(url);
+        // const url ="http://localhost:8012/proyecto_web/public/api/faqs/type/1";
+        const response = await fetch(`api/faqs/type/1`);
        const data = await response.json();
 //Select donde los voy a meter
        const select = document.querySelector("#param_type");
