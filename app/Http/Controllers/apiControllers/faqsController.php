@@ -17,7 +17,7 @@ class faqsController extends Controller
     public function index($type = null)
     {
         if(isset($type)){
-            return Param::select("name","id")->where("paramtype_id",8)->get();
+            return Param::select("name","id" )->where("paramtype_id",8)->get();
         }else{
             return faqsResource::collection(faq::all());
         }
