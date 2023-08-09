@@ -28,6 +28,7 @@ class UserCollection extends JsonResource
                 "name" => $this->document_type->name,
                 "type_id" => $this->document_type->paramtype_id,
             ],
+            "rol"=> $this->param_rol,
         ];
     }
 }

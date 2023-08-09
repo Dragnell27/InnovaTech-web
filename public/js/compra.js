@@ -1,4 +1,4 @@
-//Camilo Alzate 
+//Camilo Alzate
 async function compra() {
     // try {
     //     const response =await fetch("http://localhost/proyecto_web/public/api/products");
@@ -14,35 +14,56 @@ async function compra() {
     //     console.error('Error al obtener los datos del producto');
     // }
 }
-
-async function user() {
-
+async function userAll() {
+    let userall= null;
     try {
-        if (!url) {
+        if (!urlA) {
             console.error('el usuario no esta registrado');
-            return;
+            return userRol;
         }
-        const response = await fetch(url);
-        if (response.ok) {
-            const data = await response.json();
-            const user=data.data[0];
-    console.log(user);
+        const response = await fetch(urlA);
+        const data = await response.json();
+        const user=data.data;
+       user.forEach(element => {
+        userall=element.rol;
+       });
 
-            document.getElementById('firstName').value=user.first_name;
-            document.getElementById('lastName').value=user.last_name;
-            document.getElementById('email').value=user.email;
-            const typeId=user.document_type.name +' ' + user.document;
-            document.getElementById('identificacion').value=typeId;
-            document.getElementById('numTel').value=user.phone;
-
-        }else{
-        console.error('Error al obtner los datatos del usuario');
-
-        }
     } catch (error) {
         console.error('Error', error);
     }
+    return userall;
 }
+
+async function user() {
+    let userRol= null;
+    try {
+        if (!url || !urlA) {
+            console.error('el usuario no esta registrado');
+            return userRol;
+        }
+        const response = await fetch(url);
+        const data = await response.json();
+        const user=data.data[0];
+        if (response.ok) {
+            userRol =user.rol;
+                document.getElementById('firstName').value=user.first_name;
+                document.getElementById('lastName').value=user.last_name;
+                document.getElementById('email').value=user.email;
+                const typeId=user.document_type.name +' ' + user.document;
+                document.getElementById('identificacion').value=typeId;
+                document.getElementById('numTel').value=user.phone;
+
+        }
+        else{
+        console.error('Error al obtner los datatos del usuario');
+        }
+
+    } catch (error) {
+        console.error('Error', error);
+    }
+    return userRol;
+}
+
 async function DepartmentsName(nameDepartment){
     try{
         const response =await fetch("/departments");
@@ -52,7 +73,6 @@ async function DepartmentsName(nameDepartment){
           return i.name;
         }
       }
-
 
     }catch(error){
         console.error(`Error al obtener datos ${error}`);
@@ -65,27 +85,39 @@ async function Address(){
     const data = await response.json();
     const address=data.data[0].city;
     const address2=data.data[0];
+    const role= await user();
+    const roleA=await userAll();
     const departmentId= address.foreign;
     const departmentName=await DepartmentsName(departmentId);
-    document.getElementById('NombreDepartment').value=departmentName;
-    document.getElementById('city').value=address.city_name;
-    document.getElementById('hood').value=address2.hood;
-    document.getElementById('address').value=address2.address;
-    document.getElementById('floor').value=address2.floor;
+    if (role==1) {
+        document.getElementById('NombreDepartment').value=departmentName;
+        document.getElementById('city').value=address.city_name;
+        document.getElementById('hood').value=address2.hood;
+        document.getElementById('address').value=address2.address;
+        document.getElementById('floor').value=address2.floor;
+
+    }
+    if (roleA==2) {
+        console.log(roleA);
+document.getElementById('NombreDepartmentAdmin').value=departmentName;
+document.getElementById('hoodAdmin').value=address2.hood;
+
+    }
+
+
+
+
    } catch (error) {
     console.error(`Error al obtener datos de la API: ${error}`);
 
    }
 
-
-}
-async function AdressAdmin(){
-
 }
 window.addEventListener('load', async () => {
     await compra();
-    await user();
  await Address();
+//  await user();
+
 });
 
 const select= document.querySelector('#select');

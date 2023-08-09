@@ -177,22 +177,35 @@
 
                                 </form>
                             </div>
-
+                            <div class="col-12 text-center mb-2">
                                 <form action="" id="puntoFisico"class="row mb-4" style="display: none">
-
+                                    <div class="container">
+                                        <div class="row g-3">
+                                            <div class="col-6">
+                                                <label for="address2" class="form-label">Departamento</label>
+                                                <input type="text" class="intputs text-center" id="NombreDepartmentAdmin" readonly onselectstart="return false;">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="address2" class="form-label mt-2 ">Barrio</label>
+                                                <input type="text" class="intputs text-center" id="hoodAdmin" readonly onselectstart="return false;">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>
+                            </div>
                             </form>
                         </div>
                     </div>
                 </div>
                                <script>
                                 const url = "{{ env('API') . '/users/' . Auth::user()->id }}";
+                                const urlA="{{ env('API'). '/users' }}";
                                 const id ="{{ Auth::user()->id }}";
                             </script>
 
 
                             <script src="{{ asset('js/compra.js') }}"></script>
-                           
+
 
 </section>
 @endauth
