@@ -235,74 +235,55 @@ Seccion-Productos
 /* -----------
 footer
 ------------*/
-/* footer{
-  margin: 10px 10px 0px 10px;
-  padding: 5px;
-} */
-
-#divfooter{
-  background-color: #3b3b3b;
-  padding: 20px 20px 40px 20px;
-  height: 350px;
-  display: flex;
-  flex-direction: row;
-  /* border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  box-shadow: 4px -4px 0px rgba(0, 0, 0, 0.2); */
-}
-.modohorizontal{
-  display: flex;
-}
-.modovertical{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-.modovertical1{
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  margin-right: 10px;
-}
-.modovertical2{
-  display: flex;
-  flex-direction: column;
-  width: 120%;
-  margin-right: 10px;
-}
-#logo{
-  border-radius: 20px;
-  width: 280px;
-  height: 110px;
-  margin-bottom: 20px;
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
-}
-#infofooter{
-  font-family: 'Cabin', sans-serif;
-  padding: 20px;
-}
-#descripcionfooter{
-  color: white;
-}
-#map{
-  border-radius: 20px;
-  width: 100%;
-  height: 250px;
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
-}
-#divcopyright{
-  background-color: #8e8e8e;
-  /* border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  box-shadow: 4px -4px 0px rgba(0, 0, 0, 0.2); */
-}
-#contenedorcomentarios{
-  box-shadow: 4px 4px 4px rgba(0,0, 0, 0.4);
-  padding: 20px;
-  background-color: white;
-  border-radius: 20px;
-  margin: 20px;
-}
+#divfooter {
+    background-color: #373636;
+    padding: 20px 20px 40px 20px;
+    height: 350px;
+    display: flex;
+    flex-direction: row;
+  }
+  .modovertical{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .modovertical1{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-right: 10px;
+  }
+  .modovertical2{
+    display: flex;
+    flex-direction: column;
+    width: 120%;
+    margin-right: 10px;
+  }
+  #logo{
+    border-radius: 20px;
+    width: 280px;
+    height: 110px;
+    margin-bottom: 20px;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+  }
+  #infofooter{
+    font-family: 'Cabin', sans-serif;
+    padding: 20px;
+  }
+  #descripcionfooter{
+    color: white;
+  }
+  #map{
+    border-radius: 20px;
+    width: 100%;
+    height: 250px;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+  }
+  .no-focus-outline:focus,
+  .no-focus-outline:active {
+      outline: none !important;
+      box-shadow: none !important;
+  }
 /* CARRITO */
 .imagen{
   background-color:pink ;
