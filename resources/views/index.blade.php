@@ -87,113 +87,22 @@
         <div class="product-card">
                 <div class="product-image">
                     <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
-                   <img id="imageOne" class="product-thumb" alt=""  onclick="window.location.href='{{ route('productos') }}'">
+                   <img id="imgCard" class="product-thumb" alt=""  onclick="window.location.href='{{ route('productos') }}'">
                     <button class="card-btn" onclick="window.location.href='{{ route('cart') }}'">Añadir al Carrito</button>
-                    <input type="hidden" name="id" value="1">
                 </div>
                 @component("components.cart.SendToCart")
 
                 <div class="product-info">
                     <h4 class="product-brand" id="name"></h4>
                     <p class="product-short-description" id="desc"></p>
-                    <span class="price" id="price">$1.200.000</span><span class="actual-price">$960.000</span>
+                    <span class="price" id="price"></span>
                     <br>
-                    <span class="color-descuento">20% Descuento</span>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
-                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
-                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
-                    <input type="hidden" name="id" value="1">
-                </div>
-                <div class="product-info">
-                    <h4 class="product-brand">Audifonos</h4>
-                    <p class="product-short-description">Telefono 2023</p>
-                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
-                    <br>
-                    <span class="color-descuento">20% Descuento</span>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
-                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
-                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
-                    <input type="hidden" name="id" value="1">
-                </div>
-                <div class="product-info">
-                    <h4 class="product-brand">SmartWatch</h4>
-                    <p class="product-short-description">Telefono 2023</p>
-                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
-                    <br>
-                    <span class="color-descuento">20% Descuento</span>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
-                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
-                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
-                    <input type="hidden" name="id" value="1">
-                </div>
-                <div class="product-info">
-                    <h4 class="product-brand">Estuche A10s</h4>
-                    <p class="product-short-description">Telefono 2023</p>
-                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
-                    <br>
-                    <span class="color-descuento">20% Descuento</span>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
-                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
-                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
-                    <input type="hidden" name="id" value="1">
-                </div>
-                <div class="product-info">
-                    <h4 class="product-brand">Banda Smart</h4>
-                    <p class="product-short-description">Telefono 2023</p>
-                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
-                    <br>
-                    <span class="color-descuento">20% Descuento</span>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
-                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
-                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
-                    <input type="hidden" name="id" value="1">
-                </div>
-                <div class="product-info">
-                    <h4 class="product-brand">Aro De Luz</h4>
-                    <p class="product-short-description">Telefono 2023</p>
-                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
-                    <br>
-                    <span class="color-descuento">20% Descuento</span>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
-                    <a href=""><img src="{{ asset('img/Producto-3.jpg') }}" class="product-thumb" alt=""></a>
-                    <button class="card-btn" onclick="window.location.href='{{ route('productos') }}'">Añadir al Carrito</button>
-                    <input type="hidden" name="id" value="1">
-                </div>
-                <div class="product-info">
-                    <h4 class="product-brand">Samsung A10s</h4>
-                    <p class="product-short-description">Telefono 2023</p>
-                    <span class="price">$1.200.000</span><span class="actual-price">$960.000</span>
-                    <br>
-                    <span class="color-descuento">20% Descuento</span>
+                    <span class="color-descuento" id="color"></span>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <div class="red-div">
         <h2>Descuentos</h2>
     </div>
