@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Param;
+
 
 class DepartmentController extends Controller
 {
     public function nameDepartment(){
         try{
-            $department= DB::table('params')->where('paramtype_id',6)->pluck('name');
+            $department= Param::where('paramtype_id',6)->get();
         if($department){
         return response()->json(['departments'=>$department]);
         }else{

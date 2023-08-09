@@ -1,3 +1,4 @@
+//Camilo Alzate 
 async function compra() {
     // try {
     //     const response =await fetch("http://localhost/proyecto_web/public/api/products");
@@ -15,6 +16,7 @@ async function compra() {
 }
 
 async function user() {
+
     try {
         if (!url) {
             console.error('el usuario no esta registrado');
@@ -24,6 +26,8 @@ async function user() {
         if (response.ok) {
             const data = await response.json();
             const user=data.data[0];
+    console.log(user);
+
             document.getElementById('firstName').value=user.first_name;
             document.getElementById('lastName').value=user.last_name;
             document.getElementById('email').value=user.email;
@@ -39,36 +43,40 @@ async function user() {
         console.error('Error', error);
     }
 }
-async function DepartmentsName(cityid){
+async function DepartmentsName(nameDepartment){
     try{
-        const response =await fetch("http://localhost/proyecto_web/public/api/address");
-        const data = await response.json();
-        const ciudad= data.data[0].city;
-        let departmentName="Departamento desconocido";
-        ciudad.forEach(city=>{
-            if(city.foraign==cityid){
-                
-            }
-        })
+        const response =await fetch("/departments");
+        const data = await response.json()
+      for(let i of data["departments"]){
+        if (i.id==nameDepartment) {
+          return i.name;
+        }
+      }
 
-
-        // for(const datacity of ciudad){
-        //     if(datacity.foreign==departmentId){
-        //         return datacity.name || "Departamento Desconocido";
-        //     }
-        // }
-        // return "Departamento Desconocido";
 
     }catch(error){
-        console.error(`Error al obtener datos de la API: ${error}`);
+        console.error(`Error al obtener datos ${error}`);
         return null;
     }
 }
-async function address(){
-    const response =await fetch("http://localhost/proyecto_web/public/api/address");
-     const data = await response.json();
-     const address=data.data[0];
-     console.log(address);
+async function Address(){
+   try {
+    const response =await fetch("http://localhost/proyecto_web/public/api/address_user/"+id);
+    const data = await response.json();
+    const address=data.data[0].city;
+    const address2=data.data[0];
+    const departmentId= address.foreign;
+    const departmentName=await DepartmentsName(departmentId);
+    document.getElementById('NombreDepartment').value=departmentName;
+    document.getElementById('city').value=address.city_name;
+    document.getElementById('hood').value=address2.hood;
+    document.getElementById('address').value=address2.address;
+    document.getElementById('floor').value=address2.floor;
+   } catch (error) {
+    console.error(`Error al obtener datos de la API: ${error}`);
+
+   }
+
 
 }
 async function AdressAdmin(){
@@ -77,8 +85,7 @@ async function AdressAdmin(){
 window.addEventListener('load', async () => {
     await compra();
     await user();
- await address();
-    await DepartmentsName();
+ await Address();
 });
 
 const select= document.querySelector('#select');

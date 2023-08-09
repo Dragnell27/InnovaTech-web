@@ -149,7 +149,7 @@
                                                 </li>
                                             </li>
                                    
-                                    <a name id class=" w-40 btn btn-primary ml-4" style="margin-top: -16px" href="{{ route('LuEnvio') }}"
+                                    <a name id class=" w-40 btn btn-primary ml-4" style="margin-top: -16px" href="{{ route('pasoUno') }}"
                                         role="button">Continuar compra
                                     </a>
                                 </ul>

@@ -1,14 +1,13 @@
 @extends('layouts.contenedor')
-@section('title','Home')
-@section('component')
 
+@section('title','Paso Uno Compra')
 <head>
     <link rel="stylesheet" href="{{ asset('css/compra.css') }}">
 </head>
+@auth()
 
 <section class="mt-2">
     <div class="container" style="margin-left: 10%">
-        <main>
             <div class="row g-5">
                 <div class="col-md-5 col-lg-4 order-md-last" style="margin-top: 6%">
                     <h3 class="d-flex justify-content-between align-items-center mb-3">
@@ -50,10 +49,10 @@
 
                     <form class="card p-2">
                         <div class="input-group">
-                            <a name="" id="" class=" btn btn-primary  btn-lg" href="{{ route('LuEnvio') }}"
-                                role="button" style="margin-left: 8%">Lugar de envio
+                            <a name="" id="" class=" w-100 btn btn-primary  btn-lg" href="{{ route('Mpago') }}"
+                                role="button">Ir a Pagar
                             </a>&nbsp;&nbsp;
-                            <a name="" id="" class="btn btn-warning  btn-lg" href="#" role="button">Descartar</a>
+                            {{-- <a name="" id="" class="btn btn-warning  btn-lg" href="#" role="button">Descartar</a> --}}
                         </div>
                     </form>
                 </div>
@@ -98,7 +97,9 @@
                             <div class="col-sm-12 text-center">
                                 <a href="{{ route('users.edit', Auth::user()->id) }}">Modificar datos</a>
                             </div>
-<hr>
+
+
+
                             <div class="col-12">
                                 <form action="">
                                     <div class="selectBox">
@@ -145,28 +146,31 @@
                                         <div class="row g-3">
                                             <div class="col-6">
                                                 <label for="address2" class="form-label">Departamento</label>
-                                            <input type="text" class="intputs text-center" id="address2" readonly onselectstart="return false;"   placeholder="Cra">
+                                            <input type="text" class="intputs text-center" id="NombreDepartment" readonly onselectstart="return false;">
                                             </div>
                                             <div class="col-6">
                                                 <label for="address2" class="form-label">ciudad</label>
-                                                <input type="text" class="intputs text-center" id="address2">
+                                                <input type="text" class="intputs text-center" id="city" readonly onselectstart="return false;">
                                             </div>
 
                                             <div class="col-6">
                                                 <label for="address2" class="form-label mt-2 ">Barrio</label>
-                                                <input type="text" class="intputs text-center" id="address2">
+                                                <input type="text" class="intputs text-center" id="hood" readonly onselectstart="return false;">
                                             </div>
                                                <div class="col-6">
                                                 <label for="address2" class="form-label mt-2 ">Dirección</label>
-                                                <input type="text" class="intputs text-center" id="address2">
+                                                <input type="text" class="intputs text-center" id="address" readonly onselectstart="return false;">
 
                                                </div>
 
                                                <div class="container-fluid h-100 d-flex align-items-center justify-content-center mt-2">
                                                 <div class=" col-8">
                                                     <label for="address2" class="form-label mt-2 ">Piso</label>
-                                                    <input type="text" class="intputs text-center" id="address2">
+                                                    <input type="text" class="intputs text-center" id="floor" readonly onselectstart="return false;">
                                                    </div>
+                                            </div>
+                                            <div class="col-sm-12 text-center">
+                                                {{-- <a href="{{ route('direcciones.edit', $address['id']) }}">Modificar Dirección</a> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -179,11 +183,22 @@
                                 </form>
                             </form>
                         </div>
-                        <div>
-
-                            <script>
+                    </div>
+                </div>
+                               <script>
                                 const url = "{{ env('API') . '/users/' . Auth::user()->id }}";
+                                const id ="{{ Auth::user()->id }}";
                             </script>
+
+
                             <script src="{{ asset('js/compra.js') }}"></script>
+                           
 
 </section>
+@endauth
+@guest
+    <script>window.location.href = "/login";</script>
+@endguest
+
+
+
