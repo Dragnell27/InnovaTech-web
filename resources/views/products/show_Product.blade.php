@@ -81,7 +81,6 @@
                         </div>
                     </div>
 
-                <input type="text" value="1" name="product_id">
                     <button type="submit" class="btn btn-primary btn-danger">Agregar comentario</button>
                 </form>
             </div>
@@ -91,10 +90,13 @@
 
     <div class="container-fluid d-flex justify-content-center align-items-center" id="contenedortitulo">
         <div class="div ">
-            <button class="div btn-danger w-100">Ver Comentarios Del Producto</button>
+            <button class="div btn-danger w-100" id="CargarBoton" onclick="BotonCargar">Ver Comentarios Del Producto</button>
         </div>
     </div>
 <script src="{{ asset('js/producto.js')}}"></script>
+<script src="{{ asset('js/comentarios.js')}}"></script>
+
+
 
 </section>
 @endsection

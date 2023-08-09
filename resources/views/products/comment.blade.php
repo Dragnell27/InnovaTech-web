@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="{{ asset('css/comment.css') }}">
 </head>
 <body>
-<div class="container">
+<div class="container" id="CargarVista">
     <div class="jumbotron">
       <div class="container-fluid display-4" style="margin: 20px 0px;">
         <div class="red-div">

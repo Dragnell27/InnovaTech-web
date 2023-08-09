@@ -102,7 +102,7 @@
             </div>
         </div>
     </section>
-    
+
     <div class="red-div">
         <h2>Descuentos</h2>
     </div>
@@ -135,6 +135,8 @@
 </section>
 <script src="{{ asset('js/cartas.js')}}"></script>
 <script src="{{ asset('js/producto.js')}}"></script>
+<script src="{{ asset('js/productos_cartas.js')}}"></script>
+
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 @include("components.PQRS.FAQS")
 @include('layouts.footer')
