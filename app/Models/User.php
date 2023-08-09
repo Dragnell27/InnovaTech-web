@@ -47,4 +47,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Param::class, 'param_type');
     }
+
+    
 }
