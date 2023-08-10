@@ -4,14 +4,16 @@
 <head>
     <link rel="stylesheet" href="{{ asset('css/compra.css') }}">
 </head>
-@auth()
+@section("component")
 
 <section class="mt-2">
+
     <div class="container" style="margin-left: 10%">
             <div class="row g-5">
                 <div class="col-md-5 col-lg-4 order-md-last" style="margin-top: 6%">
                     <h3 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-danger">Resumen de compra</span>
+                        
                         <span class="badge bg-danger rounded-pill">3</span>
                     </h3>
                     <div>
@@ -157,38 +159,41 @@
                                                 <label for="address2" class="form-label mt-2 ">Barrio</label>
                                                 <input type="text" class="intputs text-center" id="hood" readonly onselectstart="return false;">
                                             </div>
-                                               <div class="col-6">
+                                               <div class="col-6 mb-4">
                                                 <label for="address2" class="form-label mt-2 ">Dirección</label>
                                                 <input type="text" class="intputs text-center" id="address" readonly onselectstart="return false;">
 
                                                </div>
 
-                                               <div class="container-fluid h-100 d-flex align-items-center justify-content-center mt-2">
-                                                <div class=" col-8">
+                                               <div class="container-fluid h-100 d-flex align-items-center justify-content-center">
+                                                <div class="col-8 pl-5 ml-5">
                                                     <label for="address2" class="form-label mt-2 ">Piso</label>
                                                     <input type="text" class="intputs text-center" id="floor" readonly onselectstart="return false;">
+                                                  
+                                                </div>
+                                                <div class="col-auto mt-5 pr-5">
+                                                    <a href=""class="">cambiar dirección</a>
                                                    </div>
-                                            </div>
-                                            <div class="col-sm-12 text-center">
-                                                {{-- <a href="{{ route('direcciones.edit', $address['id']) }}">Modificar Dirección</a> --}}
-                                            </div>
-                                        </div>
+                                               </div>
                                     </div>
-
+                                    
                                 </form>
                             </div>
                             <div class="col-12 text-center mb-2">
-                                <form action="" id="puntoFisico"class="row mb-4" style="display: none">
+                                <form action="" id="puntoFisico"class="row mb-2" style="display: none">
                                     <div class="container">
                                         <div class="row g-3">
-                                            <div class="col-6">
-                                                <label for="address2" class="form-label">Departamento</label>
-                                                <input type="text" class="intputs text-center" id="NombreDepartmentAdmin" readonly onselectstart="return false;">
-                                            </div>
-                                            <div class="col-6">
-                                                <label for="address2" class="form-label mt-2 ">Barrio</label>
-                                                <input type="text" class="intputs text-center" id="hoodAdmin" readonly onselectstart="return false;">
-                                            </div>
+                                           <div class="mb-2">
+                                           <div class="mb-3">
+                                            <label for="" class="form-label">City</label>
+                                            <select class="form-select form-select-lg" name="" id="">
+                                                <option selected>Select one</option>
+                                                <option value="">New Delhi</option>
+                                                <option value="">Istanbul</option>
+                                                <option value="">Jakarta</option>
+                                            </select>
+                                           </div>
+                                           </div>
                                         </div>
                                     </div>
                                 </form>
@@ -196,22 +201,25 @@
                             </form>
                         </div>
                     </div>
-                </div>
-                               <script>
-                                const url = "{{ env('API') . '/users/' . Auth::user()->id }}";
-                                const urlA="{{ env('API'). '/users' }}";
-                                const id ="{{ Auth::user()->id }}";
-                            </script>
+    </div>
+    
 
-
-                            <script src="{{ asset('js/compra.js') }}"></script>
-
-
+@include("layouts.footer")
 </section>
-@endauth
-@guest
-    <script>window.location.href = "/login";</script>
-@endguest
+<script>
+    const url = "{{ env('API') . '/users/' . Auth::user()->id }}";
+    const urlA="{{ env('API'). '/users' }}";
+    const id ="{{ Auth::user()->id }}";
+</script>
+
+
+<script src="{{ asset('js/compra.js') }}"></script>
+
+@endsection
+
+
+
+
 
 
 

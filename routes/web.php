@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DepartmentController;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
@@ -73,10 +74,10 @@ Route::middleware('auth')->resource('perfil/direcciones', AddressController::cla
 
 
 //Camilo Alzate Ruta que llama el primer paso de compra
-Route::get('/departments', [DepartmentController::class, 'nameDepartment']);
-Route::view('payment-method/pasoUnoMpago','payment-method/pasoUnoMpago')->name('pasoUno');
+Route::get('/departments/{id}', [DepartmentController::class, 'nameDepartment']);
+Route::view('payment-method/pasoUnoMpago','payment-method/pasoUnoMpago')->name('pasoUno')->middleware('auth');
 //Ruta que llama Metodo de pago
-Route::view('payment-method/Metodo-pago','payment-method/Metodo-pago')->name('Mpago');
+Route::view('payment-method/Metodo-pago','payment-method/Metodo-pago')->name('Mpago')->middleware('auth');
 
 
 //ruta jaider, manejo de usuarios;}

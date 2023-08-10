@@ -9,9 +9,9 @@ use App\Models\Param;
 
 class DepartmentController extends Controller
 {
-    public function nameDepartment(){
+    public function nameDepartment($id){
         try{
-            $department= Param::where('paramtype_id',6)->get();
+            $department= Param::where('id',$id)->get();
         if($department){
         return response()->json(['departments'=>$department]);
         }else{

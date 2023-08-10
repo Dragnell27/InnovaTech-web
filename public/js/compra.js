@@ -1,19 +1,5 @@
 //Camilo Alzate
-async function compra() {
-    // try {
-    //     const response =await fetch("http://localhost/proyecto_web/public/api/products");
-    //     const data = await response.json();
-    //     data.forEach((producto)=>{
-    //     console.log(producto);
 
-    //     document.getElementById("imgP").src=producto.images;
-    //     document.getElementById("name").textContent=producto.name;
-
-    // });
-    // } catch (error) {
-    //     console.error('Error al obtener los datos del producto');
-    // }
-}
 async function userAll() {
     let userall= null;
     try {
@@ -37,7 +23,7 @@ async function userAll() {
 async function user() {
     let userRol= null;
     try {
-        if (!url || !urlA) {
+        if (!url) {
             console.error('el usuario no esta registrado');
             return userRol;
         }
@@ -66,14 +52,10 @@ async function user() {
 
 async function DepartmentsName(nameDepartment){
     try{
-        const response =await fetch("/departments");
+        const response =await fetch("/departments/"+nameDepartment);
         const data = await response.json()
-      for(let i of data["departments"]){
-        if (i.id==nameDepartment) {
-          return i.name;
-        }
-      }
-
+    console.log(data);
+        return data.departments[0].name;
     }catch(error){
         console.error(`Error al obtener datos ${error}`);
         return null;
@@ -98,7 +80,7 @@ async function Address(){
 
     }
     if (roleA==2) {
-        console.log(roleA);
+     
 document.getElementById('NombreDepartmentAdmin').value=departmentName;
 document.getElementById('hoodAdmin').value=address2.hood;
 
@@ -114,7 +96,7 @@ document.getElementById('hoodAdmin').value=address2.hood;
 
 }
 window.addEventListener('load', async () => {
-    await compra();
+
  await Address();
 //  await user();
 
