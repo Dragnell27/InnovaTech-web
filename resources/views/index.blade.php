@@ -3,34 +3,29 @@
 @section('component')
 <section>
     <div id="section">
-        <div id="carrusel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carrusel" data-slide-to="0" class="active"></li>
-                <li data-target="#carrusel" data-slide-to="1"></li>
-                <li data-target="#carrusel" data-slide-to="2"></li>
-            </ol>
+        <div id="carouselExampleFade" class="carousel slide carousel-fade">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ asset('img/imagen4.jpg') }}" alt="Slide 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('img/imagen2.jpg') }}" alt="Slide 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('img/imagen3.jpg') }}" alt="Slide 3">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carrusel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carrusel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
 
+              <div class="carousel-item active">
+                <img src="{{ asset('img/imagen4.jpg') }}" class="d-block w-90" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="{{ asset('img/imagen2.jpg') }}" class="d-block w-90" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="{{ asset('img/imagen3.jpg') }}" class="d-block w-90" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Antes</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Despues</span>
+            </button>
+          </div>
+<br>
     <div class="red-div">
         <h2>Categorias</h2>
     </div>
