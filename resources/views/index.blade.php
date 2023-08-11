@@ -119,7 +119,7 @@
                                     onclick="window.location.href='{{ route('productos') }}'">
                                 {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset('productos/'.$images[0])}}" alt="
                                     onclick="window.location.href='{{ route('productos') }}'"> --}}
-                                <button class="card-btn btn-cart" data-id="{{$productos->id">Añadir al
+                                <button class="card-btn btn-cart" data-id="{{$productos->id}}">Añadir al
                                     Carrito</button>
                             </div>
                             @component('components.cart.SendToCart')

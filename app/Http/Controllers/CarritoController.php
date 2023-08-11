@@ -97,6 +97,7 @@ class CarritoController extends Controller
             $sale->param_status = 5;
             $sale->param_shipping = 14;
             $sale->param_paymethod = 2285;
+            $sale->total = 1;
             $sale->save();
 
             $sale_id = Sales::select("id")->where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->get();
