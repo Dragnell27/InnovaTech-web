@@ -15,6 +15,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Param;
+use App\Models\product;
 
 
 /*
@@ -38,6 +40,7 @@ Route::get('/faqs', function () {
     return view('components.PQRS.FAQS');
 })->name('faqs');
 
+
 ///AQUI ACABAN LAS RUTAS DE PQRS
 
 // Route::get('/pqrs', [PqrsdController::class, 'index'])->name('pqrs.index');
@@ -57,7 +60,11 @@ ROUTE::view('components/cart/cart-show','components/cart/cart-show') ->name('car
 /////////////////////////////
 ///   Rutas confirmadas   ///
 /////////////////////////////
-
+Route::get('/', function () {
+    $product = product::all();
+    $colors = Param::where('paramtype_id', 11)->get();
+    return view('index',compact('product'),compact('colors'));
+})->name('index');
 //Ruta de jaider, sirve para cargar los tipos de docuemnto en el registro
 Route::post("document_types",[RegisterController::class, 'document_type'])->name("document_type");
 

@@ -90,37 +90,63 @@ $(document).ready(function () {
     })
 
 });
-//Funciones Camilo Alzate 
-const buttonAum = document.getElementById("aumentar");
-const buttonDis = document.getElementById("disminuir");
-const cantidad = document.getElementById("cantidad");
-const spanResul = document.getElementById("resultado");
-const StrongPrecio = document.getElementById("precio");
 
-let num = 0;
+window.addEventListener("load",()=>{
+   const btn = document.querySelectorAll('.btn-cart');
+   btn.forEach(boton=>{
+        boton.addEventListener("click",()=>{
+            const productId =boton.getAttribute('data-id');
+            data ={
+                "id": productId,
+            }
+            $.ajax({
+                type: "POST",
+                url: "Cart-Checkout",
+                data: data,
+                dataType: "dataType",
+                success: function (data) {
+                        console.log("exitoso")
+                }
+            });
 
-function aumentarNum(event) {
-    event.preventDefault();
-    if (num < 20) {
-        num++;
-        cantidad.textContent = num;
-    }
-    total();
-}
-function disminuirNum(event) {
-    event.preventDefault();
-    if (num > 1) {
-        num--;
-        cantidad.textContent = num;
-    }
-    total();
-}
 
-function total() {
+            
+        });
+   });
+});
 
-    let total = Number(cantidad.innerHTML) * Number(StrongPrecio.innerHTML);
-    spanResul.innerHTML = total;
-}
-buttonAum.addEventListener("click", aumentarNum);
-buttonDis.addEventListener("click", disminuirNum);
-total();
+
+// //Funciones Camilo Alzate 
+// const buttonAum = document.getElementById("aumentar");
+// const buttonDis = document.getElementById("disminuir");
+// const cantidad = document.getElementById("cantidad");
+// const spanResul = document.getElementById("resultado");
+// const StrongPrecio = document.getElementById("precio");
+
+// let num = 0;
+
+// function aumentarNum(event) {
+//     event.preventDefault();
+//     if (num < 20) {
+//         num++;
+//         cantidad.textContent = num;
+//     }
+//     total();
+// }
+// function disminuirNum(event) {
+//     event.preventDefault();
+//     if (num > 1) {
+//         num--;
+//         cantidad.textContent = num;
+//     }
+//     total();
+// }
+
+// function total() {
+
+//     let total = Number(cantidad.innerHTML) * Number(StrongPrecio.innerHTML);
+//     spanResul.innerHTML = total;
+// }
+// buttonAum.addEventListener("click", aumentarNum);
+// buttonDis.addEventListener("click", disminuirNum);
+// total();
