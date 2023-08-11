@@ -2,22 +2,8 @@ function myFunction(smallImg){
     var fullImg=document.getElementById("imgBox")
 fullImg.src=smallImg.src;
 }
-//Camilo Alzate Aqui se ha Consumido el API de Productos
-window.addEventListener('load',async()=>{
-var productID=1;
-try {
-    const response =await fetch("http://localhost/proyecto_web/public/api/products/"+productID);
-    const data = await response.json();
-    const producto=data.data[0];
-    document.getElementById("desc").textContent= producto.desc;
-    document.getElementById("price").textContent= '$'+producto.price;
-    document.getElementById("color").textContent= producto.colors;
 
 
-} catch (error) {
-    console.error('Error al obtener los datos del producto');
-}
-})
 
 const allStars = document.querySelectorAll(".star");
 

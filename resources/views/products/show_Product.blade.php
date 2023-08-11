@@ -63,7 +63,7 @@
 
                         </div>
                             <div class="text-center">
-                                <button value="addtocard" class="btnAddCart" href="#" >Añadir al carrito</button>
+                                <button data-id="{{ $productos->id }}" class="btnAddCart btn-cart" type="button" >Añadir al carrito</button>
                             </div>
 
                         <div class="text-center mt-3">
