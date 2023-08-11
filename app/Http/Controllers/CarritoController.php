@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 use Cart;
 use Illuminate\Support\Facades\Auth;
+use app\Models\sales_detail;
 
 use Illuminate\Http\Request;
 
@@ -65,7 +66,7 @@ class CarritoController extends Controller
 
            session(["cart"=>Cart::getContent()]);
         }
-                
+       
                
                 
                
@@ -115,7 +116,7 @@ class CarritoController extends Controller
                     ),
                 ));
             }
-        
+            
            
         
             // session(["cart"=>Cart::getContent()]);
