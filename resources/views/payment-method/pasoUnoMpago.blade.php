@@ -58,7 +58,7 @@
                         </div>
                     </form>
                 </div>
- <div class="col-md-6 col-lg-6">
+ <div class="col-md-6 col-lg-8">
                     <h2 style="color:black">
                         Tus datos </h2>
                     <strong>
@@ -80,13 +80,13 @@
 
                             </div>
                             <div class="col-sm-6 text-center">
-                                <label for="num" class="form-label">Telefono</label>
+                                <label for="num" class="form-label">Teléfono</label>
                                 <input type="" class="intputs text-center" readonly onselectstart="return false;"
                                     id="numTel">
                             </div>
 
                             <div class="col-sm-6 text-center">
-                                <label for="email" class="form-label">identificacion</label>
+                                <label for="email" class="form-label">Identificación</label>
                                 <input type="email" class="intputs text-center" readonly onselectstart="return false;"
                                     id="identificacion">
                             </div>
@@ -177,6 +177,15 @@
 
                                 </form>
                             </div>
+
+                            <div class="col-12 align-text-center">
+
+                                <a name="" id="agregarDireccion" class="btn btn-primary " href="#" style="display:none;" role="button">Agregar Dirección</a>
+
+
+                            </div>
+
+
                             <div class="col-12 text-center mb-2">
                                 <form action="" id="puntoFisico"class="row mb-2" style="display: none">
                                     <div class="container">

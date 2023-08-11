@@ -4,7 +4,9 @@
 namespace App\Http\Controllers;
 use Cart;
 use Illuminate\Support\Facades\Auth;
-use app\Models\sales_detail;
+use App\Models\sales_detail;
+use App\Models\Sales;
+use App\Models\Address;
 
 use Illuminate\Http\Request;
 
@@ -81,41 +83,67 @@ class CarritoController extends Controller
     public function store(Request $request)
     {
           $id = $request->id;
-         
-       
+          $user_id = Auth::user()->id;
          $producto = \DB::table('products')->where('id',$id)->first();
-         
+         $direccion = \DB::table("address")->where("user_id",$user_id)->first();
+
+
+         //Validar si el usuario ya tiene productos  en carrito 
+         $result = Sales::where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->get();
+        if($result->isEmpty()) {
+            $sale = new Sales;
+            $sale->user_id = $user_id;
+            $sale->address_id =$direccion->id;
+            $sale->param_status = 5;
+            $sale->param_shipping = 14;
+            $sale->param_paymethod = 2285;
+            $sale->total = 1;
+            $sale->save();
+
+            $sale_id = Sales::select("id")->where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->get();
+            dd($sale_id);
+            $sale_details = new sales_detail;
+            $sale_details;
+        }else{
+            dd($producto);
+        }
+
+
+
          
         try {
-            if (Auth::check()) {
-                $userId = Auth::user()->id;
-                Cart::session($userId)->add(array(
-                    'id' => $producto->id,   //inique row ID
-                    'name' => $producto->name,
-                    'price' =>$producto->price,
-                    'quantity' => $request->quantity?$request->quantity:1,
-                    'attributes' => array(
-                        'discount'=> $producto->discount,
-                        'image'=>$producto->images,
-                        'desc'=>$producto->description,
-                        
-                    ),
-                ));
 
-            }else{
-                Cart::add(array(
-                    'id' => $producto->id,   //inique row ID
-                    'name' => $producto->name,
-                    'price' =>$producto->price,
-                    'quantity' => $request->quantity?$request->quantity:1,
-                    'attributes' => array(
-                        'discount'=> $producto->discount,
-                        'image'=>$producto->images,
-                        'desc'=>$producto->description,
+            
+
+            // if (Auth::check()) {
+            //     $userId = Auth::user()->id;
+            //     Cart::session($userId)->add(array(
+            //         'id' => $producto->id,   //inique row ID
+            //         'name' => $producto->name,
+            //         'price' =>$producto->price,
+            //         'quantity' => $request->quantity?$request->quantity:1,
+            //         'attributes' => array(
+            //             'discount'=> $producto->discount,
+            //             'image'=>$producto->images,
+            //             'desc'=>$producto->description,
                         
-                    ),
-                ));
-            }
+            //         ),
+            //     ));
+
+            // }else{
+            //     Cart::add(array(
+            //         'id' => $producto->id,   //inique row ID
+            //         'name' => $producto->name,
+            //         'price' =>$producto->price,
+            //         'quantity' => $request->quantity?$request->quantity:1,
+            //         'attributes' => array(
+            //             'discount'=> $producto->discount,
+            //             'image'=>$producto->images,
+            //             'desc'=>$producto->description,
+                        
+            //         ),
+            //     ));
+            // }
             
            
         

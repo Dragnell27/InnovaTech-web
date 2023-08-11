@@ -75,20 +75,10 @@
                 </div>
             </div>
 
-    <div class="red-div">
-        <h2>Informacion</h2>
-    </div>
-
-
-    <div id="contenedorbotones">
-        <div class="row d-flex flex-row justify-content-center flex-wrap">
-            <div class=" col-md-3 col-sm-6 col-12 text-center  ">
-                <a href="{{ asset('about') }}" class="btn btn-link btn-image">
-                    <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones" alt="..."
-                        src="{{ asset('img/Sobre-Nosotros.png') }}" width="120" height="120" role="img">
-                </a>
-                <h4 class="fw-normal my-4">Sobre nosotros</h4>
+            <div class="red-div">
+                <h2>Productos Destacados</h2>
             </div>
+
             @include('components.cart.cartAlert')
             <section class="product" id="carrusel-personalizado">
 
@@ -112,14 +102,13 @@
                         }
                         $colores = substr($colores, 0, -2);
                     @endphp
-                        <div class="product-card">
+                        <div class="product-card" data-url="{{ route('productos.show', $productos->id)}}" role="button">
                             <div class="product-image">
                                 <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
-                                <img id="imgCard" class="product-thumb" alt="300px" src="{{'https://innovatechcol.com.co/img/productos/'.$images[0]}}" alt="
-                                    onclick="window.location.href='{{ route('productos') }}'">
+                                <img id="imgCard" class="product-thumb" alt="300px" src="{{'https://innovatechcol.com.co/img/productos/'.$images[0]}}">
                                 {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset('productos/'.$images[0])}}" alt="
                                     onclick="window.location.href='{{ route('productos') }}'"> --}}
-                                <button class="card-btn btn-cart" data-id="{{$productos->id}}" onclick="window.location.href='{{ route('cart') }}'">Añadir al
+                                <button class="card-btn btn-cart" data-id="{{$productos->id}}">Añadir al
                                     Carrito</button>
                             </div>
                             @component('components.cart.SendToCart')
@@ -135,11 +124,6 @@
                         @endforeach
                     </div>
                 </section>
-
-                <div class="red-div">
-                    <h2>Descuentos</h2>
-                </div>
-
 
                 <div class="red-div">
                     <h2>Informacion</h2>
@@ -174,4 +158,13 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         @include('components.PQRS.FAQS')
         @include('layouts.footer')
+
+        <script>
+            $(document).ready(function() {
+                $('.product-card').on('click', function() {
+                    var url = $(this).attr('data-url');
+                    window.location.href = url;
+                });
+            });
+        </script>
     @endsection
