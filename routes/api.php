@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\SalesController;
+use App\Http\Controllers\apiControllers\SalesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentController;
