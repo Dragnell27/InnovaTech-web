@@ -75,20 +75,6 @@
                 </div>
             </div>
 
-    <div class="red-div">
-        <h2>Informacion</h2>
-    </div>
-
-
-    <div id="contenedorbotones">
-        <div class="row d-flex flex-row justify-content-center flex-wrap">
-            <div class=" col-md-3 col-sm-6 col-12 text-center  ">
-                <a href="{{ asset('about') }}" class="btn btn-link btn-image">
-                    <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones" alt="..."
-                        src="{{ asset('img/Sobre-Nosotros.png') }}" width="120" height="120" role="img">
-                </a>
-                <h4 class="fw-normal my-4">Sobre nosotros</h4>
-            </div>
             @include('components.cart.cartAlert')
             <section class="product" id="carrusel-personalizado">
 
@@ -135,11 +121,6 @@
                         @endforeach
                     </div>
                 </section>
-
-                <div class="red-div">
-                    <h2>Descuentos</h2>
-                </div>
-
 
                 <div class="red-div">
                     <h2>Informacion</h2>
