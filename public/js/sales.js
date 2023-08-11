@@ -1,19 +1,50 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const salesContainer = document.getElementById("sales-container");
-    fetch('api/compras')
-    .then(response => response.json())
-    .then(data => {
-        data.foreach(sales =>{
-            const salesDiv = document.createElement('div');
-            salesDiv.innerHTML = document.querySelector('#producto-template').innerHTML;
-            salesDiv.querySelector('.card').setAttribute('data-product-id',sales.id);
-
-            const salesContent = salesDiv.querySelector('.card');
-            salesContent.querySelector('.mt-3').textContent = sales.param_status;
-            salesContent.querySelector('.mt-2').textContent = sales.create_at;
-
-            salesContainer.appendChild(salesDiv);
-        });
+fetch('/api/compras')
+.then(response => response.json())
+.then(data =>{
+    data.forEach(sales =>{
+        let element = document.querySelector('#content');
+        var fecha = (sales.created_at).split('T')[0];
+        switch (sales.param_status) {
+            case 10:
+                var estado = 'Pendiente';
+                break;
+            case 11:
+                var estado = 'Cancelado';
+                break;
+            case 12:
+                var estado = 'Entregado';
+                break;
+            case 13:
+                var estado = 'Recibido';
+                break;
+            default:
+                break;
+        }
+        const col =document.createElement('div');
+        const md = document.createElement('div');
+        const lm = document.createElement('div');
+        col.style.marginTop="10px";
+        col.classList ='col-md-3 card'
+        col.innerHTML =`<!-- Imagen del producto -->
+        <img src="{{ asset('img/Logo-Innova.jpeg') }}" alt="Producto" class="img-fluid">`
+        element.appendChild(col)
+        md.classList = 'col-md-6'
+        md.innerHTML = `<!-- Nombre del producto -->
+        <h3 class="mt-4">Nombre del producto</h3>
+        <!-- Estado del producto -->
+        <p class="mt-3" >Estado: ${estado}</p>
+        <!-- Fecha de compra -->
+        <p class="mt-2">Fecha de compra: ${fecha}</p>`
+        element.appendChild(md)
+        lm.classList = 'col-md-3 d-flex'
+        lm.innerHTML = ` <!-- Botón Buy again centrado -->
+        <a href="show_product "> <button class="btn btn-primary">Ver producto</button></a>`
+        element.appendChild(lm)
     })
-    .catch(error => console.error('Error de producto: ',error));
-});
+    console.log(data)
+})
+.catch(err=>console.log('Error de muestra de productos'))
+
+
+
+
