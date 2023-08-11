@@ -1,24 +1,3 @@
-//Camilo Alzate
-
-// async function userAll() {
-//     let userall= null;
-//     try {
-//         if (!urlA) {
-//             console.error('el usuario no esta registrado');
-//             return userRol;
-//         }
-//         const response = await fetch(urlA);
-//         const data = await response.json();
-//         const user=data.data;
-//        user.forEach(element => {
-//         userall=element.rol;
-//        });
-
-//     } catch (error) {
-//         console.error('Error', error);
-//     }
-//     return userall;
-// }
 
 async function user() {
     try {
@@ -26,7 +5,7 @@ async function user() {
         const data = await response.json();
         const user=data.data[0];
         if (response.ok) {
-            
+
                 document.getElementById('firstName').value=user.first_name;
                 document.getElementById('lastName').value=user.last_name;
                 document.getElementById('email').value=user.email;
@@ -35,14 +14,12 @@ async function user() {
                 document.getElementById('numTel').value=user.phone;
 
         }
-       
+
     } catch (error) {
         console.error('Error', error);
     }
 
 }
-
-
 
 async function DepartmentsName(nameDepartment){
     try{
@@ -59,7 +36,7 @@ let direccionesUsuario = [];
 let direccionIndex = 0;
 
 async function actualizarAdress(direccion,departmentName) {
- document.getElementById('NombreDepartment').value= departmentName; 
+ document.getElementById('NombreDepartment').value= departmentName;
  document.getElementById('city').value=direccion.city.city_name;
  document.getElementById('hood').value=direccion.hood;
 document.getElementById('address').value=direccion.address;
@@ -93,6 +70,22 @@ actualizarAdress(address2,departmentName);
    }
 
 }
+ function agragrarDireccion(){
+
+if(direccionesUsuario.length>0){
+    document.getElementById('FormDomicilios').style.display='block';
+    document.getElementById('agregarDirecion').style.display='none';
+}
+else{
+    document.getElementById('FormDomicilios').style.display='none';
+    document.getElementById('agregarDireccion').style.display='block';
+}
+}
+document.getElementById('agregarDireccion').addEventListener('click',()=>{
+
+});
+
+
 window.addEventListener('load', async () => {
 
  await Address();
@@ -117,20 +110,21 @@ opcion.addEventListener('click',(e)=>{
 select.addEventListener('click',()=>{
 select.classList.toggle('active');
 opciones.classList.toggle('active');
-
-
 });
-
 
 function mostrarForm(tipoLugar) {
 document.getElementById("FormDomicilios").style.display="none";
 document.getElementById("puntoFisico").style.display="none";
+document.getElementById('agregarDireccion').style.display='none';
+
 if(tipoLugar=="domicilios"){
     document.getElementById("FormDomicilios").style.display="block";
+    agragrarDireccion();
 }else if(tipoLugar=="Pfisico"){
     document.getElementById("puntoFisico").style.display="block";
 
 }
+
 }
 
 
