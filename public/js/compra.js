@@ -1,37 +1,32 @@
 //Camilo Alzate
 
-async function userAll() {
-    let userall= null;
-    try {
-        if (!urlA) {
-            console.error('el usuario no esta registrado');
-            return userRol;
-        }
-        const response = await fetch(urlA);
-        const data = await response.json();
-        const user=data.data;
-       user.forEach(element => {
-        userall=element.rol;
-       });
+// async function userAll() {
+//     let userall= null;
+//     try {
+//         if (!urlA) {
+//             console.error('el usuario no esta registrado');
+//             return userRol;
+//         }
+//         const response = await fetch(urlA);
+//         const data = await response.json();
+//         const user=data.data;
+//        user.forEach(element => {
+//         userall=element.rol;
+//        });
 
-    } catch (error) {
-        console.error('Error', error);
-    }
-    return userall;
-}
+//     } catch (error) {
+//         console.error('Error', error);
+//     }
+//     return userall;
+// }
 
 async function user() {
-    let userRol= null;
     try {
-        if (!url) {
-            console.error('el usuario no esta registrado');
-            return userRol;
-        }
         const response = await fetch(url);
         const data = await response.json();
         const user=data.data[0];
         if (response.ok) {
-            userRol =user.rol;
+            
                 document.getElementById('firstName').value=user.first_name;
                 document.getElementById('lastName').value=user.last_name;
                 document.getElementById('email').value=user.email;
@@ -40,15 +35,14 @@ async function user() {
                 document.getElementById('numTel').value=user.phone;
 
         }
-        else{
-        console.error('Error al obtner los datatos del usuario');
-        }
-
+       
     } catch (error) {
         console.error('Error', error);
     }
-    return userRol;
+
 }
+
+
 
 async function DepartmentsName(nameDepartment){
     try{
@@ -61,33 +55,37 @@ async function DepartmentsName(nameDepartment){
         return null;
     }
 }
+let direccionesUsuario = [];
+let direccionIndex = 0;
+
+async function actualizarAdress(direccion,departmentName) {
+ document.getElementById('NombreDepartment').value= departmentName; 
+ document.getElementById('city').value=direccion.city.city_name;
+ document.getElementById('hood').value=direccion.hood;
+document.getElementById('address').value=direccion.address;
+document.getElementById('floor').value=direccion.floor;
+}
+async function cambiarDireccion(){
+    direccionIndex=(direccionIndex+1)%direccionesUsuario.length;
+    const direccionActual=direccionesUsuario[direccionIndex];
+    const address= direccionActual.city;
+    const address2= direccionActual;
+    const departmentId = address.foreign;
+    const departmentName=await DepartmentsName(departmentId);
+actualizarAdress(address2,departmentName);
+
+}
 async function Address(){
    try {
     const response =await fetch("http://localhost/proyecto_web/public/api/address_user/"+id);
     const data = await response.json();
-    const address=data.data[0].city;
-    const address2=data.data[0];
-    const role= await user();
-    const roleA=await userAll();
-    const departmentId= address.foreign;
+    direccionesUsuario=data.data;
+    const direccionActual= direccionesUsuario[direccionIndex];
+    const address= direccionActual.city;
+    const address2= direccionActual;
+    const departmentId = address.foreign;
     const departmentName=await DepartmentsName(departmentId);
-    if (role==1) {
-        document.getElementById('NombreDepartment').value=departmentName;
-        document.getElementById('city').value=address.city_name;
-        document.getElementById('hood').value=address2.hood;
-        document.getElementById('address').value=address2.address;
-        document.getElementById('floor').value=address2.floor;
-
-    }
-    if (roleA==2) {
-     
-document.getElementById('NombreDepartmentAdmin').value=departmentName;
-document.getElementById('hoodAdmin').value=address2.hood;
-
-    }
-
-
-
+actualizarAdress(address2,departmentName);
 
    } catch (error) {
     console.error(`Error al obtener datos de la API: ${error}`);
@@ -98,7 +96,7 @@ document.getElementById('hoodAdmin').value=address2.hood;
 window.addEventListener('load', async () => {
 
  await Address();
-//  await user();
+ await user();
 
 });
 

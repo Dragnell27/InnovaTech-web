@@ -10,10 +10,10 @@
 
     <div class="container" style="margin-left: 10%">
             <div class="row g-5">
-                <div class="col-md-5 col-lg-4 order-md-last" style="margin-top: 6%">
+                <div class="col-md-5 col-lg-4" style="margin-top: 6%;position:inherit;">
                     <h3 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-danger">Resumen de compra</span>
-                        
+
                         <span class="badge bg-danger rounded-pill">3</span>
                     </h3>
                     <div>
@@ -58,7 +58,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-7 col-lg-8">
+ <div class="col-md-6 col-lg-6">
                     <h2 style="color:black">
                         Tus datos </h2>
                     <strong>
@@ -99,8 +99,6 @@
                             <div class="col-sm-12 text-center">
                                 <a href="{{ route('users.edit', Auth::user()->id) }}">Modificar datos</a>
                             </div>
-
-
 
                             <div class="col-12">
                                 <form action="">
@@ -169,14 +167,14 @@
                                                 <div class="col-8 pl-5 ml-5">
                                                     <label for="address2" class="form-label mt-2 ">Piso</label>
                                                     <input type="text" class="intputs text-center" id="floor" readonly onselectstart="return false;">
-                                                  
+
                                                 </div>
                                                 <div class="col-auto mt-5 pr-5">
-                                                    <a href=""class="">cambiar dirección</a>
+                                                    <a href="javascript:void(0)" onclick="cambiarDireccion()">cambiar dirección</a>
                                                    </div>
                                                </div>
                                     </div>
-                                    
+
                                 </form>
                             </div>
                             <div class="col-12 text-center mb-2">
@@ -198,11 +196,13 @@
                                     </div>
                                 </form>
                             </div>
+
+
                             </form>
                         </div>
                     </div>
     </div>
-    
+
 
 @include("layouts.footer")
 </section>
