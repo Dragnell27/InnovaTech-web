@@ -81,20 +81,15 @@
                             <button class="star">&#9734;</button>
                             <button class="star">&#9734;</button>
                             <button class="star">&#9734;</button>
-
                         </div>
                     </div>
-
                     <button type="submit" class="btn btn-primary btn-danger">Agregar comentario</button>
                 </form>
             </div>
         </div>
-
         <br>
-
         <div class="container-fluid d-flex justify-content-center align-items-center" id="contenedortitulo">
         <div class="div ">
-
             <button class="div btn btn-danger w-100" id="CargarBoton" onclick="BotonCargar">Ver Comentarios</button>
     </div>
     </div>
