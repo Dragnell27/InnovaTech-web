@@ -28,38 +28,46 @@
                                 alt="Producto Imagen 2" onclick="myFunction(this)">
                         @endforeach
                     </div>
+
                 </div>
+
                 <!-- col end -->
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center">
-                                <h1 id="name" class="product-brand">{{$productos->name}}</h1>
+                                <h1  class="product-brand">{{$productos->name}}</h1>
                             </div>
                             <div class="text-right">
-                                <h1 class="my-badge bg-danger" id="price"></h1>
-
+                            @if ($productos->discount==0)
+                            <label class="mt-2 text-muted">＄{{ $productos->price }}</label>
+                                @else
+                                @php
+                                $descuento=($productos->price * $productos->discount) /100;
+                                $precioDescuento=$productos->price - $descuento
+                                @endphp
+                                <h4><strong><label>＄{{ $precioDescuento}}</label></strong>  <span class="my-badge-2 bg-danger ml-2">-{{ $productos->discount }}%</span><br>
+                                <label class="mt-2 text-muted"style="text-decoration: line-through;">＄{{ $productos->price }}</label>
+                                </h4>
+                                @endif
+                                <h5><strong>Descripcion:</strong>
+                                    <p id=""> {{$productos->description}}</p>
+                                </h5>
                             </div>
-                            <h6>Descripcion:</h6>
-                            <p id="desc"></p>
+                                    <h5><strong>Color :</strong>
 
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>Color :</h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <h6 class="text-muted"><strong id="color"></strong></h6>
-                                </li>
-                            </ul>
+
+                                <strong class="text-muted">{{ $productos->param_color }}</strong>
+
+                            </h5>
+
                         </div>
-                        <div class="row pb-3">
-                            <div class="col d-grid mb-2">
-                                <button type="submit" class="w-100 btn btn-danger btn-lg" name="submit"
-                                    value="addtocard">Añadir al carrito</button>
-                            </div>
                             <div class="text-center">
-                                <a href="http://">agregar a lista de deseos</a>
+                                <button value="addtocard" class="btnAddCart" href="#" >Añadir al carrito</button>
                             </div>
+
+                        <div class="text-center mt-3">
+                            <a href="http://">agregar a lista de deseos</a>
                         </div>
                     </div>
                 </div>

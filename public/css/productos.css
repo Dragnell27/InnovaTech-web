@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap');
 
 
 #contenedorsection{
@@ -8,9 +7,74 @@
 #contenedorcomentarios{
   margin-top: 50px;
   border-radius: 20px;
-  border-style: solid; 
+  border-style: solid;
   padding-bottom: 20px;
   border-color: gray;
+}
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Nunito:ital,wght@1,600&family=Roboto:wght@400;700&display=swap');
+.btnAddCart{
+    text-decoration: none;
+    font-family:'Nunito',sans-serif;
+    background:#039be5;
+    color:#ffff;
+    border-radius:50px;
+    transition: transform 0.3s ease;
+    font-size:1.5rem;
+    padding:10px 64px;
+    border:none;
+    outline:none;
+}
+.btnAddCart::after, .btnAddCart::before{
+    content:"";
+    position:absolute;
+    opacity:0.3;
+    background:#039be5;
+    border-radius:inherit;
+    width:100%;
+    height:100%;
+    left:0;
+    bottom:0;
+    z-index:-1;
+    transition: transform 0.3s ease;
+}
+.btnAddCart:hover{
+    transform: translate(-12px,-12px);
+}
+.btnAddCart:hover::after{
+    transform: translate(6px,6px);
+
+}
+.btnAddCart:hover::before{
+transform: translate(12px,12px);
+
+} */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Nunito:ital,wght@1,600&family=Roboto:wght@400;700&display=swap');
+.btnAddCart{
+   text-decoration:none;
+   background:#039be5;
+   color:#ffff;
+   padding: 10px 64px;
+   border-radius:20px;
+   transition:all .3s ease;
+border:none;
+    outline:none;
+     position: relative;
+  overflow: hidden;
+  transform: perspective(1000px) rotateX(20deg);
+  transition: transform 0.3s ease-in-out;
+font-family:'Nunito',sans-serif;
+    font-size:1.5rem;
+
+}
+.btnAddCart:hover{
+   background:#039be5;
+   color:#ffff;
+  box-shadow:
+  0 0 2px #039be5,
+  0 0 10px #039be5,
+  0 0 30px #039be5,
+  0 0 125px #039be5 ;
+   transform: perspective(1000px) rotateX(0deg) translateY(-10px);
 }
 
 .div {
@@ -43,7 +107,7 @@ font-family: 'Cabin', sans-serif;
 }
 
 p{
- 
+
  color: rgb(0, 0, 0);
  font-family: 'Cabin', sans-serif;
 }
@@ -51,7 +115,7 @@ p{
 .cantidad{
 margin-left:1px;
 }
-    
+
 
 .btn{
 background-color: red;
@@ -94,16 +158,19 @@ max-width: 100%;
   font-size: 15px;
 }
 .my-badge-2{
+    width: 58px;
+  height: 32px;
+
   display: inline-block;
   padding: 5px 5px;
-  border-radius: 15px;
+  color: white;
   font-size: 20px;
 }
 .buttonsMM{
-  padding: 0; 
-  border: none; 
+  padding: 0;
+  border: none;
   background-color: transparent;
-  
+
 }
 
 /*--------------
@@ -121,7 +188,7 @@ Estrellas comentarios
 .star:hover{
   cursor: pointer;
   color: #ff9800;
-} 
+}
 
 /* -----------
 footer
@@ -187,8 +254,8 @@ footer{
 }
 
 #divcopyright{
-  background-color: #8e8e8e; 
-  border-bottom-left-radius: 20px; 
+  background-color: #8e8e8e;
+  border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   box-shadow: 4px -4px 0px rgba(0, 0, 0, 0.2);
 }
