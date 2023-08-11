@@ -31,7 +31,7 @@
                             <p>Cambiar contraseña</p>
                         </div>
                     </a>
-                    <a href="{{ route('shopping') }}">
+                    <a href="{{ route('shopping',Auth::user()->id)}}">
                         <div class="form-control mb-2">
                             <p>Mis compras</p>
                         </div>

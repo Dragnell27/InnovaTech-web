@@ -13,6 +13,7 @@ use App\Http\Controllers\apiControllers\faqsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -118,3 +119,5 @@ Route::get('/contact', function () {
 })->name('contact');
 
 //@endDarkj
+
+Route::resource('/shopping', SalesController::class);
