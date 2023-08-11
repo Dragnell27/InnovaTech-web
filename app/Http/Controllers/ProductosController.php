@@ -16,4 +16,10 @@ class ProductosController extends Controller
         })->get();
         return view('products.search_results', compact('searchResults'));
     }
+
+    public function index()
+    {
+        $productos = product::all();
+        return view('index', compact('productos'));
+    }
 }

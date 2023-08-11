@@ -23,7 +23,7 @@
                 <p class="card-text">
                     {{ $address['hood'] }} / {{ $address['address'] }}
                     @if (isset($address['floor']))
-                        / Piso: {{ $address['floor'] }}
+                        / Descripción: {{ $address['floor'] }}
                     @endif
                 </p>
             </div>
