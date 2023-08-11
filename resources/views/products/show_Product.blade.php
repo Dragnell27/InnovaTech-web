@@ -1,5 +1,4 @@
 @extends('layouts.contenedor')
-
 @section('title','Producto')
 @section('component')
 
@@ -12,7 +11,7 @@
 
 </head>
 <section class="bg-light">
-    <div class="container pb-5">
+    <div class="container">
         <div class="row">
 
             <div class="col-lg-5 mt-5">
@@ -62,6 +61,8 @@
                 </div>
             </div>
         </div>
+
+        
         <!-- comentarios -->
         <div id="contenedorcomentarios" class="container-fluid">
             <h3 class="text-center">Comentarios</h3>
@@ -88,34 +89,16 @@
                 </form>
             </div>
         </div>
+
+        <br>
+
+        <div class="container-fluid d-flex justify-content-center align-items-center" id="contenedortitulo">
+        <div class="div ">
+
+            <button class="div btn btn-danger w-100" id="CargarBoton" onclick="BotonCargar">Ver Comentarios</button>
     </div>
     </div>
 
-    <div class="container">
-      <div class="row" id="secciondecomentarios">
-        <div class="col-md-8 offset-md-2">
-          <div class="container-fluid" style="margin: 20px 0px;">
-            <div class="red-div">
-              <h2 style="color: white;">Comentarios De Los Usuarios</h2>
-            </div>
-          </div>
-          <div class="container-fluid d-flex flex-row justify-content-center align-items-center">
-            <div style="margin-bottom: 30px;">
-              <button type="button" class="btn btn-danger text-white">Más Reciente</button>
-              <button type="button" class="btn btn-danger text-white">Mayor Calificación</button>
-              <button type="button" class="btn btn-danger text-white">Menor Calificación</button>
-            </div>
-          </div>
-          <div class="comments" style="align-content: left">
-            <div class="comment">
-              <p class="fechacomentario">21/05/2023</p>
-              <h4>Rodrigo Arango</h4>
-              <p><i style= "color: yellow;">★★★★★</i></p>
-              <p>¡Me encanta este producto! Es de alta calidad y vale cada centavo.</p>
-            </div>
-          </div>
-        </div>
-        </div>
 <script src="{{ asset('js/producto.js')}}"></script>
 <script src="{{ asset('js/comentarios.js')}}"></script>
 </section>
