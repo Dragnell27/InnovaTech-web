@@ -22,4 +22,10 @@ class ProductosController extends Controller
         $productos = product::all();
         return view('index', compact('productos'));
     }
+
+    public function show($id)
+    {
+        $productos = product::findOrFail($id);
+        return view('products.show_product', compact('productos'));
+    }
 }

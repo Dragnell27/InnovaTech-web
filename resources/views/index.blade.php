@@ -98,11 +98,10 @@
                         }
                         $colores = substr($colores, 0, -2);
                     @endphp
-                        <div class="product-card">
+                        <div class="product-card" data-url="{{ route('productos.show', $productos->id)}}" role="button">
                             <div class="product-image">
                                 <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
-                                <img id="imgCard" class="product-thumb" alt="300px" src="{{'https://innovatechcol.com.co/img/productos/'.$images[0]}}" alt="
-                                    onclick="window.location.href='{{ route('productos') }}'">
+                                <img id="imgCard" class="product-thumb" alt="300px" src="{{'https://innovatechcol.com.co/img/productos/'.$images[0]}}">
                                 {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset('productos/'.$images[0])}}" alt="
                                     onclick="window.location.href='{{ route('productos') }}'"> --}}
                                 <button class="card-btn btn-cart" data-id="{{$productos->id}}">Añadir al
@@ -155,4 +154,13 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         @include('components.PQRS.FAQS')
         @include('layouts.footer')
+
+        <script>
+            $(document).ready(function() {
+                $('.product-card').on('click', function() {
+                    var url = $(this).attr('data-url');
+                    window.location.href = url;
+                });
+            });
+        </script>
     @endsection
