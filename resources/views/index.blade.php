@@ -99,11 +99,6 @@
     </section>
 
     <div class="red-div">
-        <h2>Descuentos</h2>
-    </div>
-
-
-    <div class="red-div">
         <h2>Informacion</h2>
     </div>
 

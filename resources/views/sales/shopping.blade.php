@@ -16,12 +16,14 @@
                     <h3 class="mt-4">Nombre del producto</h3>
                     <!-- Estado del producto -->
                     <p class="mt-3">Estado:</p>
+                    <!-- Fecha de compra -->
+                    <p class="mt-2">Fecha de compra:</p>
                     <!-- Fecha de entrega -->
                     <p class="mt-2">Fecha de entrega:</p>
                 </div>
                 <div class="col-md-3 d-flex align-items-center justify-content-center">
                     <!-- Botón Buy again centrado -->
-                    <button class="btn btn-primary">Buy again</button>
+                  <a href="show_product "> <button class="btn btn-primary">Ver producto</button></a>
                 </div>
             </div>
         </div>
