@@ -51,8 +51,9 @@ Route::get('/faqs', function () {
 //RUTA INDIVIDUAL DE PRODUCTOS//
 Route::get('productos/{id}', [ProductosController::class , 'show'])->name('productos.show');
 //Rutas del carrito//
-
+Route::get("/cart-forget",[App\Http\Controllers\CarritoController::class,'index'])->name("cart.forget");
 Route::get("/cart-show",[App\Http\Controllers\CarritoController::class,'show'])->name("cart.show");
+Route::get("/cart-added",[App\Http\Controllers\CarritoController::class,'create'])->name("cart.add");
 Route::get("/destroy/{idProducto}",[App\Http\Controllers\CarritoController::class,'destroy'])->name("cart.destroy");
 Route::POST('/Cart-Checkout',[App\Http\Controllers\CarritoController::class,'store'])->name("cart.store");
 Route::get("update-cart",[App\Http\Controllers\CarritoController::class,'updateCart'])->name("update-cart");
