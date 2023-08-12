@@ -166,11 +166,18 @@ Seccion-Productos
   .price {
     font-weight: 900;
     font-size: 20px;
+    font-weight: bold;
   }
   .actual-price {
     margin-left: 20px;
     opacity: 0.5;
     text-decoration: line-through;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .precioReal{
+    font-size: 20px;
+    font-weight: bold;
   }
   .pre-btn,
   .nxt-btn {
@@ -229,8 +236,13 @@ Seccion-Productos
     grid-column: span 2;
     margin-bottom: 10px;
   }
-  .color-descuento{
-    color: green;
+  .color{
+    color: #000;
+    font-weight: bold;
+  }
+  .descuento-valor{
+    background-color: #008f39;
+    color: #fff;
     font-weight: bold;
   }
 /* -----------

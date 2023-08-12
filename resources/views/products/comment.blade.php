@@ -12,7 +12,6 @@
   <div class="row" id="secciondecomentarios">
     <div class="col-md-8 offset-md-2">
       <div class="comments">
-        
         <div class="comment">
           <p class="fechacomentario">21/05/2023</p>
           <h4>Rodrigo Arango</h4>

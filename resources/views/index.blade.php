@@ -116,11 +116,19 @@
                                 <div class="product-info">
                                     <h4 class="product-brand" id="name">{{$productos->name}}</h4>
                                     <p class="product-short-description" id="desc">{{$productos->description}}</p>
-                                    <span class="price" id="price">{{$productos->price}}</span>
+                                    @php
+                                    $descuento = ($productos->price*$productos->discount)/100;
+                                    $precioDescuento = $productos->price-$descuento;
+                                    @endphp
+                                    @if ($productos->discount==0)
+                                    <span class="price" id="price">${{$productos->price}}</span>
+                                    @else
+                                    <span class="precioReal">${{$precioDescuento}}</span>
                                     <br>
-                                    <span class="color-descuento" id="color">{{$colores}}</span>
-                                    <span class="actual-price">$960.000</span>
-                                    <span style="color: green">20 OFF</span>
+                                    <span class="descuento-valor">{{$productos->discount}}%</span>
+                                    <span class="actual-price" style="font-size: 20px">${{$productos->price}}</span>
+                                    @endif
+                                    <span class="color" id="color">{{$colores}}</span>
                                 </div>
                             </div>
                         @endforeach
