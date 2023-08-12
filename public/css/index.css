@@ -13,7 +13,7 @@ header{
 .carousel-item img {
   height: auto;
   max-width: 100%;
-  aspect-ratio: 21/9;
+  aspect-ratio: 21/7;
   object-fit: cover;
   z-index: 1;
 }
