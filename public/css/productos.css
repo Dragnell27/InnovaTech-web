@@ -66,6 +66,24 @@ font-family:'Nunito',sans-serif;
     font-size:1.5rem;
 
 }
+.elevating-span {
+
+background-color: #008f39;
+border-radius: 10px;
+  border: 2px;
+  padding: 5px 5px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  height: 10px;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  cursor: default;
+  }
+
+  .elevating-span:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra al pasar el cursor */
+    transform: translateY(-5px); /* Efecto de elevación */
+  }
 .btnAddCart:hover{
    background:#c0392b;
    color:#ffff;
@@ -157,15 +175,7 @@ max-width: 100%;
   color: white;
   font-size: 15px;
 }
-.my-badge-2{
-    width: 58px;
-  height: 32px;
 
-  display: inline-block;
-  padding: 5px 5px;
-  color: white;
-  font-size: 20px;
-}
 .buttonsMM{
   padding: 0;
   border: none;
