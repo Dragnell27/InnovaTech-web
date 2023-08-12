@@ -5,11 +5,11 @@
         <link rel="stylesheet" href="{{ asset('css/carrito.css') }}">
     </head>
 
-    {{--  Id  del producto  --}}
+  
     <?php
- 
+   
     if (Auth::check()) {
-        $item = Cart::session(Auth::user()->id)->get(session('msj_exitoso')->id);
+        $item = Cart::session(Auth::user()->id)->get(session('msj_exitoso')["id"]);
     } else {
 
         $item = Cart::get(session('msj_exitoso')["id"]);

@@ -44,14 +44,29 @@ class CarritoController extends Controller
     }
      //funcion para cambiar la cantidad del producto
     public function updateCart(Request $request){
+
+        //id del producto
         $id = $request->input("prod_id");
-        $cantidad = $request->input("quantity");
+        $cantidad = $request->input("quantity"); //cantidad actualizada
         
-        $producto = \DB::table('products')->where('id',$id)->first();
-        $precio= $producto->price * $cantidad;
+        $producto = \DB::table('products')->where('id',$id)->first(); //producto manipulado
+
+        $precio = $producto->price * $cantidad; //nuevo precio
        
+
         if (Auth::check()) {
-            $userId = Auth::user()->id;
+            $userId = Auth::user()->id; //id el usuario
+            $result = Sales::where("user_id",$userId)->where("param_shipping",14)->where("param_status",5)->get();
+                //Aqui valido si el usuario ya tiene datos en el carrito
+            if ($result->isEmpty()) {
+              dd("no tiene");
+                sales_detail::where("");
+            }else{
+                // $compraid = $result[0]->id; //id de la compra
+                // sales_detail::where("sale_id",$compraid)->where("product_id",$id)->where("param_status",5)->update("qty");
+                dd("tiene")
+
+            }
             Cart::session($userId)->update($id,array(
                 "quantity" =>array(
                    'relative' => false,
@@ -192,13 +207,25 @@ class CarritoController extends Controller
         // return back()->with("msj_exitoso", $producto);
             
     }
+public function validarCompra($usuario){
+$has = false;
 
+    $result = Sales::where("user_id",$usuario)->where("param_shipping",14)->where("param_status",5)->get();
+    if($result->isEmpty()) {
+        $has = false;
+
+    }else{
+        $has= true;
+    }
+    return $has;
+
+}
     /**
      * Display the specified resource.
      */
     public function show()
     {
-        //
+        Session::forget('msj_exitoso');
         return view('components.cart.cart-show');   
     }
 
