@@ -102,7 +102,7 @@
                         }
                         $colores = substr($colores, 0, -2);
                     @endphp
-                        <div class="product-card" data-url="{{ route('productos.show', $productos->id)}}" role="button">
+                        <div class="product-card" data-url="{{ route('productos.show', $productos->id)}}">
                             <div class="product-image">
                                 <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
                                 <img id="imgCard" class="product-thumb" alt="300px" src="{{'https://innovatechcol.com.co/img/productos/'.$images[0]}}">
@@ -119,6 +119,8 @@
                                     <span class="price" id="price">{{$productos->price}}</span>
                                     <br>
                                     <span class="color-descuento" id="color">{{$colores}}</span>
+                                    <span class="actual-price">$960.000</span>
+                                    <span style="color: green">20 OFF</span>
                                 </div>
                             </div>
                         @endforeach
