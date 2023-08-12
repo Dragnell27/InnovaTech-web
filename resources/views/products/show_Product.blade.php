@@ -74,13 +74,11 @@
             </div>
 
 
-            <!-- comentarios -->
-            <div id="contenedorcomentarios" class="container-fluid">
+           <!-- comentarios -->
+           <div id="contenedorcomentarios" class="container-fluid">
                 <h3 class="text-center">Comentarios</h3>
                 <div class="col-lg-12">
-                    <!-- Aquí se agregarán los comentarios -->
                     <div id="comentarios"></div>
-                    <!-- Formulario de comentario -->
                     <form action="{{ route('comentarios.store') }}" method="post">
                         @csrf
                         <div class="form-group">
@@ -99,11 +97,35 @@
                 </div>
             </div>
             <br>
-            <div class="container-fluid d-flex justify-content-center align-items-center" id="contenedortitulo">
-                <div class="div ">
-                    <button class="div btn btn-danger w-100" id="CargarBoton" onclick="BotonCargar">Ver Comentarios</button>
+
+        <div class="container-fluid d-flex justify-content-center align-items-center" id="contenedortitulo">
+        <div class="div">
+            <button class="div btn btn-danger w-100" id="CargarBoton">Ver Comentarios</button>
+        </div>
+    </div>
+
+    <div id="comentarios-container" class="comments-container">
+        <div class="row" id="secciondecomentarios">
+            <div class="col-md-8">
+                <div class="comments">
+
+                    <div class="comment">
+                        <p class="fechacomentario">21/05/2023</p>
+                        <h4>Rodrigo Arango</h4>
+                        <p><i style="color: yellow;">★★★★★</i></p>
+                        <p>¡Me encanta este producto! Es de alta calidad y vale cada centavo.</p>
+                    </div>
+
+                    <div class="comment">
+                        <p class="fechacomentario">21/05/2023</p>
+                        <h4>Rodrigo Arango</h4>
+                        <p><i style="color: yellow;">★★★★★</i></p>
+                        <p>¡Me encanta este producto! Es de alta calidad y vale cada centavo.</p>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
     </section>
     <script src="{{ asset('js/producto.js') }}"></script>
 @endsection
