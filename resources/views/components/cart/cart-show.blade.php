@@ -96,7 +96,7 @@
                         </div>
                       </div>
 
-
+{{--  
                     <div class="container w-100 mb-2">
                         <div class="card w-100">
                             <div class="card w-100">
@@ -154,7 +154,7 @@
                                     </a>
                                 </ul>
                             </div>
-                        </div>
+                        </div>  --}}
 
                         @endforeach
                     </div>
@@ -191,7 +191,7 @@
                     </ul>
                     <form class="card p-2">
                         <div class="input-group">
-                            <a name="" id="" class=" w-100 btn btn-primary  btn-lg" href="{{ route('LuEnvio') }}"
+                            <a name="" id="" class=" w-100 btn btn-primary  btn-lg" href="" 
                                 role="button">Continuar compra
                             </a>
                         </div>

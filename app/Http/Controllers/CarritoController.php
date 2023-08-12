@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\sales_detail;
 use App\Models\Sales;
 use App\Models\Address;
-
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -18,7 +18,10 @@ class CarritoController extends Controller
 
    
     public function index()
-    {
+    {   
+        
+        Session::forget('msj_exitoso');
+        return redirect()->back();
         //  $id = $request->id;
         // $producto = \DB::table('productos')->select('id','nombre_producto','precio_venta','descripcion')->where('id',30)-> get();
         // echo "id".$id;
@@ -29,9 +32,15 @@ class CarritoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request )
+
     {
-        //
+        $producto  = $request->msj_exitoso;
+        Session::put('msj_exitoso',$producto );
+ 
+        return response()->json($producto);
+        
+        
     }
      //funcion para cambiar la cantidad del producto
     public function updateCart(Request $request){
@@ -51,8 +60,8 @@ class CarritoController extends Controller
                 "price"=> $precio
                
            ));
-           session()->forget('cart');
-           session(["cart"=>Cart::session($userId)->getContent()]);
+           Session::forget('cart');
+           Session::put("cart",Cart::session($user_id)->getContent());
 
             # code...
         }else{
@@ -64,9 +73,9 @@ class CarritoController extends Controller
                 "price"=> $precio
                
            ));
-           session()->forget('cart');
+           Session::forget('cart');
 
-           session(["cart"=>Cart::getContent()]);
+           Session::put("cart",Cart::getContent());
         }
        
                
@@ -146,8 +155,8 @@ class CarritoController extends Controller
                   
                  
                 }
-                session(["cart"=>Cart::session($user_id)->getContent()]);
-              
+                // session(["cart"=>Cart::session($user_id)->getContent()]);
+                Session::put("cart",Cart::session($user_id)->getContent());
    
 
              }else{
@@ -163,7 +172,8 @@ class CarritoController extends Controller
                         
                      ),
                  ));
-                 session(["cart"=>Cart::getContent()]);
+                //  session(["cart"=>Cart::getContent()]);
+                 Session::put("cart",Cart::getContent());
                 
              }
             
@@ -218,10 +228,10 @@ class CarritoController extends Controller
           if (Auth::check()) {
             $userId =   Auth::user()->id;
             Cart::session($userId)->remove($id);
-            session()->forget('cart');
+            Session::forget('cart');
           }else{
             Cart::remove($id);
-            session()->forget('cart');
+            Session::forget('cart');
           }
           
         return redirect()->route("cart.show")->with("msj_destroy","El elemento fue eliminado");

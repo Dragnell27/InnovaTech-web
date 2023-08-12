@@ -84,9 +84,26 @@ $(document).ready(function () {
     //JS para mostrar la alerta del carrito
     $("#btnClose").click(function (e) {
         document.getElementById("CartAlert").style.display = "NONE";
+        $.ajax({
+            type: "GET",
+            url: "/cart-forget",
+            dataType: "dataType",
+            success: function (data) {
+
+            }
+        });
     })
     $("#btnSeguir").click(function (e) {
+
         document.getElementById("CartAlert").style.display = "NONE";
+        $.ajax({
+            type: "GET",
+            url: "/cart-forget",
+            dataType: "dataType",
+            success: function (data) {
+
+            }
+        });
     })
 
 });
@@ -105,8 +122,28 @@ window.addEventListener("load",()=>{
                 data: data,
                 dataType: "json",
                 success: function (data) {
-                    console.log(data,"bien");
-                    
+                    console.log(data["msj_exitoso"],"bien");
+                    $.ajax({
+                        url: '/cart-added',
+                        method: 'GET',
+                        data: data,
+                        success: function(response) {
+                            console.log("bien")
+                            //Cargar la respuesta (vista nueva) en el contenedor
+                           window.location.href="/ "
+                            
+                            // // Si hay un mensaje de sesión en la vista cargada, mostrarlo
+                            // var mensajeSesion = $(response.vista).find('.card-header h5').text();
+                            // if (mensajeSesion) {
+                            //     alert(mensajeSesion);
+                            // }
+                        },
+                        error: function() {
+                            console.log('Error al cargar la nueva vista.');
+                        }
+                    });
+          
+                   
                 }, 
                 error: function(data) {
                     console.log(data,"mal");

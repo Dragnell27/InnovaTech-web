@@ -33,32 +33,44 @@
                 <!-- col end -->
                 <div class="col-lg-7 mt-5">
                     <div class="card">
-                        <div class="card-body">
-                            <div class="text-center">
-                                <h1  class="product-brand">{{$productos->name}}</h1>
+                        <div class="card-body"style="cursor: default">
+                            <div class="text-center mb-4">
+                                <h1  class="product-brand " >{{$productos->name}}</h1>
                             </div>
-                            <div class="text-right">
-                            @if ($productos->discount==0)
+                            <div class="dflex row">
+                            <div class="text-left col-6">
+                                <h4 style="font-size: 20px;font-weight: bold;">
+                                    "¡No esperes más para tener lo que deseas!"
+                                </h4>
+                            </div>
+                            <div class="text-right col-6">
+                                @if ($productos->discount==0)
                             <label class="mt-2 text-muted">＄{{ $productos->price }}</label>
                                 @else
                                 @php
                                 $descuento=($productos->price * $productos->discount) /100;
                                 $precioDescuento=$productos->price - $descuento
                                 @endphp
-                                <h4><strong><label>＄{{ $precioDescuento}}</label></strong>  <span class="my-badge-2 bg-danger ml-2">-{{ $productos->discount }}%</span><br>
-                                <label class="mt-2 text-muted"style="text-decoration: line-through;">＄{{ $productos->price }}</label>
+                                <h4><strong><label>＄{{ $precioDescuento}}</label></strong>  <span class="elevating-span ml-2">-{{ $productos->discount }}%</span>
                                 </h4>
+                                <h5>
+                                <label class="text-muted"style="text-decoration: line-through;">＄{{ $productos->price }}</label>
+
+                                </h5>
                                 @endif
+                            </div>
+
+                            </div>
+                            <div class="text-left">
                                 <h5><strong>Descripcion:</strong>
                                     <p id=""> {{$productos->description}}</p>
                                 </h5>
+                                <h5><strong>Color :</strong>
+                                    <strong class="text-muted">{{ $productos->param_color }}</strong>
+
+                                </h5>
                             </div>
-                                    <h5><strong>Color :</strong>
 
-
-                                <strong class="text-muted">{{ $productos->param_color }}</strong>
-
-                            </h5>
 
                         </div>
                             <div class="text-center">
