@@ -103,9 +103,13 @@ window.addEventListener("load",()=>{
                 type: "POST",
                 url: "Cart-Checkout",
                 data: data,
-                dataType: "dataType",
+                dataType: "json",
                 success: function (data) {
-                        console.log("exitoso")
+                    console.log(data,"bien");
+                }, 
+                error: function(data) {
+                    console.log(data,"mal");
+
                 }
             });
 

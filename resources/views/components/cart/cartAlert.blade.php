@@ -7,9 +7,13 @@
 
 {{--  Id  del producto  --}}
     <?php
+   
         if(Auth::check()){$item =  Cart::session(Auth::user()->id)->get(session('msj_exitoso')->id);}else{$item = Cart::get(session('msj_exitoso')->id);}
+
+       
+       
     ?>
-    <div class="card border-success mb-3" id="CartAlert" style="max-width: 600px; margin: 10% auto; position: absolute; z-index: 9; top: 50%; left: 50% ;transform: translate(-50%, -50%);">
+    <div class="card border-success mb-3" id="CartAlert" style="max-width: 600px; margin: 10% auto; position: absolute; z-index: 999; top: 50%; left: 50% ;transform: translate(-50%, -50%);">
         <div class="row g-0">
             <div class="card-header text-center row">
                 <h5 class="col">

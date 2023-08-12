@@ -82,81 +82,102 @@ class CarritoController extends Controller
      */
     public function store(Request $request)
     {
-          $id = $request->id;
+          $id = $request->input("id");
           $user_id = Auth::user()->id;
-         $producto = \DB::table('products')->where('id',$id)->first();
-         $direccion = \DB::table("address")->where("user_id",$user_id)->first();
-
-
-         //Validar si el usuario ya tiene productos  en carrito 
-         $result = Sales::where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->get();
-        if($result->isEmpty()) {
-            $sale = new Sales;
-            $sale->user_id = $user_id;
-            $sale->address_id =$direccion->id;
-            $sale->param_status = 5;
-            $sale->param_shipping = 14;
-            $sale->param_paymethod = 2285;
-            $sale->total = 1;
-            $sale->save();
-
-            $sale_id = Sales::select("id")->where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->get();
-            dd($sale_id);
-            $sale_details = new sales_detail;
-            $sale_details;
-        }else{
-            dd($producto);
-        }
-
-
-
-         
-        try {
-
-            
-
-            // if (Auth::check()) {
-            //     $userId = Auth::user()->id;
-            //     Cart::session($userId)->add(array(
-            //         'id' => $producto->id,   //inique row ID
-            //         'name' => $producto->name,
-            //         'price' =>$producto->price,
-            //         'quantity' => $request->quantity?$request->quantity:1,
-            //         'attributes' => array(
-            //             'discount'=> $producto->discount,
-            //             'image'=>$producto->images,
-            //             'desc'=>$producto->description,
+          $producto = \DB::table('products')->where('id',$id)->first();
+        try{
+             if (Auth::check()) {
+             
+                 Cart::session($user_id)->add(array(
+                     'id' => $producto->id,   //inique row ID
+                     'name' => $producto->name,
+                     'price' =>$producto->price,
+                     'quantity' => $request->quantity?$request->quantity:1,
+                     'attributes' => array(
+                         'discount'=> $producto->discount,
+                         'image'=>$producto->images,
+                         'desc'=>$producto->description,
                         
-            //         ),
-            //     ));
+                     ),
+                 ));
+                 
+              
+                 $direccion = \DB::table("address")->where("user_id",$user_id)->first();
+                 //Validar si el usuario ya tiene productos  en carrito 
+                 $result = Sales::where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->get();
+               
+                if($result->isEmpty()) {
+                    $sale = new Sales;
+                    $sale->user_id = $user_id;
+                    $sale->address_id =$direccion->id;
+                    $sale->param_status = 5;
+                    $sale->param_shipping = 14;
+                    $sale->param_paymethod = 2285;
+                    $sale->total = 1;
+                    $sale->save();
+        
+                    $sale_id = Sales::select("id")->where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->get();
+        
+                    $Sid= $sale_id[0]->id;
+                   
+                    $sale_details = new sales_detail;
+                    $sale_details->sale_id = $Sid;
+                    $sale_details->product_id = $id;
+                    $sale_details->qty = 1;
+                    $sale_details->param_status =5;
+                    $sale_details->save();
+        
+                }else{
+                    
+                    $sale_id = Sales::select("id")->where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->get();
+                    
+        
+                    $Sid= $sale_id[0]->id;
+                   
+                    $sale_details = new sales_detail;
+                    $sale_details->sale_id = $Sid;
+                    $sale_details->product_id = $id;
+                    $sale_details->qty = 1;
+                    $sale_details->param_status = 5;
+                  
+        
+                    $sale_details->save();
+                  
+                 
+                }
+                session(["cart"=>Cart::session($user_id)->getContent()]);
+              
+   
 
-            // }else{
-            //     Cart::add(array(
-            //         'id' => $producto->id,   //inique row ID
-            //         'name' => $producto->name,
-            //         'price' =>$producto->price,
-            //         'quantity' => $request->quantity?$request->quantity:1,
-            //         'attributes' => array(
-            //             'discount'=> $producto->discount,
-            //             'image'=>$producto->images,
-            //             'desc'=>$producto->description,
+             }else{
+                 Cart::add(array(
+                     'id' => $producto->id,   //inique row ID
+                     'name' => $producto->name,
+                     'price' =>$producto->price,
+                     'quantity' => $request->quantity?$request->quantity:1,
+                     'attributes' => array(
+                         'discount'=> $producto->discount,
+                         'image'=>$producto->images,
+                         'desc'=>$producto->description,
                         
-            //         ),
-            //     ));
-            // }
+                     ),
+                 ));
+                 session(["cart"=>Cart::getContent()]);
+                
+             }
             
            
         
-            // session(["cart"=>Cart::getContent()]);
+           
     
         } catch (\Throwable $th) {
-           
-            return back()->with("error","Tuvimos un error y no podemos enviar tu producto al carrito");
+            // return back()->with("error","Tuvimos un error y no podemos enviar tu producto al carrito");
+            dd($th);
           
         }
-      
-          
-            return back()->with("msj_exitoso", $producto);
+        return response()->json($producto);
+        // return back()->with("msj_exitoso", $producto);
+            
     }
 
     /**
