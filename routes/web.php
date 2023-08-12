@@ -54,7 +54,7 @@ Route::get('productos/{id}', [ProductosController::class , 'show'])->name('produ
 
 Route::get("/cart-show",[App\Http\Controllers\CarritoController::class,'show'])->name("cart.show");
 Route::get("/destroy/{idProducto}",[App\Http\Controllers\CarritoController::class,'destroy'])->name("cart.destroy");
-Route::post('/Cart-Checkout',[App\Http\Controllers\CarritoController::class,'store'])->name("cart.store");
+Route::POST('/Cart-Checkout',[App\Http\Controllers\CarritoController::class,'store'])->name("cart.store");
 Route::get("update-cart",[App\Http\Controllers\CarritoController::class,'updateCart'])->name("update-cart");
 ROUTE::view('components/cart/cart-show','components/cart/cart-show') ->name('cart');
 ///HASTA aqui//

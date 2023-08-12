@@ -82,11 +82,12 @@ class CarritoController extends Controller
      */
     public function store(Request $request)
     {
+
           $id = $request->input("id");
-          $user_id = Auth::user()->id;
           $producto = \DB::table('products')->where('id',$id)->first();
         try{
              if (Auth::check()) {
+                $user_id = Auth::user()->id;
              
                  Cart::session($user_id)->add(array(
                      'id' => $producto->id,   //inique row ID
@@ -175,7 +176,9 @@ class CarritoController extends Controller
             dd($th);
           
         }
-        return response()->json($producto);
+        return response()->json([
+            "msj_exitoso"=>$producto,
+        ]);
         // return back()->with("msj_exitoso", $producto);
             
     }

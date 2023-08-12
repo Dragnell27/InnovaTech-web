@@ -101,11 +101,12 @@ window.addEventListener("load",()=>{
             }
             $.ajax({
                 type: "POST",
-                url: "Cart-Checkout",
+                url: "/Cart-Checkout",
                 data: data,
                 dataType: "json",
                 success: function (data) {
                     console.log(data,"bien");
+                    
                 }, 
                 error: function(data) {
                     console.log(data,"mal");
