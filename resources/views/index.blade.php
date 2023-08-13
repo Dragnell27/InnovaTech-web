@@ -102,10 +102,10 @@
                         }
                         $colores = substr($colores, 0, -2);
                     @endphp
-                        <div class="product-card" data-url="{{ route('productos.show', $productos->id)}}">
+                        <div class="product-card">
                             <div class="product-image">
                                 <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
-                                <img id="imgCard" class="product-thumb" alt="300px" src="{{'https://innovatechcol.com.co/img/productos/'.$images[0]}}">
+                                <img id="imgCard click" data-url="{{ route('productos.show', $productos->id)}}" class="product-thumb" alt="300px" src="{{'https://innovatechcol.com.co/img/productos/'.$images[0]}}">
                                 {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset('productos/'.$images[0])}}" alt="
                                     onclick="window.location.href='{{ route('productos') }}'"> --}}
                                 <button class="card-btn btn-cart" data-id="{{$productos->id}}">Añadir al
@@ -113,7 +113,7 @@
                             </div>
                             @component('components.cart.SendToCart')
 
-                                <div class="product-info">
+                                <div class="product-info click" data-url="{{ route('productos.show', $productos->id)}}">
                                     <h4 class="product-brand" id="name">{{$productos->name}}</h4>
                                     <p class="product-short-description" id="desc">{{$productos->description}}</p>
                                     @php
@@ -171,7 +171,7 @@
 
         <script>
             $(document).ready(function() {
-                $('.product-card').on('click', function() {
+                $('.click').on('click', function() {
                     var url = $(this).attr('data-url');
                     window.location.href = url;
                 });
