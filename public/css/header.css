@@ -187,6 +187,7 @@ a:hover {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     color: red;
+    speak-as: auto;
     -moz-osx-font-smoothing: grayscale;
 }
 .search-box input {
