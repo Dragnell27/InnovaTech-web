@@ -1,3 +1,3 @@
 var myCarousel = new bootstrap.Carousel(document.getElementById('carouselExampleFade'), {
-    interval: 3000
+    interval: 1000
 });
