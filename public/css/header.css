@@ -176,6 +176,19 @@ a:hover {
     color: #4a98f7;
     transform: translateY(-50%);
 }
+[class^=uil-]:before, [class*=" uil-"]:before {
+    font-family: unicons-line;
+    font-style: normal;
+    font-weight: 400;
+    display: inline-block;
+    text-decoration: inherit;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    color: red;
+    -moz-osx-font-smoothing: grayscale;
+}
 .search-box input {
     height: 100%;
     width: 100%;

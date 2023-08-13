@@ -106,8 +106,8 @@ Seccion-Productos
     overflow: hidden;
   }
   .product-thumb {
-    width: 129%;
-    height: 100%;
+    width: 102%;
+    height: 82%;
     object-fit: cover;
     cursor: pointer;
   }
