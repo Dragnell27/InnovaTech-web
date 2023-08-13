@@ -119,19 +119,10 @@
         <div class="row" id="secciondecomentarios">
             <div class="col-md-8">
                 <div class="comments">
-
                     <div class="comment">
-                        <p class="fechacomentario">21/05/2023</p>
-                        <h4>Rodrigo Arango</h4>
-                        <p><i style="color: yellow;">★★★★★</i></p>
-                        <p>¡Me encanta este producto! Es de alta calidad y vale cada centavo.</p>
-                    </div>
-
-                    <div class="comment">
-                        <p class="fechacomentario">21/05/2023</p>
-                        <h4>Rodrigo Arango</h4>
-                        <p><i style="color: yellow;">★★★★★</i></p>
-                        <p>¡Me encanta este producto! Es de alta calidad y vale cada centavo.</p>
+                        <h4 id="user_id">Nombre</h4>
+                        <p><i style="color: yellow;" id="starts">Estrellas</i></p>
+                        <p id="comments">Comentario</p>
                     </div>
                 </div>
             </div>
