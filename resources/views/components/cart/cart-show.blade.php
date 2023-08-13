@@ -53,25 +53,54 @@
                               <h5 class="card-title">{{ $items->name }}</h5>
                               <div class="card-text"><p>{{  $items->attributes["desc"] }}</p>
                                <div>
-                                <span >Precio: <span id="priceP">{{ $items->price  }}</span> </span>
-                                <button 
-                                    id="btnDecrement"
-                                    class="changeQuantity"
-                                    name="submitButton" 
-                                    value="-"> -
-                                </button>
-                                
-                                <input 
+                                @if ($items->attributes["discount"] > 0)
+
+                                <?php
+                                    $descuento=($items->price * $items->attributes["discount"]) /100
+                                ?>
+                                <div>
+                                    <input 
                                     type="hidden"
                                     name="ProductPrice" 
-                                    id="ProductPrice" 
-                                    value="{{ $items->price }}"
+                                    id="ProductPrice{{$items->id}}" 
+                                    value="{{ ($items->price * $items->quantity)-$descuento }}"
                                 />
+                                    $<span id="priceP{{$items->id}}">{{ ($items->price * $items->quantity)-$descuento  }}
 
+                                    </span>
+                                     <span id="descuento{{ $items->id }}"> - {{ $items->attributes["discount"] }}%
+
+                                     </span>
+                                </div>
+                                <div>
+                                    <span>{{ $items->price  }}</span>
+                                </div>
+                                @else
+
+                                <input 
+                                type="hidden"
+                                name="ProductPrice" 
+                                id="ProductPrice{{$items->id}}" 
+                                value="{{ $items->price }}"
+                            />
+
+                                <span>$<span id="priceP{{$items->id}}">{{ $items->price  }}</span> </span>
+                                    
+                                @endif
+                               
+                                <button 
+                                    id="btnDecrement"
+                                    class="qtyChanger"
+                                    name="submitButton" 
+                                    value="-:{{$items->id}}"> -
+                                </button>
+                                
+                              
                                 <input 
                                     width="20px" 
                                     type="text" 
-                                    id="qty" 
+                                    class="qtys"
+                                    id="qty-{{$items->id}}" 
                                     value="{{ $items->quantity }}"
                                 />  
 
@@ -83,9 +112,9 @@
 
                                 <button 
                                     id="btnIncrement" 
-                                    class="changeQuantity" 
+                                    class="qtyChanger" 
                                     name="submitButton" 
-                                    value="+"
+                                    value="+:{{$items->id}}"
                                 >+
                                 </button>
                                </div>
@@ -206,7 +235,7 @@
         <!-- place footer here -->
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
-    <script src="{{asset("js/carrito.js") }}">
+   
 
     </script>
 </section>

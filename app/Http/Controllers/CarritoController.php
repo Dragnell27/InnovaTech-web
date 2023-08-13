@@ -32,9 +32,7 @@ class CarritoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request )
-
-    {
+    public function create(Request $request ){
         $producto  = $request->msj_exitoso;
         Session::put('msj_exitoso',$producto );
  
@@ -51,20 +49,61 @@ class CarritoController extends Controller
         
         $producto = \DB::table('products')->where('id',$id)->first(); //producto manipulado
 
-        $precio = $producto->price * $cantidad; //nuevo precio
-       
-
+        $precio = 0;
+        if ($producto->discount > 0) {
+            $descuento = ($producto->discount * $producto->price  )/ 100;
+            $precio = ($producto->price  - $descuento) * $cantidad; //nuevo precio
+        }else{
+            $precio = $producto->price * $cantidad;
+        }
+   
         if (Auth::check()) {
             $userId = Auth::user()->id; //id el usuario
+            //saca la direccion del usuario
+            $direccion = \DB::table("address")->where("user_id",$userId)->first();
             $result = Sales::where("user_id",$userId)->where("param_shipping",14)->where("param_status",5)->get();
                 //Aqui valido si el usuario ya tiene datos en el carrito
             if ($result->isEmpty()) {
-              dd("no tiene");
-                sales_detail::where("");
+          
+                    $sale = new Sales;
+                    $sale->user_id = $userId;
+                    $sale->address_id =$direccion->id;
+                    $sale->param_status = 5;
+                    $sale->param_shipping = 14;
+                    $sale->param_paymethod = 2285;
+                    $sale->total = 1;
+                    $sale->save();
+        
+                    $sale_id = Sales::select("id")->where("user_id",$userId)->where("param_shipping",14)->where("param_status",5)->get();
+        
+                    $Sid= $sale_id[0]->id;
+                   
+                    $sale_details = new sales_detail;
+                    $sale_details->sale_id = $Sid;
+                    $sale_details->product_id = $id;
+                    $sale_details->qty = $cantidad;
+                    $sale_details->param_status =5;
+                    $sale_details->save();
+
+              
             }else{
-                // $compraid = $result[0]->id; //id de la compra
-                // sales_detail::where("sale_id",$compraid)->where("product_id",$id)->where("param_status",5)->update("qty");
-                dd("tiene")
+
+                $sale_id = Sales::select("id")->where("user_id",$userId)->where("param_shipping",14)->where("param_status",5)->get();
+                //id de la compra
+                $Sid= $sale_id[0]->id;
+
+                    //Aqui se actualiza la compra del productto
+                sales_detail::where("sale_id",$Sid)->where("product_id",$id)->where("param_status",5)->update(["qty" => $cantidad]);
+
+
+                //Actualizar el total de compra
+                $compras = sales_detail::where("sale_id",$Sid)->where("param_status",5)->get();
+                $total = 0;
+                foreach ($compras as $key => $value) {
+                    $total += $value->qty;
+                }
+               Sales::where("user_id",$userId)->where("param_shipping",14)->where("param_status",5)->update(["total"=>$total]);
+               
 
             }
             Cart::session($userId)->update($id,array(
@@ -76,7 +115,7 @@ class CarritoController extends Controller
                
            ));
            Session::forget('cart');
-           Session::put("cart",Cart::session($user_id)->getContent());
+           Session::put("cart",Cart::session($userId)->getContent());
 
             # code...
         }else{
@@ -153,20 +192,48 @@ class CarritoController extends Controller
                     $sale_details->save();
         
                 }else{
-                    
+
+                    //verificar si exite el producto                    
                     $sale_id = Sales::select("id")->where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->get();
-                    
-        
+                    //id de la compra
+
                     $Sid= $sale_id[0]->id;
-                   
-                    $sale_details = new sales_detail;
-                    $sale_details->sale_id = $Sid;
-                    $sale_details->product_id = $id;
-                    $sale_details->qty = 1;
-                    $sale_details->param_status = 5;
+                    $compras = sales_detail::where("sale_id",$Sid)->where("param_status",5)->get();
+
+                    $hasProduct = false;
+                    $total = 0;
+                    
+                    foreach ($compras as $key => $value) {
+                        $total += $value->qty;
+                        if($value->product_id == $id){
+                            $hasProduct = true;
+                        }
+                    }
+
+                    if ($hasProduct == true) {
+                        $pcompra =  sales_detail::where("sale_id",$Sid)->where("param_status",5)->where("product_id",$id)->first();
+                        $totalP = $pcompra->qty;
+                        sales_detail::where("sale_id",$Sid)->where("param_status",5)->where("product_id",$id)->update([
+                            "qty"=>$totalP+1,
+                        ]);
+                        $total+=1;
+                       
+                      
+                    }else{
+                        $sale_details = new sales_detail;
+                        $sale_details->sale_id = $Sid;
+                        $sale_details->product_id = $id;
+                        $sale_details->qty = 1;
+                        $sale_details->param_status = 5;
+                        $sale_details->save();
+               
+                    }
                   
-        
-                    $sale_details->save();
+
+                    //Actualizar el total de compra
+                // $compras = sales_detail::where("sale_id",$Sid)->where("param_status",5)->get();
+               
+               Sales::where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->update(["total"=>$total]);
                   
                  
                 }
@@ -253,8 +320,18 @@ $has = false;
         //
       
           if (Auth::check()) {
-            $userId =   Auth::user()->id;
+            $userId = Auth::user()->id;
             Cart::session($userId)->remove($id);
+
+            //sacar el id de una compra
+            $sale_id = Sales::select("id")->where("user_id",$userId)->where("param_shipping",14)->where("param_status",5)->get();
+            //id de la compra
+            $Sid= $sale_id[0]->id;
+
+            sales_detail::where("product_id",$id)->where("sale_id",$Sid)->update([
+                "param_status"=>6,
+            ]);
+            
             Session::forget('cart');
           }else{
             Cart::remove($id);

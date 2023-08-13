@@ -5,6 +5,15 @@
     right:4% !important;
     top: 6%;
 } 
+/* CSS para la cantidad de cart-show */
+.qtys{
+  width: 40px !important;
+  border: 0px;
+  border-bottom: 1px solid gray;
+  text-align: center;
+
+}
+/* CSS para la cantidad de cart-alert */
 #qty{
     width: 40px !important;
     border: 0px;
@@ -18,10 +27,19 @@
     margin-left: 5px;
 
 }
+
+/* CSS para el cambio de cantidad de cart-alert */
 .changeQuantity{
     width: 50px !important;
     border: 0px solid    black !important;
     font-size: 20px !important;
+}
+/* CSS para el cambio de cantidad de cart-show */
+.qtyChanger{
+  width: 50px !important;
+  border: 0px solid    black !important;
+  font-size: 20px !important;
+
 }
 .priceContainer{
 
