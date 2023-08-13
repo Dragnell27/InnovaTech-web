@@ -60,7 +60,7 @@
                     <form action="{{ Route('cart.show') }}" method="get">
                         <div id="icono">
                             <button type="submit" id="btnCarrito" class="">
-                                <img src="{{ asset('img/Carro-Compras.png') }}" width="25px" height="20px"
+                                <img src="{{ asset('img/carro_compra.png') }}" width="25px" height="20px"
                                     alt="">
                                 <span class="">
                                     @if (Auth::check())
