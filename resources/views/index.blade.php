@@ -37,40 +37,40 @@
                     <div class=" col-md-3 col-sm-6 col-12 text-center  ">
                         <a href="palinkear.html" class="btn btn-link btn-image">
                             <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones"
-                                alt="..." src="{{ asset('img/Estuche.jpg') }}" width="120" height="120"
+                                alt="..." src="{{ asset('img/accesories.png') }}" width="120" height="120"
                                 role="img">
                         </a>
 
-                        <h4 class="fw-normal my-4">Estuches</h4>
+                        <h4 class="fw-normal my-4">Accesorios Computador</h4>
                     </div>
 
 
                     <div class=" col-md-3 col-sm-6 col-12 text-center ">
                         <a href="palinkear.html" class="btn btn-link btn-image">
                             <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones"
-                                alt="..." src="{{ asset('img/Cargador.jpg') }}" width="120" height="120"
+                                alt="..." src="{{ asset('img/smartwatch.png') }}" width="120" height="120"
                                 role="img">
                         </a>
-                        <h4 class="fw-normal my-4">Cargadores</h4>
+                        <h4 class="fw-normal my-4">SmartWatch</h4>
                     </div>
 
                     <div class=" col-md-3 col-sm-6 col-12 text-center ">
                         <a href="palinkear.html" class="btn btn-link btn-image">
                             <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones"
-                                alt="..." src="{{ asset('img/Parlantes.jpg') }}" width="120" height="120"
+                                alt="..." src="{{ asset('img/airpods.png') }}" width="120" height="120"
                                 role="img">
                         </a>
-                        <h4 class="fw-normal my-4">Parlantes</h4>
+                        <h4 class="fw-normal my-4">Airpods</h4>
                     </div>
 
 
                     <div class="col-md-3 col-sm-6 col-12 text-center ">
                         <a href="palinkear.html" class="btn btn-link btn-image">
                             <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones"
-                                alt="..." src="{{ asset('img/Audifonos.jpg') }}" width="120" height="120"
+                                alt="..." src="{{ asset('img/headphones.png') }}" width="120" height="120"
                                 role="img">
                         </a>
-                        <h4 class="fw-normal my-4">Audífonos</h4>
+                        <h4 class="fw-normal my-4">Auriculares</h4>
                     </div>
                 </div>
             </div>
