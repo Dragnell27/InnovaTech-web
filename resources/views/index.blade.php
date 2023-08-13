@@ -29,7 +29,7 @@
             </div>
             <br>
             <div class="red-div">
-                <h2>Categorias</h2>
+                <h2>Categorias Destacadas</h2>
             </div>
 
             <div id="contenedorbotones">
@@ -103,7 +103,7 @@
                         $colores = substr($colores, 0, -2);
                     @endphp
                         <div class="product-card">
-                            <div class="product-image">
+                            <div class="product-image click" data-url="{{ route('productos.show',$productos->id)}}">
                                 <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
                                 <img id="imgCard click" data-url="{{ route('productos.show', $productos->id)}}" class="product-thumb" alt="300px" src="{{'https://innovatechcol.com.co/img/productos/'.$images[0]}}">
                                 {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset('productos/'.$images[0])}}" alt="
@@ -113,7 +113,7 @@
                             </div>
                             @component('components.cart.SendToCart')
 
-                                <div class="product-info click" data-url="{{ route('productos.show', $productos->id)}}">
+                                <div class="product-info">
                                     <h4 class="product-brand" id="name">{{$productos->name}}</h4>
                                     <p class="product-short-description" id="desc">{{$productos->description}}</p>
                                     @php
@@ -125,7 +125,7 @@
                                     @else
                                     <span class="precioReal">${{$precioDescuento}}</span>
                                     <br>
-                                    <span class="descuento-valor">{{$productos->discount}}%</span>
+                                    <span class="descuento-valor">{{$productos->discount}}% OFF</span>
                                     <span class="actual-price" style="font-size: 20px">${{$productos->price}}</span>
                                     @endif
                                     <span class="color" id="color">{{$colores}}</span>
