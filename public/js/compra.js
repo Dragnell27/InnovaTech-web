@@ -32,63 +32,81 @@ async function DepartmentsName(nameDepartment){
         return null;
     }
 }
-let direccionesUsuario = [];
-let direccionIndex = 0;
 
-async function actualizarAdress(direccion,departmentName) {
- document.getElementById('NombreDepartment').value= departmentName;
- document.getElementById('city').value=direccion.city.city_name;
- document.getElementById('hood').value=direccion.hood;
-document.getElementById('address').value=direccion.address;
-document.getElementById('floor').value=direccion.floor;
-}
-async function cambiarDireccion(){
-    direccionIndex=(direccionIndex+1)%direccionesUsuario.length;
-    const direccionActual=direccionesUsuario[direccionIndex];
-    const address= direccionActual.city;
-    const address2= direccionActual;
-    const departmentId = address.foreign;
-    const departmentName=await DepartmentsName(departmentId);
-actualizarAdress(address2,departmentName);
+// let direccionIndex = 0;
 
-}
-async function Address(){
-   try {
-    const response =await fetch("http://localhost/proyecto_web/public/api/address_user/"+id);
-    const data = await response.json();
-    direccionesUsuario=data.data;
-    const direccionActual= direccionesUsuario[direccionIndex];
-    const address= direccionActual.city;
-    const address2= direccionActual;
-    const departmentId = address.foreign;
-    const departmentName=await DepartmentsName(departmentId);
-actualizarAdress(address2,departmentName);
+// async function actualizarAdress(direccion,departmentName) {
+//  document.getElementById('NombreDepartment').value= departmentName;
+//  document.getElementById('city').value=direccion.city.city_name;
+//  document.getElementById('hood').value=direccion.hood;
+// document.getElementById('address').value=direccion.address;
+// document.getElementById('floor').value=direccion.floor;
+// }
+// async function cambiarDireccion(){
+//     direccionIndex=(direccionIndex+1)%direccionesUsuario.length;
+//     const direccionActual=direccionesUsuario[direccionIndex];
+//     const address= direccionActual.city;
+//     const address2= direccionActual;
+//     const departmentId = address.foreign;
+//     const departmentName=await DepartmentsName(departmentId);
+// actualizarAdress(address2,departmentName);
 
-   } catch (error) {
-    console.error(`Error al obtener datos de la API: ${error}`);
+// }
 
+document.getElementById('direciones').addEventListener ('change',async function(event){
+   const seleccionarDireccion= event.target.value;
+   if (seleccionarDireccion ==='-1') {
+    document.getElementById('formDirecciones').style.display='none';
+    document.getElementById('agregarDireccion').style.display='block';
+   }
+   else{
+    try {
+        const response =await fetch("http://localhost/proyecto_web/public/api/address_user/"+id);
+        const data = await response.json();
+         const addressData=data.data[seleccionarDireccion-1];
+         const address2=data.data[seleccionarDireccion-1].city;
+        console.log(address2);
+
+        //  const address2=data.data[0].city;
+         const departmentId = address2.foreign;
+        const departmentName=await DepartmentsName(departmentId);
+        document.getElementById('NombreDepartment').value= departmentName;
+         document.getElementById('city').value=address2.city_name;
+         document.getElementById('hood').value=addressData.hood;
+        document.getElementById('address').value=addressData.address;
+        document.getElementById('floor').value=addressData.floor;
+
+        document.getElementById('formDirecciones').style.display='none';
+        document.getElementById('agregarDireccion').style.display='block';
+       } catch (error) {
+        console.error(`Error al obtener datos de la API: ${error}`);
+
+       }
    }
 
-}
- function agragrarDireccion(){
-
-if(direccionesUsuario.length>0){
-    document.getElementById('FormDomicilios').style.display='block';
-    document.getElementById('agregarDirecion').style.display='none';
-}
-else{
-    document.getElementById('FormDomicilios').style.display='none';
-    document.getElementById('agregarDireccion').style.display='block';
-}
-}
-document.getElementById('agregarDireccion').addEventListener('click',()=>{
 
 });
 
 
+//  function agragrarDireccion(){
+
+// if(addressData){
+//     document.getElementById('FormDomicilios').style.display='block';
+//     document.getElementById('agregarDireccion').style.display='none';
+// }
+// else{
+//     document.getElementById('FormDomicilios').style.display='none';
+//     document.getElementById('agregarDireccion').style.display='block';
+// }
+// }
+// document.getElementById('agregarDireccion').addEventListener('click',()=>{
+
+// });
+
+// console.log(agragrarDireccion);
+
 window.addEventListener('load', async () => {
 
- await Address();
  await user();
 
 });
@@ -96,9 +114,9 @@ window.addEventListener('load', async () => {
 //Select Comienzo
 
 
-const selectElement = document.getElementById('direciones');
-const formularioElement = document.getElementById('formirecciones');
-let formularioVisible = false;
+// const selectElement = document.getElementById('direciones');
+// const formularioElement = document.getElementById('formDirecciones');
+// let formularioVisible = false;
 
 
 const select= document.querySelector('#select');
@@ -127,11 +145,11 @@ document.getElementById('agregarDireccion').style.display='none';
 
 if(tipoLugar=="domicilios"){
     document.getElementById("FormDomicilios").style.display="block";
-    agragrarDireccion();
+    // agragrarDireccion();
 }else if(tipoLugar=="Pfisico"){
     document.getElementById("puntoFisico").style.display="block";
-    formularioElement.style.display = 'none'; // Ocultar el formulario
-    formularioVisible = false;
+    // formularioElement.style.display = 'none'; // Ocultar el formulario
+    // formularioVisible = false;
 
 }
 
@@ -139,60 +157,60 @@ if(tipoLugar=="domicilios"){
 
 
 
-// Agregar un evento de cambio al elemento select
-selectElement.addEventListener('change', function() {
-    // Obtener el valor de la opción seleccionada
-    const opcionSeleccionada = selectElement.value;
-    // Mostrar u ocultar el formulario según la opción seleccionada
-    if (opcionSeleccionada === 'dir1') {
-      if (formularioVisible) {
-          formularioElement.style.display = 'none'; // Ocultar el formulario
-           formularioVisible = false;
+// // Agregar un evento de cambio al elemento select
+// selectElement.addEventListener('change', function() {
+//     // Obtener el valor de la opción seleccionada
+//     const opcionSeleccionada = selectElement.value;
+//     // Mostrar u ocultar el formulario según la opción seleccionada
+//     if (opcionSeleccionada === 'dir1') {
+//       if (formularioVisible) {
+//           formularioElement.style.display = 'none'; // Ocultar el formulario
+//            formularioVisible = false;
 
-      }else{
-          formularioElement.style.display = 'block';
-          formularioVisible = true;
+//       }else{
+//           formularioElement.style.display = 'block';
+//           formularioVisible = true;
 
-      }
-       // Mostrar el formulario
-    } else {
-      formularioElement.style.display = 'none';
-      formularioVisible = false;
-      // Ocultar el formulario
-    }
-    // if (opcionSeleccionada === 'dir2') {
-    //     if (formularioVisible) {
-    //         formularioElement.style.display = 'none'; // Ocultar el formulario
-    //          formularioVisible = false;
+//       }
+//        // Mostrar el formulario
+//     } else {
+//       formularioElement.style.display = 'none';
+//       formularioVisible = false;
+//       // Ocultar el formulario
+//     }
+//     // if (opcionSeleccionada === 'dir2') {
+//     //     if (formularioVisible) {
+//     //         formularioElement.style.display = 'none'; // Ocultar el formulario
+//     //          formularioVisible = false;
 
-    //     }else{
-    //         formularioElement.style.display = 'block';
-    //         formularioVisible = true;
+//     //     }else{
+//     //         formularioElement.style.display = 'block';
+//     //         formularioVisible = true;
 
-    //     }
-    //      // Mostrar el formulario
-    //   } else {
-    //     formularioElement.style.display = 'none';
-    //     formularioVisible = false;
-    //     // Ocultar el formulario
-    //   }
-    //   if (opcionSeleccionada === 'dir3') {
-    //     if (formularioVisible) {
-    //         formularioElement.style.display = 'none'; // Ocultar el formulario
-    //          formularioVisible = false;
+//     //     }
+//     //      // Mostrar el formulario
+//     //   } else {
+//     //     formularioElement.style.display = 'none';
+//     //     formularioVisible = false;
+//     //     // Ocultar el formulario
+//     //   }
+//     //   if (opcionSeleccionada === 'dir3') {
+//     //     if (formularioVisible) {
+//     //         formularioElement.style.display = 'none'; // Ocultar el formulario
+//     //          formularioVisible = false;
 
-    //     }else{
-    //         formularioElement.style.display = 'block';
-    //         formularioVisible = true;
+//     //     }else{
+//     //         formularioElement.style.display = 'block';
+//     //         formularioVisible = true;
 
-    //     }
-    //      // Mostrar el formulario
-    //   } else {
-    //     formularioElement.style.display = 'none';
-    //     formularioVisible = false;
-    //     // Ocultar el formulario
-    //   }
-  });
+//     //     }
+//     //      // Mostrar el formulario
+//     //   } else {
+//     //     formularioElement.style.display = 'none';
+//     //     formularioVisible = false;
+//     //     // Ocultar el formulario
+//     //   }
+//   });
 
 
 
