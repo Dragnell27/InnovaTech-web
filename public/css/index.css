@@ -116,7 +116,7 @@ Seccion-Productos
     background: #fff;
     padding: 5px;
     border-radius: 5px;
-    color: #ff7d7d;
+    color: red;
     right: 10px;
     top: 10px;
     text-transform: capitalize;
@@ -141,7 +141,7 @@ Seccion-Productos
     opacity: 1;
   }
   .card-btn:hover {
-    background: #ff7d7d;
+    background: red;
     color: #fff;
   }
   .product-info {
