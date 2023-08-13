@@ -74,11 +74,11 @@
 
                         </div>
                             <div class="text-center">
-                                <button data-id="{{ $productos->id }}" class="btnAddCart btn-cart" type="button" >Añadir al carrito</button>
+                                <button data-id="{{ $productos->id }}" class="btnAddCart btn-cart" >Añadir al carrito</button>
                             </div>
 
                         <div class="text-center mt-3">
-                            <a href="http://">agregar a lista de deseos</a>
+                            <a href="http://">Agregar a lista de deseos</a>
                         </div>
                     </div>
                 </div>
