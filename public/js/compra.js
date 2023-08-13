@@ -55,6 +55,7 @@ async function DepartmentsName(nameDepartment){
 
 document.getElementById('direciones').addEventListener ('change',async function(event){
    const seleccionarDireccion= event.target.value;
+
    if (seleccionarDireccion ==='-1') {
     document.getElementById('formDirecciones').style.display='none';
     document.getElementById('agregarDireccion').style.display='block';
@@ -76,8 +77,8 @@ document.getElementById('direciones').addEventListener ('change',async function(
         document.getElementById('address').value=addressData.address;
         document.getElementById('floor').value=addressData.floor;
 
-        document.getElementById('formDirecciones').style.display='none';
-        document.getElementById('agregarDireccion').style.display='block';
+        document.getElementById('formDirecciones').style.display='block';
+        document.getElementById('agregarDireccion').style.display='none';
        } catch (error) {
         console.error(`Error al obtener datos de la API: ${error}`);
 
@@ -148,6 +149,8 @@ if(tipoLugar=="domicilios"){
     // agragrarDireccion();
 }else if(tipoLugar=="Pfisico"){
     document.getElementById("puntoFisico").style.display="block";
+    document.getElementById('formDirecciones').style.display='none';
+
     // formularioElement.style.display = 'none'; // Ocultar el formulario
     // formularioVisible = false;
 
