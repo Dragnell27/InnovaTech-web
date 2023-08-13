@@ -93,6 +93,14 @@ window.addEventListener('load', async () => {
 
 });
 
+//Select Comienzo
+
+
+const selectElement = document.getElementById('direciones');
+const formularioElement = document.getElementById('formirecciones');
+let formularioVisible = false;
+
+
 const select= document.querySelector('#select');
 const opciones= document.querySelector('#opciones');
 const contenedorSelect=document.querySelector('#select .contenedorSelect');
@@ -122,6 +130,8 @@ if(tipoLugar=="domicilios"){
     agragrarDireccion();
 }else if(tipoLugar=="Pfisico"){
     document.getElementById("puntoFisico").style.display="block";
+    formularioElement.style.display = 'none'; // Ocultar el formulario
+    formularioVisible = false;
 
 }
 
@@ -129,5 +139,64 @@ if(tipoLugar=="domicilios"){
 
 
 
-// funcion para que cuando yo le de click a un boton o alguna etiqueta me muestre algo, por ejemplo tengo dos botones 1domicilios y 2punto fisico si le doy click al boton domicilio que me muestre un formulario que tenga la direccion y ese tipo de cosas; o si le doy al boton punto fisico tambien me muestre otros input con otros datos todo esto mostrando datos de un api esto se puede con un if y pasandole la funcion al boton con un onclik? pero si l vuelvo a dar al boton
+// Agregar un evento de cambio al elemento select
+selectElement.addEventListener('change', function() {
+    // Obtener el valor de la opción seleccionada
+    const opcionSeleccionada = selectElement.value;
+    // Mostrar u ocultar el formulario según la opción seleccionada
+    if (opcionSeleccionada === 'dir1') {
+      if (formularioVisible) {
+          formularioElement.style.display = 'none'; // Ocultar el formulario
+           formularioVisible = false;
+
+      }else{
+          formularioElement.style.display = 'block';
+          formularioVisible = true;
+
+      }
+       // Mostrar el formulario
+    } else {
+      formularioElement.style.display = 'none';
+      formularioVisible = false;
+      // Ocultar el formulario
+    }
+    // if (opcionSeleccionada === 'dir2') {
+    //     if (formularioVisible) {
+    //         formularioElement.style.display = 'none'; // Ocultar el formulario
+    //          formularioVisible = false;
+
+    //     }else{
+    //         formularioElement.style.display = 'block';
+    //         formularioVisible = true;
+
+    //     }
+    //      // Mostrar el formulario
+    //   } else {
+    //     formularioElement.style.display = 'none';
+    //     formularioVisible = false;
+    //     // Ocultar el formulario
+    //   }
+    //   if (opcionSeleccionada === 'dir3') {
+    //     if (formularioVisible) {
+    //         formularioElement.style.display = 'none'; // Ocultar el formulario
+    //          formularioVisible = false;
+
+    //     }else{
+    //         formularioElement.style.display = 'block';
+    //         formularioVisible = true;
+
+    //     }
+    //      // Mostrar el formulario
+    //   } else {
+    //     formularioElement.style.display = 'none';
+    //     formularioVisible = false;
+    //     // Ocultar el formulario
+    //   }
+  });
+
+
+
+
+
+
 
