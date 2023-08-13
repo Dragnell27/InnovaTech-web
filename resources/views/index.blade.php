@@ -3,9 +3,8 @@
 @section('component')
     <section>
         <div id="section">
-            <div id="carouselExampleFade" class="carousel slide carousel-fade">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
-
                     <div class="carousel-item active">
                         <img src="{{ asset('img/imagen4.jpg') }}" class="d-block w-90" alt="...">
                     </div>
@@ -24,7 +23,7 @@
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
                     data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Despues</span>
+                    <span class="visually-hidden">Después</span>
                 </button>
             </div>
             <br>
@@ -164,6 +163,8 @@
         </section>
         <script src="{{ asset('js/cartas.js') }}"></script>
         <script src="{{ asset('js/producto.js') }}"></script>
+        <script src="{{ asset('js/carrousel.js') }}"></script>
+
 
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         @include('components.PQRS.FAQS')
