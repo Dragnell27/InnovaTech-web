@@ -25,7 +25,7 @@
         <nav class="nav">
             <div class="class">
                 <a href="{{ url('/') }}"><img src="{{ asset('img/logo-i.png') }}" id="imagen-logo"></a>
-                <a id="btn-menu" onclick="toggleSidebar()"><img src="{{ asset('img/Menu.png') }}" id="menu-logo"></a>
+                <a id="btn-menu" onclick="toggleSidebar()"><img src="{{ asset('img/menu.png') }}" id="menu-logo"></a>
                 <div class="sidebar" style="background-color: white;" id="sidebar">
                     <a href="#"
                         class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
