@@ -70,8 +70,6 @@
 
                                 </h5>
                             </div>
-
-
                         </div>
                             <div class="text-center">
                                 <button data-id="{{ $productos->id }}" class="btnAddCart btn-cart" >Añadir al carrito</button>
@@ -85,8 +83,8 @@
             </div>
 
 
-           <!-- comentarios -->
-           <div id="contenedorcomentarios" class="container-fluid">
+            <!-- comentarios -->
+            <div id="contenedorcomentarios" class="container-fluid">
                 <h3 class="text-center">Comentarios</h3>
                 <div class="col-lg-12">
                     <div id="comentarios"></div>
@@ -94,15 +92,17 @@
                         @csrf
                         <div class="form-group">
                             <label for="comment">Comentario:</label>
-                            <textarea class="form-control" name="comment" rows="3" required></textarea>
+                            <textarea class="form-control" name="comment" rows="3" ></textarea>
                             <div class="star_rating">
-                                <button class="star">&#9734;</button>
-                                <button class="star">&#9734;</button>
-                                <button class="star">&#9734;</button>
-                                <button class="star">&#9734;</button>
-                                <button class="star">&#9734;</button>
+                                <i class="star">&#9734;</i>
+                                <i class="star">&#9734;</i>
+                                <i class="star">&#9734;</i>
+                                <i class="star">&#9734;</i>
+                                <i class="star">&#9734;</i>
                             </div>
                         </div>
+
+                        <input type="hidden" id="product_id" name="product_id" value="{{ $productos->id }}">
                         <button type="submit" class="btn btn-primary btn-danger">Agregar comentario</button>
                     </form>
                 </div>
@@ -120,15 +120,20 @@
             <div class="col-md-8">
                 <div class="comments">
                     <div class="comment">
-                        <h4 id="user_id">Nombre</h4>
-                        <p><i style="color: yellow;" id="starts">Estrellas</i></p>
-                        <p id="comments">Comentario</p>
+
+                        <h4 id="user_id"></h4>
+                        <p><i style="color: yellow;" id="starts"></i></p>
+                        <p id="comments"></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     </section>
+    <script>
+        var BASE = "{{ url("/") }}";
+    </script>
     <script src="{{ asset('js/producto.js') }}"></script>
     <script src="{{ asset('js/comments.js') }}"></script>
+    <script src="{{ asset('js/comments_product.js') }}"></script>
 @endsection
