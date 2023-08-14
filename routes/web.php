@@ -98,12 +98,7 @@ Route::resource('/users', UserController::class);
 Route::view('/sales/shopping', 'sales/shopping')->name('shopping');
 
 //ruta jaider, lista de deseos
-Route::resource('/wishlist', WishlistController::class);
-
-// Route::post('/wishlist', [WishlistController::class, 'store'])->name('wishlist.store');
-// Route::get('/wishlist/{id}', [WishlistController::class, 'destroy'])->name('wishlist.eliminar');
-// Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
-
+Route::resource('/wishlist', WishlistController::class)->middleware('auth');
 
 //ruta para faqs
 // Route::post('/faqs/{id}', [faqsController::class, 'store'])->name('faqs.store');

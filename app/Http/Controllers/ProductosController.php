@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\product;
+use App\Models\Param;
 use Illuminate\Http\Request;
 
 class ProductosController extends Controller
@@ -10,11 +11,46 @@ class ProductosController extends Controller
     public function search(Request $request)
     {
         $query = $request['query'];
-        $searchResults = product::where(function ($queryBuilder) use ($query) {
-            $queryBuilder->where('name', 'LIKE', '%' . $query . '%')
-                ->orWhere('description', 'LIKE', '%' . $query . '%');
-        })->get();
-        return view('products.search_results', compact('searchResults'));
+        $querys = explode(' ', $query);
+        $arrayTags = [];
+
+        $tags = Param::select('id')->where('name', 'LIKE', '%'.$query.'%')->where('paramtype_id', 9)->get();
+        $category = Param::where('name', 'LIKE', '%'.$query.'%')->where('paramtype_id', 12)->value('id');
+        $mark = Param::where('name', 'LIKE', '%'.$query.'%')->where('paramtype_id', 10)->value('id');
+
+        foreach ($tags as $tag) {
+            array_push($arrayTags, $tag->id);
+        }
+
+        $products = product::query();
+
+        $products = $products->where('param_state', 5);
+
+            for($i = 0; $i < count($querys); $i++) {
+                $products = $products->orWhere('name', 'LIKE', '%' . $query . '%')
+                    ->orWhere('description', 'LIKE', '%' . $query . '%');
+            }
+
+            if(count($arrayTags) > 0) {
+                for($i = 0; $i < count($arrayTags); $i++) {
+                    $products  = $products->orWhere('param_tags', 'LIKE', '%' . $arrayTags[$i] . '%');
+                }
+            }
+
+            if(!is_null($category)) {
+                $products  = $products->orWhere('param_category', $category);
+            }
+
+            if(!is_null($mark)) {
+                $products  = $products->orWhere('param_category', $mark);
+            }
+
+            $products = $products->get();
+            //para traer un limite productos se usa paginate
+
+
+
+        return view('result_search', compact('products'));
     }
 
     public function index()

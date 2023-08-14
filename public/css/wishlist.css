@@ -11,3 +11,15 @@
 .ir-producto{
     cursor: pointer !important;
 }
+
+.descuento {
+    font-size: 12px;
+}
+
+.quitar-espacio {
+    margin-left: -13px;
+}
+
+.titulo{
+    text-transform: uppercase;
+}
