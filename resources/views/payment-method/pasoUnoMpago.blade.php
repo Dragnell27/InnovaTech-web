@@ -158,16 +158,14 @@
                                         <div class="container">
                                             <div class="row g-3">
                                                 <div class="mb-3">
-                                                    <label for="" class="form-label">Dirección</label>
-                                                    <select class="form-select form-select-lg text-center" name=""
+                                                    <h4><label for="" class="form-label">Dirección</label></h4>
+                                                    <select  class="selectStyle"
                                                         id="direciones">
-                                                        <option selected>Elige la direccion</option>
-                                                        <option value="1">Dirección 1</option>
-                                                        <option value="2">Dirección 2</option>
-                                                        <option value="3">Dirección 3</option>
+                                                        <option value="-1">Elige la direccion</option>
+
                                                     </select>
                                                 </div>
-                                                
+
                                             </div>
 
                                     </form>
@@ -257,9 +255,10 @@
 
 </section>
 <script>
-    const url = "{{ env('API') . '/users/' . Auth::user()->id }}";
-    const urlA = "{{ env('API'). '/users' }}";
+   var BasUrl = "{{ url('/')}}";
+    const url = BasUrl+"/api/users/"+'{{Auth::user()->id}}';
     const id = "{{ Auth::user()->id }}";
+    const urlAddress=BasUrl+"/api/address_user/"+id;
 </script>
 
 <script src="{{ asset('js/compra.js') }}"></script>

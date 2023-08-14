@@ -298,4 +298,28 @@ border:2px solid transparent;
 
     }
 }
+.selectStyle {
+    padding: 10px;
+    font-size: 23px; /* Aumenta el tamaño de la letra */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    width: 100%;
+    text-align: center; /* Centra el texto horizontalmente */
+    transition: box-shadow 0.3s;
+  }
+
+  /* Estilos para las opciones del select */
+  .selectStyle option {
+    background-color: white;
+    color: #333;
+    font-size: 23px;
+  }
+
+
+  .selectStyle:focus {
+    outline: none;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+  }
+
 
