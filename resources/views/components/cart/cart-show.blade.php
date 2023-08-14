@@ -40,14 +40,14 @@
             <section id="productSection">
                 <div class="row g-5 ml-20">
 
-                    <div class="col-lg-6  rounded order-md-first ">
+                    <div class=" col-lg-6  rounded order-md-first ">
                         @foreach ($CartItems as $items)
                         <div class="card mb-3" style="max-width: 600px;" id="cartItem">
                             <div class="row g-0">
                               <div class="col-md-4">
                                 <img src="{{ $items->attributes['image'] }}" class="img-fluid rounded-start" alt="...">
                               </div>
-                              <div class="col-md-8">
+                              <div class="col-md-8 col-12">
                                 <div class="card-body">
                                   <h5 class="card-title">{{ $items->name }}</h5>
                                   <div class="card-text"><p>{{  $items->attributes["desc"] }}</p>
@@ -129,7 +129,7 @@
     
                     </div>
 
-                <div class="col col-md-5 col-lg-4 order-md-last">
+                <div class="col col-md-5 col-lg-4 col-12 order-md-last">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-danger">Resumen de compra</span>
 
@@ -138,7 +138,7 @@
                         <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                             <div class="">
                                 <h4 class="my-0">Productos
-                                    <span class="badge bg-danger rounded-pill"> {{ $items->count() }}</span>
+                                    <span class="badge bg-danger rounded-pill"> {{ $CartItems->count() }}</span>
                                 </h4>
                             </div>
                         </li>

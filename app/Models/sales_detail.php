@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class sales_detail extends Model
 {
-    protected $table = 'sales_detail';
 
     public function productos()
     {
