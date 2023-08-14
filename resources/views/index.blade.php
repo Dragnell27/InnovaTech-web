@@ -1,3 +1,6 @@
+<head>
+    <link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
+</head>
 @extends('layouts.contenedor')
 @section('title', 'Home')
 @section('component')
@@ -124,7 +127,7 @@
                                             d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
                                     </svg>
                                 </button>
-                                <img id="imgCard ir-producto" data-url="{{ route('productos.show', $productos->id) }}"
+                                <img id="imgCard" class="ir-producto" data-url="{{ route('productos.show', $productos->id) }}"
                                     class="product-thumb" alt="300px"
                                     src="{{ 'https://innovatechcol.com.co/img/productos/' . $images[0] }}">
                                 {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset('productos/'.$images[0])}}" alt="
@@ -134,7 +137,8 @@
                             </div>
                             @component('components.cart.SendToCart')
 
-                                <div class="product-info ir-producto" data-url="{{ route('productos.show', $productos->id) }}">
+                                <div class="product-info ir-producto"
+                                    data-url="{{ route('productos.show', $productos->id) }}">
                                     <h4 class="product-brand" id="name">{{ $productos->name }}</h4>
                                     <p class="product-short-description" id="desc">{{ $productos->description }}</p>
                                     @php
@@ -202,26 +206,22 @@
         </script>
         <script>
             $(document).ready(function() {
-
-
                 $('.no_agregado_favoritos').on('click', function() {
                     var button = $(this);
                     var idProducto = button.data('product_id').split(':');
                     var productoId = idProducto[0];
-                    console.log(productoId);
-
                     $.ajax({
                         url: "{{ route('wishlist.store') }}",
                         method: 'POST',
                         data: {
+                            _token: '{{ csrf_token() }}',
                             product_id: productoId
                         },
                         success: function(response) {
                             button.removeClass('no_agregado_favoritos');
-                            button.addClass('agregado-favoritos');
+                            button.addClass('agregado_favoritos');
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
-                            console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
                             alert('Error al agregar a la lista.');
                         }
                     });
@@ -231,13 +231,12 @@
                     var button = $(this);
                     var idProducto = button.data('product_id').split(':');
                     var productoId = idProducto[1];
-
-                    console.log(productoId);
                     $.ajax({
                         url: "{{ route('wishlist.destroy', ':product_id') }}".replace(':product_id',
                             productoId),
                         method: 'delete',
                         data: {
+                            _token: '{{ csrf_token() }}',
                             product_id: productoId
                         },
                         success: function(response) {
@@ -250,19 +249,6 @@
                         }
                     });
                 });
-            });
-        </script>
-        <script>
-            $(document).ready(function() {
-                $('.no_agregado_favoritos').hover(
-                    function() {
-                        $(this).css('fill', 'red');
-                    },
-                    function() {
-                        $(this).css('fill', 'black');
-                    }
-                );
-                $('.agregado_favoritos').css('fill', 'red');
             });
         </script>
     @endsection

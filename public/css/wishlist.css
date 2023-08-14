@@ -1,0 +1,13 @@
+.agregado_favoritos{
+    fill: red !important;
+}
+.no_agregado_favoritos{
+    fill: black !important;
+}
+.no_agregado_favoritos:hover{
+    fill: red !important;
+}
+
+.ir-producto{
+    cursor: pointer !important;
+}

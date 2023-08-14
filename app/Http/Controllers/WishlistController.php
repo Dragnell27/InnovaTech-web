@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\wishlist;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +14,7 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        $wishlist = wishlist::where('user_id', Auth::user()->id)->with('productos')->get();
+        $wishlist = Wishlist::where('user_id', Auth::user()->id)->with('productos')->get();
         return view('wishlist.show', compact('wishlist'));
     }
 
@@ -31,8 +31,7 @@ class WishlistController extends Controller
      */
     public function store(Request $request)
     {
-        Log::info('Solicitud AJAX recibida en el controlador.');
-        $lista = new Wishlist;
+        $lista = new Wishlist();
         $lista->product_id = $request->input('product_id');
         $lista->user_id = Auth::user()->id;
         $lista->param_state = 5;
