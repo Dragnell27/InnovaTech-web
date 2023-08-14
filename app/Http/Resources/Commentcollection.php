@@ -16,7 +16,7 @@ class Commentcollection extends JsonResource
     {
         return [
             "id" =>$this->id,
-            "ususario" =>$this->user_id,
+            "usuario" =>$this->user_id,
             "producto" =>$this->product_id,
             "comentario"=>$this->comments,
             "hora"=>$this->created_at,

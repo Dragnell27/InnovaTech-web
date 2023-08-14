@@ -33,6 +33,7 @@ class CommentController extends Controller
         //     'comment'=>'required|string',
         // ]);
 
+
         $product = $request['product_id'];
         $comments = new Comment();
         $comments->user_id = Auth::user()->id;
@@ -42,11 +43,8 @@ class CommentController extends Controller
         $comments->param_state = 5;
 
         $comments->save();
-        
         return "Comentario creado";
-
     }
-
     /**
      * Display the specified resource.
      */
