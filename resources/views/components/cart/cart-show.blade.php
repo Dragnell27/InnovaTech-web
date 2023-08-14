@@ -38,11 +38,8 @@
             </div>
             <div class="row g-5 ml-20">
 
-                <div class=" col-lg-6  rounded order-md-first ">
+                <div class=" col col-lg-6  rounded order-md-first ">
                     @foreach ($CartItems as $items)
-
-                
-
                     <div class="card mb-3" style="max-width: 600px;" id="cartItem">
                         <div class="row g-0">
                           <div class="col-md-4">
@@ -63,12 +60,12 @@
                                     type="hidden"
                                     name="ProductPrice" 
                                     id="ProductPrice{{$items->id}}" 
-                                    value="{{ ($items->price * $items->quantity)-$descuento }}"
-                                />
-                                    $<span id="priceP{{$items->id}}">{{ ($items->price * $items->quantity)-$descuento  }}
+                                    value="{{ $items->price -$descuento }}"/>
+
+                                    $<span id="priceP{{$items->id}}">{{ $items->price - $descuento  }}
 
                                     </span>
-                                     <span id="descuento{{ $items->id }}"> - {{ $items->attributes["discount"] }}%
+                                     <span id="descuento{{ $items->id }}" class="text-success"> - {{ $items->attributes["discount"] }}%
 
                                      </span>
                                 </div>
@@ -125,72 +122,12 @@
                         </div>
                       </div>
 
-{{--  
-                    <div class="container w-100 mb-2">
-                        <div class="card w-100">
-                            <div class="card w-100">
-                                <ul class="list-inline  mt-2 mb-2 w-100">
-
-                                    <li class="list-inline-item "style="margin-right: 15px"> <img
-                                            src=" {{ $items->attributes["image"] }}"  width="100px">
-                                    </li>
-
-                                    <li class="list-inline-item col-4" >
-                                        <h4>
-                                            {{ $items->name }}
-                                        </h4>
-
-                                        <p>
-                                            {{ $items->attributes["desc"] }}
-                                        </p>
-                                    </li>
-                                    
-
-                                    @if ($items->attributes["discount"]== 0)
-                                    <li class="list-inline-item mr-4" style="text-align: right" ><strong id="precio">
-                                            {{ $items->price }}
-                                        </strong>
-                                    </li>
-                                    @else
-                                    @php
-                                    $descuento=($items->price * $items->attributes["discount"]) /100
-                                    @endphp
-                                    <li class="list-inline-item">
-                                        <strong id="precio">
-                                            {{ $items->price }}
-                                        </strong>
-                                        <span class=""
-                                            id="precio">${{ ($items->price * $items->quantity)-$descuento}}</span>
-                                    </li>
-                                    @endif
-
-                                    <li class="list-inline-item ">
-                                        <button class="buttonsMM" id="aumentar">
-                                            <i class="bi bi-plus-circle-fill"></i>
-                                        </button>
-                                        <span class="badge bg-danger rounded-pill" id="cantidad">1</span>
-
-                                        <button class="buttonsMM ml-4" id="disminuir"><i
-                                                class="bi bi-dash-circle-fill"></i></button>
-                                                <li style="margin-left: 70%">
-                                                    <a href="" class="ml-2">eliminar</a>
-                                                    <a href="" class="ml-2">Lista de deseos</a>
-                                                </li>
-                                            </li>
-                                   
-                                    <a name id class=" w-40 btn btn-primary ml-4" style="margin-top: -16px" href="{{ route('pasoUno') }}"
-                                        role="button">Continuar compra
-                                    </a>
-                                </ul>
-                            </div>
-                        </div>  --}}
-
                         @endforeach
                     </div>
 
                 </div>
 
-                <div class="col-md-5 col-lg-4 order-md-last">
+                <div class="col col-md-5 col-lg-4 order-md-last">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-danger">Resumen de compra</span>
 
