@@ -1,5 +1,8 @@
 <head>
     <link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
+    <script>
+        var baseURL = "{{ url('/') }}";
+    </script>
 </head>
 @extends('layouts.contenedor')
 @section('title', 'Home')
@@ -187,6 +190,7 @@
                     </div>
                 </div>
         </section>
+        
         <script src="{{ asset('js/cartas.js') }}"></script>
         <script src="{{ asset('js/producto.js') }}"></script>
         <script src="{{ asset('js/carrousel.js') }}"></script>
