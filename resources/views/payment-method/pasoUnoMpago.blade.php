@@ -162,18 +162,18 @@
                                                     <select class="form-select form-select-lg text-center" name=""
                                                         id="direciones">
                                                         <option selected>Elige la direccion</option>
-                                                        <option value="dir1">Dirección 1</option>
-                                                        <option value="dir2">Dirección 2</option>
-                                                        <option value="dir3">Dirección 3</option>
+                                                        <option value="1">Dirección 1</option>
+                                                        <option value="2">Dirección 2</option>
+                                                        <option value="3">Dirección 3</option>
                                                     </select>
                                                 </div>
-
+                                                
                                             </div>
 
                                     </form>
                                 </div>
                                 <div class="col-12">
-                                    <form action="" id="formirecciones" style="display: none" >
+                                    <form action="" id="formDirecciones" style="display: none" >
                                         <div class="container">
                                             <div class="row g-3">
 

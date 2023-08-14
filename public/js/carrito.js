@@ -1,3 +1,6 @@
+
+
+//cart-alert
 $(document).ready(function () {
     //Alerta del carrito 
     $(".changeQuantity").click(function (e) {
@@ -8,19 +11,17 @@ $(document).ready(function () {
             case "+":
                 let qty = $("#qty").val();
                 Number(qty)
+             
                 if (qty < 20) {
                     $("#qty").val(Number(qty) + 1);
 
                     var prod_id = $("#hidden").val();
                     var quantity = $("#qty").val();
-                    var fixedPrice = $("#ProductPrice").val();
-                    var updatePrice = Number(fixedPrice) * Number(quantity);
-                    $("#priceP").html(updatePrice);
                     
                     var data = {
                         "prod_id": prod_id,
                         "quantity": quantity,
-                        "newPrice": updatePrice
+                        // "newPrice": updatePrice
                       
                     }
 
@@ -46,16 +47,10 @@ $(document).ready(function () {
 
                     var prod_id = $("#hidden").val();
                     var quantity = $("#qty").val();
-                    var fixedPrice = $("#ProductPrice").val();
-
-                    var updatePrice = Number(fixedPrice) * Number(quantity);
-                    $("#priceP").html(updatePrice);
-
-
+     
                     var data = {
                         "prod_id": prod_id,
                         "quantity": quantity,
-                        "newPrice": updatePrice
                     }
 
                     $.ajax({
@@ -108,6 +103,8 @@ $(document).ready(function () {
 
 });
 
+
+//js añadir al carrito
 window.addEventListener("load",()=>{
    const btn = document.querySelectorAll('.btn-cart');
    btn.forEach(boton=>{
@@ -129,21 +126,12 @@ window.addEventListener("load",()=>{
                         data: data,
                         success: function(response) {
                             console.log("bien")
-                            //Cargar la respuesta (vista nueva) en el contenedor
                            window.location.href="/ "
-                            
-                            // // Si hay un mensaje de sesión en la vista cargada, mostrarlo
-                            // var mensajeSesion = $(response.vista).find('.card-header h5').text();
-                            // if (mensajeSesion) {
-                            //     alert(mensajeSesion);
-                            // }
                         },
                         error: function() {
                             console.log('Error al cargar la nueva vista.');
                         }
                     });
-          
-                   
                 }, 
                 error: function(data) {
                     console.log(data,"mal");
@@ -158,6 +146,93 @@ window.addEventListener("load",()=>{
 });
 
 
+//js cart-show
+$(document).ready(function (){
+
+    $(".qtyChanger").click(function (e) {
+
+        e.preventDefault();
+        let operator = e.target.value;
+        var datos = operator.split(":");
+        var signo =datos[0];
+        var prod_id = datos[1]; 
+        var qtyId ="qty-"+prod_id;
+        var cantidad = document.getElementById(qtyId);
+
+        switch (signo) {
+            case "+":
+            
+            var newValue = Number(cantidad.value)+1;
+          
+                 if (newValue < 21) {
+                    cantidad.value = newValue;
+                  var quantity = cantidad.value;
+                  var fixedPrice = document.getElementById("ProductPrice"+prod_id);
+                  var precio = document.getElementById("priceP"+prod_id);
+                  var updatePrice = Number(fixedPrice.value) * Number(quantity)
+                  var data = {
+                    "prod_id": prod_id,
+                    "quantity": quantity,
+
+                  }
+                  var data = {
+                    "prod_id": prod_id,
+                    "quantity": quantity,
+                    "newPrice": updatePrice,
+
+                  }
+                       $.ajax({
+                       type: "GET",
+                       url: "update-cart",
+                       data: data,
+                       dataType: "dataType",
+                       success: function (data) {
+
+                       }
+                   });
+                 }
+
+                break;
+            case "-":
+               
+                var newValue = Number(cantidad.value)-1;
+               
+                if (newValue > 0) {
+                    cantidad.value = newValue;
+                    var quantity = cantidad.value;
+                    var fixedPrice = document.getElementById("ProductPrice"+prod_id);
+                    var precio = document.getElementById("priceP"+prod_id);                      
+                    var updatePrice = Number(fixedPrice.value) * Number(quantity)
+                    var data = {
+                      "prod_id": prod_id,
+                      "quantity": quantity,
+                      "newPrice": updatePrice,
+  
+                    }
+                         $.ajax({
+                         type: "GET",
+                         url: "update-cart",
+                         data: data,
+                         dataType: "dataType",
+                         success: function (data) {
+
+                         }
+                     });
+               
+
+                 }
+
+                break;
+            default:
+                break;
+        }
+
+
+    });
+
+
+
+});
 // //Funciones Camilo Alzate 
 // const buttonAum = document.getElementById("aumentar");
 // const buttonDis = document.getElementById("disminuir");

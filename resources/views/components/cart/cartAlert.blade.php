@@ -10,9 +10,11 @@
    
     if (Auth::check()) {
         $item = Cart::session(Auth::user()->id)->get(session('msj_exitoso')["id"]);
+        
     } else {
 
         $item = Cart::get(session('msj_exitoso')["id"]);
+      
        
     }
     ?>
@@ -35,8 +37,7 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">Has agregado al carrito: {{ session('msj_exitoso')["name"] }}</h5>
-                    <input type="hidden" name="ProductPrice" id="ProductPrice"
-                        value="{{ session('msj_exitoso')['price'] }}">
+                         
                     <span>
                         <button id="btnDecrement" class="changeQuantity" name="submitButton" value="-">-</button>
                         <input width="20px" type="text" id="qty" value="{{ $item->quantity }}">
