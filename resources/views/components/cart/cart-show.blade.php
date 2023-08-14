@@ -24,7 +24,8 @@
     ?>
             
         @endif
-        @if ($CartCount <= 0) <section>
+        @if ($CartCount <= 0) 
+        
             <div id="carritovacio">
                 <h1>Su carrito está vacio</h1>
                 <img src="{{ asset('img/carro-vacio.png') }}" alt="">
@@ -36,96 +37,97 @@
                 </h3>
 
             </div>
-            <div class="row g-5 ml-20">
+            <section id="productSection">
+                <div class="row g-5 ml-20">
 
-                <div class=" col col-lg-6  rounded order-md-first ">
-                    @foreach ($CartItems as $items)
-                    <div class="card mb-3" style="max-width: 600px;" id="cartItem">
-                        <div class="row g-0">
-                          <div class="col-md-4">
-                            <img src="{{ $items->attributes['image'] }}" class="img-fluid rounded-start" alt="...">
-                          </div>
-                          <div class="col-md-8">
-                            <div class="card-body">
-                              <h5 class="card-title">{{ $items->name }}</h5>
-                              <div class="card-text"><p>{{  $items->attributes["desc"] }}</p>
-                               <div>
-                                @if ($items->attributes["discount"] > 0)
-
-                                <?php
-                                    $descuento=($items->price * $items->attributes["discount"]) /100
-                                ?>
-                                <div>
+                    <div class="col-lg-6  rounded order-md-first ">
+                        @foreach ($CartItems as $items)
+                        <div class="card mb-3" style="max-width: 600px;" id="cartItem">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                <img src="{{ $items->attributes['image'] }}" class="img-fluid rounded-start" alt="...">
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{ $items->name }}</h5>
+                                  <div class="card-text"><p>{{  $items->attributes["desc"] }}</p>
+                                   <div>
+                                    @if ($items->attributes["discount"] > 0)
+    
+                                    <?php
+                                        $descuento=($items->price * $items->attributes["discount"]) /100
+                                    ?>
+                                    <div>
+                                        <input 
+                                        type="hidden"
+                                        name="ProductPrice" 
+                                        id="ProductPrice{{$items->id}}" 
+                                        value="{{ $items->price -$descuento }}"/>
+    
+                                        $<span id="priceP{{$items->id}}">{{ $items->price - $descuento  }}
+    
+                                        </span>
+                                         <span id="descuento{{ $items->id }}" class="text-success"> - {{ $items->attributes["discount"] }}%
+    
+                                         </span>
+                                    </div>
+                                    <div>
+                                        <span>{{ $items->price  }}</span>
+                                    </div>
+                                    @else
+    
                                     <input 
                                     type="hidden"
                                     name="ProductPrice" 
                                     id="ProductPrice{{$items->id}}" 
-                                    value="{{ $items->price -$descuento }}"/>
-
-                                    $<span id="priceP{{$items->id}}">{{ $items->price - $descuento  }}
-
-                                    </span>
-                                     <span id="descuento{{ $items->id }}" class="text-success"> - {{ $items->attributes["discount"] }}%
-
-                                     </span>
-                                </div>
-                                <div>
-                                    <span>{{ $items->price  }}</span>
-                                </div>
-                                @else
-
-                                <input 
-                                type="hidden"
-                                name="ProductPrice" 
-                                id="ProductPrice{{$items->id}}" 
-                                value="{{ $items->price }}"
-                            />
-
-                                <span>$<span id="priceP{{$items->id}}">{{ $items->price  }}</span> </span>
+                                    value="{{ $items->price }}"
+                                />
+    
+                                    <span>$<span id="priceP{{$items->id}}">{{ $items->price  }}</span> </span>
+                                        
+                                    @endif
+                                   
+                                    <button 
+                                        id="btnDecrement"
+                                        class="qtyChanger"
+                                        name="submitButton" 
+                                        value="-:{{$items->id}}"> -
+                                    </button>
                                     
-                                @endif
-                               
-                                <button 
-                                    id="btnDecrement"
-                                    class="qtyChanger"
-                                    name="submitButton" 
-                                    value="-:{{$items->id}}"> -
-                                </button>
-                                
-                              
-                                <input 
-                                    width="20px" 
-                                    type="text" 
-                                    class="qtys"
-                                    id="qty-{{$items->id}}" 
-                                    value="{{ $items->quantity }}"
-                                />  
-
+                                  
                                     <input 
-                                    type="hidden" 
-                                    name="id" 
-                                    id="hidden" 
-                                    value="{{ $items->id}}">  
-
-                                <button 
-                                    id="btnIncrement" 
-                                    class="qtyChanger" 
-                                    name="submitButton" 
-                                    value="+:{{$items->id}}"
-                                >+
-                                </button>
-                               </div>
+                                        width="20px" 
+                                        type="text" 
+                                        class="qtys"
+                                        id="qty-{{$items->id}}" 
+                                        value="{{ $items->quantity }}"
+                                    />  
+    
+                                        <input 
+                                        type="hidden" 
+                                        name="id" 
+                                        id="hidden" 
+                                        value="{{ $items->id}}">  
+    
+                                    <button 
+                                        id="btnIncrement" 
+                                        class="qtyChanger" 
+                                        name="submitButton" 
+                                        value="+:{{$items->id}}"
+                                    >+
+                                    </button>
+                                   </div>
+                                  </div>
+                                  <p class="card-text"><small class="text-body-secondary"><a href="{{route('cart.destroy',$items->id)  }}">Eliminar</a></small></p>
+                                </div>
                               </div>
-                              <p class="card-text"><small class="text-body-secondary"><a href="{{route('cart.destroy',$items->id)  }}">Eliminar</a></small></p>
                             </div>
                           </div>
+    
+                            @endforeach
                         </div>
-                      </div>
-
-                        @endforeach
+    
                     </div>
-
-                </div>
 
                 <div class="col col-md-5 col-lg-4 order-md-last">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -164,6 +166,10 @@
                     </form>
                 </div>
             </div>
+
+
+            </section>
+            
 
             @endif
 
