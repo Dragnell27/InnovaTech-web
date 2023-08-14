@@ -70,6 +70,10 @@ class WishlistController extends Controller
     {
         $lista = wishlist::findOrFail($id);
         $lista->delete();
-        return response()->json(['success' => true]);
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        } else {
+            return redirect()->back()->with('success_message', 'Producto eliminado de la lista de deseos');
+        }
     }
 }
