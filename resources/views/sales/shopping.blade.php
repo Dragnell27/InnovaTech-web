@@ -4,10 +4,9 @@
 <div class="container mb-5">
     <h1>Mis compras</h1>
       <div id="sales-container" class="row">
-
         <div class="col-md-12">
             <div class="card mb-4">
-                <div class="row">
+                <div class="row" id="content">
                     <div class="col-md-3">
                         <!-- Imagen del producto -->
                         <img src="{{ asset('img/Logo-Innova.jpeg') }}" alt="Producto" class="img-fluid">

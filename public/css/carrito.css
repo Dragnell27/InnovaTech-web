@@ -104,3 +104,10 @@
   padding: 10px;
   margin-left: 40px;
 }
+
+/* Nuevo css para dividir el resumen */
+
+
+#productSection{
+  display: flex ;
+}

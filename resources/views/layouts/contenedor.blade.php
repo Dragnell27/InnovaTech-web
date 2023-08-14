@@ -85,7 +85,10 @@
             <i class="uil uil-search search-icon" id="searchIcon"></i>
             <div class="search-box">
                 <i class="uil uil-search search-icon"></i>
-                <input type="text" placeholder="Buscar en innovatech..." />
+                <form action="{{route('products.search')}}" method="POST">
+                    @csrf
+                    <input type="text" name="query" placeholder="Buscar en innovatech..." />
+                </form>
             </div>
         </nav>
     </header>

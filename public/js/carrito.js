@@ -106,6 +106,7 @@ $(document).ready(function () {
 
 //js añadir al carrito
 window.addEventListener("load",()=>{
+
    const btn = document.querySelectorAll('.btn-cart');
    btn.forEach(boton=>{
         boton.addEventListener("click",()=>{
@@ -115,18 +116,18 @@ window.addEventListener("load",()=>{
             }
             $.ajax({
                 type: "POST",
-                url: "/Cart-Checkout",
+                url: baseURL + "/Cart-Checkout",
                 data: data,
                 dataType: "json",
                 success: function (data) {
                     console.log(data["msj_exitoso"],"bien");
                     $.ajax({
-                        url: '/cart-added',
+                        url: baseURL +'/cart-added',
                         method: 'GET',
                         data: data,
                         success: function(response) {
                             console.log("bien")
-                           window.location.href="/ "
+                           window.location.href=baseURL
                         },
                         error: function() {
                             console.log('Error al cargar la nueva vista.');
@@ -183,7 +184,7 @@ $(document).ready(function (){
                   }
                        $.ajax({
                        type: "GET",
-                       url: "update-cart",
+                       url: baseURL+ "/update-cart",
                        data: data,
                        dataType: "dataType",
                        success: function (data) {
@@ -211,7 +212,7 @@ $(document).ready(function (){
                     }
                          $.ajax({
                          type: "GET",
-                         url: "update-cart",
+                         url: baseURL+"/update-cart",
                          data: data,
                          dataType: "dataType",
                          success: function (data) {

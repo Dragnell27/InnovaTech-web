@@ -6,14 +6,14 @@
 @section('component')
     <div class="container">
         <div class="row justify-content-center">
-            @if (count($wishlist) > 0)
-                @foreach ($wishlist as $lista)
+            @if (count($products) > 0)
+                @foreach ($products as $lista)
                     @php
-                        $images = explode(':', $lista->productos->images);
-                        $precioVenta = $lista->productos->price - ($lista->productos->price / 100) * $lista->productos->discount;
+                        $images = explode(':', $lista->images);
+                        $precioVenta = $lista->price - ($lista->price / 100) * $lista->discount;
                     @endphp
                     <div class="col-10 mb-2">
-                        <div class="card " data-url="{{ route('productos.show', $lista->productos->id) }}">
+                        <div class="card " data-url="{{ route('productos.show', $lista->id) }}">
                             <div class="row" role="button">
                                 <div class="col-md-3 col-12 d-flex justify-content-center align-items-center p-2">
                                     <img src="{{ 'https://innovatechcol.com.co/img/productos/' . $images[0] }}"
@@ -23,12 +23,12 @@
                                     <div class="card-body">
                                         <div>
                                             <div>
-                                                <h5 class="card-title titulo">{{ $lista->productos->name }}</h5>
+                                                <h5 class="card-title titulo">{{ $lista->name }}</h5>
                                             </div>
 
-                                            @if ($lista->productos->discount > 0)
+                                            @if ($lista->discount > 0)
                                                 <div class="text-decoration-line-through text-danger descuento">
-                                                    $ {{ $lista->productos->price }}
+                                                    $ {{ $lista->price }}
 
                                                 </div>
                                             @endif
@@ -36,9 +36,9 @@
                                                 <span class="h5">
                                                     $ {{ $precioVenta }}
                                                 </span>
-                                                @if ($lista->productos->discount > 0)
+                                                @if ($lista->discount > 0)
                                                     <strong class="text-success">
-                                                        {{ $lista->productos->discount }}% OFF
+                                                        {{ $lista->discount }}% OFF
                                                     </strong>
                                                 @endif
                                                 <form action="{{ route('wishlist.destroy', $lista->id) }}" method="post">
@@ -57,7 +57,7 @@
                 @endforeach
             @else
                 <div class="text-center mt-5">
-                    <h1>Ningun producto en tu lista de deseos</h1>
+                    <h1>Ningun producto encontrado</h1>
                     <p>
                         <svg width="100" height="100" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path

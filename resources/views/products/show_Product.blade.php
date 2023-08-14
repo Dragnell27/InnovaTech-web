@@ -104,6 +104,7 @@
 
                         <input type="hidden" id="product_id" name="product_id" value="{{ $productos->id }}">
                         <button type="submit" class="btn btn-primary btn-danger">Agregar comentario</button>
+                        <input type="submit" value="Enviar" class="btn btn-primary btn-danger">
                     </form>
                 </div>
             </div>
