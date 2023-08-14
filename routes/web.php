@@ -17,7 +17,7 @@ use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Param;
 use App\Models\product;
-
+use App\Models\wishlist;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +29,6 @@ use App\Models\product;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
-
-Route::get('/', function () {
-    return view('index');
-})->name('index');
 
 /// RUTAS DE PQRS
 
@@ -64,10 +58,16 @@ ROUTE::view('components/cart/cart-show','components/cart/cart-show') ->name('car
 ///   Rutas confirmadas   ///
 /////////////////////////////
 Route::get('/', function () {
-    $product = product::all();
+    $products = product::all();
     $colors = Param::where('paramtype_id', 11)->get();
-    return view('index',compact('product'),compact('colors'));
+    $favoritos = [];
+
+    if (Auth::check()) {
+        $favoritos = Wishlist::where('user_id', Auth::user()->id)->get();
+    }
+    return view('index',compact('products', 'colors', 'favoritos'));
 })->name('index');
+
 //Ruta de jaider, sirve para cargar los tipos de docuemnto en el registro
 Route::post("document_types",[RegisterController::class, 'document_type'])->name("document_type");
 
@@ -98,7 +98,12 @@ Route::resource('/users', UserController::class);
 Route::view('/sales/shopping', 'sales/shopping')->name('shopping');
 
 //ruta jaider, lista de deseos
-Route::middleware('auth')->resource('/wishlist', WishlistController::class);
+Route::resource('/wishlist', WishlistController::class);
+
+// Route::post('/wishlist', [WishlistController::class, 'store'])->name('wishlist.store');
+// Route::get('/wishlist/{id}', [WishlistController::class, 'destroy'])->name('wishlist.eliminar');
+// Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+
 
 //ruta para faqs
 // Route::post('/faqs/{id}', [faqsController::class, 'store'])->name('faqs.store');
