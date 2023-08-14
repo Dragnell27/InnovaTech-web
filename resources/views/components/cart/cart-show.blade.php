@@ -15,6 +15,9 @@
             <?php
                 $CartItems = Cart::session(Auth::user()->id)->getContent();
                 $CartCount = Cart::session(Auth::user()->id)->getContent()->count();
+
+                {{--  Sacar las imagenes, falta hacer un explode  --}}
+                $imagenes = ($CartItems[1]->attributes["image"]);
             ?>
 
         @else
@@ -40,7 +43,7 @@
             <section id="productSection">
                 <div class="row g-5 ml-20">
 
-                    <div class=" col-lg-6  rounded order-md-first ">
+                    <div class="col-lg-12   rounded order-md-first ">
                         @foreach ($CartItems as $items)
                         <div class="card mb-3" style="max-width: 600px;" id="cartItem">
                             <div class="row g-0">
