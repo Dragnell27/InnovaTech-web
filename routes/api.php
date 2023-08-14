@@ -4,7 +4,8 @@ use App\Http\Controllers\apiControllers\SalesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\Sale_detail;
+use App\Http\Controllers\Salescontroller as ControllersSalescontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,4 @@ Route::apiResource('comentario', CommentController::class);
 
 //@Jhonmurillo
 Route::apiResource('/compras', SalesController::class);
+Route::apiResource('/shopping', Sale_detail::class);
