@@ -86,49 +86,71 @@
                 <button class="nxt-btn"><img src="{{ asset('img/arrow.png') }}" alt=""></button>
 
                 <div class="product-container">
-                    @foreach ($product as $productos)
-                    @php
-                        $images = explode(":", $productos->images);
-                        $coloresProducto = explode(":", $productos->param_color);
+                    @foreach ($products as $productos)
+                        @php
+                            $images = explode(':', $productos->images);
+                            $coloresProducto = explode(':', $productos->param_color);
 
-                        $colores = "";
+                            $colores = '';
 
-                        foreach ($coloresProducto as $coloresP => $cP) {
-                            foreach ($colors as $key => $value) {
-                                if ($cP == $value->id ) {
-                                    $colores .= $value->name . ", ";
+                            $lista_favortitos = '';
+
+                            $agregado_lista = 'no_agregado_favoritos';
+
+                            if (Auth::check()) {
+                                foreach ($favoritos as $favorito => $f) {
+                                    if ($f->product_id == $productos->id) {
+                                        $agregado_lista = 'agregado_favoritos';
+                                        $lista_favortitos = $f->id;
+                                        break;
+                                    }
                                 }
                             }
-                        }
-                        $colores = substr($colores, 0, -2);
-                    @endphp
+
+                            foreach ($coloresProducto as $coloresP => $cP) {
+                                foreach ($colors as $key => $value) {
+                                    if ($cP == $value->id) {
+                                        $colores .= $value->name . ', ';
+                                    }
+                                }
+                            }
+                            $colores = substr($colores, 0, -2);
+                        @endphp
                         <div class="product-card">
-                            <div class="product-image click" data-url="{{ route('productos.show',$productos->id)}}">
-                                <span class="discount-tag"><a href=""><i class='bx bxs-heart'></i></a></span>
-                                <img id="imgCard click" data-url="{{ route('productos.show', $productos->id)}}" class="product-thumb" alt="300px" src="{{'https://innovatechcol.com.co/img/productos/'.$images[0]}}">
+                            <div class="product-image">
+                                <button class="{{ $agregado_lista }} btn float-end"
+                                    data-product_id="{{ $productos->id . ':' . $lista_favortitos }}">
+                                    <svg width="16" height="16">
+                                        <path
+                                            d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
+                                    </svg>
+                                </button>
+                                <img id="imgCard ir-producto" data-url="{{ route('productos.show', $productos->id) }}"
+                                    class="product-thumb" alt="300px"
+                                    src="{{ 'https://innovatechcol.com.co/img/productos/' . $images[0] }}">
                                 {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset('productos/'.$images[0])}}" alt="
                                     onclick="window.location.href='{{ route('productos') }}'"> --}}
-                                <button class="card-btn btn-cart" data-id="{{$productos->id}}">Añadir al
+                                <button class="card-btn btn-cart" data-id="{{ $productos->id }}">Añadir al
                                     Carrito</button>
                             </div>
                             @component('components.cart.SendToCart')
 
-                                <div class="product-info">
-                                    <h4 class="product-brand" id="name">{{$productos->name}}</h4>
-                                    <p class="product-short-description" id="desc">{{$productos->description}}</p>
+                                <div class="product-info ir-producto" data-url="{{ route('productos.show', $productos->id) }}">
+                                    <h4 class="product-brand" id="name">{{ $productos->name }}</h4>
+                                    <p class="product-short-description" id="desc">{{ $productos->description }}</p>
                                     @php
-                                    $descuento = ($productos->price*$productos->discount)/100;
-                                    $precioDescuento = $productos->price-$descuento;
+                                        $descuento = ($productos->price * $productos->discount) / 100;
+                                        $precioDescuento = $productos->price - $descuento;
                                     @endphp
-                                    @if ($productos->discount==0)
-                                    <span class="price" id="price">${{$productos->price}}</span>
+                                    @if ($productos->discount == 0)
+                                        <span class="price" id="price">${{ $productos->price }}</span>
                                     @else
-                                    <span class="precioReal">${{$precioDescuento}}</span>
-                                    <br>
-                                    <span class="descuento-valor">{{$productos->discount}}% OFF</span>
-                                    <span class="actual-price" style="font-size: 20px">${{$productos->price}}</span>
+                                        <span class="precioReal">${{ $precioDescuento }}</span>
+                                        <br>
+                                        <span class="descuento-valor">{{ $productos->discount }}% OFF</span>
+                                        <span class="actual-price" style="font-size: 20px">${{ $productos->price }}</span>
                                     @endif
-                                    <span class="color" id="color">{{$colores}}</span>
+                                    <span class="color" id="color">{{ $colores }}</span>
                                 </div>
                             </div>
                         @endforeach
@@ -171,10 +193,75 @@
 
         <script>
             $(document).ready(function() {
-                $('.click').on('click', function() {
+                $('.ir-producto').on('click', function() {
                     var url = $(this).attr('data-url');
                     window.location.href = url;
                 });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+
+
+                $('.no_agregado_favoritos').on('click', function() {
+                    var button = $(this);
+                    var idProducto = button.data('product_id').split(':');
+                    var productoId = idProducto[0];
+                    console.log(productoId);
+
+                    $.ajax({
+                        url: "{{ route('wishlist.store') }}",
+                        method: 'POST',
+                        data: {
+                            product_id: productoId
+                        },
+                        success: function(response) {
+                            button.removeClass('no_agregado_favoritos');
+                            button.addClass('agregado-favoritos');
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
+                            alert('Error al agregar a la lista.');
+                        }
+                    });
+                });
+
+                $('.agregado_favoritos').on('click', function() {
+                    var button = $(this);
+                    var idProducto = button.data('product_id').split(':');
+                    var productoId = idProducto[1];
+
+                    console.log(productoId);
+                    $.ajax({
+                        url: "{{ route('wishlist.destroy', ':product_id') }}".replace(':product_id',
+                            productoId),
+                        method: 'delete',
+                        data: {
+                            product_id: productoId
+                        },
+                        success: function(response) {
+                            button.removeClass('agregado_favoritos');
+                            button.addClass('no_agregado_favoritos');
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
+                            alert('Error al eliminar de la lista.');
+                        }
+                    });
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('.no_agregado_favoritos').hover(
+                    function() {
+                        $(this).css('fill', 'red');
+                    },
+                    function() {
+                        $(this).css('fill', 'black');
+                    }
+                );
+                $('.agregado_favoritos').css('fill', 'red');
             });
         </script>
     @endsection
