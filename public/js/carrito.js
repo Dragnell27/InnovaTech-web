@@ -106,7 +106,7 @@ $(document).ready(function () {
 
 //js añadir al carrito
 window.addEventListener("load",()=>{
-    console.log(baseURL);
+
    const btn = document.querySelectorAll('.btn-cart');
    btn.forEach(boton=>{
         boton.addEventListener("click",()=>{
