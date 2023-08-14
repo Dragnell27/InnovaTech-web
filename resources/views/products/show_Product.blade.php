@@ -94,16 +94,16 @@
                         @csrf
                         <div class="form-group">
                             <label for="comment">Comentario:</label>
-                            <textarea class="form-control" name="comment" rows="3" required></textarea>
+                            <textarea class="form-control" name="comment" rows="3"></textarea>
                             <div class="star_rating">
-                                <button class="star">&#9734;</button>
-                                <button class="star">&#9734;</button>
-                                <button class="star">&#9734;</button>
-                                <button class="star">&#9734;</button>
-                                <button class="star">&#9734;</button>
+                                <i class="star">&#9734;</i>
+                                <i class="star">&#9734;</i>
+                                <i class="star">&#9734;</i>
+                                <i class="star">&#9734;</i>
+                                <i class="star">&#9734;</i>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-danger">Agregar comentario</button>
+                        <input type="submit" value="Enviar" class="btn btn-primary btn-danger">
                     </form>
                 </div>
             </div>
