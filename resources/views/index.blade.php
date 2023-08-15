@@ -131,7 +131,7 @@
                                     </svg>
                                 </button>
                                 <img id="imgCard" class="ir-producto" data-url="{{ route('productos.show', $productos->id) }}"
-                                    class="product-thumb" alt="300px" width="240px"
+                                    class="product-thumb" height="259px" width="259px"
                                     src="{{ 'https://innovatechcol.com.co/img/productos/' . $images[0] }}">
                                 {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset('productos/'.$images[0])}}" alt="
                                     onclick="window.location.href='{{ route('productos') }}'"> --}}
@@ -156,7 +156,8 @@
                                         <span class="descuento-valor">{{ $productos->discount }}% OFF</span>
                                         <span class="actual-price" style="font-size: 20px">${{ $productos->price }}</span>
                                     @endif
-                                    <span class="color" id="color">{{ $colores }}</span>
+                                    <br>
+                                    <span class="color" id="color">Colores: {{ $colores }}</span>
                                 </div>
                             </div>
                         @endforeach
