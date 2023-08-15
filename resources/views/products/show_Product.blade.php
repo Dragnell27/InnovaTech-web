@@ -6,6 +6,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/productos.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
+
 
 
     </head>
@@ -34,10 +36,22 @@
                 <!-- col end -->
                 <div class="col-lg-7 mt-5">
                     <div class="card">
+
                         <div class="card-body"style="cursor: default">
+                            <div class="text-right">
+
+                                <button class="btn float-end"
+                                data-product_id="">
+                                <svg width="16" height="16">
+                                    <path
+                                        d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
+                                </svg>
+                            </button>
+                            </div>
                             <div class="text-center mb-4">
                                 <h1 class="product-brand ">{{ $productos->name }}</h1>
                             </div>
+
                             <div class="dflex row">
                                 <div class="text-left col-6">
                                     <h4 style="font-size: 20px;font-weight: bold;">
@@ -45,8 +59,10 @@
                                     </h4>
                                 </div>
                                 <div class="text-right col-6">
+
                                     @if ($productos->discount == 0)
-                                        <label class="mt-2 text-muted">＄{{ $productos->price }}</label>
+                                    <h4 class="mt-4"><strong><label>＄{{ $productos->price }}</label></strong>
+                                </h4>
                                     @else
                                         @php
                                             $descuento = ($productos->price * $productos->discount) / 100;
@@ -88,12 +104,8 @@
                                 </h5>
                             </div>
                         </div>
-                        <div class="text-center">
+                        <div class="text-center mb-2">
                             <button data-id="{{ $productos->id }}" class="btnAddCart btn-cart">Añadir al carrito</button>
-                        </div>
-
-                        <div class="text-center mt-3">
-                            <a href="http://">Agregar a lista de deseos</a>
                         </div>
                     </div>
                 </div>
@@ -128,7 +140,7 @@
 
             <div class="container-fluid d-flex justify-content-center align-items-center" id="contenedortitulo">
                 <div class="div">
-                    <button class="div btn btn-danger w-100" id="CargarBoton">Ver Comentarios</button>
+                    <button class="btnAddCart w-100" id="CargarBoton">Ver Comentarios</button>
                 </div>
             </div>
 
@@ -150,4 +162,59 @@
     <script src="{{ asset('js/producto.js') }}"></script>
     <script src="{{ asset('js/comments.js') }}"></script>
     <script src="{{ asset('js/comments_product.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.ir-producto').on('click', function() {
+                var url = $(this).attr('data-url');
+                window.location.href = url;
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.no_agregado_favoritos').on('click', function() {
+                var button = $(this);
+                var idProducto = button.data('product_id').split(':');
+                var productoId = idProducto[0];
+                $.ajax({
+                    url: "{{ route('wishlist.store') }}",
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        product_id: productoId
+                    },
+                    success: function(response) {
+                        button.removeClass('no_agregado_favoritos');
+                        button.addClass('agregado_favoritos');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('Error al agregar a la lista.');
+                    }
+                });
+            });
+
+            $('.agregado_favoritos').on('click', function() {
+                var button = $(this);
+                var idProducto = button.data('product_id').split(':');
+                var productoId = idProducto[1];
+                $.ajax({
+                    url: "{{ route('wishlist.destroy', ':product_id') }}".replace(':product_id',
+                        productoId),
+                    method: 'delete',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        product_id: productoId
+                    },
+                    success: function(response) {
+                        button.removeClass('agregado_favoritos');
+                        button.addClass('no_agregado_favoritos');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
+                        alert('Error al eliminar de la lista.');
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
