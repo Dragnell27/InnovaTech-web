@@ -22,8 +22,10 @@
 
         @else
         <?php
+    
         $CartItems = Cart::getContent();
         $CartCount = Cart::getContent()->count() ;
+  
     ?>
             
         @endif
@@ -45,10 +47,15 @@
 
                     <div class="col-lg-12   rounded order-md-first ">
                         @foreach ($CartItems as $items)
+
+                        @php
+                        $imagenes = explode(":",$items->attributes["image"]);
+                            
+                        @endphp
                         <div class="card mb-3" style="max-width: 600px;" id="cartItem">
                             <div class="row g-0">
                               <div class="col-md-4">
-                                <img src="{{ $items->attributes['image'] }}" class="img-fluid rounded-start" alt="...">
+                                <img src="{{ $imagenes[0]}}" class="img-fluid rounded-start" alt="...">
                               </div>
                               <div class="col-md-8 col-12">
                                 <div class="card-body">

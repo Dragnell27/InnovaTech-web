@@ -7,14 +7,17 @@
 
   
     <?php
-   
+    $imagenes = explode(":",session('msj_exitoso')["images"]);
+    
+
     if (Auth::check()) {
         $item = Cart::session(Auth::user()->id)->get(session('msj_exitoso')["id"]);
+     
         
     } else {
 
         $item = Cart::get(session('msj_exitoso')["id"]);
-      
+       
        
     }
     ?>
@@ -32,7 +35,7 @@
                 <input type="button" id="btnClose" class="btn-close" aria-label="Close">
             </div>
             <div class='col-md-4'>
-                <img src="{{ session('msj_exitoso')["images"] }}"" class="img-fluid rounded-start">
+                <img src="{{ $imagenes[0] }}"" class="img-fluid rounded-start">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
