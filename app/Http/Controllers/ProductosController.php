@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\product;
 use App\Models\Param;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductosController extends Controller
 {
@@ -63,7 +65,8 @@ class ProductosController extends Controller
     {
 
         $productos = product::findOrFail($id);
-        $colors= Param::where('paramtype_id', 11)->get();
+        $colors = Param::where('paramtype_id', 11)->get();
+        $comments = Comment::join('users','users.id','ratings.user_id')->where('user_id',Auth::user()->id)->get();
         return view('products.show_Product', compact('productos','colors'));
     }
 }

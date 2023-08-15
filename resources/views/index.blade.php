@@ -131,7 +131,7 @@
                                     </svg>
                                 </button>
                                 <img id="imgCard" class="ir-producto" data-url="{{ route('productos.show', $productos->id) }}"
-                                    class="product-thumb" alt="300px"
+                                    class="product-thumb" alt="300px" width="240px"
                                     src="{{ 'https://innovatechcol.com.co/img/productos/' . $images[0] }}">
                                 {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset('productos/'.$images[0])}}" alt="
                                     onclick="window.location.href='{{ route('productos') }}'"> --}}
@@ -190,7 +190,7 @@
                     </div>
                 </div>
         </section>
-        
+
         <script src="{{ asset('js/cartas.js') }}"></script>
         <script src="{{ asset('js/producto.js') }}"></script>
         <script src="{{ asset('js/carrousel.js') }}"></script>
