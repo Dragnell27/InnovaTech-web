@@ -101,8 +101,8 @@
                                 <i class="star">&#9734;</i>
                             </div>
                         </div>
-
                         <input type="hidden" id="product_id" name="product_id" value="{{ $productos->id }}">
+                        <input type="hidden" id="num_star" name="starts">
                         <input type="submit" value="Agregar Comentario" class="btn btn-primary btn-danger">
                     </form>
                 </div>
@@ -120,7 +120,6 @@
             <div class="col-md-8">
                 <div class="comments">
                     <div class="comment">
-
                         <h4 id="user_id"></h4>
                         <p><i style="color: yellow;" id="starts"></i></p>
                         <p id="comments"></p>

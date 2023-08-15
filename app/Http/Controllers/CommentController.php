@@ -43,7 +43,7 @@ class CommentController extends Controller
         $comments->param_state = 5;
 
         $comments->save();
-        return "Comentario creado";
+        return back();
     }
     /**
      * Display the specified resource.
