@@ -61,7 +61,9 @@ class ProductosController extends Controller
 
     public function show($id)
     {
+
         $productos = product::findOrFail($id);
-        return view('products.show_Product', compact('productos'));
+        $colors= Param::where('paramtype_id', 11)->get();
+        return view('products.show_Product', compact('productos','colors'));
     }
 }

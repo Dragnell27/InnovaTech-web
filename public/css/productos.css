@@ -164,6 +164,9 @@ max-width: 100%;
   margin: 10px 10px 15px;
   cursor: pointer;
 }
+.small-product img:hover{
+    
+}
 .small-product{
   width: 20%;
   display: flex;
