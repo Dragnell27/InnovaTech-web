@@ -12,6 +12,7 @@
     <section class="bg-light">
         @php
             $images = explode(':', $productos->images);
+
         @endphp
         <div class="container">
             <div class="row">
@@ -19,7 +20,7 @@
                 <div class="col-lg-5 mt-5">
                     <div class="imgContainer ">
                         <img id="imgBox" src="{{ 'https://innovatechcol.com.co/img/productos/' . $images[0] }}"
-                            alt="{{$productos->description}}">
+                            alt="{{ $productos->description }}">
                     </div>
                     <div class="small-product">
                         @foreach ($images as $img)
@@ -35,45 +36,61 @@
                     <div class="card">
                         <div class="card-body"style="cursor: default">
                             <div class="text-center mb-4">
-                                <h1  class="product-brand " >{{$productos->name}}</h1>
+                                <h1 class="product-brand ">{{ $productos->name }}</h1>
                             </div>
                             <div class="dflex row">
-                            <div class="text-left col-6">
-                                <h4 style="font-size: 20px;font-weight: bold;">
-                                    "¡No esperes más para tener lo que deseas!"
-                                </h4>
-                            </div>
-                            <div class="text-right col-6">
-                                @if ($productos->discount==0)
-                            <label class="mt-2 text-muted">＄{{ $productos->price }}</label>
-                                @else
-                                @php
-                                $descuento=($productos->price * $productos->discount) /100;
-                                $precioDescuento=$productos->price - $descuento
-                                @endphp
-                                <h4><strong><label>＄{{ $precioDescuento}}</label></strong>  <span class="elevating-span ml-2">-{{ $productos->discount }}%</span>
-                                </h4>
-                                <h5>
-                                <label class="text-muted"style="text-decoration: line-through;">＄{{ $productos->price }}</label>
+                                <div class="text-left col-6">
+                                    <h4 style="font-size: 20px;font-weight: bold;">
+                                        "¡No esperes más para tener lo que deseas!"
+                                    </h4>
+                                </div>
+                                <div class="text-right col-6">
+                                    @if ($productos->discount == 0)
+                                        <label class="mt-2 text-muted">＄{{ $productos->price }}</label>
+                                    @else
+                                        @php
+                                            $descuento = ($productos->price * $productos->discount) / 100;
+                                            $precioDescuento = $productos->price - $descuento;
+                                        @endphp
+                                        <h4><strong><label>＄{{ $precioDescuento }}</label></strong> <span
+                                                class="elevating-span ml-2">-{{ $productos->discount }}%</span>
+                                        </h4>
+                                        <h5>
+                                            <label
+                                                class="text-muted"style="text-decoration: line-through;">＄{{ $productos->price }}</label>
 
-                                </h5>
-                                @endif
-                            </div>
+                                        </h5>
+                                    @endif
+                                </div>
 
                             </div>
                             <div class="text-left">
                                 <h5><strong>Descripcion:</strong>
-                                    <p id=""> {{$productos->description}}</p>
+                                    <p id=""> {{ $productos->description }}</p>
                                 </h5>
                                 <h5><strong>Color :</strong>
-                                    <strong class="text-muted">{{ $productos->param_color }}</strong>
+                                    @php
+                                        $coloresProducto = explode(':', $productos->param_color);
+                                        $colores='';
+
+                                      foreach ($coloresProducto as $cP) {
+                                 foreach ($colors as $color) {
+                                    if ($cP == $color->id) {
+                                        $colores .= $color->name . ', ';
+                                    }
+                                 }
+                            }
+                            $colores = substr($colores, 0, -2);
+                                    @endphp
+                  
+                                    <strong class="text-muted">{{ $colores }}</strong>
 
                                 </h5>
                             </div>
                         </div>
-                            <div class="text-center">
-                                <button data-id="{{ $productos->id }}" class="btnAddCart btn-cart" >Añadir al carrito</button>
-                            </div>
+                        <div class="text-center">
+                            <button data-id="{{ $productos->id }}" class="btnAddCart btn-cart">Añadir al carrito</button>
+                        </div>
 
                         <div class="text-center mt-3">
                             <a href="http://">Agregar a lista de deseos</a>
@@ -92,7 +109,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="comment">Comentario:</label>
-                            <textarea class="form-control" name="comment" rows="3" ></textarea>
+                            <textarea class="form-control" name="comment" rows="3"></textarea>
                             <div class="star_rating">
                                 <i class="star">&#9734;</i>
                                 <i class="star">&#9734;</i>
@@ -109,29 +126,29 @@
             </div>
             <br>
 
-        <div class="container-fluid d-flex justify-content-center align-items-center" id="contenedortitulo">
-        <div class="div">
-            <button class="div btn btn-danger w-100" id="CargarBoton">Ver Comentarios</button>
-        </div>
-    </div>
+            <div class="container-fluid d-flex justify-content-center align-items-center" id="contenedortitulo">
+                <div class="div">
+                    <button class="div btn btn-danger w-100" id="CargarBoton">Ver Comentarios</button>
+                </div>
+            </div>
 
-    <div id="comentarios-container" class="comments-container">
-        <div class="row" id="secciondecomentarios">
-            <div class="col-md-8">
-                <div class="comments">
-                    <div class="comment">
+            <div id="comentarios-container" class="comments-container">
+                <div class="row" id="secciondecomentarios">
+                    <div class="col-md-8">
+                        <div class="comments">
+                            <div class="comment">
 
-                        <h4 id="user_id"></h4>
-                        <p><i style="color: yellow;" id="starts"></i></p>
-                        <p id="comments"></p>
+                                <h4 id="user_id"></h4>
+                                <p><i style="color: yellow;" id="starts"></i></p>
+                                <p id="comments"></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
     </section>
     <script>
-        var BASE = "{{ url("/") }}";
+        var BASE = "{{ url('/') }}";
     </script>
     <script src="{{ asset('js/producto.js') }}"></script>
     <script src="{{ asset('js/comments.js') }}"></script>
