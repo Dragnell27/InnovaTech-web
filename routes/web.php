@@ -61,7 +61,6 @@ Route::get('/', function () {
     $products = product::all();
     $colors = Param::where('paramtype_id', 11)->get();
     $favoritos = [];
-
     if (Auth::check()) {
         $favoritos = Wishlist::where('user_id', Auth::user()->id)->get();
     }
@@ -113,8 +112,8 @@ Route::resource('comentarios', CommentController::class);
 //Rutas para cambiar contraseña
 Route::post('/change-password', [UserController::class, 'changePassword'])->name('change.password');
 Route::get('/form_password', function () {
-    return view('profile.contraseña.update');
-})->name('cambiar_contraseña')->middleware('auth');
+    return view('profile.contrasena.update');
+})->name('cambiar_contrasena')->middleware('auth');
 
 // algoritmo de busqueda, debe recibir formulario donde el input tenga el name query
 Route::post('/search', [ProductosController::class, 'search'])->name('products.search');

@@ -26,7 +26,7 @@
                             <p>Direcciones</p>
                         </div>
                     </a>
-                    <a href="{{route('cambiar_contraseña')}}">
+                    <a href="{{route('cambiar_contrasena')}}">
                         <div class="form-control mb-2">
                             <p>Cambiar contraseña</p>
                         </div>

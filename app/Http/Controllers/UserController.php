@@ -60,7 +60,7 @@ class UserController extends Controller
         $user->param_state = 5;
         $user->save();
         Auth::login($user);
-        return view('index');
+        return redirect(route('index'));
     }
 
     /**

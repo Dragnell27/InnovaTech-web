@@ -16,41 +16,39 @@ class ProductosController extends Controller
         $querys = explode(' ', $query);
         $arrayTags = [];
 
-        $tags = Param::select('id')->where('name', 'LIKE', '%'.$query.'%')->where('paramtype_id', 9)->get();
-        $category = Param::where('name', 'LIKE', '%'.$query.'%')->where('paramtype_id', 12)->value('id');
-        $mark = Param::where('name', 'LIKE', '%'.$query.'%')->where('paramtype_id', 10)->value('id');
+        $tags = Param::select('id')->where('name', 'LIKE', '%' . $query . '%')->where('paramtype_id', 9)->get();
+        $category = Param::where('name', 'LIKE', '%' . $query . '%')->where('paramtype_id', 12)->value('id');
+        $mark = Param::where('name', 'LIKE', '%' . $query . '%')->where('paramtype_id', 10)->value('id');
 
         foreach ($tags as $tag) {
             array_push($arrayTags, $tag->id);
         }
 
-        $products = product::query();
-
+        $products = Product::query();
         $products = $products->where('param_state', 5);
 
-            for($i = 0; $i < count($querys); $i++) {
-                $products = $products->orWhere('name', 'LIKE', '%' . $query . '%')
-                    ->orWhere('description', 'LIKE', '%' . $query . '%');
-            }
-
-            if(count($arrayTags) > 0) {
-                for($i = 0; $i < count($arrayTags); $i++) {
-                    $products  = $products->orWhere('param_tags', 'LIKE', '%' . $arrayTags[$i] . '%');
+        if (!empty($querys)) {
+            $products = $products->where(function ($query) use ($querys) {
+                foreach ($querys as $queryTerm) {
+                    $query->orWhere('name', 'LIKE', '%' . $queryTerm . '%')
+                        ->orWhere('description', 'LIKE', '%' . $queryTerm . '%');
                 }
-            }
+            });
+        }
 
-            if(!is_null($category)) {
-                $products  = $products->orWhere('param_category', $category);
-            }
+        if (!empty($arrayTags)) {
+            $products = $products->whereIn('param_tags', $arrayTags);
+        }
 
-            if(!is_null($mark)) {
-                $products  = $products->orWhere('param_category', $mark);
-            }
+        if (!is_null($category)) {
+            $products = $products->orWhere('param_category', $category);
+        }
 
-            $products = $products->get();
-            //para traer un limite productos se usa paginate
+        if (!is_null($mark)) {
+            $products = $products->orWhere('param_mark', $mark);
+        }
 
-
+        $products = $products->get();
 
         return view('result_search', compact('products'));
     }
@@ -63,10 +61,12 @@ class ProductosController extends Controller
 
     public function show($id)
     {
-
         $productos = product::findOrFail($id);
         $colors = Param::where('paramtype_id', 11)->get();
-        $comments = Comment::join('users','users.id','ratings.user_id')->where('user_id',Auth::user()->id)->get();
-        return view('products.show_Product', compact('productos','colors'));
+        $comments = "";
+        if (Auth::check()) {
+            $comments = Comment::where('user_id', Auth::user()->id)->where('product_id', $id)->first();
+        }
+        return view('products.show_Product', compact('productos', 'colors', 'comments'));
     }
 }
