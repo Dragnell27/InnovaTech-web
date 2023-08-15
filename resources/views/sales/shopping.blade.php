@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <script src="{{ asset('js/sales.js') }}"></script>
+
 @endsection
 
 

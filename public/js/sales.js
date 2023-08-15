@@ -5,6 +5,7 @@
         data.forEach(sales =>{
             let element = document.querySelector('#content');
             var fecha = (sales.created_at).split('T')[0];
+            // var images = (sales.images).split(":");
             switch (sales.param_status) {
                 case 10:
                     var estado = 'Pendiente';
@@ -27,7 +28,7 @@
             col.style.marginTop="10px";
             col.classList ='col-md-3 card'
             col.innerHTML +=`<!-- Imagen del producto -->
-            <img src="{{ asset('img/Logo-Innova.jpeg') }}" alt="Producto" class="img-fluid">`
+            <img src="C:/Users/jhona/Pictures/imagenes/xiaomi.jpeg" alt="Producto" class="img-fluid">`
             element.appendChild(col)
             md.classList = 'col-md-6'
             md.innerHTML += `<!-- Nombre del producto -->
