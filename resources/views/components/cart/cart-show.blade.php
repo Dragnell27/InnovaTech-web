@@ -1,23 +1,33 @@
 @extends('layouts.contenedor')
+
 @section('title', 'Home')
 @section('component')
 
     <head>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="stylesheet" href="{{ asset('css/carrito.css') }}">
-        <style>
-            media (max-width:600px) {
-                #resumenContainer{
-
-                }
-                
-            }
-        </style>
+        
     </head>
     <section>
         <header>
             <!-- place navbar here -->
         </header>
         <main>
+            @if (Session::has('msj_destroy'))
+            <script>
+                window.addEventListener("load",()=>{
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Se eliminó el producto',
+                        showConfirmButton: false,
+                        timer: 3000
+                      })    
+                })
+                
+            </script>
+                
+            @endif
 
             <?php
             $url = 'https://innovatechcol.com.co/img/productos/';
@@ -151,8 +161,7 @@
  <script>
     window.onresize = () =>{
         var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    
-        console.log(windowWidth);
+
         if (windowWidth <= 600) {
             var myDiv = document.getElementById("resumenContainer");
             myDiv.classList.add("col-sm-12");

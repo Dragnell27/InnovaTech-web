@@ -160,9 +160,16 @@ $(document).ready(function (){
         var qtyId ="qty-"+prod_id;
         var cantidad = document.getElementById(qtyId);
 
+        
+        var precio = document.getElementById("priceP"+prod_id).innerHTML;
+        var spanResul =  document.querySelector("#resultado"); 
+        var precioActual  = (spanResul.innerHTML);
+    
+      
 
         switch (signo) {
             case "+":
+                spanResul.innerHTML = (Number(precio)+ Number(precioActual) ).toFixed(2);
             
             var newValue = Number(cantidad.value)+1;
           
@@ -177,7 +184,12 @@ $(document).ready(function (){
                     "quantity": quantity,
 
                   }
-                
+                  var data = {
+                    "prod_id": prod_id,
+                    "quantity": quantity,
+                    "newPrice": updatePrice,
+
+                  }
                        $.ajax({
                        type: "GET",
                        url: baseURL+ "/update-cart",
@@ -191,7 +203,7 @@ $(document).ready(function (){
 
                 break;
             case "-":
-               
+                spanResul.innerHTML = (Number(precioActual) -Number(precio)  ).toFixed(2);
                 var newValue = Number(cantidad.value)-1;
                
                 if (newValue > 0) {

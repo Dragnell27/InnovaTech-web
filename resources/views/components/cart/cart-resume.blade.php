@@ -40,7 +40,7 @@ $totalPrice = 0;?>
             </div>
          
             <span class="text-success"
-                id="resultado">${{ $totalPrice}}</span>
+                >$ <span id="resultado">{{ $totalPrice}}</span></span>
         </li>
     </ul>
     <form class="card p-2">
@@ -51,22 +51,5 @@ $totalPrice = 0;?>
         </div>
     </form>
 </div>
-<script>
-      //actualiza la cantidad de resumen de compra
-      var cantidades = document.querySelectorAll(".qtys");
-      var precios = document.querySelectorAll(".priceP");
-      var cantidadTotal = 0;
-      var precioTotal = 0;
 
-      cantidades.forEach(element =>{
-        cantidadTotal += Number(element.value);
-        
-      } );
-      precios.forEach(element =>{
-        precioTotal += Number(element.innver);
-      } );
-     
-      console.log(cantidadTotal);
-      
-</script>
 
