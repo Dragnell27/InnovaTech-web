@@ -1,6 +1,29 @@
-<div class="col col-md-5 col-lg-4 col-12 order-md-last">
+
+<div class="col col-sm-4 col-10 order-md-last" id="resumenContainer">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-danger">Resumen de compra</span>
+<?php
+$totalPrice = 0;?>
+@if (Session::has('cart'))
+    <?php
+
+        
+        $cart = Session::get("cart");
+      
+
+        foreach ($cart as $key => $value) {
+                if($value->attributes["discount"]>0){
+                    $descuento   =  ($value->price * $value->attributes["discount"]) /100;
+                    $totalPrice +=  ($value->price - $descuento) * $value->quantity ; 
+                  
+            }else{
+                $totalPrice +=$value->price * $value->quantity;
+            }
+        }
+        
+    ?>
+    
+@endif
 
     </h4>
     <ul class="list-group mb-3">
@@ -13,17 +36,11 @@
         </li>
         <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
             <div class="text-success">
-                <h6 class="my-0">Total (COP) {{ Cart::getSubTotal() }}</h6>
+                <h6 class="my-0">Total (COP)</h6>
             </div>
-            @if ($items->attributes["discount"]==0)
-            <span class="text-success" id="resultado">${{ $items->price }}</span>
-            @else
-            @php
-            $descuento=($items->price * $items->attributes["discount"]) /100
-            @endphp
+         
             <span class="text-success"
-                id="resultado">${{ ($items->price * $items->quantity)-$descuento}}</span>
-            @endif
+                id="resultado">${{ $totalPrice}}</span>
         </li>
     </ul>
     <form class="card p-2">
@@ -34,3 +51,22 @@
         </div>
     </form>
 </div>
+<script>
+      //actualiza la cantidad de resumen de compra
+      var cantidades = document.querySelectorAll(".qtys");
+      var precios = document.querySelectorAll(".priceP");
+      var cantidadTotal = 0;
+      var precioTotal = 0;
+
+      cantidades.forEach(element =>{
+        cantidadTotal += Number(element.value);
+        
+      } );
+      precios.forEach(element =>{
+        precioTotal += Number(element.innver);
+      } );
+     
+      console.log(cantidadTotal);
+      
+</script>
+

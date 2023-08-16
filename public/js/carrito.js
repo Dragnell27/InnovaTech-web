@@ -160,6 +160,7 @@ $(document).ready(function (){
         var qtyId ="qty-"+prod_id;
         var cantidad = document.getElementById(qtyId);
 
+
         switch (signo) {
             case "+":
             
@@ -176,12 +177,7 @@ $(document).ready(function (){
                     "quantity": quantity,
 
                   }
-                  var data = {
-                    "prod_id": prod_id,
-                    "quantity": quantity,
-                    "newPrice": updatePrice,
-
-                  }
+                
                        $.ajax({
                        type: "GET",
                        url: baseURL+ "/update-cart",

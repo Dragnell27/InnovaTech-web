@@ -44,9 +44,11 @@ class CarritoController extends Controller
     public function updateCart(Request $request){
 
         //id del producto
-        $id = $request->input("prod_id");
-        $cantidad = $request->input("quantity"); //cantidad actualizada
+        $updatedProducts ;
+        $id = $request->input("prod_id" );
         
+        $cantidad = $request->input("quantity"); //cantidad actualizada
+       
         $producto = \DB::table('products')->where('id',$id)->first(); //producto manipulado
 
         $precio = 0;
@@ -62,12 +64,23 @@ class CarritoController extends Controller
             //saca la direccion del usuario
             $direccion = \DB::table("address")->where("user_id",$userId)->first();
             $result = Sales::where("user_id",$userId)->where("param_shipping",14)->where("param_status",5)->get();
+
+            $direccionId;
+
+            if ($direccion) {
+                $direccionId = $direccion->id;   
+                # code...
+            }else{
+                $direccionId = null;
+                   
+                  }
+                  
                 //Aqui valido si el usuario ya tiene datos en el carrito
             if ($result->isEmpty()) {
           
                     $sale = new Sales;
                     $sale->user_id = $userId;
-                    $sale->address_id =$direccion->id;
+                    $sale->address_id =$direccionId ;
                     $sale->param_status = 5;
                     $sale->param_shipping = 14;
                     $sale->param_paymethod = 2285;
@@ -103,19 +116,37 @@ class CarritoController extends Controller
                     $total += $value->qty;
                 }
                Sales::where("user_id",$userId)->where("param_shipping",14)->where("param_status",5)->update(["total"=>$total]);
+
+                
+            $updatedProducts = sales_detail::select("product_id","qty","products.name","products.price","products.discount","products.images","products.param_color","products.description")->join("products","products.id","=","sales_details.product_id")->where("sale_id",$Sid)->where("sales_details.param_status",5)->get();
                
 
             }
-            Cart::session($userId)->update($id,array(
-                "quantity" =>array(
-                   'relative' => false,
-                   'value' => $cantidad
-                ),
+      
+          
+            Cart::session($userId)->clear();
+              foreach ($updatedProducts as $item) {
+                   
+                    Cart::session($userId)->add(array(
+                        'id' => $item->product_id,   //inique row ID
+                        'name' => $item->name,
+                        'price' =>$item->price,
+                        'quantity' =>$item->qty,
+                        'attributes' => array(
+                            'discount'=> $item->discount,
+                            'image'=>$item->image,
+                            'desc'=>$item->desc
+                        ),
+                    ));
+                    
                
-               
-           ));
-           Session::forget('cart');
+                # code...
+              }
+           
+            Session::forget('cart');
            Session::put("cart",Cart::session($userId)->getContent());
+         
+      
 
             # code...
         }else{
@@ -124,11 +155,12 @@ class CarritoController extends Controller
                    'relative' => false,
                    'value' => $cantidad
                 ),
-            
+                
                
            ));
+          
+ 
            Session::forget('cart');
-
            Session::put("cart",Cart::getContent());
         }
        
@@ -236,7 +268,7 @@ class CarritoController extends Controller
                 // $compras = sales_detail::where("sale_id",$Sid)->where("param_status",5)->get();
                
                Sales::where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->update(["total"=>$total]);
-                  
+                 
                  
                 }
                 // session(["cart"=>Cart::session($user_id)->getContent()]);
