@@ -28,7 +28,7 @@
     </ul>
     <form class="card p-2">
         <div class="input-group">
-            <a name="" id="" class=" w-100 btn btn-primary  btn-lg" href="" 
+            <a name="" id="" class=" w-100 btn btn-primary  btn-lg" href="payment-method/1" 
                 role="button">Continuar compra
             </a>
         </div>

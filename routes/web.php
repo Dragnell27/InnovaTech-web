@@ -87,7 +87,7 @@ Route::middleware('auth')->resource('perfil/direcciones', AddressController::cla
 
 //Camilo Alzate Ruta que llama el primer paso de compra
 Route::get('/departments/{id}', [DepartmentController::class, 'nameDepartment']);
-Route::view('payment-method/pasoUnoMpago','payment-method/pasoUnoMpago')->name('pasoUno')->middleware('auth');
+Route::view('payment-method/1','payment-method/pasoUnoMpago')->name('pasoUno')->middleware('auth');
 //Ruta que llama Metodo de pago
 Route::view('payment-method/Metodo-pago','payment-method/Metodo-pago')->name('Mpago')->middleware('auth');
 
