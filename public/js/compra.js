@@ -38,23 +38,23 @@ async function DepartmentsName(nameDepartment) {
 async function cargarDirecciones() {
     const seleccionarDireccion = document.getElementById('direciones');
     const formDirecciones = document.getElementById('formDirecciones');
-    const agregrarDireccion = document.getElementById('agregarDireccion');
     try {
         const response = await fetch(urlAddress);
         const data = await response.json();
-        const addresses = data.data;
-        console.log(addresses);
+       const addresses = data.data;
+
         let html = '<option value="-1">Elige la direccion</option>';
         for (let i = 0; i < addresses.length; i++) {
             const addressData=addresses[i];
            html += '<option value="' + i + '">Dirección ' + (i + 1) + ' - ' + addressData.address + ' - ' + addressData.hood + '</option>';
         }
         seleccionarDireccion.innerHTML = html;
+
         seleccionarDireccion.addEventListener('change', async function (event) {
             const addressIndex = event.target.value;
             if (addressIndex === '-1') {
                 formDirecciones.style.display = 'none';
-                agregrarDireccion.style.display = 'block';
+
             } else {
                 try {
                     const addressData = addresses[addressIndex];
@@ -69,35 +69,46 @@ async function cargarDirecciones() {
         document.getElementById('floor').value=addressData.floor;
 
         formDirecciones.style.display='block';
-        agregrarDireccion.style.display='none';
+
+
                 } catch (error) {
                     console.error(`Error al obtener datos de la API: ${error}`);
+
                 }
             }
         });
+        return addresses;
         //FUNCIÓN DL BOTON
     } catch (error) {
         console.error(`Error al obtener datos de la API: ${error}`);
-
+        return[];
     }
 }
 
 
 
-function mostrarForm(tipoLugar) {
+async function mostrarForm(tipoLugar) {
+
     document.getElementById("FormDomicilios").style.display = "none";
     document.getElementById("puntoFisico").style.display = "none";
     document.getElementById('agregarDireccion').style.display = 'none';
+    const addresses= await cargarDirecciones();
 
     if (tipoLugar == "domicilios") {
-        document.getElementById("FormDomicilios").style.display = "block";
-        // agragrarDireccion();
+        if (addresses.length==0) {
+            document.getElementById('agregarDireccion').style.display = 'block';
+            document.getElementById("FormDomicilios").style.display = "none";
+
+        }
+        else{
+            document.getElementById("FormDomicilios").style.display = "block";
+            document.getElementById('agregarDireccion').style.display = 'none';
+
+        }
+
     } else if (tipoLugar == "Pfisico") {
         document.getElementById("puntoFisico").style.display = "block";
         document.getElementById('formDirecciones').style.display = 'none';
-
-        // formularioElement.style.display = 'none'; // Ocultar el formulario
-        // formularioVisible = false;
 
     }
 

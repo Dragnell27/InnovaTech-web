@@ -1,13 +1,13 @@
 @extends('layouts.contenedor')
-
 @section('title','Paso Uno Compra')
+@section('component')
 
 <head>
     <link rel="stylesheet" href="{{ asset('css/compra.css') }}">
 </head>
-@section("component")
 
-<section class="mt-2">
+<section class="mt-2" style="font-family: 'Roboto', sans-serif;
+background-color: #e5e5f7;">
 
     <div class="container ml-5">
 
@@ -153,14 +153,13 @@
                                     </form>
                                 </div>
 
-                                <div class="col-12 text-center mb-2">
-                                    <form action="" id="FormDomicilios" class="mb-4" style="display: none">
+                                <div class="col-12 text-center">
+                                    <form action="" id="FormDomicilios" style="display: none">
                                         <div class="container">
                                             <div class="row g-3">
-                                                <div class="mb-3">
+                                                <div >
                                                     <h4><label for="" class="form-label">Dirección</label></h4>
-                                                    <select  class="selectStyle"
-                                                        id="direciones">
+                                                    <select class="selectStyle mb-2" id="direciones">
                                                         <option value="-1">Elige la direccion</option>
 
                                                     </select>
@@ -170,56 +169,52 @@
 
                                     </form>
                                 </div>
-                                <div class="col-12">
-                                    <form action="" id="formDirecciones" style="display: none" >
+                                <div class="col-12 mb-4">
+                                    <form action="" id="formDirecciones" style="display: none">
                                         <div class="container">
                                             <div class="row g-3">
 
-                                                    <div class="col-6">
-                                                        <label for="address2" class="form-label">Departamento</label>
-                                                        <input type="text" class="intputs text-center"
-                                                            id="NombreDepartment" readonly
-                                                            onselectstart="return false;">
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label for="address2" class="form-label">Ciudad</label>
-                                                        <input type="text" class="intputs text-center" id="city"
+                                                <div class="col-6">
+                                                    <label for="address2" class="form-label">Departamento</label>
+                                                    <input type="text" class="intputs text-center" id="NombreDepartment"
+                                                        readonly onselectstart="return false;">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="address2" class="form-label">Ciudad</label>
+                                                    <input type="text" class="intputs text-center" id="city" readonly
+                                                        onselectstart="return false;">
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <label for="address2" class="form-label mt-2 ">Barrio</label>
+                                                    <input type="text" class="intputs text-center" id="hood" readonly
+                                                        onselectstart="return false;">
+                                                </div>
+                                                <div class="col-6 mb-4">
+                                                    <label for="address2" class="form-label mt-2 ">Dirección</label>
+                                                    <input type="text" class="intputs text-center" id="address" readonly
+                                                        onselectstart="return false;">
+
+                                                </div>
+
+                                                <div
+                                                    class="container-fluid h-100 d-flex align-items-center justify-content-center">
+                                                    <div class="col-8">
+                                                        <label for="address2" class="form-label mt-2 ">Piso</label>
+                                                        <input type="text" class="intputs text-center" id="floor"
                                                             readonly onselectstart="return false;">
-                                                    </div>
-
-                                                    <div class="col-6">
-                                                        <label for="address2" class="form-label mt-2 ">Barrio</label>
-                                                        <input type="text" class="intputs text-center" id="hood"
-                                                            readonly onselectstart="return false;">
-                                                    </div>
-                                                    <div class="col-6 mb-4">
-                                                        <label for="address2" class="form-label mt-2 ">Dirección</label>
-                                                        <input type="text" class="intputs text-center" id="address"
-                                                            readonly onselectstart="return false;">
 
                                                     </div>
 
-                                                    <div class="container-fluid h-100 d-flex align-items-center justify-content-center">
-                                                        <div class="col-8">
-                                                            <label for="address2" class="form-label mt-2 ">Piso</label>
-                                                            <input type="text" class="intputs text-center" id="floor"
-                                                                readonly onselectstart="return false;">
+                                                </div>
 
-                                                        </div>
-
-
-
-                                                    </div>
-
-                                        </div>
+                                            </div>
                                     </form>
                                 </div>
 
                                 <div class="col-12 align-text-center">
-
                                     <a name="" id="agregarDireccion" class="btn btn-primary " href="#"
                                         style="display:none;" role="button">Agregar Dirección</a>
-
                                 </div>
 
                                 <div class="col-12 text-center mb-2">
@@ -246,21 +241,17 @@
                 </form>
             </div>
         </div>
-    </div>
-    <div class="col-12">
-
-        @include("layouts.footer")
 
     </div>
+    @extends('layouts.footer')
 
 </section>
+
 <script>
-   var BasUrl = "{{ url('/')}}";
-    const url = BasUrl+"/api/users/"+'{{Auth::user()->id}}';
+    var BasUrl = "{{ url('/')}}";
+    const url = BasUrl + "/api/users/" + '{{Auth::user()->id}}';
     const id = "{{ Auth::user()->id }}";
-    const urlAddress=BasUrl+"/api/address_user/"+id;
+    const urlAddress = BasUrl + "/api/address_user/" + id;
 </script>
 
 <script src="{{ asset('js/compra.js') }}"></script>
-
-@endsection
