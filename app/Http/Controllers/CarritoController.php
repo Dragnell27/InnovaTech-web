@@ -111,7 +111,7 @@ class CarritoController extends Controller
                    'relative' => false,
                    'value' => $cantidad
                 ),
-                "price"=> $precio
+               
                
            ));
            Session::forget('cart');
@@ -124,7 +124,7 @@ class CarritoController extends Controller
                    'relative' => false,
                    'value' => $cantidad
                 ),
-                "price"=> $precio
+            
                
            ));
            Session::forget('cart');
@@ -170,9 +170,11 @@ class CarritoController extends Controller
                  //Validar si el usuario ya tiene productos  en carrito 
                  $result = Sales::where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->get();
                
+                 //Mientras se arregla la base de datos debo crear una dirrecion
                 if($result->isEmpty()) {
                     $sale = new Sales;
                     $sale->user_id = $user_id;
+                
                     $sale->address_id =$direccion->id;
                     $sale->param_status = 5;
                     $sale->param_shipping = 14;

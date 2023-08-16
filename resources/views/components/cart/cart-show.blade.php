@@ -10,14 +10,15 @@
         <!-- place navbar here -->
     </header>
     <main>
-
+      
+<?php
+$url ='https://innovatechcol.com.co/img/productos/';
+?>
         @if (Auth::check())
             <?php
+          
                 $CartItems = Cart::session(Auth::user()->id)->getContent();
-                $CartCount = Cart::session(Auth::user()->id)->getContent()->count();
-
-                {{--  Sacar las imagenes, falta hacer un explode  --}}
-                $imagenes = ($CartItems[1]->attributes["image"]);
+                $CartCount = Cart::session(Auth::user()->id)->getContent()->count();            
             ?>
 
         @else
@@ -49,13 +50,26 @@
                         @foreach ($CartItems as $items)
 
                         @php
+
+                        if($items->attributes["discount"]>0){
+                            $saleCondition = new \Darryldecode\Cart\CartCondition(array(
+                                'name' => 'Discount',
+                                'type' => 'tax',
+                                'value' => '-'.$items->attributes["discount"].'%',
+                                'target'=>'total'
+                            ));
+                            Cart::addItemCondition($items->id, $saleCondition);
+                        }
+                    
+                        
                         $imagenes = explode(":",$items->attributes["image"]);
+                        
                             
                         @endphp
                         <div class="card mb-3" style="max-width: 600px;" id="cartItem">
                             <div class="row g-0">
                               <div class="col-md-4">
-                                <img src="{{ $imagenes[0]}}" class="img-fluid rounded-start" alt="...">
+                                <img src="{{ $url . $imagenes[0]}}" class="img-fluid rounded-start" alt="...">
                               </div>
                               <div class="col-md-8 col-12">
                                 <div class="card-body">

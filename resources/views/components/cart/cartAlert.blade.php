@@ -7,6 +7,7 @@
 
   
     <?php
+    $url ='https://innovatechcol.com.co/img/productos/';
     $imagenes = explode(":",session('msj_exitoso')["images"]);
     
 
@@ -35,7 +36,7 @@
                 <input type="button" id="btnClose" class="btn-close" aria-label="Close">
             </div>
             <div class='col-md-4'>
-                <img src="{{ $imagenes[0] }}"" class="img-fluid rounded-start">
+                <img src="{{ $url.$imagenes[0] }}"" class="img-fluid rounded-start">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -50,7 +51,7 @@
                 </div>
                 <p class="card-text"><small class="text-body-secondary">Maximo 20 unidades</small></p>
                 <div class="row">
-                    <a href=""
+                    <a style="cursor: pointer ;" id="btnSeguir"
                         class="icon-link icon-link-hover link-secondary link-underline-success link-underline-opacity-25 col">Seguir
                         comprando</a>
                     <form method="get" action="{{ Route('cart.show') }}" class="col">

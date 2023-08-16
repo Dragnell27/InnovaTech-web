@@ -13,7 +13,7 @@
         </li>
         <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
             <div class="text-success">
-                <h6 class="my-0">Total (COP)</h6>
+                <h6 class="my-0">Total (COP) {{ Cart::getSubTotal() }}</h6>
             </div>
             @if ($items->attributes["discount"]==0)
             <span class="text-success" id="resultado">${{ $items->price }}</span>
