@@ -24,7 +24,7 @@ class ApiAddress extends Controller
 
     public function direcciones($id)
     {
-        $addresses = Address::where('user_id', $id)->with('city')->get();
+        $addresses = Address::where('user_id', $id)->with('city')->where('param_state', 5)->get();
         return AddressCollection::collection($addresses);
     }
 }
