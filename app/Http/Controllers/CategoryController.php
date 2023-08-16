@@ -33,10 +33,18 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($category)
+    public function show($id)
     {
        
-        return  CategoryResource::collection(Category::where("param_category",$category)->get());
+        try {
+            $categoryData = Category::with('products')->where('param_category', $id)->get();
+            $products = $categoryData;
+    
+            return view('components.Categories.category', compact('products'));
+        } catch (\Exception $e) {
+            // Manejo del error
+            dd($e->getMessage()); // Muestra el mensaje de error en la página
+        }
     }
 
     /**

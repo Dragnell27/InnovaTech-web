@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Param;
 use App\Models\product;
 use App\Models\wishlist;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,7 +105,13 @@ Route::resource('/wishlist', WishlistController::class)->middleware('auth');
 // Route::post('/faqs/{id}', [faqsController::class, 'store'])->name('faqs.store');
 
 //ruta para categorias
-Route::view('components/Categories/category','components/Categories/category');
+Route::view('components/Categories/category/{id}', 'components/Categories/category')
+    ->where('id', '[0-9]+'); // Restringe el parámetro a valores numéricos
+
+
+
+Route::get('api/category', [CategoryController::class, 'index'])->name('category.index'); // Devuelve todas las categorías
+Route::get('api/category/{category}', [CategoryController::class, 'show'])->name('category.show'); // Devuelve productos de 
 //ruta para about
 Route::view('about','about')->name('about');
 

@@ -1,0 +1,28 @@
+.product-list {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+.product-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: calc(33.33% - 20px);
+}
+.product-card img {
+    max-width: 100%;
+    height: auto;
+}
+.product-card h3 {
+    margin-top: 10px;
+}
+.product-card button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#style2 {
+    color: black;
+}
