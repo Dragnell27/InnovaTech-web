@@ -37,7 +37,9 @@ class WishlistController extends Controller
         $lista->param_state = 5;
         $lista->save();
 
-        return response()->json(['success' => true]);
+        $guardadoId = $lista->id;
+
+        return response()->json(['success' => true, 'id' => $guardadoId]);
     }
 
     /**

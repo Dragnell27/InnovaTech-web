@@ -98,7 +98,7 @@
 
                             $colores = '';
 
-                            $lista_favortitos = '';
+                            $lista_favortitos = 0;
 
                             $agregado_lista = 'no_agregado_favoritos';
 
@@ -123,15 +123,16 @@
                         @endphp
                         <div class="product-card">
                             <div class="product-image">
-                                <button class="{{ $agregado_lista }} btn float-end"
-                                    data-product_id="{{ $productos->id . ':' . $lista_favortitos }}">
+                                <button class="{{ $agregado_lista }} btn float-end" data-product_id="{{ $productos->id }}"
+                                    data-lista_id="{{ $lista_favortitos }}">
                                     <svg width="16" height="16">
                                         <path
                                             d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
                                     </svg>
                                 </button>
-                                <img id="imgCard" class="ir-producto" data-url="{{ route('productos.show', $productos->id) }}"
-                                    class="product-thumb" height="259px" width="259px"
+                                <img id="imgCard" class="ir-producto"
+                                    data-url="{{ route('productos.show', $productos->id) }}" class="product-thumb"
+                                    height="259px" width="259px"
                                     src="{{ 'https://innovatechcol.com.co/img/productos/' . $images[0] }}">
                                 {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset('productos/'.$images[0])}}" alt="
                                     onclick="window.location.href='{{ route('productos') }}'"> --}}
@@ -211,48 +212,55 @@
         </script>
         <script>
             $(document).ready(function() {
-                $('.no_agregado_favoritos').on('click', function() {
+                $(document).on('click', '.no_agregado_favoritos, .agregado_favoritos', function() {
                     var button = $(this);
-                    var idProducto = button.data('product_id').split(':');
-                    var productoId = idProducto[0];
-                    $.ajax({
-                        url: "{{ route('wishlist.store') }}",
-                        method: 'POST',
-                        data: {
-                            _token: '{{ csrf_token() }}',
-                            product_id: productoId
-                        },
-                        success: function(response) {
-                            button.removeClass('no_agregado_favoritos');
-                            button.addClass('agregado_favoritos');
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            alert('Error al agregar a la lista.');
-                        }
-                    });
-                });
-
-                $('.agregado_favoritos').on('click', function() {
-                    var button = $(this);
-                    var idProducto = button.data('product_id').split(':');
-                    var productoId = idProducto[1];
-                    $.ajax({
-                        url: "{{ route('wishlist.destroy', ':product_id') }}".replace(':product_id',
-                            productoId),
-                        method: 'delete',
-                        data: {
-                            _token: '{{ csrf_token() }}',
-                            product_id: productoId
-                        },
-                        success: function(response) {
-                            button.removeClass('agregado_favoritos');
-                            button.addClass('no_agregado_favoritos');
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
-                            alert('Error al eliminar de la lista.');
-                        }
-                    });
+                    var productoId = button.data('product_id');
+                    var listaId = button.data('lista_id');
+                    button.prop('disabled', true);
+                    if (button.hasClass('no_agregado_favoritos')) {
+                        $.ajax({
+                            url: "{{ route('wishlist.store') }}",
+                            method: 'POST',
+                            data: {
+                                _token: '{{ csrf_token() }}',
+                                product_id: productoId
+                            },
+                            success: function(response) {
+                                button.data('lista_id', response.id);
+                                button.toggleClass('no_agregado_favoritos agregado_favoritos');
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.error('Error en la solicitud AJAX:', textStatus,
+                                    errorThrown);
+                                alert('Error al agregar a la lista.');
+                            },
+                            complete: function() {
+                                // Habilita el botón después de completar la solicitud, independientemente del resultado
+                                button.prop('disabled', false);
+                            }
+                        });
+                    } else if (button.hasClass('agregado_favoritos')) {
+                        $.ajax({
+                            url: "{{ route('wishlist.destroy', ':product_id') }}".replace(
+                                ':product_id', listaId),
+                            method: 'delete',
+                            data: {
+                                _token: '{{ csrf_token() }}',
+                                product_id: listaId
+                            },
+                            success: function(response) {
+                                button.toggleClass('no_agregado_favoritos agregado_favoritos');
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.error('Error en la solicitud AJAX:', textStatus,
+                                    errorThrown);
+                                alert('Error al eliminar de la lista.');
+                            },
+                            complete: function() {
+                                button.prop('disabled', false);
+                            }
+                        });
+                    }
                 });
             });
         </script>

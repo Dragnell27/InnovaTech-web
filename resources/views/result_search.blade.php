@@ -7,13 +7,13 @@
     <div class="container">
         <div class="row justify-content-center">
             @if (count($products) > 0)
-                @foreach ($products as $lista)
+                @foreach ($products as $productos)
                     @php
-                        $images = explode(':', $lista->images);
-                        $precioVenta = $lista->price - ($lista->price / 100) * $lista->discount;
+                        $images = explode(':', $productos->images);
+                        $precioVenta = $productos->price - ($productos->price / 100) * $productos->discount;
                     @endphp
                     <div class="col-10 mb-2">
-                        <div class="card " data-url="{{ route('productos.show', $lista->id) }}">
+                        <div class="card " data-url="{{ route('productos.show', $productos->id) }}">
                             <div class="row" role="button">
                                 <div class="col-md-3 col-12 d-flex justify-content-center align-items-center p-2">
                                     <img src="{{ 'https://innovatechcol.com.co/img/productos/' . $images[0] }}"
@@ -23,12 +23,12 @@
                                     <div class="card-body">
                                         <div>
                                             <div>
-                                                <h5 class="card-title titulo">{{ $lista->name }}</h5>
+                                                <h5 class="card-title titulo">{{ $productos->name }}</h5>
                                             </div>
 
-                                            @if ($lista->discount > 0)
+                                            @if ($productos->discount > 0)
                                                 <div class="text-decoration-line-through text-danger descuento">
-                                                    $ {{ $lista->price }}
+                                                    $ {{ $productos->price }}
 
                                                 </div>
                                             @endif
@@ -36,17 +36,11 @@
                                                 <span class="h5">
                                                     $ {{ $precioVenta }}
                                                 </span>
-                                                @if ($lista->discount > 0)
+                                                @if ($productos->discount > 0)
                                                     <strong class="text-success">
-                                                        {{ $lista->discount }}% OFF
+                                                        {{ $productos->discount }}% OFF
                                                     </strong>
                                                 @endif
-                                                <form action="{{ route('wishlist.destroy', $lista->id) }}" method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <input type="submit" value="Eliminar"
-                                                        class="btn-link btn quitar-espacio">
-                                                </form>
                                             </div>
                                         </div>
                                     </div>
