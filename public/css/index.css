@@ -105,9 +105,10 @@ Seccion-Productos
 }
 
 .product-container {
-    padding: 4vw;
+    padding: 7vw;
     display: flex;
-    overflow-x: hidden;
+    overflow-x: auto;
+    gap: 40px;
     scroll-behavior: smooth;
     overflow-y: hidden;
 }

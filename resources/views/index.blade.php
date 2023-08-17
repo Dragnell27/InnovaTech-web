@@ -158,7 +158,7 @@
                                         <span class="actual-price" style="font-size: 20px">${{ $productos->price }}</span>
                                     @endif
                                     <br>
-                                    <span class="color" id="color">Colores: {{ $colores }}</span>
+
                                 </div>
                             </div>
                         @endforeach
