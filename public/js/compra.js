@@ -25,7 +25,7 @@ async function DepartmentsName(nameDepartment) {
     try {
         const response = await fetch("/departments/" + nameDepartment);
         const data = await response.json()
-        console.log(data);
+      
         return data.departments[0].name;
     } catch (error) {
         console.error(`Error al obtener datos ${error}`);
@@ -34,21 +34,28 @@ async function DepartmentsName(nameDepartment) {
 }
 
 //DIRECCIONES
-
-async function cargarDirecciones() {
-    const seleccionarDireccion = document.getElementById('direciones');
-    const formDirecciones = document.getElementById('formDirecciones');
+let seleccionarDireccion;
+async function cargarDirecciones(seleccionarDireccion,formDirecciones,btnAddAdress) {
     try {
         const response = await fetch(urlAddress);
         const data = await response.json();
        const addresses = data.data;
 
         let html = '<option value="-1">Elige la direccion</option>';
+        let addressInactive=false;
         for (let i = 0; i < addresses.length; i++) {
             const addressData=addresses[i];
            html += '<option value="' + i + '">Dirección ' + (i + 1) + ' - ' + addressData.address + ' - ' + addressData.hood + '</option>';
+        if (addressData.state==6) {
+            addressInactive=true;
+        }
         }
         seleccionarDireccion.innerHTML = html;
+        if (addressInactive) {
+            btnAddAdress.style.display='block';
+        }else{
+            btnAddAdress.style.display='none';
+        }
 
         seleccionarDireccion.addEventListener('change', async function (event) {
             const addressIndex = event.target.value;
@@ -78,6 +85,7 @@ async function cargarDirecciones() {
             }
         });
         return addresses;
+       
         //FUNCIÓN DL BOTON
     } catch (error) {
         console.error(`Error al obtener datos de la API: ${error}`);
@@ -85,25 +93,22 @@ async function cargarDirecciones() {
     }
 }
 
-
-
 async function mostrarForm(tipoLugar) {
-
+    const seleccionarDireccion = document.getElementById('direciones');
+    const formDirecciones = document.getElementById('formDirecciones');
+    const btnAddAdress = document.getElementById('agregarDireccion');
     document.getElementById("FormDomicilios").style.display = "none";
     document.getElementById("puntoFisico").style.display = "none";
-    document.getElementById('agregarDireccion').style.display = 'none';
-    const addresses= await cargarDirecciones();
-
+    btnAddAdress.style.display='none';
     if (tipoLugar == "domicilios") {
-        if (addresses.length==0) {
-            document.getElementById('agregarDireccion').style.display = 'block';
-            document.getElementById("FormDomicilios").style.display = "none";
+    const addresses= await cargarDirecciones(seleccionarDireccion, formDirecciones,btnAddAdress);
 
-        }
-        else{
+        if (addresses.length>0) {
             document.getElementById("FormDomicilios").style.display = "block";
-            document.getElementById('agregarDireccion').style.display = 'none';
 
+        }else{
+            btnAddAdress.style.display='block';
+            document.getElementById("FormDomicilios").style.display = "none";
         }
 
     } else if (tipoLugar == "Pfisico") {
@@ -141,5 +146,24 @@ window.addEventListener('load', async () => {
 
 
 
+document.getElementById("userEdit").addEventListener('click',function (e) {
+e.preventDefault();
+var editUser=this.getAttribute("data-edit-url");
+var viewEditUser= new XMLHttpRequest();
+
+viewEditUser.onreadystatechange=function() {
+    if (viewEditUser.readyState==4 && viewEditUser.status === 200) {
+        document.getElementById('ContenedorUserEdit').innerHTML=viewEditUser.responseText;
+        document.getElementById("editModal").style.display = "flex";
+    document.getElementById('ContenedorUserEdit').style.display='block';
+    }
+};
+viewEditUser.open("GET", editUser, true);
+viewEditUser.send();
+});
+function closeEditModal() {
+    document.getElementById("ContenedorUserEdit").style.display = "none";
+    document.getElementById("editModal").style.display = "none";
+  }
 
 

@@ -98,9 +98,16 @@ background-color: #e5e5f7;">
                         </div>
 
                         <div class="col-sm-12 text-center">
-                            <a href="{{ route('users.edit', Auth::user()->id) }}">Modificar datos</a>
+                            {{-- {{ route('users.edit', Auth::user()->id) }} --}}
+                            <a href="#"id="userEdit" data-edit-url="{{ route('users.edit', Auth::user()->id) }}">Modificar datos</a>
                         </div>
+                        <div id="editModal">
+                            <div id="ContenedorUserEdit" class="modal">
 
+                
+                            </div>
+                        </div>
+                 
                         <form class="needs-validation" novalidate>
                             <div class="row g-3">
 
@@ -159,7 +166,7 @@ background-color: #e5e5f7;">
                                             <div class="row g-3">
                                                 <div >
                                                     <h4><label for="" class="form-label">Dirección</label></h4>
-                                                    <select class="selectStyle mb-2" id="direciones">
+                                                    <select class="selectAddress mb-2" id="direciones">
                                                         <option value="-1">Elige la direccion</option>
 
                                                     </select>
@@ -241,6 +248,7 @@ background-color: #e5e5f7;">
                 </form>
             </div>
         </div>
+        
 
     </div>
     @extends('layouts.footer')
