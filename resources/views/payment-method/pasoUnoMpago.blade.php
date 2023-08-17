@@ -116,8 +116,8 @@ background-color: #e5e5f7;">
                                         <div class="selectBox">
                                             <div class="select" id="select">
                                                 <div class="contenedorSelect">
-                                                    <h5 class="titulo">selecione el tipo de entrega</h4>
-                                                        <p><strong class="descripcion">Elige como quires tu entrega
+                                                    <h5 class="titulo">Seleccione el tipo de entrega</h4>
+                                                        <p><strong class="descripcion">Elige como quieres tu entrega
                                                             </strong></p>
                                                 </div>
                                                 <img src="{{ asset('img/abajo.png') }}" style="width: 40px;">
@@ -147,7 +147,7 @@ background-color: #e5e5f7;">
                                                         <div class="contenidOption mt-1">
                                                             <img src="{{ asset('img/shopping-store.png') }}">
                                                             <div class="textos">
-                                                                <h5 class="titulo">Punto Fisico</h5>
+                                                                <h5 class="titulo">Punto Físico</h5>
                                                                 <p class="descripcion">Acercate a nuestros puntos
                                                                     fisicos y toma
                                                                     tu pedido <i class="bi bi-geo-alt-fill"></i></p>
@@ -230,17 +230,50 @@ background-color: #e5e5f7;">
                                             <div class="row g-3">
                                                 <div class="mb-2">
                                                     <div class="mb-3">
-                                                        <label for="" class="form-label">City</label>
-                                                        <select class="form-select form-select-lg" name="" id="">
-                                                            <option selected>Select one</option>
-                                                            <option value="">New Delhi</option>
-                                                            <option value="">Istanbul</option>
-                                                            <option value="">Jakarta</option>
+                                                        <label for="" class="form-label">Puntos Fisicos</label>
+                                                        <select class="selectAddress mb-2" id="direcionesAdmin">
+                                                            <option value="-1"> Elige Punto Fisico</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-12 mb-4">
+                                    <form action="" id="formPuntoFisico" style="display: none">
+                                        <div class="container">
+                                            <div class="row g-3">
+                                                <div class="col-6">
+                                                    <label for="address2" class="form-label">Ciudad</label>
+                                                    <input type="text" class="intputs text-center" id="cityAdmin" readonly
+                                                        onselectstart="return false;">
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <label for="address2" class="form-label mt-2 ">Barrio</label>
+                                                    <input type="text" class="intputs text-center" id="hoodAdmin" readonly
+                                                        onselectstart="return false;">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="address2" class="form-label mt-2 ">Dirección</label>
+                                                    <input type="text" class="intputs text-center" id="addressAdmin" readonly
+                                                        onselectstart="return false;">
+
+                                                </div>
+
+                                               
+                                                    <div class="col-6">
+                                                        <label for="address2" class="form-label mt-2 ">Piso</label>
+                                                        <input type="text" class="intputs text-center" id="floorAdmin"
+                                                            readonly onselectstart="return false;">
+
+                                                    </div>
+
+                                              
+
+                                            </div>
                                     </form>
                                 </div>
 
@@ -260,6 +293,7 @@ background-color: #e5e5f7;">
     const url = BasUrl + "/api/users/" + '{{Auth::user()->id}}';
     const id = "{{ Auth::user()->id }}";
     const urlAddress = BasUrl + "/api/address_user/" + id;
+    const urlAddressAdmin= BasUrl+ "/api/direccionesAdmin/";
 </script>
 
 <script src="{{ asset('js/compra.js') }}"></script>
