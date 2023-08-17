@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="row mb-5">
-                    <div class="col-md-12 float-end">
+                    <div class="col-md-12 col-12 text-end">
                         <form action="{{ route('users.destroy', Auth::user()->id) }}" method="post">
                             @csrf
                             @method('delete')
