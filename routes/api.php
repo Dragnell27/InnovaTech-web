@@ -42,6 +42,7 @@ Route::apiResource('/users','App\Http\Controllers\apiControllers\ApiUser');
 
 //
 Route::get('/address_user/{id}', [App\Http\Controllers\apiControllers\ApiAddress::class, "direcciones"]);
+Route::get('/direccionesAdmin', [App\Http\Controllers\apiControllers\ApiAddress::class, "direccionesAdmin"]);
 
 //@Jhonmurillo
 //Api para los comentarios

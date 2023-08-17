@@ -111,7 +111,7 @@ Route::view('components/Categories/category/{id}', 'components/Categories/catego
 
 
 Route::get('api/category', [CategoryController::class, 'index'])->name('category.index'); // Devuelve todas las categorías
-Route::get('api/category/{category}', [CategoryController::class, 'show'])->name('category.show'); // Devuelve productos de 
+Route::get('api/category/{category}', [CategoryController::class, 'show'])->name('category.show'); // Devuelve productos de
 //ruta para about
 Route::view('about','about')->name('about');
 
@@ -138,3 +138,6 @@ Route::get('/contact', function () {
 //@endDarkj
 
 Route::resource('/shopping', SalesController::class);
+
+//ruta para sugerencias de busqueda
+Route::get('/sugerencias', [ProductosController::class, 'sugerencias_busqueda'])->name('sujerencias.busqueda');

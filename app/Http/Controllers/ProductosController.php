@@ -59,6 +59,22 @@ class ProductosController extends Controller
         return view('index', compact('productos'));
     }
 
+    public function sugerencias_busqueda(){
+        $sugerencias = [];
+        $sugerencias = collect($sugerencias);
+        $busqueda = Param::whereIn('paramtype_id', [9, 10, 12])->get();
+        $nameProducts = product::all();
+
+        foreach ($nameProducts as $name){
+            $sugerencias->push($name->name);
+        }
+        foreach ($busqueda as $name){
+            $sugerencias->push($name->name);
+        }
+
+        return response()->json(['success' => true, 'sugerencias' => $sugerencias]);
+    }
+
     public function show($id)
     {
         $productos = product::findOrFail($id);
