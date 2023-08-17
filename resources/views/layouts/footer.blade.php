@@ -27,6 +27,6 @@
                 allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
-    <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.2);">
-    <b>© 2023 - TODOS LOS DERECHOS RESERVADOS</b>
+    <div class="text-center p-2" style="background-color: #666666 ">
+    <b style="color: white">© 2023 - TODOS LOS DERECHOS RESERVADOS</b>
 </footer>
