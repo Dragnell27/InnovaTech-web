@@ -10,7 +10,7 @@ class Category extends Model
  protected $table ="products";
  public function products()
  {
-     return $this->belongsTo(Product::class, 'param_category', 'param_category'); // Cambiar a 'param_category'
+     return $this->hasMany(Product::class, 'param_category', 'param_category'); // Cambiar a 'param_category'
  }
 
 }
