@@ -1,4 +1,5 @@
 <footer>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <div id="divfooter">
         <div class="modovertical1" id="infofooter">
             <div>
@@ -8,9 +9,9 @@
                 <p style="color: white;">NIT 900.726.066-7 <br>CLL 52 3-80 LOCAL 210 CC. Unico Outlet, Cali.<br>
                     Ventas@innovatechdeoccidente.com <br> +57 3117622089</p>
         <section>
-              <a class="btn btn-lg text-white btn-floating no-focus-outline" href="https://www.facebook.com/profile.php?id=100066452395079&mibextid=LQQJ4d" role="button" target="_blank"><i class="bi bi-facebook"></i></a>
-              <a class="btn btn-lg text-white btn-floating no-focus-outline" href="https://api.whatsapp.com/send?phone=+573117622089&text=Hola" role="button" target="_blank"><i class="bi bi-whatsapp"></i></a>
-              <a class="btn btn-lg text-white btn-floating no-focus-outline" href="https://instagram.com/innovatechcol?igshid=MzRlODBiNWFlZA==" role="button" target="_blank"><i class="bi bi-instagram"></i></a>
+              <a class="btn btn-lg text-white btn-floating no-focus-outline" href="https://www.facebook.com/profile.php?id=100066452395079&mibextid=LQQJ4d" role="button" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+              <a class="btn btn-lg text-white btn-floating no-focus-outline" href="https://api.whatsapp.com/send?phone=+573117622089&text=Hola" role="button" target="_blank"><i class='bx bxl-whatsapp' ></i></a>
+              <a class="btn btn-lg text-white btn-floating no-focus-outline" href="https://instagram.com/innovatechcol?igshid=MzRlODBiNWFlZA==" role="button" target="_blank"><i class='bx bxl-instagram'></i></a>
         </section>
             </div>
         </div>
