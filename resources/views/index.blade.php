@@ -164,7 +164,7 @@
                         @endforeach
                     </div>
                 </section>
-
+                <br>
                 <div class="red-div">
                     <h2>Informacion</h2>
                 </div>

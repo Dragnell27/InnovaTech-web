@@ -155,13 +155,17 @@ Seccion-Productos
     opacity: 0;
 }
 
-.product-card:hover .card-btn {
+.product-card{
     opacity: 1;
 }
 
-.card-btn:hover {
+.card-btn{
     background: red;
     color: #fff;
+    height: 11%;
+    width: 84%;
+    opacity: 1;
+    border-radius: 16px;
 }
 
 .product-info {
