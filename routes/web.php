@@ -17,7 +17,7 @@ use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Param;
 use App\Models\product;
-use App\Models\wishlist;
+use App\Models\Wishlist;
 use App\Http\Controllers\CategoryController;
 
 /*

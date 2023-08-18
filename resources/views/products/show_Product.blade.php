@@ -153,6 +153,13 @@
             </div>
             <br>
 
+            <section class="container ">
+                <h3>Opiniones del prodcuto</h3>
+                <div class="row">
+                    <div id="comments-cont" class="col col-md-12" >comentarios</div>
+                </div>
+            </section>
+
             <div class="container-fluid d-flex justify-content-center align-items-center" id="contenedortitulo">
                 <div class="div">
                     <button class="btnAddCart w-100" id="CargarBoton">Ver Comentarios</button>
@@ -164,9 +171,9 @@
                     <div class="col-md-8">
                         <div class="comments">
                             <div class="comment">
-                                <h4 id="user_id"></h4>
-                                <p><i style="color: yellow;" id="starts"></i></p>
-                                <p id="comments"></p>
+                                <h4 id="user_id">2</h4>
+                                <p><i style="color: yellow;" id="starts">  8 </i></p>
+                                <p id="comments">Comentario</p>
                             </div>
                         </div>
                     </div>
@@ -178,5 +185,4 @@
     <script src="{{ asset('js/wishlist.js') }}"></script>
     <script src="{{ asset('js/producto.js') }}"></script>
     <script src="{{ asset('js/comments.js') }}"></script>
-    <script src="{{ asset('js/comments_product.js') }}"></script>
 @endsection
