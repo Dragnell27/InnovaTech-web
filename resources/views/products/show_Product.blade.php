@@ -152,7 +152,7 @@
                 </div>
             </div>
             <br>
-        
+
             <div class="container-fluid d-flex justify-content-center align-items-center" id="contenedortitulo">
                 <div class="div">
                     <button class="btnAddCart w-100" id="CargarBoton">Ver Comentarios</button>
@@ -173,8 +173,6 @@
     </section>
     <script>
         var BASE = "{{ url('/') }}";
-    </script>
-    <script>
         var token = '{{ csrf_token() }}';
     </script>
     <script src="{{ asset('js/wishlist.js') }}"></script>
