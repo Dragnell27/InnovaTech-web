@@ -9,7 +9,11 @@
         <link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
 
 
-
+<style>
+    .inactive{
+        display: none;
+      }
+</style>
     </head>
     <section class="bg-light">
         @php
@@ -152,31 +156,21 @@
                 </div>
             </div>
             <br>
-
+{{--  Section de ver comentarios  --}}
             <section class="container ">
-                <h3>Opiniones del prodcuto</h3>
+                <h3>Opiniones del producto</h3>
                 <div class="row">
-                    <div id="comments-cont" class="col col-md-12" >comentarios</div>
+                    <div id="comments-cont" class="col col-md-12" ></div>
                 </div>
             </section>
 
             <div class="container-fluid d-flex justify-content-center align-items-center" id="contenedortitulo">
                 <div class="div">
-                    <button class="btnAddCart w-100" id="CargarBoton">Ver Comentarios</button>
+                    <button class="btnAddCart w-100" id="CargarBoton">Ver mas</button>
                 </div>
             </div>
 
-            <div id="comentarios-container" class="comments-container">
-                <div class="row" id="secciondecomentarios">
-                    <div class="col-md-8">
-                        <div class="comments">
-                            <div class="comment">
-                                <h4 id="user_id">2</h4>
-                                <p><i style="color: yellow;" id="starts">  8 </i></p>
-                                <p id="comments">Comentario</p>
-                            </div>
-                        </div>
-                    </div>
+           
     </section>
     <script>
         var BASE = "{{ url('/') }}";
