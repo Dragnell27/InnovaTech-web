@@ -147,12 +147,12 @@
                         </div>
                         <input type="hidden" id="product_id" name="product_id" value="{{ $productos->id }}">
                         <input type="hidden" id="num_star" name="starts">
-                        <input type="submit" value="Agregar Comentario" class="btn btn-primary btn-danger">
+                        <input type="submit" value="Agregar Comentario" class="btn" style="background: #e70000; color: #fff;">
                     </form>
                 </div>
             </div>
             <br>
-
+        
             <div class="container-fluid d-flex justify-content-center align-items-center" id="contenedortitulo">
                 <div class="div">
                     <button class="btnAddCart w-100" id="CargarBoton">Ver Comentarios</button>
