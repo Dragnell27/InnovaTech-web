@@ -79,11 +79,10 @@
                     </div>
                 </div>
             </div>
-
+            <br>
             <div class="red-div">
                 <h2>Productos Destacados</h2>
             </div>
-
             @include('components.cart.cartAlert')
             <section class="product" id="carrusel-personalizado">
 
