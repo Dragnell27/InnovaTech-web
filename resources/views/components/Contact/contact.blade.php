@@ -12,24 +12,25 @@
     <div id="form-container">
         <div id="send-form">
             <h2 class="title-contact">Escríbenos!!</h2>
-            <form action="">
+            <form  method="post" action="{{ route('faqs.store',Auth::user()->id )  }}"    id="formulario" style="padding: 0; margin: 0">
                 <div class="mb-3">
                     <input type="text" name="name" id="name" placeholder="Nombre *" class="form-control ixf" required>
                     <div class="input-group mb-3">
                         <span class="input-group-text spans" style="margin: 3px 0">@</span>
-
-                        <input type="email" name="" id="" placeholder="Email *"
+                        <input type="hidden" name="client_id" value="{{Auth::user()->id  }}">
+                        <input type="hidden" name="type" value="1418">
+                        <input type="email" name="email" id="email" placeholder="Email *"
                             class="form-control ixf" required>
 
                         <span class=" input-group-text spans"
                             style="margin: 3px 0; border-radius: 4px 0 0 4px ;">#</span>
 
-                        <input type="tel" name="" id="" placeholder="Telefono *"
-                            class="form-control ixf" style="margin-right: 0px !important" required>
+                        <input type="number" name="phone" id="phone" placeholder="Telefono *"
+                            class="form-control ixf"  style="margin-right: 0px !important" required>
                     </div>
                     <textarea name="body" id="body" cols="20" rows="5" class="form-control" placeholder="Mensaje*" required></textarea>
                 </div>
-                <input type="button" value="Enviar" class="btn btn-primary ">
+                <input type="submit" value="Enviar" class="btn btn-primary ">
 
             </form>
 
@@ -60,7 +61,7 @@
     <div class="contact-footer">
         <h2 class="title-contact">¿En qué te ayudamos? </h2>
         <div class="row">
-            <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="col-sm-4 mb-3 mb-sm-0 cards">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Tu pedidos</h5>
@@ -69,7 +70,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 cards">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Devoluciones</h5>
@@ -77,7 +78,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 cards"  >
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title">Nuestros puntos de entrega</h5>
@@ -91,7 +92,8 @@
 
 
 
-</div>
+</div> <script src="{{ asset('js/faqs.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @include('layouts.footer')
 @endsection

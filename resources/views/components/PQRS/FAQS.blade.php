@@ -1,5 +1,5 @@
 @if (Auth::check())
-    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div id="faqs-container" style="" class="" >
     <div class="card w-30 border-dark text-bg-light mb-3" style="max-width: 20rem; " style="display: none ">
         <div class="card-header bg-transparent border-dark">Tienes alguna duda?. Escribenos...
@@ -41,12 +41,15 @@
 <div id="chat-container" class="actionBt">
     <div id="chat-circle">
         <div id="round-image">
-            <img src="{{ asset('img/ventana-de-chat.png') }}" alt="" width="60px" style="padding: 5px">
+            <img src="{{ asset('img/ventana-de-chat.png') }}" alt="" width="50px" style="padding: 5px">
         </div>
         
     </div>
 </div>
  
  <script src="{{ asset('js/faqs.js') }}"></script>
+ 
+<script>
 
+</script>
 @endif

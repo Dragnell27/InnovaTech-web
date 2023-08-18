@@ -63,7 +63,7 @@ class faqsController extends Controller
             
           }
           
-          return redirect(route('index'));
+          return  back();
 
             
 

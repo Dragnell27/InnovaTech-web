@@ -24,6 +24,7 @@ window.addEventListener("load", async ()=>{
 
 
 
+
 });
 
 // $("#formulario").submit(function(e){
@@ -90,5 +91,36 @@ buttons.forEach((btn) => {
     });
 });
 
+const form = document.querySelector("#formulario");
+form.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    const pattern = new RegExp('^[A-Z]+$', 'i');
+const phone = document.querySelector("#phone");
+if(phone.value.length < 10  || phone.value.length >10 || pattern.test(phone.value)){
+    Swal.fire('El Numero de Teléfono Debe Tener 10 Digitos!')
+
+}else{
+
+    Swal.fire({
+        title: '¿Estas seguro de enviar este Mensaje?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Enviar',
+        denyButtonText: `No Enviar`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire('Enviado!', '', 'success')
+          form.submit();
+        } else if (result.isDenied) {
+          Swal.fire('Mensaje No Enviado ', '', 'info')
+        }
+      })
+}
+
+
+
+
+});
 
 

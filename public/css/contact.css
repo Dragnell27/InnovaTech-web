@@ -80,6 +80,13 @@
     }
     
 }
+@media (max-width:600px) {
+    .cards{
+        margin: 10px 0;
+       
+    }
+    
+}
 /* AQUI TERMINA EL FORMULARIO */
 
 /* AQUI EMPIEZA EL CSS DE mas info */
