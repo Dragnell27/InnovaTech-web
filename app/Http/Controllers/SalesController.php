@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\products\productResouce;
 use App\Models\product;
+use App\Models\Sales;
 use App\Models\sales_detail;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,8 @@ class Salescontroller extends Controller
      */
     public function index()
     {
-        $producto = sales_detail::join('productos','sales_detail.product_id', '=', 'productos.id')
-        ->select('productos.name as nombre', 'productos.images as imagen', 'sale_detail.*')->get();
-        return response()->json($producto);
+        $sale = Sales::all();
+        return response()->json($sale);
     }
 
     /**

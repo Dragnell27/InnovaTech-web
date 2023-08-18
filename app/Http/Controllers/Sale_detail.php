@@ -7,18 +7,33 @@ use App\Models\Sales;
 use App\Models\sales_detail;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Sale_detail extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index():JsonResponse
+    public function index()
     {
-        $producto = Sales::join('sales_details', 'sales.id', '=', 'sales_details.sale_id')
-        ->join('products','sales_details.product_id', '=', 'products.id')
-        ->select('sales.param_status','sales.created_at','products.name', 'products.images')->get();
-        return response()->json($producto);
+        // $sales = Sales::where('user_id', Auth::user()->id)->get();
+        // $arrSales = [];
+
+        // foreach ($sales as $sale){
+
+        //     $details = sales_detail::where('sale_id', $sale->id)->get();
+        //     foreach ($details as $date){
+        //         $arrSales[$sale->id][] = [
+        //             'id' => $date->id,
+        //             'sale_id' => $date->sale_id,
+        //             'product_id' => $date->product_id,
+        //             'qty' => $date->qty,
+        //             'estado' => $date->param_status,
+        //         ];
+        //     }
+        // }
+
+        // dd(json_encode($arrSales));
     }
 
     /**
@@ -42,7 +57,24 @@ class Sale_detail extends Controller
      */
     public function show(string $id)
     {
-        //
+        $sales = Sales::where('user_id', Auth::user()->id)->get();
+        $arrSales = [];
+
+        foreach ($sales as $sale){
+
+            $details = sales_detail::where('sale_id', $sale->id)->get();
+            foreach ($details as $date){
+                $arrSales[$sale->id][] = [
+                    'id' => $date->id,
+                    'sale_id' => $date->sale_id,
+                    'product_id' => $date->product_id,
+                    'qty' => $date->qty,
+                    'estado' => $date->param_status,
+                ];
+            }
+        }
+
+        dd(json_encode($arrSales));
     }
 
     /**

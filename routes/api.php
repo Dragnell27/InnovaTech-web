@@ -50,5 +50,6 @@ Route::get('/direccionesAdmin', [App\Http\Controllers\apiControllers\ApiAddress:
 Route::apiResource('comentario', CommentController::class);
 
 //@Jhonmurillo
-Route::apiResource('/compras', SalesController::class);
+Route::apiResource('/compra', SalesController::class);
 Route::apiResource('/shopping', Sale_detail::class);
+Route::apiResource('/sale',SalesController::class);

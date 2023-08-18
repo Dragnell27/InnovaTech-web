@@ -6,6 +6,8 @@ use App\Models\Comment;
 use App\Models\product;
 use App\Models\Param;
 use App\Models\Wishlist;
+use App\Models\Sales;
+use App\Models\sales_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
