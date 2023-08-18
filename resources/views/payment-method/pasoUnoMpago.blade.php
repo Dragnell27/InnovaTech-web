@@ -104,10 +104,10 @@ background-color: #e5e5f7;">
                         <div id="editModal">
                             <div id="ContenedorUserEdit" class="modal">
 
-                
+
                             </div>
                         </div>
-                 
+
                         <form class="needs-validation" novalidate>
                             <div class="row g-3">
 
@@ -224,15 +224,16 @@ background-color: #e5e5f7;">
                                         style="display:none;" role="button">Agregar Dirección</a>
                                 </div>
 
-                                <div class="col-12 text-center mb-2">
-                                    <form action="" id="puntoFisico" class="row mb-2" style="display: none">
+                                <div class="col-12 text-center ">
+                                    <form action="" id="puntoFisico" style="display: none">
                                         <div class="container">
                                             <div class="row g-3">
                                                 <div class="mb-2">
                                                     <div class="mb-3">
-                                                        <label for="" class="form-label">Puntos Fisicos</label>
+                                                        <h4>
+                                                        <label for="" class="form-label">Puntos Físicos</label>                                                      </h4>
                                                         <select class="selectAddress mb-2" id="direcionesAdmin">
-                                                            <option value="-1"> Elige Punto Fisico</option>
+                                                            <option value="-1"> Elige Punto Físico</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -246,7 +247,7 @@ background-color: #e5e5f7;">
                                         <div class="container">
                                             <div class="row g-3">
                                                 <div class="col-6">
-                                                    <label for="address2" class="form-label">Ciudad</label>
+                                                    <label for="address2" class="form-label mt-2 ">Ciudad</label>
                                                     <input type="text" class="intputs text-center" id="cityAdmin" readonly
                                                         onselectstart="return false;">
                                                 </div>
@@ -256,14 +257,14 @@ background-color: #e5e5f7;">
                                                     <input type="text" class="intputs text-center" id="hoodAdmin" readonly
                                                         onselectstart="return false;">
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-6 mb-4">
                                                     <label for="address2" class="form-label mt-2 ">Dirección</label>
                                                     <input type="text" class="intputs text-center" id="addressAdmin" readonly
                                                         onselectstart="return false;">
 
                                                 </div>
 
-                                               
+
                                                     <div class="col-6">
                                                         <label for="address2" class="form-label mt-2 ">Piso</label>
                                                         <input type="text" class="intputs text-center" id="floorAdmin"
@@ -271,7 +272,7 @@ background-color: #e5e5f7;">
 
                                                     </div>
 
-                                              
+
 
                                             </div>
                                     </form>
@@ -281,7 +282,7 @@ background-color: #e5e5f7;">
                 </form>
             </div>
         </div>
-        
+
 
     </div>
     @extends('layouts.footer')
