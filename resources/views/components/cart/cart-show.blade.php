@@ -14,7 +14,22 @@
         </header>
         <main>
             @if (Session::has('msj_destroy'))
+            <?php
+            $totalPrice =0;
+            $cart = Session::get("cart");
+            
+             foreach ($cart as $key => $value) {
+                if($value->attributes["discount"]>0){
+                    $descuento   =  ($value->price * $value->attributes["discount"]) /100;
+                    $totalPrice +=  ($value->price - $descuento) * $value->quantity ; 
+            }else{
+                $totalPrice += $value->price * $value->quantity;
+            }
+        }
+            ?>
+           
             <script>
+
                 window.addEventListener("load",()=>{
                     Swal.fire({
                         position: 'top-end',
@@ -64,6 +79,7 @@
                 <section id="productSection" class="row">
                     <div class="col  row ">
                         <div class="col col-sm-12  rounded order-md-first ">
+                            
                             @foreach ($CartItems as $items)
                                 @php
                                     $imagenes = explode(':', $items->attributes['image']);

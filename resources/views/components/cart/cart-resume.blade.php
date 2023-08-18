@@ -40,7 +40,7 @@ $totalPrice = 0;?>
             </div>
          
             <span class="text-success"
-                >$ <span id="resultado">{{ $totalPrice}}</span></span>
+                >$ <span id="resultado">{{ $totalPrice }}</span></span>
         </li>
     </ul>
     <form class="card p-2">

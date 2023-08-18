@@ -367,9 +367,14 @@ public function validarCompra($usuario){
             ]);
 
             Session::forget('cart');
+            Session::put("cart",Cart::getContent());
+       
           }else{
             Cart::remove($id);
-            Session::forget('cart');
+
+           Session::forget('cart');
+           Session::put("cart",Cart::getContent());
+         
           }
 
         return redirect()->route("cart.show")->with("msj_destroy","El elemento fue eliminado");

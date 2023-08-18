@@ -160,7 +160,7 @@ $(document).ready(function (){
         var qtyId ="qty-"+prod_id;
         var cantidad = document.getElementById(qtyId);
 
-        
+        //Aumentar el precio del total
         var precio = document.getElementById("priceP"+prod_id).innerHTML;
         var spanResul =  document.querySelector("#resultado"); 
         var precioActual  = (spanResul.innerHTML);
@@ -169,11 +169,9 @@ $(document).ready(function (){
 
         switch (signo) {
             case "+":
-                spanResul.innerHTML = (Number(precio)+ Number(precioActual) ).toFixed(2);
-            
-            var newValue = Number(cantidad.value)+1;
-          
+                 var newValue = Number(cantidad.value)+1;
                  if (newValue < 21) {
+                    spanResul.innerHTML = (Number(precio) + Number(precioActual) ).toFixed(2);
                     cantidad.value = newValue;
                   var quantity = cantidad.value;
                   var fixedPrice = document.getElementById("ProductPrice"+prod_id);
@@ -203,10 +201,11 @@ $(document).ready(function (){
 
                 break;
             case "-":
-                spanResul.innerHTML = (Number(precioActual) -Number(precio)  ).toFixed(2);
+             
                 var newValue = Number(cantidad.value)-1;
                
                 if (newValue > 0) {
+                    spanResul.innerHTML = (Number(precioActual) -Number(precio)  ).toFixed(2);
                     cantidad.value = newValue;
                     var quantity = cantidad.value;
                     var fixedPrice = document.getElementById("ProductPrice"+prod_id);
