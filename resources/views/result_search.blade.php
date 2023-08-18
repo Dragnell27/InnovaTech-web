@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
 </head>
 @extends('layouts.contenedor')
-@section('title', 'Buscador')
+@section('title', 'Resultados de busqueda')
 @section('component')
     <div class="container">
         <div class="row justify-content-center">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\product;
 use App\Models\Param;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -59,16 +60,17 @@ class ProductosController extends Controller
         return view('index', compact('productos'));
     }
 
-    public function sugerencias_busqueda(){
+    public function sugerencias_busqueda()
+    {
         $sugerencias = [];
         $sugerencias = collect($sugerencias);
         $busqueda = Param::whereIn('paramtype_id', [9, 10, 12])->get();
         $nameProducts = product::all();
 
-        foreach ($nameProducts as $name){
+        foreach ($nameProducts as $name) {
             $sugerencias->push($name->name);
         }
-        foreach ($busqueda as $name){
+        foreach ($busqueda as $name) {
             $sugerencias->push($name->name);
         }
 
@@ -79,10 +81,14 @@ class ProductosController extends Controller
     {
         $productos = product::findOrFail($id);
         $colors = Param::where('paramtype_id', 11)->get();
+        $favoritos = [];
+        if (Auth::check()) {
+            $favoritos = Wishlist::where('user_id', Auth::user()->id)->get();
+        }
         $comments = "";
         if (Auth::check()) {
             $comments = Comment::where('user_id', Auth::user()->id)->where('product_id', $id)->first();
         }
-        return view('products.show_Product', compact('productos', 'colors', 'comments'));
+        return view('products.show_Product', compact('productos', 'colors', 'comments','favoritos'));
     }
 }

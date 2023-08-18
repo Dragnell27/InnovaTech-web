@@ -36,17 +36,32 @@
                 <!-- col end -->
                 <div class="col-lg-7 mt-5">
                     <div class="card">
+                        @php
+                            $lista_favortitos = 0;
+
+                            $agregado_lista = 'no_agregado_favoritos';
+
+                            if (Auth::check()) {
+                                foreach ($favoritos as $favorito => $f) {
+                                    if ($f->product_id == $productos->id) {
+                                        $agregado_lista = 'agregado_favoritos';
+                                        $lista_favortitos = $f->id;
+                                        break;
+                                    }
+                                }
+                            }
+                        @endphp
 
                         <div class="card-body"style="cursor: default">
                             <div class="text-right">
 
-                                <button class="btn float-end"
-                                data-product_id="">
-                                <svg width="16" height="16">
-                                    <path
-                                        d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
-                                </svg>
-                            </button>
+                                <button class="{{ $agregado_lista }} btn float-end" data-product_id="{{ $productos->id }}"
+                                    data-lista_id="{{ $lista_favortitos }}">
+                                    <svg width="16" height="16">
+                                        <path
+                                            d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
+                                    </svg>
+                                </button>
                             </div>
                             <div class="text-center mb-4">
                                 <h1 class="product-brand ">{{ $productos->name }}</h1>
@@ -61,8 +76,8 @@
                                 <div class="text-right col-6">
 
                                     @if ($productos->discount == 0)
-                                    <h4 class="mt-4"><strong><label>＄{{ $productos->price }}</label></strong>
-                                </h4>
+                                        <h4 class="mt-4"><strong><label>＄{{ $productos->price }}</label></strong>
+                                        </h4>
                                     @else
                                         @php
                                             $descuento = ($productos->price * $productos->discount) / 100;
@@ -87,16 +102,16 @@
                                 <h5><strong>Color :</strong>
                                     @php
                                         $coloresProducto = explode(':', $productos->param_color);
-                                        $colores='';
+                                        $colores = '';
 
-                                      foreach ($coloresProducto as $cP) {
-                                 foreach ($colors as $color) {
-                                    if ($cP == $color->id) {
-                                        $colores .= $color->name . ', ';
-                                    }
-                                 }
-                            }
-                            $colores = substr($colores, 0, -2);
+                                        foreach ($coloresProducto as $cP) {
+                                            foreach ($colors as $color) {
+                                                if ($cP == $color->id) {
+                                                    $colores .= $color->name . ', ';
+                                                }
+                                            }
+                                        }
+                                        $colores = substr($colores, 0, -2);
                                     @endphp
 
                                     <strong class="text-muted">{{ $colores }}</strong>
@@ -144,77 +159,26 @@
                 </div>
             </div>
 
-    <div id="comentarios-container" class="comments-container">
-        <div class="row" id="secciondecomentarios">
-            <div class="col-md-8">
-                <div class="comments">
-                    <div class="comment">
-                        <h4 id="user_id"></h4>
-                        <p><i style="color: yellow;" id="starts"></i></p>
-                        <p id="comments"></p>
+            <div id="comentarios-container" class="comments-container">
+                <div class="row" id="secciondecomentarios">
+                    <div class="col-md-8">
+                        <div class="comments">
+                            <div class="comment">
+                                <h4 id="user_id"></h4>
+                                <p><i style="color: yellow;" id="starts"></i></p>
+                                <p id="comments"></p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
     </section>
     <script>
         var BASE = "{{ url('/') }}";
     </script>
+    <script>
+        var token = '{{ csrf_token() }}';
+    </script>
+    <script src="{{ asset('js/wishlist.js') }}"></script>
     <script src="{{ asset('js/producto.js') }}"></script>
     <script src="{{ asset('js/comments.js') }}"></script>
     <script src="{{ asset('js/comments_product.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $('.ir-producto').on('click', function() {
-                var url = $(this).attr('data-url');
-                window.location.href = url;
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.no_agregado_favoritos').on('click', function() {
-                var button = $(this);
-                var idProducto = button.data('product_id').split(':');
-                var productoId = idProducto[0];
-                $.ajax({
-                    url: "{{ route('wishlist.store') }}",
-                    method: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        product_id: productoId
-                    },
-                    success: function(response) {
-                        button.removeClass('no_agregado_favoritos');
-                        button.addClass('agregado_favoritos');
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        alert('Error al agregar a la lista.');
-                    }
-                });
-            });
-
-            $('.agregado_favoritos').on('click', function() {
-                var button = $(this);
-                var idProducto = button.data('product_id').split(':');
-                var productoId = idProducto[1];
-                $.ajax({
-                    url: "{{ route('wishlist.destroy', ':product_id') }}".replace(':product_id',
-                        productoId),
-                    method: 'delete',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        product_id: productoId
-                    },
-                    success: function(response) {
-                        button.removeClass('agregado_favoritos');
-                        button.addClass('no_agregado_favoritos');
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
-                        alert('Error al eliminar de la lista.');
-                    }
-                });
-            });
-        });
-    </script>
 @endsection

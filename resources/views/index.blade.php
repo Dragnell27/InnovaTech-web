@@ -192,7 +192,10 @@
                     </div>
                 </div>
         </section>
-
+        <script>
+            var token = '{{ csrf_token() }}';
+        </script>
+        <script src="{{ asset('js/wishlist.js') }}"></script>
         <script src="{{ asset('js/cartas.js') }}"></script>
         <script src="{{ asset('js/producto.js') }}"></script>
         <script src="{{ asset('js/carrousel.js') }}"></script>
@@ -202,66 +205,5 @@
         @include('components.PQRS.FAQS')
         @include('layouts.footer')
 
-        <script>
-            $(document).ready(function() {
-                $('.ir-producto').on('click', function() {
-                    var url = $(this).attr('data-url');
-                    window.location.href = url;
-                });
-            });
-        </script>
-        <script>
-            $(document).ready(function() {
-                $(document).on('click', '.no_agregado_favoritos, .agregado_favoritos', function() {
-                    var button = $(this);
-                    var productoId = button.data('product_id');
-                    var listaId = button.data('lista_id');
-                    button.prop('disabled', true);
-                    if (button.hasClass('no_agregado_favoritos')) {
-                        $.ajax({
-                            url: "{{ route('wishlist.store') }}",
-                            method: 'POST',
-                            data: {
-                                _token: '{{ csrf_token() }}',
-                                product_id: productoId
-                            },
-                            success: function(response) {
-                                button.data('lista_id', response.id);
-                                button.toggleClass('no_agregado_favoritos agregado_favoritos');
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                console.error('Error en la solicitud AJAX:', textStatus,
-                                    errorThrown);
-                                alert('Error al agregar a la lista.');
-                            },
-                            complete: function() {
-                                // Habilita el botón después de completar la solicitud, independientemente del resultado
-                                button.prop('disabled', false);
-                            }
-                        });
-                    } else if (button.hasClass('agregado_favoritos')) {
-                        $.ajax({
-                            url: "{{ route('wishlist.destroy', ':product_id') }}".replace(
-                                ':product_id', listaId),
-                            method: 'delete',
-                            data: {
-                                _token: '{{ csrf_token() }}',
-                                product_id: listaId
-                            },
-                            success: function(response) {
-                                button.toggleClass('no_agregado_favoritos agregado_favoritos');
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                console.error('Error en la solicitud AJAX:', textStatus,
-                                    errorThrown);
-                                alert('Error al eliminar de la lista.');
-                            },
-                            complete: function() {
-                                button.prop('disabled', false);
-                            }
-                        });
-                    }
-                });
-            });
-        </script>
+
     @endsection
