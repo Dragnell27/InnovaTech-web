@@ -19,19 +19,19 @@ async function user() {
         console.error('Error', error);
     }
 
-}
+};
 //NOMBRE DEL DEPARTAMENTO
 async function DepartmentsName(nameDepartment) {
     try {
         const response = await fetch("/departments/" + nameDepartment);
         const data = await response.json()
-      
+
         return data.departments[0].name;
     } catch (error) {
         console.error(`Error al obtener datos ${error}`);
         return null;
     }
-}
+};
 
 //DIRECCIONES
 
@@ -84,79 +84,111 @@ async function cargarDirecciones(seleccionarDireccion,formDirecciones,btnAddAdre
             }
         });
         return addresses;
-       
+
         //FUNCIÓN DL BOTON
     } catch (error) {
         console.error(`Error al obtener datos de la API: ${error}`);
         return[];
     }
-}
+};
 async function AddressAdmin(){
     try {
-    const response = await fetch(urlAddressAdmin);
-    const data = await response.json();
-    const addressAdmin= data.data;
-  const direccionAdmin = document.getElementById('direcionesAdmin');
-  let html = ' <option value="-1"> Elige Punto Fisico</option>';
-        for (let i = 0; i <addressAdmin.length; i++) {
-            const addressData=addressAdmin[i];
-           html += '<option value="' + i + '">Dirección ' + (i + 1) + ' - ' + addressData.address + ' - ' + addressData.hood + '</option>';
-        }
-       direccionAdmin.innerHTML=html;
-       direccionAdmin.addEventListener('change',async function(event){
-        try {
-            const addressData = addressAdmin[0];
-            const address2 =addressData.city;
-            document.getElementById("cityAdmin").value=address2.city_name;
-            document.getElementById("hoodAdmin").value=addressData.hood;
-            document.getElementById("addressAdmin").value=addressData.address;
-            document.getElementById("floorAdmin").value=addressData.floor;
+    const response2 = await fetch(urlAddressAdmin);
+    const data2 = await response2.json();
+    const addressAdmin= data2.data;
+  let direccionAdmin = document.getElementById('direcionesAdmin');
 
-            formPuntoFisico.style.display='block';
-        } catch (error) {
-        console.error(error,"Error al traer los datos del api");
+  let html2 = ' <option value="-1"> Elige Punto Fisico</option>';
+        for (let i = 0; i <addressAdmin.length; i++) {
+            const addressData2=addressAdmin[i];
+           html2 += '<option value="' + i + '">Dirección ' + (i + 1) + ' - ' + addressData2.address + ' - ' + addressData2.hood + '</option>';
         }
-       
+       direccionAdmin.innerHTML=html2;
+       direccionAdmin.addEventListener('change',async function(event){
+        const addressIndex2 = event.target.value;
+        if (addressIndex2==='-1') {
+   document.getElementById('formPuntoFisico').style.display="none";
+
+        } else {
+            try {
+                const addressData2 = addressAdmin[addressIndex2 ];
+                const addressCity =addressData2.city;
+                document.getElementById("cityAdmin").value=addressCity.city_name;
+                document.getElementById("hoodAdmin").value=addressData2.hood;
+                document.getElementById("addressAdmin").value=addressData2.address;
+                document.getElementById("floorAdmin").value=addressData2.floor;
+
+                document.getElementById('formPuntoFisico').style.display="block";
+            }
+            catch (error) {
+                console.error(error,"Error al traer los datos del api");
+                }
+
+        }
 
        });
     } catch (error) {
         console.error(error,"Error al traer los datos del api");
     }
 
-}
-
+};
 
 async function mostrarForm(tipoLugar) {
-    const seleccionarDireccion = document.getElementById('direciones');
     const formDirecciones = document.getElementById('formDirecciones');
-    const formPuntoFisico= document.getElementById('formPuntoFisico');
+    const formDomicilios = document.getElementById('FormDomicilios');
+    const formPunto = document.getElementById('formPuntoFisico');
+    const seleccionarDireccion = document.getElementById('direciones');
+    const seleccionarpuntoFisico = document.getElementById('puntoFisico');
     const btnAddAdress = document.getElementById('agregarDireccion');
-    // document.getElementById('formPuntoFisico').style.display="none";
-    document.getElementById("FormDomicilios").style.display = "none";
-    document.getElementById("puntoFisico").style.display = "none";
-    btnAddAdress.style.display='none';
-    if (tipoLugar == "domicilios") {
-    const addresses= await cargarDirecciones(seleccionarDireccion, formDirecciones,btnAddAdress);
 
-        if (addresses.length>0) {
-            document.getElementById("FormDomicilios").style.display = "block";
-            document.getElementById('formPuntoFisico').style.display="none";
+    // const formDirecciones = document.getElementById('formDirecciones');
+    // document.getElementById("puntoFisico").style.display = "none";
+    // document.getElementById('formPuntoFisico').style.display="none";
+    // document.getElementById("FormDomicilios").style.display = "none";
+    // formDirecciones.style.display = 'none';
+    // seleccionarDireccion.style.display = 'none';
+    // btnAddAdress.style.display='none';
+
+    if (tipoLugar == "domicilios") {
+        btnAddAdress.style.display = 'none';
+        formPunto.style.display = 'none';
+        formDomicilios.style.display = 'none';
+        formDirecciones.style.display = 'none';
+        seleccionarDireccion.style.display = 'none';
+        seleccionarpuntoFisico.style.display = 'none';
+
+        if (myGlobalAddress.length>0) {
+            formDomicilios.style.display = 'block';
+            seleccionarDireccion.style.display = 'block';
+        // document.getElementById("FormDomicilios").style.display = "block";
+            // btnAddAdress.style.display='none';
+        // seleccionarDireccion.style.display = 'block';
 
         }else{
-            btnAddAdress.style.display='block';
-            document.getElementById("FormDomicilios").style.display = "none";
-        document.getElementById('formPuntoFisico').style.display="none";
+            btnAddAdress.style.display = 'block';
+            // btnAddAdress.style.display='block';
+            // document.getElementById("FormDomicilios").style.display = "none";
 
         }
-
-
     } else if (tipoLugar == "Pfisico") {
-        document.getElementById("puntoFisico").style.display = "block";
-        document.getElementById('formDirecciones').style.display = 'none';
+        btnAddAdress.style.display = 'none';
+        formPunto.style.display = 'none';
+        formDomicilios.style.display = 'none';
+        formDirecciones.style.display = 'none';
+        seleccionarDireccion.style.display = 'none';
+        seleccionarpuntoFisico.style.display = 'block';
+
+        //  document.getElementById("puntoFisico").style.display = "block";
+        //     formDirecciones.style.display = "none";
+        // document.getElementById("FormDomicilios").style.display = "none";
+        // seleccionarDireccion.style.display='none';
+        // estado.puntoFisico=true;
+
 
     }
 
-}
+
+};
 const select = document.querySelector('#select');
 const opciones = document.querySelector('#opciones');
 const contenedorSelect = document.querySelector('#select .contenedorSelect');
@@ -177,9 +209,12 @@ select.addEventListener('click', () => {
 });
 
 window.addEventListener('load', async () => {
+    const formDirecciones = document.getElementById('formDirecciones');
+    const seleccionarDireccion = document.getElementById('direciones');
+    const btnAddAdress = document.getElementById('agregarDireccion');
 
     await user();
-    await cargarDirecciones();
+    myGlobalAddress = await cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress);
     await AddressAdmin();
 
 });
