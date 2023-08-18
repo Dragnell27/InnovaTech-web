@@ -75,7 +75,7 @@ class WishlistController extends Controller
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         } else {
-            return redirect()->back()->with('success_message', 'Producto eliminado de la lista de deseos');
+            return redirect()->back()->with('eliminado', 'ok');
         }
     }
 }

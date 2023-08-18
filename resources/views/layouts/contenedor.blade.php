@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
 
     <script src="{{ asset('js/JQuery.min.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2.js') }}"></script>
     <script src="{{ asset('js/sales.js') }}"></script>
 </head>
 

@@ -1,56 +1,71 @@
 {{-- jaider --}}
 @extends('layouts.profileMenu')
 @section('content')
-    <form action="{{ route('direcciones.update', $data['address']['id']) }}" method="POST">
+    <form action="{{ route('direcciones.update', $data['address']['id']) }}" method="POST" class="editar-address">
         @csrf
         @method('patch')
         <div class="container">
             <h1>Editar dirección</h1>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label class="form-label" for="perfilDepartamento">Departamento<strong class="text-danger"> *</strong></label>
+                    <label class="form-label" for="perfilDepartamento">Departamento<strong class="text-danger">
+                            *</strong></label>
                     <select name="department" required id="perfilDepartamento" class="form-control">
                         <option value="">-- Seleccionar --</option>
-                        @foreach ($deparments as $deparment)
-                            @if ($data['deparment']['id'] == $deparment->id)
-                                <option value="{{ $deparment->id }}" selected>{{ $deparment->name }}</option>
+                        @foreach ($departments as $department)
+                            @if (old('department', $data['department']['id']) == $department->id)
+                                <option value="{{ $department->id }}" selected>{{ $department->name }}</option>
                             @else
-                                <option value="{{ $deparment->id }}">{{ $deparment->name }}</option>
+                                <option value="{{ $department->id }}">{{ $department->name }}</option>
                             @endif
                         @endforeach
                     </select>
+                    @error('department')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-md-6">
                     <label class="form-label" for="perfilMunicipio">Ciudad<strong class="text-danger"> *</strong></label>
                     <select name="param_city" required id="perfilMunicipio" class="form-control">
                         <option value="">-- Seleccionar --</option>
                         @foreach ($cities as $city)
-                            @if ($data['address']['city']['id'] == $city->id)
+                            @if (old('param_city', $data['address']['city']['id']) == $city->id)
                                 <option value="{{ $city->id }}" selected>{{ $city->name }}</option>
                             @else
                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
                             @endif
                         @endforeach
                     </select>
+                    @error('param_city')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
                     <label class="form-label me-2" for="perfilBarrio">Barrio<strong class="text-danger"> *</strong></label>
-                    <input name="hood" value="{{ $data['address']['hood'] }}" id="perfilBarrio" class="form-control"
-                        type="text">
+                    <input name="hood" value="{{ old('hood', $data['address']['hood']) }}" id="perfilBarrio" class="form-control" type="text">
+                    @error('hood')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-md-4">
                     <label class="form-label me-2" for="perfilDireccion">Direccion<strong class="text-danger"> *</strong></label>
-                    <input name="address" value="{{ $data['address']['address'] }}" id="perfilDireccion"
-                        class="form-control" type="text">
+                    <input name="address" value="{{ old('address', $data['address']['address']) }}" id="perfilDireccion" class="form-control" type="text">
+                    @error('address')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-md-4">
                     <label class="form-label me-2" for="perfilPiso">Detalles</label>
-                    <input name="floor" value="{{ $data['address']['floor'] }}" id="perfilPiso" class="form-control"
-                        type="text">
+                    <input name="floor" value="{{ old('floor', $data['address']['floor']) }}" id="perfilPiso" class="form-control" type="text">
+                    @error('floor')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
+
+
 
             <div class="float-end mt-3 mb-5">
                 <input type="submit" class="btn btn-primary" value="Guardar datos">
@@ -83,6 +98,31 @@
                 }
                 document.getElementById("perfilMunicipio").innerHTML = opciones;
             }).catch(error => console.error(error));
+        });
+    </script>
+    <script>
+        $('.editar-address').submit(function(e) {
+            e.preventDefault();
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-primary ms-2',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Estas seguro de editar?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Si, editar!',
+                cancelButtonText: 'No, cancelar!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
         });
     </script>
 @endsection

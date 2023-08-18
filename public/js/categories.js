@@ -1,7 +1,7 @@
 // Sidebar
 document.addEventListener('DOMContentLoaded', function() {
   const sidebar = document.getElementById('sidebar');
-  fetch('api/category') // Cambia la URL de la API según tu configuración
+  fetch('/api/category') // Cambia la URL de la API según tu configuración
       .then(response => response.json())
       .then(categories => {
           categories.data.forEach(category => {

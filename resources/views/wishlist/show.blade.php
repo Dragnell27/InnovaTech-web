@@ -62,7 +62,8 @@
                         <svg width="100" height="100" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path
                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                            <text x="40%" y="45%" font-size="8" dominant-baseline="middle" text-anchor="middle" fill="currentColor">?</text>
+                            <text x="40%" y="45%" font-size="8" dominant-baseline="middle"
+                                text-anchor="middle" fill="currentColor">?</text>
                         </svg>
                     </p>
                 </div>
@@ -77,4 +78,15 @@
             });
         });
     </script>
+    @if (session('eliminado') == 'ok')
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Eliminado de tus favoritos',
+                showConfirmButton: false,
+                timer: 2500
+            })
+        </script>
+    @endif
 @endsection

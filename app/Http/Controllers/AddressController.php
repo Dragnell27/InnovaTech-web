@@ -55,8 +55,16 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        // jaider
-        $datos = Address::where('user_id', Auth::user()->id)->where('param_state',5)->get();
+
+        $request->validate([
+            'hood' => 'required',
+            'address' => 'required',
+            'floor' => 'required',
+            'param_city' => 'required',' numeric',
+            'department' => 'required ','numeric',
+        ]);
+
+        $datos = Address::where('user_id', Auth::user()->id)->where('param_state', 5)->get();
         if ($datos->count() >= 3) {
             session()->flash('message', [
                 'text' => 'Ya has alcanzado el límite de direcciones.',
@@ -97,14 +105,14 @@ class AddressController extends Controller
     public function edit($id)
     {
         $address = Address::with('city')->findOrFail($id);
-        $deparment = Param::find($address->city->param_foreign);
-        $deparments = Param::where('paramtype_id', 6)->get();
+        $department = Param::find($address->city->param_foreign);
+        $departments = Param::where('paramtype_id', 6)->get();
         $data = [
             'address' => $address,
-            'deparment' => $deparment,
+            'department' => $department,
         ];
-        $cities = Param::where('paramtype_id', 7)->where('param_foreign', $data['deparment']['id'])->get();
-        return view('profile.address.edit', compact('deparments'), compact('cities'))->with('data', $data);
+        $cities = Param::where('paramtype_id', 7)->where('param_foreign', $data['department']['id'])->get();
+        return view('profile.address.edit', compact('departments'), compact('cities'))->with('data', $data);
     }
 
     /**
@@ -112,17 +120,21 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'hood' => 'required',
+            'address' => 'required',
+            'floor' => 'required',
+            'param_city' => 'required',' numeric',
+            'department' => 'required ','numeric',
+        ]);
+
         $address = Address::findOrFail($id);
         $address->hood = $request->input('hood');
         $address->address = $request->input('address');
         $address->floor = $request->input('floor');
         $address->param_city = $request->input('param_city');
         $address->save();
-        session()->flash('message', [
-            'text' => 'Dirección editada',
-            'type' => 'success',
-        ]);
-        return redirect(route('direcciones.index'));
+        return redirect(route('direcciones.index'))->with('editar', 'ok');
     }
 
     /**
@@ -134,10 +146,6 @@ class AddressController extends Controller
         $address = Address::findOrFail($id);
         $address->param_state = 6;
         $address->save();
-        session()->flash('message', [
-            'text' => 'Dirección eliminada',
-            'type' => 'success',
-        ]);
-        return redirect(route('direcciones.index'));
+        return redirect(route('direcciones.index'))->with('eliminar', 'ok');
     }
 }
