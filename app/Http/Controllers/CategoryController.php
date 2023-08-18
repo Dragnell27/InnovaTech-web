@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 use App\Http\Resources\category\CategoryCollection;
 use App\Http\Resources\category\CategoryResource;
+use App\Models\Wishlist;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -16,10 +18,10 @@ class CategoryController extends Controller
      */
     public function index()
 
-    { 
-       return CategoryCollection::collection(DB::table("params")->where("paramtype_id","12")->where("param_state","5")->get());
+    {
+        return CategoryCollection::collection(DB::table("params")->where("paramtype_id", "12")->where("param_state", "5")->get());
         // return CategoryResource::collection(Category::all());
-        
+
     }
 
     /**
@@ -35,12 +37,17 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-       
+
         try {
             $categoryData = Category::with('products')->where('param_category', $id)->get();
             $products = $categoryData;
-    
-            return view('components.Categories.category', compact('products'));
+
+            $favoritos = [];
+            if (Auth::check()) {
+                $favoritos = Wishlist::where('user_id', Auth::user()->id)->get();
+            }
+
+            return view('components.Categories.category', compact('products','favoritos'));
         } catch (\Exception $e) {
             // Manejo del error
             dd($e->getMessage()); // Muestra el mensaje de error en la página

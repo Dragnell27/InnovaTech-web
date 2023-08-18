@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   const categoryId = category.id;
 
                   // Redirige al usuario a la URL de la vista de productos de categoría
-                  window.location.href = `/proyecto_web/public/api/category/${categoryId}`;
+                  window.location.href = `/api/category/${categoryId}`;
               });
 
               sidebar.appendChild(link);

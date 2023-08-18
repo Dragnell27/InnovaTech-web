@@ -162,6 +162,7 @@
                             </div>
                         @endforeach
                     </div>
+
                 </section>
                 <br>
                 <div class="red-div">
@@ -203,6 +204,5 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         @include('components.PQRS.FAQS')
         @include('layouts.footer')
-
 
     @endsection
