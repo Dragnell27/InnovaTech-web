@@ -14,11 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         searchIcon.classList.replace("uil-times", "uil-search");
     });
 
-    navOpenBtn.addEventListener("click", () => {
-        nav.classList.add("openNav");
-        nav.classList.remove("openSearch");
-        searchIcon.classList.replace("uil-times", "uil-search");
-    });
+
 
     navCloseBtn.addEventListener("click", () => {
         nav.classList.remove("openNav");
@@ -38,7 +34,7 @@ function toggleSidebar1() {
 $(document).ready(function () {
     var sugerencias = [];
     var valorOriginal = '';
-    
+
     $.ajax({
         url: "/sugerencias",
         method: 'get',
@@ -46,6 +42,12 @@ $(document).ready(function () {
             sugerencias = response.sugerencias;
         }
     });
+
+    $(".navOpenBtn").click(function() {
+        nav.addClass("openNav");
+        nav.removeClass("openSearch");
+        $("#searchIcon").removeClass("uil-times").addClass("uil-search");
+      });
 
     $('#query').on('input', function () {
         var nuevoValor = $(this).val();
