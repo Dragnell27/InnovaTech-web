@@ -18,7 +18,7 @@
 
   .btnAddCart{
      text-decoration:none;
-     background:#e74c3c;
+     background:#e70000;
      color:#ffff;
      padding: 10px 64px;
      border-radius:20px;
@@ -29,7 +29,6 @@
     overflow: hidden;
     transform: perspective(1000px) rotateX(20deg);
     transition: transform 0.3s ease-in-out;
-  font-family:'Nunito',sans-serif;
       font-size:1.5rem;
 
   }
@@ -99,11 +98,11 @@
 
   }
   .small-product img:hover{
-      border: 2px solid red;
+      border: 2px solid #e70000;
       transform: translateY(-5px);
   }
   .small-product img.selected{
-      border: 2px solid red;
+      border: 2px solid #e70000;
 
   }
   .small-product{

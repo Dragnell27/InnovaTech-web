@@ -36,7 +36,7 @@ header {
     TITULO
   ------------*/
 .red-div {
-    background-color: red;
+    background-color: #e70000;
     border-radius: 20px;
     width: 600px;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
@@ -135,7 +135,7 @@ Seccion-Productos
 }
 
 .agregado-favorito{
-    fill: red;
+    fill: #e70000;
 }
 
 .card-btn {
@@ -160,7 +160,7 @@ Seccion-Productos
 }
 
 .card-btn{
-    background: red;
+    background: #e70000;
     color: #fff;
     height: 11%;
     width: 84%;
