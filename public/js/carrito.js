@@ -120,7 +120,7 @@ window.addEventListener("load",()=>{
                 data: data,
                 dataType: "json",
                 success: function (data) {
-                    console.log(data["msj_exitoso"],"bien");
+                    
                     $.ajax({
                         url: baseURL +'/cart-added',
                         method: 'GET',

@@ -23,7 +23,7 @@
     }
     ?>
     <div class="card border-success mb-3" id="CartAlert"
-        style="max-width: 600px; margin: 10% auto; position: absolute; z-index: 999; top: 50%; left: 50% ;transform: translate(-50%, -50%);">
+        style="max-width:600px; margin: 10% auto; position: absolute; z-index: 999; top: 50%; left: 50% ;transform: translate(-50%, -50%);">
         <div class="row g-0">
             <div class="card-header text-center row">
                 <h5 class="col">
@@ -35,8 +35,8 @@
                 </h5>
                 <input type="button" id="btnClose" class="btn-close" aria-label="Close">
             </div>
-            <div class='col-md-4'>
-                <img src="{{ $url.$imagenes[0] }}"" class="img-fluid rounded-start">
+            <div class='col-sm-4 col-md-2'>
+                <img src="{{ $url.$imagenes[0] }}""   class="img-fluid rounded-start">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
