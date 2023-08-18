@@ -9,7 +9,7 @@
 @section('component')
     <section>
         <div id="section">
-            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="1000">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="{{ asset('img/imagen4.jpg') }}" class="d-block w-100" alt="...">
@@ -198,7 +198,7 @@
         <script src="{{ asset('js/wishlist.js') }}"></script>
         <script src="{{ asset('js/cartas.js') }}"></script>
         <script src="{{ asset('js/producto.js') }}"></script>
-        <script src="{{ asset('js/carrousel.js') }}"></script>
+        {{-- <script src="{{ asset('js/carrousel.js') }}"></script> --}}
 
 
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>

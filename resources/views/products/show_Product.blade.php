@@ -27,7 +27,7 @@
                     <div class="small-product">
                         @foreach ($images as $img)
                             <img id="imageOne" src="{{ 'https://innovatechcol.com.co/img/productos/' . $img }}"
-                                alt="Producto Imagen 2" onclick="myFunction(this)">
+                                alt="Producto Imagen 2" onclick="myFunction(this)" width="100px" height="100px">
                         @endforeach
                     </div>
 

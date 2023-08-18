@@ -1,5 +1,4 @@
 @if (Auth::check())
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div id="faqs-container" style="" class="" >
     <div class="card w-30 border-dark text-bg-light mb-3" style="max-width: 20rem; " style="display: none ">
         <div class="card-header bg-transparent border-dark">Tienes alguna duda?. Escribenos...
