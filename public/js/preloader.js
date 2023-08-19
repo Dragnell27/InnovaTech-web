@@ -12,9 +12,8 @@ $(document).ready(function () {
     if (!isOnline) {
         console.log("No hay conexión a Internet");
         Swal.fire(
-            "No Internet Connection",
-            "Please check your network connection.",
-            "error"
+            "Error de conexion a internet",
+            "Revisa tu conexion a internet.",
         );
     }
 });
