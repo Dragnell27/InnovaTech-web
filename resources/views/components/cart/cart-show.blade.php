@@ -188,5 +188,6 @@
     };
 </script> 
     </section>
+    @include('layouts.footer')
 
 @endsection
