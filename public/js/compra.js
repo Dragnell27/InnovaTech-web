@@ -137,17 +137,12 @@ async function mostrarForm(tipoLugar) {
     const formDirecciones = document.getElementById('formDirecciones');
     const formDomicilios = document.getElementById('FormDomicilios');
     const formPunto = document.getElementById('formPuntoFisico');
+    const direcionesAdmin= document.getElementById('direcionesAdmin');
     const seleccionarDireccion = document.getElementById('direciones');
     const seleccionarpuntoFisico = document.getElementById('puntoFisico');
     const btnAddAdress = document.getElementById('agregarDireccion');
-
-    // const formDirecciones = document.getElementById('formDirecciones');
-    // document.getElementById("puntoFisico").style.display = "none";
-    // document.getElementById('formPuntoFisico').style.display="none";
-    // document.getElementById("FormDomicilios").style.display = "none";
-    // formDirecciones.style.display = 'none';
-    // seleccionarDireccion.style.display = 'none';
-    // btnAddAdress.style.display='none';
+    seleccionarDireccion.selectedIndex=0;
+    direcionesAdmin.selectedIndex=0;
 
     if (tipoLugar == "domicilios") {
         btnAddAdress.style.display = 'none';
@@ -160,14 +155,9 @@ async function mostrarForm(tipoLugar) {
         if (myGlobalAddress.length>0) {
             formDomicilios.style.display = 'block';
             seleccionarDireccion.style.display = 'block';
-        // document.getElementById("FormDomicilios").style.display = "block";
-            // btnAddAdress.style.display='none';
-        // seleccionarDireccion.style.display = 'block';
 
         }else{
             btnAddAdress.style.display = 'block';
-            // btnAddAdress.style.display='block';
-            // document.getElementById("FormDomicilios").style.display = "none";
 
         }
     } else if (tipoLugar == "Pfisico") {
@@ -178,14 +168,11 @@ async function mostrarForm(tipoLugar) {
         seleccionarDireccion.style.display = 'none';
         seleccionarpuntoFisico.style.display = 'block';
 
-        //  document.getElementById("puntoFisico").style.display = "block";
-        //     formDirecciones.style.display = "none";
-        // document.getElementById("FormDomicilios").style.display = "none";
-        // seleccionarDireccion.style.display='none';
-        // estado.puntoFisico=true;
+        seleccionarpuntoFisico.style.display = 'block';
 
 
     }
+
 
 
 };

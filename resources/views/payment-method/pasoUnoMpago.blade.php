@@ -12,53 +12,7 @@ background-color: #e5e5f7;">
     <div class="container ml-5">
 
         <div class="row g-5 pl-5 ml-5">
-            <div class="col-md-5 col-lg-4 order-md-last" style="height: 20%">
-                <h3 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-danger">Resumen de compra</span>
-
-                    <span class="badge bg-danger rounded-pill">3</span>
-                </h3>
-                <div>
-                    <ul class="list-group mb-3">
-                        <div id="resumen">
-                            <ul class="list-group">
-                                <li class="list-group-item d-flex justify-content-between lh-sm">
-                                    <div>
-                                        <h6 class="my-0">Nombre de Producto</h6>
-                                        <small class="text-body-secondary">En esta parte va el producto y la
-                                            descripción</small>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-                            <div class="text-success">
-                                <h6 class="my-0">Total (USD)</h6>
-                            </div>
-                            <span class="text-success">−$20</span>
-
-                        <li class="list-group-item  justify-content-between text-center">
-                            <a href="" class="text-dark text-decoration-none ">
-                                <span>
-                                    <i class="bi bi-cart4"></i>
-                                    volver al carro
-                                </span>
-                            </a>
-                        </li>
-                        </li>
-
-                    </ul>
-
-                </div>
-
-                <form class="card p-2">
-                    <div class="input-group">
-                        <a name="" id="" class=" w-100 btn btn-primary  btn-lg" href="{{ route('Mpago') }}"
-                            role="button">Ir a Pagar
-                        </a>
-                    </div>
-                </form>
-            </div>
+           @include('components.cart.cart-resume')
             <div class="col-md-7 col-lg-8">
                 <h2 style="color:black">
                     Tus datos </h2>

@@ -4,6 +4,7 @@
         <span class="text-danger">Resumen de compra</span>
 <?php
 $totalPrice = 0;?>
+
 @if (Auth::check())
 <?php
 
@@ -23,22 +24,21 @@ $CartCount = Cart::getContent()->count();
 @if (Session::has('cart'))
     <?php
 
-        
+
         $cart = Session::get("cart");
-      
+
 
         foreach ($cart as $key => $value) {
                 if($value->attributes["discount"]>0){
                     $descuento   =  ($value->price * $value->attributes["discount"]) /100;
-                    $totalPrice +=  ($value->price - $descuento) * $value->quantity ; 
-                  
+                    $totalPrice +=  ($value->price - $descuento) * $value->quantity ;
+
             }else{
                 $totalPrice +=$value->price * $value->quantity;
             }
         }
-        
     ?>
-    
+
 @endif
 
     </h4>
@@ -54,15 +54,27 @@ $CartCount = Cart::getContent()->count();
             <div class="text-success">
                 <h6 class="my-0">Total (COP)</h6>
             </div>
-         
+
             <span class="text-success"
                 >$ <span id="resultado">{{ $totalPrice }}</span></span>
         </li>
     </ul>
     <form class="card p-2">
         <div class="input-group">
-            <a name="" id="" class=" w-100 btn btn-primary  btn-lg" href="payment-method/1" 
-                role="button">Continuar compra
+
+           @if (Request::is('payment-method/1'))
+           @php
+            $textButton="ir a pagar";
+            $urlButton="Metodo-pago";
+           @endphp
+           @else
+           @php
+            $textButton="Continuar compra";
+            $urlButton="1";
+           @endphp
+           @endif
+            <a name="" id="" class=" w-100 btn btn-primary  btn-lg" href="{{ url('payment-method/' . $urlButton) }}"
+                role="button">{{ $textButton }}
             </a>
         </div>
     </form>
