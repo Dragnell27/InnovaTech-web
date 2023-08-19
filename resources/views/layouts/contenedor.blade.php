@@ -95,7 +95,7 @@
                   </svg></i>
                 <form action="{{ route('products.search') }}" method="POST">
                     @csrf
-                    <input type="text" name="query" id="query" placeholder="Buscar en innovatech..." />
+                    <input type="text" name="query" autocomplete="off" spellcheck="false"  id="query" placeholder="Buscar en innovatech..." />
                     <button type="submit" id="botonOculto" style="display: none;"></button>
                 </form>
                 <div class="" id="sugerenciasContainer">
