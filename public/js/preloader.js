@@ -1,19 +1,17 @@
-$(document).ready(function () {
-    console.log("Página completamente cargada");
-    const preloader = $(".centrado");
+document.addEventListener("DOMContentLoaded", function () {
+    const preloader = document.querySelector(".centrado");
 
-    // Ocultar el preloader una vez que todos los recursos hayan terminado de cargar
-    $(window).on("load", function () {
-        preloader.hide();
-    });
+    window.onload = function () {
+        preloader.style.display = "none";
+    };
 
-    var isOnline = window.navigator.onLine;
+    var isOnline = navigator.onLine;
 
     if (!isOnline) {
         console.log("No hay conexión a Internet");
         Swal.fire(
             "Error de conexion a internet",
-            "Revisa tu conexion a internet.",
+            "Revisa tu conexion a internet."
         );
     }
 });

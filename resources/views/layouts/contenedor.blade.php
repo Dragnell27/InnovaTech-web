@@ -20,7 +20,6 @@
 
     <script src="{{ asset('js/JQuery.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.js') }}"></script>
-    <script src="{{ asset('js/sales.js') }}"></script>
 </head>
 
 <body>
@@ -114,7 +113,10 @@
     {{-- agrego el js del carrito --}}
     <script src="{{ asset('js/carrito.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
+    @yield('js')
+    <script src="{{ asset('js/preloader.js') }}"></script>
     <!-- Bootstrap JS -->
+
 </body>
 
 </html>

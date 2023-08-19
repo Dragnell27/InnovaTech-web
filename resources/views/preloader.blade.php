@@ -1,7 +1,5 @@
 {{-- Juliana --}}
-<script src="{{ asset('js/JQuery.min.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('css/preloader.css') }}">
-<script src="{{ asset('js/preloader.js') }}"></script>
 
 
 <div class="centrado">
