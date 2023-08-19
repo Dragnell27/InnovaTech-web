@@ -65,15 +65,14 @@ class ProductosController extends Controller
     public function sugerencias_busqueda()
     {
         $sugerencias = [];
-        $sugerencias = collect($sugerencias);
         $busqueda = Param::whereIn('paramtype_id', [9, 10, 12])->get();
         $nameProducts = product::all();
 
         foreach ($nameProducts as $name) {
-            $sugerencias->push($name->name);
+            $sugerencias[] = ucfirst($name->name);
         }
         foreach ($busqueda as $name) {
-            $sugerencias->push($name->name);
+            $sugerencias[] = ucfirst($name->name);
         }
 
         return response()->json(['success' => true, 'sugerencias' => $sugerencias]);

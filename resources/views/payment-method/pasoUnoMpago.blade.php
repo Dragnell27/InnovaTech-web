@@ -239,10 +239,9 @@ background-color: #e5e5f7;">
 
 
     </div>
-    @extends('layouts.footer')
 
 </section>
-
+@section('js')
 <script>
     var BasUrl = "{{ url('/')}}";
     const url = BasUrl + "/api/users/" + '{{Auth::user()->id}}';
@@ -252,3 +251,5 @@ background-color: #e5e5f7;">
 </script>
 
 <script src="{{ asset('js/compra.js') }}"></script>
+@endsection
+@extends('layouts.footer')

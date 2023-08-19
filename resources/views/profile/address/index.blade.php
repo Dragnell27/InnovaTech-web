@@ -1,12 +1,6 @@
 {{-- jaider --}}
 @extends('layouts.profileMenu')
 @section('content')
-    @isset(session('message')['text'])
-        <div class="alert alert-{{ session('message')['type'] }} alert-dismissible fade show" role="alert">
-            <strong>Mensaje: </strong> {{ session('message')['text'] }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endisset
     <h1 class="mb-3">Mis Direcciones</h1>
     @foreach ($filter as $address)
         <div class="card mb-3">
@@ -55,7 +49,7 @@
         })
 
         swalWithBootstrapButtons.fire({
-            title: 'Estas seguro de eliminar?',
+            title: '¿Estas seguro de eliminar?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Si, eliminar!',
@@ -68,36 +62,20 @@
         })
     });
 </script>
-@if (session('eliminar') == 'ok')
-    <script>
-        const swalWithBootstrapButton = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-primary ms-2',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
-        })
-        swalWithBootstrapButton.fire(
-            'Eliminado!',
-            '',
-            'success'
-        )
-    </script>
-@endif
-@if (session('editar') == 'ok')
-    <script>
-        const swalWithBootstrapButton = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-primary ms-2',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
-        })
-        swalWithBootstrapButton.fire(
-            'Editado!',
-            '',
-            'success'
-        )
-    </script>
+@if(session('message') && session('type'))
+<script>
+    const swalWithBootstrapButton = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-primary ms-2',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    });
+    swalWithBootstrapButton.fire(
+        '{{ session('message') }}',
+        '{{ session('text') }}',
+        '{{ session('type') }}'
+    );
+</script>
 @endif
 @endsection
