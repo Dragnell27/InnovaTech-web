@@ -112,7 +112,9 @@ Seccion-Productos
     scroll-behavior: smooth;
     overflow-y: hidden;
 }
-
+.product-container::-webkit-scrollbar-thumb{
+    width: 1px;
+}
 .product-card {
     flex: 0 0 auto;
     width: 250px;
