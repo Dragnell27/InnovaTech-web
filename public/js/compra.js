@@ -73,7 +73,25 @@ async function cargarDirecciones(seleccionarDireccion,formDirecciones,btnAddAdre
          document.getElementById('city').value=address2.city_name;
          document.getElementById('hood').value=addressData.hood;
         document.getElementById('address').value=addressData.address;
-        document.getElementById('floor').value=addressData.floor;
+
+            document.getElementById('floor').value=addressData.floor;
+
+            // const optionalFields = [
+            //     { id: 'NombreDepartment', value: departmentName },
+            //     { id: 'city', value: address2.city_name },
+            //     { id: 'hood', value: addressData.hood },
+            //     { id: 'address', value: addressData.address },
+            //     { id: 'floor', value: addressData.floor }
+            // ];
+
+            // optionalFields.forEach(field => {
+            //     if (field.value) {
+            //         document.getElementById(field.id).value = field.value;
+            //         document.getElementById(field.id).style.display = 'block'; // Mostrar el campo
+            //     } else {
+            //         document.getElementById(field.id).style.display = 'none'; // Ocultar el campo
+            //     }
+            // });
 
         formDirecciones.style.display='block';
 
@@ -208,24 +226,24 @@ window.addEventListener('load', async () => {
 
 
 
-document.getElementById("userEdit").addEventListener('click',function (e) {
-e.preventDefault();
-var editUser=this.getAttribute("data-edit-url");
-var viewEditUser= new XMLHttpRequest();
+// document.getElementById("userEdit").addEventListener('click',function (e) {
+// e.preventDefault();
+// var editUser=this.getAttribute("data-edit-url");
+// var viewEditUser= new XMLHttpRequest();
 
-viewEditUser.onreadystatechange=function() {
-    if (viewEditUser.readyState==4 && viewEditUser.status === 200) {
-        document.getElementById('ContenedorUserEdit').innerHTML=viewEditUser.responseText;
-        document.getElementById("editModal").style.display = "flex";
-    document.getElementById('ContenedorUserEdit').style.display='block';
-    }
-};
-viewEditUser.open("GET", editUser, true);
-viewEditUser.send();
-});
-function closeEditModal() {
-    document.getElementById("ContenedorUserEdit").style.display = "none";
-    document.getElementById("editModal").style.display = "none";
-  }
+// viewEditUser.onreadystatechange=function() {
+//     if (viewEditUser.readyState==4 && viewEditUser.status === 200) {
+//         document.getElementById('ContenedorUserEdit').innerHTML=viewEditUser.responseText;
+//         document.getElementById("editModal").style.display = "flex";
+//     document.getElementById('ContenedorUserEdit').style.display='block';
+//     }
+// };
+// viewEditUser.open("GET", editUser, true);
+// viewEditUser.send();
+// });
+// function closeEditModal() {
+//     document.getElementById("ContenedorUserEdit").style.display = "none";
+//     document.getElementById("editModal").style.display = "none";
+//   }
 
 

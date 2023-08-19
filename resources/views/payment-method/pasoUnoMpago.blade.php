@@ -12,10 +12,22 @@ background-color: #e5e5f7;">
     <div class="container ml-5">
 
         <div class="row g-5 pl-5 ml-5">
-           @include('components.cart.cart-resume')
+            @include('components.cart.cart-resume')
             <div class="col-md-7 col-lg-8">
+                
                 <h2 style="color:black">
-                    Tus datos </h2>
+                    Tus datos <a id="openEdit" style="border: 0; background: none; font-size: 30px;"
+                        href="#">
+                        <svg width="30px" height="30px" fill="currentColor" class="bi bi-pencil-square"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                            <path fill-rule="evenodd"
+                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                        </svg>
+                    </a>
+
+                </h2>
                 <strong>
                     <p class="form_parrafo">Verificalos para seguir con la compra
                     </p>
@@ -24,7 +36,7 @@ background-color: #e5e5f7;">
                     <div class="row g-3">
                         <div class="col-sm-6 text-center">
                             <label for="firstName" class="form-label">Nombre</label>
-                            <input type="text" class=" text-center intputs " id="firstName" readonly
+                            <input type="text" class=" text-center intputs" id="firstName" readonly
                                 onselectstart="return false;" value="">
                         </div>
 
@@ -50,18 +62,6 @@ background-color: #e5e5f7;">
                             <input type="email" class="intputs text-center" readonly onselectstart="return false;"
                                 id="email">
                         </div>
-
-                        <div class="col-sm-12 text-center">
-                            {{-- {{ route('users.edit', Auth::user()->id) }} --}}
-                            <a href="#"id="userEdit" data-edit-url="{{ route('users.edit', Auth::user()->id) }}">Modificar datos</a>
-                        </div>
-                        <div id="editModal">
-                            <div id="ContenedorUserEdit" class="modal">
-
-
-                            </div>
-                        </div>
-
                         <form class="needs-validation" novalidate>
                             <div class="row g-3">
 
@@ -118,7 +118,7 @@ background-color: #e5e5f7;">
                                     <form action="" id="FormDomicilios" style="display: none">
                                         <div class="container">
                                             <div class="row g-3">
-                                                <div >
+                                                <div>
                                                     <h4><label for="" class="form-label">Dirección</label></h4>
                                                     <select class="selectAddress mb-2" id="direciones">
                                                         <option value="-1">Elige la direccion</option>
@@ -185,7 +185,8 @@ background-color: #e5e5f7;">
                                                 <div class="mb-2">
                                                     <div class="mb-3">
                                                         <h4>
-                                                        <label for="" class="form-label">Puntos Físicos</label>                                                      </h4>
+                                                            <label for="" class="form-label">Puntos Físicos</label>
+                                                        </h4>
                                                         <select class="selectAddress mb-2" id="direcionesAdmin">
                                                             <option value="-1"> Elige Punto Físico</option>
                                                         </select>
@@ -202,31 +203,28 @@ background-color: #e5e5f7;">
                                             <div class="row g-3">
                                                 <div class="col-6">
                                                     <label for="address2" class="form-label mt-2 ">Ciudad</label>
-                                                    <input type="text" class="intputs text-center" id="cityAdmin" readonly
-                                                        onselectstart="return false;">
+                                                    <input type="text" class="intputs text-center" id="cityAdmin"
+                                                        readonly onselectstart="return false;">
                                                 </div>
 
                                                 <div class="col-6">
                                                     <label for="address2" class="form-label mt-2 ">Barrio</label>
-                                                    <input type="text" class="intputs text-center" id="hoodAdmin" readonly
-                                                        onselectstart="return false;">
+                                                    <input type="text" class="intputs text-center" id="hoodAdmin"
+                                                        readonly onselectstart="return false;">
                                                 </div>
                                                 <div class="col-6 mb-4">
                                                     <label for="address2" class="form-label mt-2 ">Dirección</label>
-                                                    <input type="text" class="intputs text-center" id="addressAdmin" readonly
-                                                        onselectstart="return false;">
+                                                    <input type="text" class="intputs text-center" id="addressAdmin"
+                                                        readonly onselectstart="return false;">
 
                                                 </div>
 
+                                                <div class="col-6">
+                                                    <label for="address2" class="form-label mt-2 ">Piso</label>
+                                                    <input type="text" class="intputs text-center" id="floorAdmin"
+                                                        readonly onselectstart="return false;">
 
-                                                    <div class="col-6">
-                                                        <label for="address2" class="form-label mt-2 ">Piso</label>
-                                                        <input type="text" class="intputs text-center" id="floorAdmin"
-                                                            readonly onselectstart="return false;">
-
-                                                    </div>
-
-
+                                                </div>
 
                                             </div>
                                     </form>
@@ -235,9 +233,38 @@ background-color: #e5e5f7;">
                         </form>
                 </form>
             </div>
+            <div id="editUser" class="userdit " >
+                <div class=" editContainer">
+                   <div class="container col-8">
+                    <div class="row g-3">
+                        <div class="mb-3 col-6">
+                            <label for="" class="form-label">Telefono</label>
+                            <input type="text" name="" id="" class=" text-center intputs" placeholder=""
+                                aria-describedby="helpId">
+        
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label for="" class="form-label">Correo</label>
+                            <input type="text" name="" id="" class=" text-center intputs" placeholder=""
+                                aria-describedby="helpId">
+        
+                        </div>
+                        <div class="mb-3 w-100%">
+                            <label for="" class="form-label">Tipo de documento</label>
+                            <input type="text" name="" id="" class=" text-center intputs" placeholder=""
+                                aria-describedby="helpId">
+        
+                        </div>
+                        <div class="float-end mb-5">
+                            <input type="submit" value="Guardar datos" class="savaDate">
+                            <button type="button" class=" closeEdit " onclick="goBack()">Cancelar</button>
+                        </div>
+                    </div>
+                   </div>
+                </div>
+            </div>
         </div>
-
-
+       
     </div>
 
 </section>
@@ -247,7 +274,7 @@ background-color: #e5e5f7;">
     const url = BasUrl + "/api/users/" + '{{Auth::user()->id}}';
     const id = "{{ Auth::user()->id }}";
     const urlAddress = BasUrl + "/api/address_user/" + id;
-    const urlAddressAdmin= BasUrl+ "/api/direccionesAdmin/";
+    const urlAddressAdmin = BasUrl + "/api/direccionesAdmin/";
 </script>
 
 <script src="{{ asset('js/compra.js') }}"></script>
