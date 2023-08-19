@@ -154,7 +154,7 @@
                                         <span class="precioReal">${{ $precioDescuento }}</span>
                                         <br>
                                         <span class="descuento-valor">{{ $productos->discount }}% OFF</span>
-                                        <span class="actual-price" style="font-size: 20px">${{ $productos->price }}</span>
+                                        <span class="actual-price">${{ $productos->price }}</span>
                                     @endif
                                     <br>
 

@@ -112,7 +112,9 @@ Seccion-Productos
     scroll-behavior: smooth;
     overflow-y: hidden;
 }
-
+.product-container::-webkit-scrollbar-thumb{
+    width: 1px;
+}
 .product-card {
     flex: 0 0 auto;
     width: 250px;
@@ -200,7 +202,7 @@ Seccion-Productos
 .actual-price {
     margin-left: 20px;
     opacity: 0.5;
-    text-decoration: line-through;
+    text-decoration: line-through red;
     font-size: 20px;
     font-weight: bold;
 }

@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var isOnline = navigator.onLine;
 
     if (!isOnline) {
-        console.log("No hay conexión a Internet");
         Swal.fire(
             "Error de conexion a internet",
             "Revisa tu conexion a internet."

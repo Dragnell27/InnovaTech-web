@@ -15,9 +15,21 @@
       }
 </style>
     </head>
+
+<?php
+$check = "false";
+if(Auth::check()){ 
+    $check = "true";
+}
+
+
+?>
+  
     <section class="bg-light">
         @php
             $images = explode(':', $productos->images);
+
+            
 
         @endphp
         <div class="container">
@@ -133,10 +145,10 @@
 
             <!-- comentarios -->
             <div id="contenedorcomentarios" class="container-fluid">
-                <h3 class="text-center">Comentarios</h3>
+                <h3 class="text-center">Comentar</h3>
                 <div class="col-lg-12">
                     <div id="comentarios"></div>
-                    <form action="{{ route('comentarios.store') }}" method="post">
+                    <form action="{{ route('comentarios.store') }}" method="post" id="commentForm">
                         @csrf
                         <div class="form-group">
                             <label for="comment">Comentario:</label>
@@ -157,9 +169,9 @@
             </div>
             <br>
 {{--  Section de ver comentarios  --}}
-            <section class="container ">
-                <h3>Opiniones del producto</h3>
-                <div class="row">
+            <section class="container" >
+                <h3 id="commentTitle">Opiniones del producto</h3>
+                <div class="row" id="commentSection">
                     <div id="comments-cont" class="col col-md-12" ></div>
                 </div>
             </section>
@@ -175,8 +187,11 @@
     <script>
         var BASE = "{{ url('/') }}";
         var token = '{{ csrf_token() }}';
+        var userCheck = "{{ $check}}";
     </script>
     <script src="{{ asset('js/wishlist.js') }}"></script>
     <script src="{{ asset('js/producto.js') }}"></script>
     <script src="{{ asset('js/comments.js') }}"></script>
+    @include('layouts.footer')
 @endsection
+
