@@ -1,5 +1,17 @@
 
 window.addEventListener("load",async ()=>{
+    if (userCheck == "false") {
+        document.querySelector("#commentForm").addEventListener("submit",(e)=>{
+            e.preventDefault();
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Debes iniciar sesión para comentar!',
+              
+              })
+        })
+    }
+   
     botonCargar = document.getElementById("CargarBoton");
     botonCargar.addEventListener("click", handleClick )
     //contenedor a guardar los comentarios
@@ -15,12 +27,22 @@ window.addEventListener("load",async ()=>{
     const data = await response.json();
 
    
-console.log(data.data);
+
 if (data.data.length <=0) {
-    console.log("no tiene nada")
+    const comments = document.querySelector("#commentSection");
+    const messageContainer = document.createElement("div");
+    const messagge = document.createElement("h6");
+    messagge.innerHTML = "<div>No hay comentarios.</div> <div>Se el primero en dar tu opinion.</div>";
+    messageContainer.appendChild(messagge);
+    comments.appendChild(messageContainer);
     
-}
-var i = 0;
+    
+    // document.querySelector("#commentTitle").style.display = "none"
+    botonCargar.style.display = "None";
+    
+}else{
+    var i = 0;
+
     data.data.forEach(element => {
     
         i++;
@@ -50,7 +72,7 @@ var i = 0;
    
     //------Asignacion de clases----//
 
-    card.classList = (i<2)?"card" : "inactive card cardComment" ;
+    card.classList = (i<=3)?"card" : "inactive card cardComment" ;
     card_Header.classList = "card-header";
     card_Body.classList ="card-body";
     star_rating.classList ="star_rating";
@@ -74,6 +96,8 @@ var i = 0;
     //-------------------//
   
     });
+}
+    
      commentContainer = document.querySelectorAll(".cardComment");
 
 
@@ -83,7 +107,7 @@ var i = 0;
 });
 
 function handleClick(){
-    console.log(commentContainer)
+   
   
     if(botonCargar.innerHTML  == "Ver menos"){
         botonCargar.innerHTML = "Ver mas"
