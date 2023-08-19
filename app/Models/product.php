@@ -14,4 +14,5 @@ class product extends Model
       return $this->belongsTo(Category::class, 'param_category', 'param_category'); // Cambiar a 'param_category'
   }
 
+
 }

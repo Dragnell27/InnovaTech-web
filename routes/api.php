@@ -47,9 +47,9 @@ Route::get('/direccionesAdmin', [App\Http\Controllers\apiControllers\ApiAddress:
 //@Jhonmurillo
 //Api para los comentarios
 // Route::apiResource('comentario', CommentController::class);
-Route::apiResource('comentario', CommentController::class);
+Route::apiResource('comment', CommentController::class);
 
 //@Jhonmurillo
-Route::apiResource('/compra', SalesController::class);
+Route::apiResource('/sale', SalesController::class);
 Route::apiResource('/shopping', Sale_detail::class);
-Route::apiResource('/sale',SalesController::class);
+

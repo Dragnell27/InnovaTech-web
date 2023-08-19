@@ -1,29 +1,43 @@
-async function identidad() {
+async function compra(){
     try {
-        const response = await fetch("/api/sale");
-        const data = await response.json();
-        data.forEach((sales) => {
-            id = sales.id;
-        });
-        return id;
-
+        const response = await fetch()
     } catch (error) {
-        console.error(error, "Error de compra");
+
     }
 }
 
-async function compra() {
-    const id = await identidad();
-    const response = await fetch("/api/shopping/"+id);
-    const data = await response.json();
-    console.log(data);
-}
 
-window.addEventListener("load", async ()=> {
 
-    await compra();
 
-});
+
+
+
+
+
+
+// window.addEventListener('DOMContentLoaded', async () => {
+//     try {
+//         const respuesta = await fetch('/api/shopping');
+//         const datos = await respuesta.json();
+//         console.log(datos);
+//     } catch (error) {
+//         console.error('Error:', error);
+//     }
+// });
+
+
+// async function compra() {
+//     const id = await identidad();
+//     const response = await fetch("/api/shopping/"+id);
+//     const data = await response.json();
+//     console.log(data);
+// }
+
+// window.addEventListener("load", async ()=> {
+
+//     await compra();
+
+// });
 
 //    fetch('/api/sale')
 //     .then(response => response.json())

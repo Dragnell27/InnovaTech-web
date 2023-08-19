@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use App\Models\Sales;
-use App\Models\sales_detail;
+use App\Models\Sales_detail;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,24 +16,7 @@ class Sale_detail extends Controller
      */
     public function index()
     {
-        // $sales = Sales::where('user_id', Auth::user()->id)->get();
-        // $arrSales = [];
 
-        // foreach ($sales as $sale){
-
-        //     $details = sales_detail::where('sale_id', $sale->id)->get();
-        //     foreach ($details as $date){
-        //         $arrSales[$sale->id][] = [
-        //             'id' => $date->id,
-        //             'sale_id' => $date->sale_id,
-        //             'product_id' => $date->product_id,
-        //             'qty' => $date->qty,
-        //             'estado' => $date->param_status,
-        //         ];
-        //     }
-        // }
-
-        // dd(json_encode($arrSales));
     }
 
     /**
@@ -49,32 +32,56 @@ class Sale_detail extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        $sales = Sales::where('user_id', Auth::user()->id)->get();
-        $arrSales = [];
+        $sales = Sales::where('user_id',$id)->get();
+        // $arrSales = [];
+        $producto = product::join('sales_details', 'products.id','=','sales_details.product_id')
+        ->select('name')
+        ->get();
 
         foreach ($sales as $sale){
 
-            $details = sales_detail::where('sale_id', $sale->id)->get();
+            $details = Sales_detail::where('sale_id', $sale->id)->get();
             foreach ($details as $date){
+                switch ($date->param_status) {
+                    case '10':
+                       $estado = "Pendiente";
+                        break;
+
+                    case '11':
+                        $estado = "Cancelado";
+                        break;
+
+                    case '12':
+                        $estado = "Entregado";
+                        break;
+
+                    case '13':
+                        $estado = "Recibido";
+                        break;
+
+                    default:
+                        break;
+
+                }
+
                 $arrSales[$sale->id][] = [
                     'id' => $date->id,
                     'sale_id' => $date->sale_id,
-                    'product_id' => $date->product_id,
+                    'producto' =>$date->product_id,
                     'qty' => $date->qty,
-                    'estado' => $date->param_status,
+                    'estado' =>$estado,
                 ];
             }
         }
-
-        dd(json_encode($arrSales));
+        return json_encode($arrSales);
     }
 
     /**

@@ -15,7 +15,7 @@
                         <!-- Nombre del producto -->
                         <h3 class="mt-4">Nombre del producto</h3>
                         <!-- Estado del producto -->
-                        <p class="mt-3">Estado:</p>
+                        <p class="mt-3">Estado: </p>
                         <!-- Fecha de compra -->
                         <p class="mt-2">Fecha de compra:</p>
                         <!-- Fecha de entrega -->
@@ -30,7 +30,6 @@
         </div>
       </div>
     </div>
-
 @endsection
 
 
