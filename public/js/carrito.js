@@ -126,16 +126,16 @@ window.addEventListener("load",()=>{
                         method: 'GET',
                         data: data,
                         success: function(response) {
-                            console.log("bien")
+                     
                            window.location.href=baseURL
                         },
                         error: function() {
-                            console.log('Error al cargar la nueva vista.');
+                            
                         }
                     });
                 }, 
                 error: function(data) {
-                    console.log(data,"mal");
+                  
 
                 }
             });

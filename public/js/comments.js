@@ -7,7 +7,6 @@ window.addEventListener("load",async ()=>{
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Debes iniciar sesión para comentar!',
-              
               })
         })
     }
