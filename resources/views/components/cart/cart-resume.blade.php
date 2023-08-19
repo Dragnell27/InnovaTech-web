@@ -4,6 +4,22 @@
         <span class="text-danger">Resumen de compra</span>
 <?php
 $totalPrice = 0;?>
+@if (Auth::check())
+<?php
+
+$CartItems = Cart::session(Auth::user()->id)->getContent();
+$CartCount = Cart::session(Auth::user()->id)
+    ->getContent()
+    ->count();
+?>
+@else
+<?php
+
+$CartItems = Cart::getContent();
+$CartCount = Cart::getContent()->count();
+
+?>
+@endif
 @if (Session::has('cart'))
     <?php
 

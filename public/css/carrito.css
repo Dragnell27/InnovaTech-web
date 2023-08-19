@@ -59,6 +59,13 @@
 
     
  } 
+ @media(max-width:600px){
+  #imgCart{
+    display:none;
+
+  } 
+
+ }
  /*Vista de Carrito Camilo Alzate*/
  #CarritoCompraTitulo{
     margin-top: 120px;

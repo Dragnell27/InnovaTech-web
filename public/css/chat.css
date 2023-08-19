@@ -31,7 +31,7 @@
 #chat-circle:hover{
     box-shadow: 0 0 9px lightblue;
     transform: scale(1.1);
-    transform:0.5s ;
+    transform:1s ;
     filter: brightness(100%);
 
 }
@@ -67,5 +67,6 @@
     font-size: 13px;
 
 }
+
 
 
