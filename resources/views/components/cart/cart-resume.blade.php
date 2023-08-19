@@ -2,6 +2,22 @@
 <div class="col col-sm-4 col-10 order-md-last" id="resumenContainer">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-danger">Resumen de compra</span>
+        <style>
+            .boton-resume{
+                background-color: #4CAF50;
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+                cursor: pointer;
+                text-align: center;
+                padding: 15px 32px;
+                width: 100%;
+                border-radius:10px;
+              }
+              
+              .boton-resume:hover{
+                color: black;
+                background-color: #3e8e41;
+              }
+        </style>
 <?php
 $totalPrice = 0;?>
 
@@ -64,7 +80,7 @@ $CartCount = Cart::getContent()->count();
 
            @if (Request::is('payment-method/1'))
            @php
-            $textButton="ir a pagar";
+            $textButton="Ir a pagar";
             $urlButton="Metodo-pago";
            @endphp
            @else
@@ -73,7 +89,7 @@ $CartCount = Cart::getContent()->count();
             $urlButton="1";
            @endphp
            @endif
-            <a name="" id="" class=" w-100 btn btn-primary  btn-lg" href="{{ url('payment-method/' . $urlButton) }}"
+            <a name="" id="" class="boton-resume" href="{{ url('payment-method/' . $urlButton) }}"
                 role="button">{{ $textButton }}
             </a>
         </div>
