@@ -1,5 +1,16 @@
 //æuthor DARKJ
 window.addEventListener("load", async ()=>{
+    if (userCheck == "false") {
+        document.querySelector("#formulario").addEventListener("submit",(e)=>{
+            e.preventDefault();
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Debes iniciar sesión para enviarnos un mensaje!',
+              })
+        })
+    }
+    
     // consumo al API de pqrs, debo cambiar el url cuando se compre el hosting
         // const url ="http://localhost:8012/proyecto_web/public/api/faqs/type/1";
         const response = await fetch(`api/faqs/type/1`);
@@ -93,6 +104,7 @@ buttons.forEach((btn) => {
 
 const form = document.querySelector("#formulario");
 form.addEventListener("submit",(e)=>{
+   
     e.preventDefault();
     const pattern = new RegExp('^[A-Z]+$', 'i');
 const phone = document.querySelector("#phone");

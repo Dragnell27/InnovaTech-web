@@ -2,7 +2,14 @@
 @section('title','Contácto')
 @section('component')
 <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+<?php
+$check = "false";
+if(Auth::check()){ 
+    $check = "true";
+}
 
+
+?>
 <div id="item-container">
     <div id="contact-title">
         <h1>Contáctanos</h1>
@@ -12,12 +19,19 @@
     <div id="form-container">
         <div id="send-form">
             <h2 class="title-contact">Escríbenos!!</h2>
+            @if (Auth::check())
             <form  method="post" action="{{ route('faqs.store',Auth::user()->id )  }}"    id="formulario" style="padding: 0; margin: 0">
+              <input type="hidden" name="client_id" value="{{Auth::user()->id  }}">
+            @else
+          <form action="" id="formulario" style="padding: 0; margin: 0">
+                
+            @endif
+            
                 <div class="mb-3">
                     <input type="text" name="name" id="name" placeholder="Nombre *" class="form-control ixf" required>
                     <div class="input-group mb-3">
                         <span class="input-group-text spans" style="margin: 3px 0">@</span>
-                        <input type="hidden" name="client_id" value="{{Auth::user()->id  }}">
+                       
                         <input type="hidden" name="type" value="1418">
                         <input type="email" name="email" id="email" placeholder="Email *"
                             class="form-control ixf" required>
@@ -93,6 +107,7 @@
 
 
 </div> <script src="{{ asset('js/faqs.js') }}"></script>
+<script>   var userCheck = "{{ $check}}";</script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @include('layouts.footer')
