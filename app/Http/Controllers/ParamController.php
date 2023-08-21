@@ -62,4 +62,21 @@ class ParamController extends Controller
     {
         //
     }
+    public function tipoDocumet($paramtype_id){
+        $type_documents= Param::where('paramtype_id',$paramtype_id)->select('id','name')->get();
+        return response()->json($type_documents);
+         }
+
+         public function nameDepartment($id){
+            try{
+                $department= Param::where('id',$id)->get();
+            if($department){
+            return response()->json(['departments'=>$department]);
+            }else{
+                return response()->json(['message' => 'Departamento no encontrado'], 404);
+            }
+            }catch(\Exception $e){
+                return response()->json(['message' => 'Error en el servidor'], 500);
+            }
+             }
 }

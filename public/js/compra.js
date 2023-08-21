@@ -208,42 +208,83 @@ document.querySelectorAll('#opciones > .opcion').forEach((opcion) => {
 
     });
 });
+
 select.addEventListener('click', () => {
     select.classList.toggle('active');
     opciones.classList.toggle('active');
 });
+const abrirEdit=document.querySelector('.abrirEdit');
+const userdit= document.querySelector('.userdit');
+const closeEdit =document.querySelector('.closeEdit ');
 
-window.addEventListener('load', async () => {
-    const formDirecciones = document.getElementById('formDirecciones');
-    const seleccionarDireccion = document.getElementById('direciones');
-    const btnAddAdress = document.getElementById('agregarDireccion');
+abrirEdit.addEventListener('click',(e)=>{
+e.preventDefault();
 
-    await user();
-    myGlobalAddress = await cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress);
-    await AddressAdmin();
+document.getElementById('telefono').value = '';
+document.getElementById('tipo_Documento').value = '';
+document.getElementById('correo').value = '';
 
+userdit.classList.add('userdit--openEdit');
 });
 
+closeEdit.addEventListener('click',(e)=>{
+    e.preventDefault();
+    userdit.classList.remove('userdit--openEdit');
+    });
+
+    async function upDateUser(){
+        const tipo_documento= document.getElementById('tipo_Documento');
+        try {
+            const response= await fetch('/type_documents/15');
+            const data= await response.json();
+            data.forEach(type=>{
+                const option= document.createElement('option');
+                option.value=type.id;
+                option.textContent=type.name;
+                tipo_documento.appendChild(option);
+            });
 
 
-// document.getElementById("userEdit").addEventListener('click',function (e) {
-// e.preventDefault();
-// var editUser=this.getAttribute("data-edit-url");
-// var viewEditUser= new XMLHttpRequest();
+        } catch (error) {
+            console.error(error,'error al traer los datos');
+        }
+    }
+        document.getElementById('userUpdateFomr').addEventListener('submit',async(event)=>{
+            event.preventDefault();
+            upDateUser();
+                const formdata=new FormData(event.target);
+                const response= await fetch(event.target.action,{
+                    method:'POST',
+                    body:formdata
+                });
+                if (response.ok) {
+                    const telefono =formdata.get('telefono ');
+                    document.getElementById('numTel').textContent=telefono;
 
-// viewEditUser.onreadystatechange=function() {
-//     if (viewEditUser.readyState==4 && viewEditUser.status === 200) {
-//         document.getElementById('ContenedorUserEdit').innerHTML=viewEditUser.responseText;
-//         document.getElementById("editModal").style.display = "flex";
-//     document.getElementById('ContenedorUserEdit').style.display='block';
-//     }
-// };
-// viewEditUser.open("GET", editUser, true);
-// viewEditUser.send();
-// });
-// function closeEditModal() {
-//     document.getElementById("ContenedorUserEdit").style.display = "none";
-//     document.getElementById("editModal").style.display = "none";
-//   }
+                //   const tipo_Documento =formdata.get('tipo_Documento')
+                //  document.getElementById('correo').value = '';
+                //     const email= formdata.get('email');
+
+                //     const typeId = user.document_type.name + ' ' + user.document;
+                //     document.getElementById('identificacion').value = typeId;
+                //     document.getElementById('numTel').value = user.phone;
+                    console.log('Datos Guardados');
+                } else {
+                    console.log('datos no Guardados');
+
+                }
+        });
+
+
+window.addEventListener('load', async () => {
+await upDateUser();
+const formDirecciones = document.getElementById('formDirecciones');
+const seleccionarDireccion = document.getElementById('direciones');
+const btnAddAdress = document.getElementById('agregarDireccion');
+await user();
+myGlobalAddress = await cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress);
+await AddressAdmin();
+});
+
 
 

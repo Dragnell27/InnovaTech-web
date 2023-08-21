@@ -1,5 +1,5 @@
 @extends('layouts.contenedor')
-@section('title','Paso Uno Compra')
+@section('title', 'Paso Uno Compra')
 @section('component')
 
 <head>
@@ -8,16 +8,14 @@
 
 <section class="mt-2" style="font-family: 'Roboto', sans-serif;
 background-color: #e5e5f7;">
-
     <div class="container ml-5">
-
         <div class="row g-5 pl-5 ml-5">
             @include('components.cart.cart-resume')
             <div class="col-md-7 col-lg-8">
-                
+
                 <h2 style="color:black">
-                    Tus datos <a id="openEdit" style="border: 0; background: none; font-size: 30px;"
-                        href="#">
+                    Tus datos <a class="abrirEdit" style="border: 0; background: none; font-size: 30px;cursor:pointer;"
+                        href="{{ route('users.edit',Auth::user()->id) }}">
                         <svg width="30px" height="30px" fill="currentColor" class="bi bi-pencil-square"
                             viewBox="0 0 16 16">
                             <path
@@ -119,7 +117,8 @@ background-color: #e5e5f7;">
                                         <div class="container">
                                             <div class="row g-3">
                                                 <div>
-                                                    <h4><label for="" class="form-label">Dirección</label></h4>
+                                                    <h4><label for="" class="form-label">Dirección</label>
+                                                    </h4>
                                                     <select class="selectAddress mb-2" id="direciones">
                                                         <option value="-1">Elige la direccion</option>
 
@@ -185,7 +184,8 @@ background-color: #e5e5f7;">
                                                 <div class="mb-2">
                                                     <div class="mb-3">
                                                         <h4>
-                                                            <label for="" class="form-label">Puntos Físicos</label>
+                                                            <label for="" class="form-label">Puntos
+                                                                Físicos</label>
                                                         </h4>
                                                         <select class="selectAddress mb-2" id="direcionesAdmin">
                                                             <option value="-1"> Elige Punto Físico</option>
@@ -233,48 +233,54 @@ background-color: #e5e5f7;">
                         </form>
                 </form>
             </div>
-            <div id="editUser" class="userdit " >
+            <div class="userdit " id="userModal">
                 <div class=" editContainer">
-                   <div class="container col-8">
-                    <div class="row g-3">
-                        <div class="mb-3 col-6">
-                            <label for="" class="form-label">Telefono</label>
-                            <input type="text" name="" id="" class=" text-center intputs" placeholder=""
-                                aria-describedby="helpId">
-        
+                    <form action="{{ route('users.update', Auth::user()->id) }}" id="userUpdateFomr" method="post">
+                        @csrf
+                        @method('patch')
+                        <div class="container col-8">
+                            <img src="{{ asset('img/user-interface.png') }}" style="height: 50px; width:50px" alt="">
+
+                            <div class="row g-3">
+                                <div class=" col-sm-6">
+                                    <label for="" class="form-label">Telefono</label>
+                                    <input type="text" class="form-control text-center" name="" id="telefono" placeholder="Numero teléfonico">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="tipo_documento" class="form-label">Tipo de Documento:</label>
+                                    <select class="form-select text-center" required id="tipo_Documento">
+                                        <option value="">--Seleccionar--</option>
+                            </select>
+
                         </div>
-                        <div class="mb-3 col-6">
-                            <label for="" class="form-label">Correo</label>
-                            <input type="text" name="" id="" class=" text-center intputs" placeholder=""
-                                aria-describedby="helpId">
-        
-                        </div>
-                        <div class="mb-3 w-100%">
-                            <label for="" class="form-label">Tipo de documento</label>
-                            <input type="text" name="" id="" class=" text-center intputs" placeholder=""
-                                aria-describedby="helpId">
-        
-                        </div>
-                        <div class="float-end mb-5">
-                            <input type="submit" value="Guardar datos" class="savaDate">
-                            <button type="button" class=" closeEdit " onclick="goBack()">Cancelar</button>
+                                <div class="col-6 w-100">
+                                    <label for="" class="form-label">Correo</label>
+                                    <input type="text" name="" id="correo" class=" form-control text-center" placeholder="Correo electronico"
+                                        aria-describedby="helpId">
+                                </div>
+
+                            <div class="float-end mb-5">
+                                <input type="submit" value="Guardar datos" class="savaDate">
+                                <button type="button" class=" closeEdit ">Cancelar</button>
+                            </div>
                         </div>
                     </div>
-                   </div>
-                </div>
+                 </form>
             </div>
         </div>
-       
+    </div>
+
     </div>
 
 </section>
 @section('js')
 <script>
-    var BasUrl = "{{ url('/')}}";
-    const url = BasUrl + "/api/users/" + '{{Auth::user()->id}}';
+    var BasUrl = "{{ url('/') }}";
+    const url = BasUrl + "/api/users/" + '{{ Auth::user()->id }}';
     const id = "{{ Auth::user()->id }}";
     const urlAddress = BasUrl + "/api/address_user/" + id;
     const urlAddressAdmin = BasUrl + "/api/direccionesAdmin/";
+
 </script>
 
 <script src="{{ asset('js/compra.js') }}"></script>

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
-use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ParamController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -86,7 +86,8 @@ Route::middleware('auth')->resource('perfil/direcciones', AddressController::cla
 
 
 //Camilo Alzate Ruta que llama el primer paso de compra
-Route::get('/departments/{id}', [DepartmentController::class, 'nameDepartment']);
+Route::get('/departments/{id}',[ParamController::class, 'nameDepartment']);
+Route::get('/type_documents/{paramtype_id}',[ParamController::class,'tipoDocumet']);
 Route::view('payment-method/1','payment-method/pasoUnoMpago')->name('pasoUno')->middleware('auth');
 //Ruta que llama Metodo de pago
 Route::view('payment-method/Metodo-pago','payment-method/Metodo-pago')->name('Mpago')->middleware('auth');
