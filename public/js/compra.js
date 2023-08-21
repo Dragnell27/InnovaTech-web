@@ -213,77 +213,75 @@ select.addEventListener('click', () => {
     select.classList.toggle('active');
     opciones.classList.toggle('active');
 });
-const abrirEdit=document.querySelector('.abrirEdit');
+
+async function tipoDocumento(){
+    const tipo_documento= document.getElementById('tipo_Documento');
+    try {
+        const response= await fetch('/type_documents/15');
+        const data= await response.json();
+        data.forEach(type=>{
+            const option= document.createElement('option');
+            option.value=type.id;
+            option.textContent=type.name;
+            tipo_documento.appendChild(option);
+        });
+
+
+    } catch (error) {
+        console.error(error,'error al traer los datos');
+    }
+}
+// async function actualizarDatosUsuario() {
+//     try {
+//         const userId = '{{ Auth::user()->id }}';
+//         const userResponse = await fetch(`/user/${userId}/edit-data`);
+//         const userData = await userResponse.json();
+
+//         // Actualizar los elementos en la vista principal con los datos actualizados
+//         // Ejemplo: Cambiar el contenido del elemento con ID 'nombreUsuario'
+//         const nombreUsuarioElement = document.getElementById('nombreUsuario');
+//         nombreUsuarioElement.textContent = userData.nombre;
+
+//         // Emitir un evento personalizado para comunicar los datos actualizados
+//         const datosActualizadosEvent = new CustomEvent('datosActualizados', { detail: userData });
+//         document.dispatchEvent(datosActualizadosEvent);
+//     } catch (error) {
+//         console.error(error, 'error al cargar los datos del usuario');
+//     }
+// }
+async function updateUser(){
+    const abrirEdit=document.querySelector('.abrirEdit');
 const userdit= document.querySelector('.userdit');
 const closeEdit =document.querySelector('.closeEdit ');
 
-abrirEdit.addEventListener('click',(e)=>{
+abrirEdit.addEventListener('click',async(e)=>{
 e.preventDefault();
-
-document.getElementById('telefono').value = '';
-document.getElementById('tipo_Documento').value = '';
-document.getElementById('correo').value = '';
+await tipoDocumento();
+await user();
 
 userdit.classList.add('userdit--openEdit');
+
 });
 
 closeEdit.addEventListener('click',(e)=>{
     e.preventDefault();
     userdit.classList.remove('userdit--openEdit');
     });
+}
 
-    async function upDateUser(){
-        const tipo_documento= document.getElementById('tipo_Documento');
-        try {
-            const response= await fetch('/type_documents/15');
-            const data= await response.json();
-            data.forEach(type=>{
-                const option= document.createElement('option');
-                option.value=type.id;
-                option.textContent=type.name;
-                tipo_documento.appendChild(option);
-            });
+   
 
-
-        } catch (error) {
-            console.error(error,'error al traer los datos');
-        }
-    }
-        document.getElementById('userUpdateFomr').addEventListener('submit',async(event)=>{
-            event.preventDefault();
-            upDateUser();
-                const formdata=new FormData(event.target);
-                const response= await fetch(event.target.action,{
-                    method:'POST',
-                    body:formdata
-                });
-                if (response.ok) {
-                    const telefono =formdata.get('telefono ');
-                    document.getElementById('numTel').textContent=telefono;
-
-                //   const tipo_Documento =formdata.get('tipo_Documento')
-                //  document.getElementById('correo').value = '';
-                //     const email= formdata.get('email');
-
-                //     const typeId = user.document_type.name + ' ' + user.document;
-                //     document.getElementById('identificacion').value = typeId;
-                //     document.getElementById('numTel').value = user.phone;
-                    console.log('Datos Guardados');
-                } else {
-                    console.log('datos no Guardados');
-
-                }
-        });
 
 
 window.addEventListener('load', async () => {
-await upDateUser();
 const formDirecciones = document.getElementById('formDirecciones');
 const seleccionarDireccion = document.getElementById('direciones');
 const btnAddAdress = document.getElementById('agregarDireccion');
-await user();
 myGlobalAddress = await cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress);
 await AddressAdmin();
+await user();
+await updateUser();
+
 });
 
 

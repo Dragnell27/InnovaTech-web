@@ -15,7 +15,7 @@ background-color: #e5e5f7;">
 
                 <h2 style="color:black">
                     Tus datos <a class="abrirEdit" style="border: 0; background: none; font-size: 30px;cursor:pointer;"
-                        href="{{ route('users.edit',Auth::user()->id) }}">
+                        href="#">
                         <svg width="30px" height="30px" fill="currentColor" class="bi bi-pencil-square"
                             viewBox="0 0 16 16">
                             <path
@@ -243,7 +243,7 @@ background-color: #e5e5f7;">
 
                             <div class="row g-3">
                                 <div class=" col-sm-6">
-                                    <label for="" class="form-label">Telefono</label>
+                                    <label for="" class="form-label">Teléfono</label>
                                     <input type="text" class="form-control text-center" name="" id="telefono" placeholder="Numero teléfonico">
                                 </div>
                                 <div class="col-sm-6">
