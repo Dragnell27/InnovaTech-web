@@ -5,14 +5,21 @@ async function user() {
         const data = await response.json();
         const user = data.data[0];
         if (response.ok) {
-
             document.getElementById('firstName').value = user.first_name;
             document.getElementById('lastName').value = user.last_name;
-            document.getElementById('email').value = user.email;
+           const emailInput= document.querySelectorAll('.input-email');
+
             const typeId = user.document_type.name + ' ' + user.document;
             document.getElementById('identificacion').value = typeId;
-            document.getElementById('numTel').value = user.phone;
-
+           const numTel= document.querySelectorAll('.numTel');
+            emailInput.forEach(input=>{
+                input.value = user.email
+            });
+            numTel.forEach(input=>{
+                input.value = user.phone;
+            });
+            const ActualDoc = user.document_type.id;
+            tipo_documento.value = ActualDoc;
         }
 
     } catch (error) {
@@ -20,6 +27,47 @@ async function user() {
     }
 
 };
+//AQUI VA EL TIPO DE DOCUMENTO
+async function tipoDocumento(){
+    const tipo_documento= document.getElementById('tipo_Documento');
+    try {
+        const response= await fetch('/type_documents/15');
+        const data= await response.json();
+        data.forEach(type=>{
+            const option= document.createElement('option');
+            option.value=type.id;
+            option.textContent=type.name;
+            tipo_documento.appendChild(option);
+        });
+
+    } catch (error) {
+        console.error(error,'error al traer los datos');
+    }
+}
+//Actualizar USUARIOS
+async function updateUser(){
+const abrirEdit=document.querySelector('.abrirEdit');
+const userdit= document.querySelector('.userdit');
+const closeEdit =document.querySelector('.closeEdit ');
+
+
+abrirEdit.addEventListener('click',async(e)=>{
+e.preventDefault();
+
+userdit.classList.add('userdit--openEdit');
+
+});
+
+closeEdit.addEventListener('click',(e)=>{
+    e.preventDefault();
+    userdit.classList.remove('userdit--openEdit');
+    });
+await tipoDocumento();
+await user();
+
+
+}
+
 //NOMBRE DEL DEPARTAMENTO
 async function DepartmentsName(nameDepartment) {
     try {
@@ -32,6 +80,35 @@ async function DepartmentsName(nameDepartment) {
         return null;
     }
 };
+// $(document).ready(function () {
+//     $(document).on('click', 'save', function () {
+//         var button = $(this);
+//         var productoId = button.data('product_id');
+//         button.prop('disabled', true);
+//             $.ajax({
+//                 url: "/api/users/"+id,
+//                 method: 'PUT',
+//                 data: {
+//                     _token: token,
+//                     product_id: productoId
+//                 },
+//                 success: function (response) {
+//                     button.data('lista_id', response.id);
+//                     button.toggleClass('no_agregado_favoritos agregado_favoritos');
+//                 },
+//                 error: function (jqXHR, textStatus, errorThrown) {
+//                     console.error('Error en la solicitud AJAX:', textStatus,
+//                         errorThrown);
+//                     alert('Error al agregar a la lista.');
+//                 },
+//                 complete: function () {
+//                     // Habilita el botón después de completar la solicitud, independientemente del resultado
+//                     button.prop('disabled', false);
+//                 }
+//             });
+
+//     });
+// });
 
 //DIRECCIONES
 
@@ -191,8 +268,6 @@ async function mostrarForm(tipoLugar) {
 
     }
 
-
-
 };
 const select = document.querySelector('#select');
 const opciones = document.querySelector('#opciones');
@@ -213,63 +288,6 @@ select.addEventListener('click', () => {
     select.classList.toggle('active');
     opciones.classList.toggle('active');
 });
-
-async function tipoDocumento(){
-    const tipo_documento= document.getElementById('tipo_Documento');
-    try {
-        const response= await fetch('/type_documents/15');
-        const data= await response.json();
-        data.forEach(type=>{
-            const option= document.createElement('option');
-            option.value=type.id;
-            option.textContent=type.name;
-            tipo_documento.appendChild(option);
-        });
-
-
-    } catch (error) {
-        console.error(error,'error al traer los datos');
-    }
-}
-// async function actualizarDatosUsuario() {
-//     try {
-//         const userId = '{{ Auth::user()->id }}';
-//         const userResponse = await fetch(`/user/${userId}/edit-data`);
-//         const userData = await userResponse.json();
-
-//         // Actualizar los elementos en la vista principal con los datos actualizados
-//         // Ejemplo: Cambiar el contenido del elemento con ID 'nombreUsuario'
-//         const nombreUsuarioElement = document.getElementById('nombreUsuario');
-//         nombreUsuarioElement.textContent = userData.nombre;
-
-//         // Emitir un evento personalizado para comunicar los datos actualizados
-//         const datosActualizadosEvent = new CustomEvent('datosActualizados', { detail: userData });
-//         document.dispatchEvent(datosActualizadosEvent);
-//     } catch (error) {
-//         console.error(error, 'error al cargar los datos del usuario');
-//     }
-// }
-async function updateUser(){
-    const abrirEdit=document.querySelector('.abrirEdit');
-const userdit= document.querySelector('.userdit');
-const closeEdit =document.querySelector('.closeEdit ');
-
-abrirEdit.addEventListener('click',async(e)=>{
-e.preventDefault();
-await tipoDocumento();
-await user();
-
-userdit.classList.add('userdit--openEdit');
-
-});
-
-closeEdit.addEventListener('click',(e)=>{
-    e.preventDefault();
-    userdit.classList.remove('userdit--openEdit');
-    });
-}
-
-   
 
 
 

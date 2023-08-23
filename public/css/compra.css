@@ -49,11 +49,11 @@ margin-bottom: 20px;
 padding:30px;
 position: relative;
 border:2px solid transparent;
+border:2px solid #213f8f;
 }
 .select.active,
 .select:hover{
   box-shadow: 0px 5px 10px rgba(0, 0, 0, .16);
-  border:2px solid #213f8f;
 }
 .select.active:before{
     content: "";
