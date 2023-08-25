@@ -1,0 +1,23 @@
+.desplegable {
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.contenido-desplegable {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.botones-columna {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

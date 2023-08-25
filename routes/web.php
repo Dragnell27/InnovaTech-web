@@ -116,6 +116,11 @@ Route::get('api/category/{category}', [CategoryController::class, 'show'])->name
 //ruta para about
 Route::view('about','about')->name('about');
 
+//ruta help
+Route::get('/help', function () {
+    return view('help');
+});
+
 Route::resource('comentarios', CommentController::class);
 
 //Rutas para cambiar contraseña
