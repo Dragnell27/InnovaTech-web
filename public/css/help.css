@@ -21,3 +21,7 @@
     flex-direction: column;
     gap: 10px;
 }
+
+.simbolo {
+    margin-right: 5px; /* Espacio entre el punto y el texto */
+}
