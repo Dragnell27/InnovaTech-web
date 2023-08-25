@@ -191,8 +191,8 @@
                         </div>
                         <div class=" col-md-3 col-sm-6 col-12 text-center ">
                             <a href="/help" class="btn btn-link btn-image">
-                                <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones"
-                                    alt="..." src="{{ asset('img/Contacto.jpg') }}" width="120" height="120"
+                                <img  class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones tamaño"
+                                    alt="..." src="{{ asset('img/ayuda.png') }}" width="120" height="120" 
                                     role="img">
                             </a>
                             <h4 class="fw-normal my-4">Ayuda</h4>
