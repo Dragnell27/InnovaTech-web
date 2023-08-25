@@ -122,6 +122,7 @@ class UserController extends Controller
             $user->phone = "user - " . $id;
             $user->email = "user - " . $id;
             $user->password = Hash::make($newPassword);
+            $user->param_state = 6;
             $user->save();
 
             $address = Address::where('user_id', $id)->get();
