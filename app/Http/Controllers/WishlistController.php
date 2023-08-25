@@ -31,15 +31,19 @@ class WishlistController extends Controller
      */
     public function store(Request $request)
     {
-        $lista = new Wishlist();
-        $lista->product_id = $request->input('product_id');
-        $lista->user_id = Auth::user()->id;
-        $lista->param_state = 5;
-        $lista->save();
+        if (Auth::check()) {
+            $lista = new Wishlist();
+            $lista->product_id = $request->input('product_id');
+            $lista->user_id = Auth::user()->id;
+            $lista->param_state = 5;
+            $lista->save();
 
-        $guardadoId = $lista->id;
+            $guardadoId = $lista->id;
 
-        return response()->json(['success' => true, 'id' => $guardadoId]);
+            return response()->json(['success' => true, 'id' => $guardadoId]);
+        }else{
+            return route("login");
+        }
     }
 
     /**

@@ -100,7 +100,7 @@ Route::resource('/users', UserController::class);
 Route::view('/sales/shopping', 'sales/shopping')->name('shopping');
 
 //ruta jaider, lista de deseos
-Route::resource('/wishlist', WishlistController::class)->middleware('auth');
+Route::resource('/wishlist', WishlistController::class);
 
 //ruta para faqs
 // Route::post('/faqs/{id}', [faqsController::class, 'store'])->name('faqs.store');

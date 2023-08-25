@@ -9,7 +9,7 @@
 @section('component')
     <section>
         <div id="section">
-            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="1000">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="{{ asset('img/Imagen4.jpg') }}" class="d-block w-100" alt="...">

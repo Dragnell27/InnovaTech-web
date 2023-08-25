@@ -19,8 +19,12 @@ $(document).ready(function () {
                     product_id: productoId
                 },
                 success: function (response) {
-                    button.data('lista_id', response.id);
-                    button.toggleClass('no_agregado_favoritos agregado_favoritos');
+                    if (response.id==null) {
+                        window.location.href = response;
+                    }else{
+                        button.data('lista_id', response.id);
+                        button.toggleClass('no_agregado_favoritos agregado_favoritos');
+                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.error('Error en la solicitud AJAX:', textStatus,
