@@ -1,17 +1,8 @@
 //æuthor DARKJ
 window.addEventListener("load", async ()=>{
-    if (userCheck == "false") {
-        document.querySelector("#formulario").addEventListener("submit",(e)=>{
-            e.preventDefault();
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Debes iniciar sesión para enviarnos un mensaje!',
-              })
-        })
-    }
-    
-    // consumo al API de pqrs, debo cambiar el url cuando se compre el hosting
+   
+    try {
+        // consumo al API de pqrs, debo cambiar el url cuando se compre el hosting
         // const url ="http://localhost:8012/proyecto_web/public/api/faqs/type/1";
         const response = await fetch(`api/faqs/type/1`);
        const data = await response.json();
@@ -32,6 +23,11 @@ window.addEventListener("load", async ()=>{
        }
        handleData(data);
 
+        
+    } catch (error) {
+        
+    }
+    
 
 
 

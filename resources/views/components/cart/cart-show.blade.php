@@ -12,7 +12,7 @@
         <header>
             <!-- place navbar here -->
         </header>
-        <main>
+        <main style="margin-bottom: 200px">
             @if (Session::has('msj_destroy'))
             <?php
             $totalPrice =0;

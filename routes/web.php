@@ -16,7 +16,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Param;
-use App\Models\product;
+use App\Models\Product;
 use App\Models\Wishlist;
 use App\Http\Controllers\CategoryController;
 
@@ -59,7 +59,7 @@ ROUTE::view('components/cart/cart-show','components/cart/cart-show') ->name('car
 ///   Rutas confirmadas   ///
 /////////////////////////////
 Route::get('/', function () {
-    $products = product::all();
+    $products = Product::all();
     $colors = Param::where('paramtype_id', 11)->get();
     $favoritos = [];
 

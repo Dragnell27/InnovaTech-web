@@ -104,10 +104,23 @@ if(Auth::check()){
 
     </div>
 
+  </div>
+
+{{--   <script src="{{ asset('js/faqs.js') }}"></script>  --}}
+<script>   var userCheck = "{{ $check}}";
 
 
-</div> <script src="{{ asset('js/faqs.js') }}"></script>
-<script>   var userCheck = "{{ $check}}";</script>
+  if (userCheck == "false") {
+    document.querySelector("#formulario").addEventListener("submit",(e)=>{
+        e.preventDefault();
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Debes iniciar sesión para enviarnos un mensaje!',
+          })
+    })
+}
+</script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @include('layouts.footer')

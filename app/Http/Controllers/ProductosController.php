@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
-use App\Models\product;
+use App\Models\Product;
 use App\Models\Param;
 use App\Models\Wishlist;
 use App\Models\Sales;
@@ -58,7 +58,7 @@ class ProductosController extends Controller
 
     public function index()
     {
-        $productos = product::all();
+        $productos = Product::all();
         return view('index', compact('productos'));
     }
 
@@ -66,7 +66,7 @@ class ProductosController extends Controller
     {
         $sugerencias = [];
         $busqueda = Param::whereIn('paramtype_id', [9, 10, 12])->get();
-        $nameProducts = product::all();
+        $nameProducts = Product::all();
 
         foreach ($nameProducts as $name) {
             $sugerencias[] = ucfirst($name->name);
@@ -80,7 +80,7 @@ class ProductosController extends Controller
 
     public function show($id)
     {
-        $productos = product::findOrFail($id);
+        $productos = Product::findOrFail($id);
         $colors = Param::where('paramtype_id', 11)->get();
         $favoritos = [];
         if (Auth::check()) {
