@@ -3,7 +3,7 @@
     <div id="divfooter">
         <div class="modovertical1" id="infofooter">
             <div>
-                <img id="logo" src="{{ asset('img/Logo-i.png') }}">
+                <img id="logo" src="{{ asset('img/logo-i.png') }}">
             </div>
             <div id="descripcionfooter">
                 <p style="color: white;">NIT 900.726.066-7 <br>CLL 52 3-80 LOCAL 210 CC. Unico Outlet, Cali.<br>
