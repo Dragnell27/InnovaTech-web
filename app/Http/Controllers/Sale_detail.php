@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Param;
 use App\Models\product;
 use App\Models\Sales;
 use App\Models\Sales_detail;
+use DateTime;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,47 +43,29 @@ class Sale_detail extends Controller
     public function show($id)
     {
         $sales = Sales::where('user_id',$id)->get();
-        // $arrSales = [];
-        $producto = product::join('sales_details', 'products.id','=','sales_details.product_id')
-        ->select('name')
-        ->get();
+        $arrSales = [];
 
         foreach ($sales as $sale){
 
             $details = Sales_detail::where('sale_id', $sale->id)->get();
             foreach ($details as $date){
-                switch ($date->param_status) {
-                    case '10':
-                       $estado = "Pendiente";
-                        break;
-
-                    case '11':
-                        $estado = "Cancelado";
-                        break;
-
-                    case '12':
-                        $estado = "Entregado";
-                        break;
-
-                    case '13':
-                        $estado = "Recibido";
-                        break;
-
-                    default:
-                        break;
-
-                }
+             $producto = product::where('products.id',$date->product_id)
+            ->get();
+            $estado = Param::where('params.id',$date->param_status)->get();
+            $fecha = Sales_detail::where('created_at',$date->created_at)->get();
 
                 $arrSales[$sale->id][] = [
                     'id' => $date->id,
                     'sale_id' => $date->sale_id,
-                    'producto' =>$date->product_id,
+                    'producto' =>$producto[0]->name,
+                    'imagen'=>$producto[0]->images,
                     'qty' => $date->qty,
-                    'estado' =>$estado,
+                    'estado' =>$estado[0]->name,
+                    'fecha' =>$fecha[0]->created_at,
                 ];
             }
         }
-        return json_encode($arrSales);
+        return $arrSales;
     }
 
     /**
