@@ -1,5 +1,6 @@
 
 window.addEventListener("load",async ()=>{
+    commentContainer = document.querySelectorAll(".cardComment");
     if (userCheck == "false") {
         document.querySelector("#commentForm").addEventListener("submit",(e)=>{
             e.preventDefault();
@@ -19,15 +20,18 @@ window.addEventListener("load",async ()=>{
     //id del producto
     const id = document.querySelector("#product_id").value;
     //url base 
-    const url = BASE + '/api/comentario/' +id;
+    const url = BASE + '/api/comment/' +id;
 
     //Fetch
     const response = await fetch(url);
     const data = await response.json();
 
    
-
+    if (data.data.length <=3) {
+        botonCargar.style.display = "none";
+    }
 if (data.data.length <=0) {
+   
     const comments = document.querySelector("#commentSection");
     const messageContainer = document.createElement("div");
     const messagge = document.createElement("h6");
@@ -80,7 +84,7 @@ if (data.data.length <=0) {
     const fecha = element.hora.split(" ");
     
 
-    card_Header.innerHTML=fecha[0];
+    card_Header.innerHTML="<span>"+fecha[0]+"</span>" + "<span> Usuario: "+element.name+"</span>";
     card_Body.innerHTML = "<span>"+element.comentario+"</span>"
 
     //-------appendchilds---//
@@ -97,7 +101,7 @@ if (data.data.length <=0) {
     });
 }
     
-     commentContainer = document.querySelectorAll(".cardComment");
+    
 
 
     

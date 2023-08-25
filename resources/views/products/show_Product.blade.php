@@ -13,6 +13,10 @@
     .inactive{
         display: none;
       }
+      .card-header{
+        display: flex;
+        justify-content: space-between;
+      }
 </style>
     </head>
 
