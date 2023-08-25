@@ -6,15 +6,49 @@
     <head>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="stylesheet" href="{{ asset('css/carrito.css') }}">
+         
         
     </head>
     <section>
         <header>
             <!-- place navbar here -->
         </header>
+      @if (Session::has('msj'))
+
+      <?php
+      $user_id = Auth::user()->id; 
+      $itemsSession = json_decode(Session::get('msj'));
+
+      Cart::session($user_id)->clear();
+      foreach ($itemsSession as $key => $value) {
+    
+   
+
+          
+             Cart::session($user_id)->add(array(
+                'id' => $value->product_id,   //inique row ID
+                'name' => $value->name,
+                'price' =>$value->price,
+                'quantity' => $value->qty,
+                'attributes' => array(
+                    'discount'=> $value->discount,
+                    'image'=>$value->images,
+                    'desc'=>$value->description,
+
+                ),
+            ));         
+        }
+        Session::forget('cart');
+        Session::put("cart",Cart::session($user_id)->getContent());
+        
+      ?>
+          
+      @endif
         <main style="margin-bottom: 200px">
             @if (Session::has('msj_destroy'))
             <?php
+          
+            
             $totalPrice =0;
             $cart = Session::get("cart");
             
@@ -175,16 +209,29 @@
 
 
  <script>
+  
     window.onresize = () =>{
-        var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-        if (windowWidth <= 600) {
-            var myDiv = document.getElementById("resumenContainer");
-            myDiv.classList.add("col-sm-12");
-        } else {
-            var myDiv = document.getElementById("resumenContainer");
-            myDiv.classList.remove("col-sm-12");
-        }
+        
+        try {
+            var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+            if (windowWidth <= 600) {
+                var myDiv; 
+                myDiv = document.getElementById("resumenContainer");
+                myDiv.classList.add("col-sm-12");
+            } else {
+                var myDiv;
+                myDiv = document.getElementById("resumenContainer");
+                myDiv.classList.remove("col-sm-12");
+            }
+          } catch (exceptionVar) {
+            var error = exceptionVar;
+          }
+            
+            
+       
+        
     };
 </script> 
     </section>

@@ -1,6 +1,8 @@
-@include('preloader')
+{{--  @include('preloader')  --}}
 <!DOCTYPE html>
 <html lang="en">
+
+
 
 <head>
     <meta charset="UTF-8" />
@@ -20,7 +22,10 @@
 
     <script src="{{ asset('js/JQuery.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.js') }}"></script>
+   
 </head>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 
 <body>
     <header>

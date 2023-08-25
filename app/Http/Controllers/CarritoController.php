@@ -16,6 +16,28 @@ class CarritoController extends Controller
      * Display a listing of the resource.
      */
 
+     public function mySales(){
+
+        $productos = null;
+        //Auth::user()->id; 
+        $userId = Auth::user()->id;//id el usuario
+
+            $result = Sales::where("user_id",$userId)->where("param_shipping",14)->where("param_status",5)->get();
+                //Aqui valido si el usuario ya tiene datos en el carrito
+            if (!$result->isEmpty()) {
+
+                $sale_id = Sales::select("id")->where("user_id",$userId)->where("param_shipping",14)->where("param_status",5)->get();
+                //id de la compra
+                $Sid= $sale_id[0]->id;
+
+            $updatedProducts = sales_detail::select("product_id","qty","products.name","products.price","products.discount","products.images","products.param_color","products.description")->join("products","products.id","=","sales_details.product_id")->where("sale_id",$Sid)->where("sales_details.param_status",5)->get();
+
+                $productos = $updatedProducts;
+            }
+        
+            Session::put('msj', json_encode($productos));
+            return response()->json(true);
+     }
 
     public function index()
     {
@@ -326,7 +348,9 @@ public function validarCompra($usuario){
      */
     public function show()
     {
+        $products;
         Session::forget('msj_exitoso');
+       
         return view('components.cart.cart-show');
     }
 
@@ -367,7 +391,7 @@ public function validarCompra($usuario){
             ]);
 
             Session::forget('cart');
-            Session::put("cart",Cart::getContent());
+            Session::put("cart",Cart::session($user_id)->getContent());
        
           }else{
             Cart::remove($id);

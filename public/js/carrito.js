@@ -149,6 +149,7 @@ window.addEventListener("load",()=>{
 
 //js cart-show
 $(document).ready(function (){
+   
 
     $(".qtyChanger").click(function (e) {
 

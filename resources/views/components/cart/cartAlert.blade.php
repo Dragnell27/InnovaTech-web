@@ -1,4 +1,4 @@
-{{--  Alerta al agregar al carro  --}}
+{{--  //Alerta al agregar al carro  --}}
 @if (session('msj_exitoso'))
 
     <head>

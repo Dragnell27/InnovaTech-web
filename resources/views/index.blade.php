@@ -7,6 +7,14 @@
 @extends('layouts.contenedor')
 @section('title', 'Home')
 @section('component')
+<?php
+if(Auth::check()){
+    $checked = "true";
+}else{
+    $checked = "false";
+
+}
+?>
     <section>
         <div id="section">
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="1000">
@@ -133,7 +141,7 @@
                                     data-url="{{ route('productos.show', $productos->id) }}" class="product-thumb"
                                     height="259px" width="259px"
                                     src="{{ 'https://innovatechcol.com.co/img/productos/' . $images[0] }}">
-                                {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset('productos/'.$images[0])}}" alt="
+                                {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset(' productos/'.$images[0])}} " alt=""
                                     onclick="window.location.href='{{ route('productos') }}'"> --}}
                                 <button class="card-btn btn-cart" data-id="{{ $productos->id }}">Añadir al
                                     Carrito</button>
@@ -202,7 +210,32 @@
         </section>
         <script>
             var token = '{{ csrf_token() }}';
+            window.addEventListener("load", async()=>{
+                isChecked = "{{ $checked }}";
+                if(isChecked){
+                    var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    
+                    // Datos que se enviarán en la solicitud (incluyendo el token CSRF)
+                    var datos = '_token=' +token + '&valor=mi-valor-de-sesion';
+    
+                    $.ajax({
+                        type: "post",
+                        url: "/mySales",
+                        data: datos,
+                        dataType: "json",
+                        success: function (data) {
+                           
+                        },
+                        error: function (data){
+                            console.log("error");
+    
+                        }
+                    });
+                }
+            })
+           
         </script>
+     
         <script src="{{ asset('js/wishlist.js') }}"></script>
         <script src="{{ asset('js/cartas.js') }}"></script>
         <script src="{{ asset('js/producto.js') }}"></script>
