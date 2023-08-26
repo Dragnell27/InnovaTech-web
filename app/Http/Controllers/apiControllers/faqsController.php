@@ -55,7 +55,7 @@ class faqsController extends Controller
             $faqs->user_id = $id;
             $faqs->param_type = $request['type']; // Joan modifico esto
             $faqs->body = $request['body'];
-            $faqs->param_state = 10;
+            $faqs->param_state = 2301;
           
           // Joan modifico esto
             $faqs->save();
