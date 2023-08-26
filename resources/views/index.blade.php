@@ -212,7 +212,7 @@ if(Auth::check()){
             var token = '{{ csrf_token() }}';
             window.addEventListener("load", async()=>{
                 isChecked = "{{ $checked }}";
-                if(isChecked){
+                if(isChecked == "true"){
                     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     
                     // Datos que se enviarán en la solicitud (incluyendo el token CSRF)
@@ -222,8 +222,9 @@ if(Auth::check()){
                         type: "post",
                         url: "/mySales",
                         data: datos,
-                        dataType: "json",
+                        dataType: "JSON",
                         success: function (data) {
+                            document.getElementById("counter").innerHTML =data.length;
                            
                         },
                         error: function (data){

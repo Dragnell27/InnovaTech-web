@@ -40,6 +40,7 @@
         }
         Session::forget('cart');
         Session::put("cart",Cart::session($user_id)->getContent());
+        Session::forget('msj');
         
       ?>
           
@@ -151,7 +152,7 @@
                                                                 </span>
                                                             </div>
                                                             <div>
-                                                                <span>{{ $items->price }}</span>
+                                                                <span style="text-decoration: line-through;">{{ $items->price }}</span>
                                                             </div>
                                                         @else
                                                             <input type="hidden" name="ProductPrice"
@@ -180,8 +181,11 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <p class="card-text"><small class="text-body-secondary"><a
-                                                            href="{{ route('cart.destroy', $items->id) }}">Eliminar</a></small>
+                                                <p class="card-text"  style="padding: 10px; margin:10px; color:red !important; ">
+                                                    <small class="text-body-secondary">
+                                                        <a class="btnEliminarCart"
+                                                            href="{{ route('cart.destroy', $items->id) }}">Eliminar</a>
+                                                        </small>
                                                 </p>
                                             </div>
                                         </div>

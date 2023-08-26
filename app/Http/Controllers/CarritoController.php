@@ -36,7 +36,7 @@ class CarritoController extends Controller
             }
         
             Session::put('msj', json_encode($productos));
-            return response()->json(true);
+            return response()->json($productos);
      }
 
     public function index()
@@ -142,7 +142,8 @@ class CarritoController extends Controller
 
             $updatedProducts = sales_detail::select("product_id","qty","products.name","products.price","products.discount","products.images","products.param_color","products.description")->join("products","products.id","=","sales_details.product_id")->where("sale_id",$Sid)->where("sales_details.param_status",5)->get();
 
-
+            Session::forget('msj');
+            Session::put("msj",json_encode($updatedProducts));
             }
 
 
@@ -199,7 +200,7 @@ class CarritoController extends Controller
      */
     public function store(Request $request)
     {
-
+        $all;
           $id = $request->input("id");
           $producto = \DB::table('products')->where('id',$id)->first();
         try{
@@ -258,6 +259,9 @@ class CarritoController extends Controller
 
                     $hasProduct = false;
                     $total = 0;
+                    //todos los productos
+                    $updatedProducts = sales_detail::select("product_id","qty","products.name","products.price","products.discount","products.images","products.param_color","products.description")->join("products","products.id","=","sales_details.product_id")->where("sale_id",$Sid)->where("sales_details.param_status",5)->get();
+                    Session::put('msj', json_encode($updatedProducts));
 
                     foreach ($compras as $key => $value) {
                         $total += $value->qty;
@@ -352,6 +356,7 @@ public function validarCompra($usuario){
         Session::forget('msj_exitoso');
        
         return view('components.cart.cart-show');
+       
     }
 
     /**
@@ -376,7 +381,8 @@ public function validarCompra($usuario){
     public function destroy(string $id)
     {
         //
-
+        
+        Session::forget('msj');
           if (Auth::check()) {
             $userId = Auth::user()->id;
             Cart::session($userId)->remove($id);
@@ -391,7 +397,7 @@ public function validarCompra($usuario){
             ]);
 
             Session::forget('cart');
-            Session::put("cart",Cart::session($user_id)->getContent());
+            Session::put("cart",Cart::session($userId)->getContent());
        
           }else{
             Cart::remove($id);

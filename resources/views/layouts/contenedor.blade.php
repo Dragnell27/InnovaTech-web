@@ -1,4 +1,4 @@
-{{--  @include('preloader')  --}}
+@include('preloader')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,7 +70,7 @@
                             <button type="submit" id="btnCarrito" class="">
                                 <img src="{{ asset('img/carro_compra.png') }}" width="25px" height="20px"
                                     alt="">
-                                <span class="">
+                                <span class="" id="counter"> 
                                     @if (Auth::check())
                                         <?php $CartCount = Cart::session(Auth::user()->id)
                                             ->getContent()
@@ -117,7 +117,7 @@
     <script src="{{ asset('js/categories.js') }}"></script>
     {{-- agrego el js del carrito --}}
     <script src="{{ asset('js/carrito.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>>
     @yield('js')
     <script src="{{ asset('js/preloader.js') }}"></script>
     <!-- Bootstrap JS -->

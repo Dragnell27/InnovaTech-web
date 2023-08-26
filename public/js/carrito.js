@@ -149,6 +149,45 @@ window.addEventListener("load",()=>{
 
 //js cart-show
 $(document).ready(function (){
+    try {
+ var btns =    document.querySelectorAll(".btnEliminarCart");
+        
+        btns.forEach((btn)=>{
+            btn.addEventListener("click",(e)=>{
+                e.preventDefault()
+               
+                Swal.fire({
+                    title: 'Estas seguro?',
+                    text: "Esta acción no se podrá revertir!!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, eliminar !'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var eliminar =  btn.getAttribute("href");
+                        window.location.replace(eliminar);
+                    }else{
+                        Swal.fire(
+                            'Cancelado!',
+                            'Tu producto no ha sido borrado.',
+                            'info'
+                        )
+                        
+                    }
+                })
+            
+            
+            });
+        })
+        
+        
+        
+        
+    } catch (error) {
+        
+    }
    
 
     $(".qtyChanger").click(function (e) {
