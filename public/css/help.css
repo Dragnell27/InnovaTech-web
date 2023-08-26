@@ -23,5 +23,23 @@
 }
 
 .simbolo {
-    margin-right: 5px; /* Espacio entre el punto y el texto */
+    margin-right: 5px;
+    font-size: 24px;
+}
+
+#margin{
+    margin-left: 5%;
+}
+
+#margin-t{
+    margin-left: 10%;
+}
+
+@media (min-width: 768px) {
+    #margin{
+        margin-left: 5%;
+    }
+    #margin-t{
+        margin-left: 8%;
+    }
 }

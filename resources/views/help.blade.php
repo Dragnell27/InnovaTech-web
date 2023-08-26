@@ -8,23 +8,27 @@
 
 </head>
 <body>
-    <div class="container py-5 mt-5">
-        <h1>Ayudas</h1>
 
-        <div class="botones-columna">
-            <!-- Elemento "Cómo Iniciar Sesión" -->
-            <button class="desplegable" onclick="toggleDesplegable('iniciar-sesion')"><span class="simbolo">•</span>Cómo Iniciar Sesión</button>
-            <div id="iniciar-sesion" class="contenido-desplegable">
-                <h2 class="text-dark">Cómo Iniciar Sesión</h2>
-                <p>Para iniciar sesión en nuestro sitio web, sigue estos pasos:</p>
-                <ol>
-                    <li>Ve a la página de inicio de sesión.</li>
-                    <li>Ingresa tu nombre de usuario y contraseña.</li>
-                    <li>Haz clic en el botón "Iniciar Sesión".</li>
-                </ol>
-            </div>
+<div>
+    <div id= "margin"><h1> Como podemos ayudarte</h1></div>
 
-            <!-- Elemento "Cómo Comprar un Producto" -->
+    <div class="container mb-5" id= "margin-t">
+    <div class="botones-columna">
+
+        <!--"Iniciar Sesión-Regitrarse" -->
+        <button class="desplegable" onclick="toggleDesplegable('iniciar-sesion')"><span class="simbolo">•</span>Iniciar Sesión-Registro</button>
+        <div id="iniciar-sesion" class="contenido-desplegable">
+            <h2 class="text-dark">Cómo Iniciar Sesión y registrarse</h2>
+            <p>Para iniciar sesión y registrarse en nuestro sitio web, sigue estos pasos:</p>
+            <ol>
+                <li>En la parte superior encontraras inicio de sesión.</li>
+                <li>Ingresa nombre de usuario y contraseña si desea iniciar sesion.</li>
+                <li>Si desea registarse en la parte inferior encontraras (¿No tienes cuenta? Registrate).</li>
+                <li>Llena nuestro formulario y disfruta de nuestros servicios.</li>
+            </ol>
+        </div>
+
+            <!--"Comprar un Producto" -->
             <button class="desplegable" onclick="toggleDesplegable('comprar-producto')"><span class="simbolo">•</span>Cómo Comprar un Producto</button>
             <div id="comprar-producto" class="contenido-desplegable">
                 <h2 class="text-dark">Cómo Comprar un Producto</h2>
@@ -36,9 +40,23 @@
                     <li>Ve a tu carrito de compras y completa la compra.</li>
                 </ol>
             </div>
+
+            <!--"Contacto" -->
+            <button class="desplegable" onclick="toggleDesplegable('contacto')"><span class="simbolo">•</span>Cómo Comprar un Producto</button>
+            <div id="contacto" class="contenido-desplegable">
+                <h2 class="text-dark">Mas dudas</h2>
+                <p>Si necesitas mas asesorias:</p>
+                <ol>
+                    <li>Busca el icono de contacto</li>
+                    <li></li>
+                    <li></li>
+                </ol>
+            </div>
+
+
         </div>
     </div>
-
+</div>
 
     @include('layouts.footer')
 
