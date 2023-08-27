@@ -11,6 +11,7 @@
             <p class="card-text subMessages text-center"> los campos que contienen '*' son obligatorios</p>
             <form  method="post" action="{{ route('faqs.store',Auth::user()->id )  }}"    id="formulario" style="padding: 0; margin: 0">
             <div>
+                @csrf
                 <input type="hidden" name="client_id" value="{{Auth::user()->id  }}">
                 <input type="text"name="name" class="forms form-control" id="name" placeholder="* Nombre *"
                     required>

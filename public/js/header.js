@@ -4,8 +4,22 @@ document.addEventListener("DOMContentLoaded", () => {
         searchIcon = document.querySelector("#searchIcon"),
         navOpenBtn = document.querySelector(".navOpenBtn"),
         navCloseBtn = document.querySelector(".navCloseBtn");
+        const icon = document.querySelector("#searchIcon");
+        const iconClose = document.querySelector("#search-close");
 
     searchIcon.addEventListener("click", () => {
+        icon.classList.toggle("inactive");
+        iconClose.classList.toggle("inactive");
+        nav.classList.toggle("openSearch");
+        nav.classList.remove("openNav");
+        if (nav.classList.contains("openSearch")) {
+            return searchIcon.classList.replace("uil-search", "uil-times");
+        }
+        searchIcon.classList.replace("uil-times", "uil-search");
+    });
+    iconClose.addEventListener("click", () => {
+        icon.classList.toggle("inactive");
+        iconClose.classList.toggle("inactive");
         nav.classList.toggle("openSearch");
         nav.classList.remove("openNav");
         if (nav.classList.contains("openSearch")) {

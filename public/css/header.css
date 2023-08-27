@@ -129,6 +129,7 @@ a:hover {
     top: 8px;
     list-style: none;
     padding-bottom: 10px;
+  
 
 }
 .nav .logo {
@@ -212,7 +213,7 @@ a:hover {
     }
 
 /* responsive */
-@media screen and (max-width: 1160px) {
+@media screen and (max-width: 900px) {
     .nav {
         padding: 15px 100px;
     }
@@ -220,7 +221,7 @@ a:hover {
         right: 150px;
     }
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 950px) {
     .nav {
         padding: 15px 50px;
     }
@@ -229,7 +230,7 @@ a:hover {
         max-width: 400px;
     }
 }
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 956px) {
     #sidebar-links {
         display: block; /* Muestra el contenedor en pantallas pequeñas */
     }
@@ -287,4 +288,18 @@ a:hover {
             display: none;
         }
     }
+}
+
+.divider{
+    height: 30px;
+    width: 1px;
+   
+    border: 1px solid gray;
+    margin: 1px;
+}
+.inactive{
+    display: none;
+}
+.active{
+    display: block;
 }

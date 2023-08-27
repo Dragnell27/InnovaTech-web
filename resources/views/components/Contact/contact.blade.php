@@ -24,7 +24,7 @@ if(Auth::check()){
               <input type="hidden" name="client_id" value="{{Auth::user()->id  }}">
             @else
           <form action="" id="formulario" style="padding: 0; margin: 0">
-                
+            @csrf
             @endif
             
                 <div class="mb-3">
