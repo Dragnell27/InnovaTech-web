@@ -67,7 +67,7 @@
                                 <form action="{{ Route('cart.show') }}" method="get">
                                     <div id="icono" class=" ">
                                         <button type="submit" id="btnCarrito" class="" style="margin-top: 0 !important; height: 40px !important; width: 60px !important">
-                                            <img src="{{ asset('img/carro_compra.png') }}" style="margin-bottom: 6px" width="40px" height="40px"
+                                            <img src="{{ asset('img/carro_compra.png') }}" style="margin-bottom: 6px" width="30px" height="30px"
                                                 alt="">
                                             <span class="" id="counter"> 
                                                 @if (Auth::check())
