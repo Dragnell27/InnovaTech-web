@@ -29,7 +29,7 @@
                     </p>
                 </strong>
                 <div class="row g-3">
-                    <form action="" method="post" style="">
+                    <form action="" method="post" style=" min-width: 100px;max-width: 100%;max-height: 100%;">
                         <div class="containe">
                             <div class="row">
                                 <div class="col-sm-6 text-center ">
@@ -46,18 +46,18 @@
                                 </div>
                                 <div class="col-sm-6 text-center">
                                     <label for="num" class="form-label">Teléfono</label>
-                                    <input type="" class="numTel form-control text-center" readonly
+                                    <input id="numTel" class=" form-control text-center" readonly
                                         onselectstart="return false;">
                                 </div>
 
                                 <div class="col-sm-6 text-center mb-2">
-                                    <label for="email" class="form-label">Identificación</label>
-                                    <input type="email" class="form-control text-center" readonly
+                                    <label class="form-label">Identificación</label>
+                                    <input  class="form-control text-center" readonly
                                         onselectstart="return false;" id="identificacion">
                                 </div>
                                 <div class="col-sm-8 w-100 text-center">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="input-email form-control text-center" readonly
+                                    <input type="email" id="input-email" class="form-control text-center" readonly
                                         onselectstart="return false;">
                                 </div>
                             </div>
@@ -154,10 +154,9 @@
 
                                         </div>
 
-                                        <div
-                                            class="container-fluid h-100 d-flex align-items-center justify-content-center">
+                                        <div class="container-fluid h-100 d-flex align-items-center justify-content-center">
                                             <div class="col-8">
-                                                <label for="address2" class="form-label mt-2 ">Piso</label>
+                                                <label for="address2" class="form-label mt-2 ">Dirección</label>
                                                 <input type="text" class="intputs text-center" id="floor" readonly
                                                     onselectstart="return false;">
 
@@ -168,11 +167,12 @@
                                     </div>
                             </form>
                         </div>
-
-                        <div class="col-12 align-text-center">
-                            <a name="" id="agregarDireccion" class="btn btn-primary " href="#" style="display:none;"
+                        <label id="labelAdress" style="font-size: 20px;display:none;">¿Aun no tienes direcciones?</label>
+                            <div class="container  d-flex justify-content-center align-items-center">
+                                                   
+                                <a name="" id="agregarDireccion" class=" " href="#" style="display:none;"
                                 role="button">Agregar Dirección</a>
-                        </div>
+                            </div>
 
                         <div class="col-12 text-center ">
                             <form action="" id="puntoFisico" style="display: none">
@@ -217,7 +217,7 @@
                                         </div>
 
                                         <div class="col-6">
-                                            <label for="address2" class="form-label mt-2 ">Piso</label>
+                                            <label for="address2" class="form-label mt-2 ">Detalle</label>
                                             <input type="text" class="intputs text-center" id="floorAdmin" readonly
                                                 onselectstart="return false;">
 
@@ -230,30 +230,21 @@
                     </div>
                     <div class="userdit " id="userModal">
                         <div class=" editContainer">
-                            <form action="{{ route('users.update', Auth::user()->id) }}" id="userUpdateFomr"
-                                method="post">
-                                @csrf
-                                @method('patch')
-                                <div class="container col-8">
+                            <form  id="userUpdateFomr" style="display: none">
+                                <div class="container col-12">
+                               <h4 class="mb-2">Modificar tus datos </h4>
+
                                     <img src="{{ asset('img/user-interface.png') }}" style="height: 50px; width:50px"
                                         alt="">
-
                                     <div class="row g-3">
                                         <div class=" col-sm-6">
                                             <label for="" class="form-label">Teléfono</label>
-                                            <input type="text" class="numTel form-control text-center" name=""
+                                            <input type="text" id="editPhone" class="form-control text-center" name=""
                                                 placeholder="Numero teléfonico">
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="tipo_documento" class="form-label">Tipo de Documento:</label>
-                                            <select class="form-select text-center" id="tipo_Documento">
-
-                                            </select>
-
-                                        </div>
-                                        <div class="col-6 w-100">
                                             <label for="" class="form-label">Correo</label>
-                                            <input type="text" class=" input-email form-control text-center"
+                                            <input type="text" id="editEmail" class="form-control text-center"
                                                 placeholder="Correo electronico" aria-describedby="helpId">
                                         </div>
 
@@ -264,8 +255,42 @@
                                     </div>
                                 </div>
                             </form>
+                            <form id="addAddress" style="display: none">
+                               <h4 class="mb-2">Agrega tu dirección preferencia</h4>
+                                <div class="container mb-2">
+                                   <div class="row ">
+                                    <div class="col-6 mb-2">
+                                        <label for="">Ciudad<strong class="text-danger"> *</strong></label>
+                                        <select  class="form-select" id="AddCity">--seleccionar--</select>
+                                    </div>
+                                    <div class="col-6 mb-2">
+                                        <label for="">Departamento<strong class="text-danger"> *</strong></label>
+                                        <select  class="form-select" id="AddCity">--seleccionar--</select>
+                                    </div>
+                                    <div class="col-6 mb-2">
+                                        <label for="">Barrio<strong class="text-danger"> *</strong></label>
+                                       <input type="text" class="form-control text-center" placeholder="Digite Barrio">
+                                    </div>
+                                    <div class="col-6 mb-2">
+                                        <label for="">Dirección<strong class="text-danger"> *</strong></label>
+                                        <input type="text" class="form-control text-center" placeholder="Ejemplo: Cra # Bis ">
+                                    </div>
+                                    <div class="container-fluid h-100 d-flex align-items-center justify-content-center">
+                                        <div class="col-6">
+                                            <label for="">Detalle</label>
+                                            <input type="text" class="form-control text-center" placeholder="Ejemplo: piso,torre,casa... ">
+                                        </div>
+                                    </div>
+                                   </div>
+                                </div>
+                                <div class="mb-4">
+                                    <input type="submit" value="Agregar dirección" class="AddDireccion">
+                                    <button type="button" class=" closeEdit ">Cancelar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                    
                 </div>
 
             </div>
@@ -279,6 +304,7 @@
     const urlAddress = BasUrl + "/api/address_user/" + id;
     const urlAddressAdmin = BasUrl + "/api/direccionesAdmin/";
     const token = '{{ csrf_token() }}';
+ 
 </script>
 <script src="{{ asset('js/compra.js') }}"></script>
 @endsection

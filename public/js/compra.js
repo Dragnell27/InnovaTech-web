@@ -1,72 +1,30 @@
 //CONSUMIENDO API USUARIOS
-async function user() {
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const user = data.data[0];
-        if (response.ok) {
-            document.getElementById('firstName').value = user.first_name;
-            document.getElementById('lastName').value = user.last_name;
-           const emailInput= document.querySelectorAll('.input-email');
 
-            const typeId = user.document_type.name + ' ' + user.document;
-            document.getElementById('identificacion').value = typeId;
-           const numTel= document.querySelectorAll('.numTel');
-            emailInput.forEach(input=>{
-                input.value = user.email
-            });
-            numTel.forEach(input=>{
-                input.value = user.phone;
-            });
-            const ActualDoc = user.document_type.id;
-            tipo_documento.value = ActualDoc;
-        }
-
-    } catch (error) {
-        console.error('Error', error);
-    }
-
-};
 //AQUI VA EL TIPO DE DOCUMENTO
-async function tipoDocumento(){
-    const tipo_documento= document.getElementById('tipo_Documento');
-    try {
-        const response= await fetch('/type_documents/15');
-        const data= await response.json();
-        data.forEach(type=>{
-            const option= document.createElement('option');
-            option.value=type.id;
-            option.textContent=type.name;
-            tipo_documento.appendChild(option);
-        });
+// async function tipoDocumento(){
+//     const tipo_documento= document.getElementById('tipo_Documento');
+//     try {
+//         const response= await fetch('/type_documents/15');
+//         const data= await response.json();
+//         data.forEach(type=>{
+//             const option= document.createElement('option');
+//             option.value=type.id;
+//             option.textContent=type.name;
+//             tipo_documento.appendChild(option);
+//         });
 
-    } catch (error) {
-        console.error(error,'error al traer los datos');
-    }
-}
+//     } catch (error) {
+//         console.error(error,'error al traer los datos');
+//     }
+// }
 //Actualizar USUARIOS
-async function updateUser(){
-const abrirEdit=document.querySelector('.abrirEdit');
-const userdit= document.querySelector('.userdit');
-const closeEdit =document.querySelector('.closeEdit ');
 
 
-abrirEdit.addEventListener('click',async(e)=>{
-e.preventDefault();
-
-userdit.classList.add('userdit--openEdit');
-
-});
-
-closeEdit.addEventListener('click',(e)=>{
-    e.preventDefault();
-    userdit.classList.remove('userdit--openEdit');
-    });
-await tipoDocumento();
-await user();
 
 
-}
+
+
+
 
 //NOMBRE DEL DEPARTAMENTO
 async function DepartmentsName(nameDepartment) {
@@ -80,39 +38,11 @@ async function DepartmentsName(nameDepartment) {
         return null;
     }
 };
-// $(document).ready(function () {
-//     $(document).on('click', 'save', function () {
-//         var button = $(this);
-//         var productoId = button.data('product_id');
-//         button.prop('disabled', true);
-//             $.ajax({
-//                 url: "/api/users/"+id,
-//                 method: 'PUT',
-//                 data: {
-//                     _token: token,
-//                     product_id: productoId
-//                 },
-//                 success: function (response) {
-//                     button.data('lista_id', response.id);
-//                     button.toggleClass('no_agregado_favoritos agregado_favoritos');
-//                 },
-//                 error: function (jqXHR, textStatus, errorThrown) {
-//                     console.error('Error en la solicitud AJAX:', textStatus,
-//                         errorThrown);
-//                     alert('Error al agregar a la lista.');
-//                 },
-//                 complete: function () {
-//                     // Habilita el botón después de completar la solicitud, independientemente del resultado
-//                     button.prop('disabled', false);
-//                 }
-//             });
 
-//     });
-// });
 
 //DIRECCIONES
 
-async function cargarDirecciones(seleccionarDireccion,formDirecciones,btnAddAdress) {
+async function cargarDirecciones(seleccionarDireccion,formDirecciones,btnAddAdress,labelAddress) {
     try {
         const response = await fetch(urlAddress);
         const data = await response.json();
@@ -130,8 +60,11 @@ async function cargarDirecciones(seleccionarDireccion,formDirecciones,btnAddAdre
         seleccionarDireccion.innerHTML = html;
         if (addressInactive) {
             btnAddAdress.style.display='block';
+            labelAddress.style.display='block';
         }else{
             btnAddAdress.style.display='none';
+            labelAddress.style.display='none';
+
         }
 
         seleccionarDireccion.addEventListener('change', async function (event) {
@@ -180,7 +113,7 @@ async function cargarDirecciones(seleccionarDireccion,formDirecciones,btnAddAdre
         });
         return addresses;
 
-        //FUNCIÓN DL BOTON
+        
     } catch (error) {
         console.error(`Error al obtener datos de la API: ${error}`);
         return[];
@@ -236,6 +169,7 @@ async function mostrarForm(tipoLugar) {
     const seleccionarDireccion = document.getElementById('direciones');
     const seleccionarpuntoFisico = document.getElementById('puntoFisico');
     const btnAddAdress = document.getElementById('agregarDireccion');
+    const labelAddress= document.getElementById('labelAdress');
     seleccionarDireccion.selectedIndex=0;
     direcionesAdmin.selectedIndex=0;
 
@@ -246,6 +180,7 @@ async function mostrarForm(tipoLugar) {
         formDirecciones.style.display = 'none';
         seleccionarDireccion.style.display = 'none';
         seleccionarpuntoFisico.style.display = 'none';
+        labelAddress.style.display='none';
 
         if (myGlobalAddress.length>0) {
             formDomicilios.style.display = 'block';
@@ -253,16 +188,18 @@ async function mostrarForm(tipoLugar) {
 
         }else{
             btnAddAdress.style.display = 'block';
+        labelAddress.style.display='block';
+
 
         }
     } else if (tipoLugar == "Pfisico") {
         btnAddAdress.style.display = 'none';
+        labelAddress.style.display='none';
         formPunto.style.display = 'none';
         formDomicilios.style.display = 'none';
         formDirecciones.style.display = 'none';
         seleccionarDireccion.style.display = 'none';
         seleccionarpuntoFisico.style.display = 'block';
-
         seleccionarpuntoFisico.style.display = 'block';
 
 
@@ -295,12 +232,90 @@ window.addEventListener('load', async () => {
 const formDirecciones = document.getElementById('formDirecciones');
 const seleccionarDireccion = document.getElementById('direciones');
 const btnAddAdress = document.getElementById('agregarDireccion');
-myGlobalAddress = await cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress);
+const labelAddress= document.getElementById('labelAdress');
+
+myGlobalAddress = await cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress,labelAddress);
 await AddressAdmin();
-await user();
-await updateUser();
+
 
 });
 
+fetch(url)
+.then(function (response){
+if (!response.ok) {
+    throw new Error('Network response was not ok');
+}
+return response.json();
+})
+.then(function (data) {
+    const user = data.data[0];
+    document.getElementById('firstName').value = user.first_name;
+    document.getElementById('lastName').value = user.last_name;
+    const typeId = user.document_type.name + ' ' + user.document;
+    document.getElementById('identificacion').value = typeId;
+    $('#input-email').val(user.email);
+    $('#numTel').val(user.phone);
+    $('#editPhone').val(user.phone);
+    $('#editEmail').val(user.email);
+})
+.catch(function (error) {
+    console.log(error);
+});
 
+$(document).ready(function(){
+    const abrirEdit=$('.abrirEdit');
+    const userdit= $('.userdit');
+    const closeEdit =$('.closeEdit ');
+    const guardarDatos=$('.savaDate');
+    const AddDireccion=$('.AddDireccion');
+    const addAddres=$('#agregarDireccion');
+   
+    abrirEdit.click(function(e){
+    e.preventDefault();
+    guardarDatos.click(function (e) {
+        e.preventDefault();
+        const numTel=$('#numTel').val();
+        const emailData= $('#input-email').val();
+        $.ajax({
+            method:'post',
+            url:"/updateUser/"+id,
+            data:{
+                _token: token,
+                phone:numTel,   
+                email:emailData 
+            },
+            success: function(response) {
+                // Manejar la respuesta del servidor en caso de éxito
+            console.log('Actualización exitosa:', response);
 
+                $('#input-email').text(emailData);
+                $('#numTel').text(numTel);
+                console.log(emailData);
+                console.log(numTel);
+                userdit.removeClass('userdit--openEdit');
+               
+            },
+            error: function(xhr, status, error) {
+                // Manejar errores en caso de falla
+                console.error('Error en la solicitud:', error);
+            }
+
+        });
+    });
+    userdit.addClass('userdit--openEdit');
+    $('#addAddress').hide();
+        $('#userUpdateFomr').show();
+    });
+    addAddres.click(function (e) { 
+        e.preventDefault();
+    userdit.addClass('userdit--openEdit');
+
+        $('#addAddress').show();
+        $('#userUpdateFomr').hide();
+
+     });
+    closeEdit.click( function(e){
+        e.preventDefault();
+        userdit.removeClass('userdit--openEdit');
+        });
+    });
