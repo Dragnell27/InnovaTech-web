@@ -1,6 +1,12 @@
 // Sidebar
 document.addEventListener('DOMContentLoaded', function() {
+
+
   const sidebar = document.getElementById('sidebar');
+  const categoriesContainer = document.getElementById('categorySidebar');
+  
+  
+  
   fetch('/api/category') // Cambia la URL de la API según tu configuración
       .then(response => response.json())
       .then(categories => {
@@ -18,8 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
                   window.location.href = `/api/category/${categoryId}`;
               });
 
-              sidebar.appendChild(link);
+              categoriesContainer.appendChild(link);
           });
+          
       });
+      
 });
 

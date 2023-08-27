@@ -1,5 +1,14 @@
 
 document.addEventListener("DOMContentLoaded", () => {
+const cartIcon = document.querySelector("#icono");
+cartIcon.addEventListener("mouseover",()=>{
+    document.querySelector("#cartLink").style.color = "red";
+})
+cartIcon.addEventListener("mouseout",()=>{
+    document.querySelector("#cartLink").style.color = "black";
+})
+
+
     const nav = document.querySelector(".nav"),
         searchIcon = document.querySelector("#searchIcon"),
         navOpenBtn = document.querySelector(".navOpenBtn"),
