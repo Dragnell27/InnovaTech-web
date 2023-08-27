@@ -224,13 +224,22 @@ class CarritoController extends Controller
                  $direccion = \DB::table("address")->where("user_id",$user_id)->first();
                  //Validar si el usuario ya tiene productos  en carrito
                  $result = Sales::where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->get();
+                 $direccionId;
+
+            if ($direccion) {
+                $direccionId = $direccion->id;
+                # code...
+            }else{
+                $direccionId = null;
+
+                  }
 
                  //Mientras se arregla la base de datos debo crear una dirrecion
                 if($result->isEmpty()) {
                     $sale = new Sales;
                     $sale->user_id = $user_id;
 
-                    $sale->address_id =$direccion->id;
+                    $sale->address_id =$direccionId;
                     $sale->param_status = 5;
                     $sale->param_shipping = 14;
                     $sale->param_paymethod = 2285;
