@@ -90,6 +90,7 @@ Route::middleware('auth')->resource('perfil/direcciones', AddressController::cla
 
 
 //Camilo Alzate Ruta que llama el primer paso de compra
+Route::post('/updateUser/{id}', [UserController::class, 'updateUser']);
 Route::get('/departments/{id}',[ParamController::class, 'nameDepartment']);
 Route::get('/type_documents/{paramtype_id}',[ParamController::class,'tipoDocumet']);
 Route::view('payment-method/1','payment-method/pasoUnoMpago')->name('pasoUno')->middleware('auth');
