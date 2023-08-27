@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/jpg" href="{{ asset('img/Logo-Innova.jpeg') }}"/>
     <title>Innova_tech - @yield('title')</title>
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -31,8 +32,12 @@
     <header>
         <nav class="nav">
             <div class="class">
-                <a href="{{ url('/') }}"><img src="{{ asset('img/logo-i.png') }}" id="imagen-logo"></a>
-                <a id="btn-menu" onclick="toggleSidebar()"><img src="{{ asset('img/Menu.png') }}" id="menu-logo"></a>
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('img/logo-i.png') }}" id="imagen-logo">
+                </a>
+                <a id="btn-menu" onclick="toggleSidebar()"><img src="{{ asset('img/Menu.png') }}" id="menu-logo">
+         
+                </a>
                 <div class="sidebar" style="background-color: white;" id="sidebar">
                     <a href="#"
                         class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
