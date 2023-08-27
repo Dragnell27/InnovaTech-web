@@ -13,9 +13,19 @@
         <link rel="stylesheet" href="{{ asset('css/categories.css') }}">
     </head>
     <section>
-        <div class="product-list" id='product-list'>
+        <div class="row justify-content-center product-list" id='product-list'>
             @if ($products->isEmpty())
-                <h1 class="text-center mt-5">No hay productos en esta categoría.</h1>
+            <div class=" text-center mt-5">
+                <h1 class="">No hay productos en esta categoría.</h1>
+                <p>
+                    <svg width="100" height="100" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        <text x="40%" y="45%" font-size="8" dominant-baseline="middle"
+                            text-anchor="middle" fill="currentColor">?</text>
+                    </svg>
+                </p>
+            </div>
             @else
                 @foreach ($products as $productos)
                     @php
