@@ -54,7 +54,7 @@
                         @endauth ()
                         <li class="links justify-content-center align-items-center">
                             <a class="ocultar" href="{{ route('wishlist.index') }}"  style="display: flex;  align-items: center;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
                                     <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
                                 </svg>
                                  <span class="spanText">Mi lista de deseos
@@ -67,7 +67,7 @@
                                 <form action="{{ Route('cart.show') }}" method="get">
                                     <div id="icono" class=" ">
                                         <button type="submit" id="btnCarrito" class="" style="margin-top: 0 !important; height: 40px !important; width: 60px !important">
-                                            <img src="{{ asset('img/carro_compra.png') }}" style="margin-bottom: 6px" width="40px" height="40px"
+                                            <img src="{{ asset('img/carro_compra.png') }}" style="margin-bottom: 6px" width="30px" height="30px"
                                                 alt="">
                                             <span class="" id="counter"> 
                                                 @if (Auth::check())
@@ -117,14 +117,14 @@
                 </svg>
                 <span>Mi cuenta</span></a></li>
                 @else
-                    <li class="links"><a href="{{ route('login') }}"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+                    <li class="links"><a href="{{ route('login') }}"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
                         <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
                       </svg>
                       <span>Iniciar sesión</span>
                       </a></li>
                 @endauth ()
-                <li  class="links"> <a href="{{ route('wishlist.index') }}">  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+                <li  class="links"> <a href="{{ route('wishlist.index') }}">  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
                     <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
                 </svg>
              <span>Lista de deseos</span>
@@ -133,8 +133,8 @@
                  <li  class="links">
                     <form action="{{ Route('cart.show') }}" method="get">
                         <div id="icono" class=" ">
-                            <button type="submit" id="btnCarrito" class="" style="margin-top: 0 !important; height: 40px !important; width: 60px !important;margin-bottom: 1px">
-                                <img src="{{ asset('img/carro_compra.png') }}" style="margin-bottom: 6px" width="40px" height="40px"
+                            <button type="submit" id="btnCarrito" class="" style="margin-top: 0 !important; height: 25px !important; width: 60px !important;margin-bottom: 1px">
+                                <img src="{{ asset('img/carro_compra.png') }}" style="margin-bottom: 6px" width="30px" height="30px"
                                     alt="">
                                 <span class="" id="counter"> 
                                     @if (Auth::check())
