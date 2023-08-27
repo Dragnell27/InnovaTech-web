@@ -48,7 +48,7 @@ if(Auth::check()){
             <div id="contenedorbotones">
                 <div class="row d-flex flex-row justify-content-center flex-wrap">
                     <div class=" col-md-3 col-sm-6 col-12 text-center  ">
-                        <a href="palinkear.html" class="btn btn-link btn-image">
+                        <a href="/api/category/2079" class="btn btn-link btn-image">
                             <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones"
                                 alt="..." src="{{ asset('img/accesories.png') }}" width="120" height="120"
                                 role="img">
@@ -59,7 +59,7 @@ if(Auth::check()){
 
 
                     <div class=" col-md-3 col-sm-6 col-12 text-center ">
-                        <a href="palinkear.html" class="btn btn-link btn-image">
+                        <a href="/api/category/2081" class="btn btn-link btn-image">
                             <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones"
                                 alt="..." src="{{ asset('img/smartwatch.png') }}" width="120" height="120"
                                 role="img">
@@ -68,7 +68,7 @@ if(Auth::check()){
                     </div>
 
                     <div class=" col-md-3 col-sm-6 col-12 text-center ">
-                        <a href="palinkear.html" class="btn btn-link btn-image">
+                        <a href="/api/category/2078" class="btn btn-link btn-image">
                             <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones"
                                 alt="..." src="{{ asset('img/airpods.png') }}" width="120" height="120"
                                 role="img">
@@ -78,7 +78,7 @@ if(Auth::check()){
 
 
                     <div class="col-md-3 col-sm-6 col-12 text-center ">
-                        <a href="palinkear.html" class="btn btn-link btn-image">
+                        <a href="/api/category/2077" class="btn btn-link btn-image">
                             <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones"
                                 alt="..." src="{{ asset('img/headphones.png') }}" width="120" height="120"
                                 role="img">
@@ -91,7 +91,7 @@ if(Auth::check()){
             <div class="red-div">
                 <h2>Productos Destacados</h2>
             </div>
-            @include('components.cart.cartAlert')
+            
             <section class="product" id="carrusel-personalizado">
 
                 <button class="pre-btn"><img src="{{ asset('img/arrow.png') }}" alt=""></button>
@@ -181,7 +181,7 @@ if(Auth::check()){
                 <div id="contenedorbotones">
                     <div class="row d-flex flex-row justify-content-center flex-wrap">
                         <div class=" col-md-3 col-sm-6 col-12 text-center  ">
-                            <a href="{{ asset('about') }}" class="btn btn-link btn-image">
+                            <a href="/aboutUs" class="btn btn-link btn-image">
                                 <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones"
                                     alt="..." src="{{ asset('img/Sobre-Nosotros.png') }}" width="120"
                                     height="120" role="img">

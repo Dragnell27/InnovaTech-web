@@ -1,6 +1,7 @@
 {{--  //Alerta al agregar al carro  --}}
 @if (session('msj_exitoso'))
 
+
     <head>
         <link rel="stylesheet" href="{{ asset('css/carrito.css') }}">
     </head>
@@ -8,6 +9,7 @@
 
   
     <?php
+  
     $url ='https://innovatechcol.com.co/img/productos/';
     $imagenes = explode(":",session('msj_exitoso')["images"]);
     

@@ -126,8 +126,9 @@ window.addEventListener("load",()=>{
                         method: 'GET',
                         data: data,
                         success: function(response) {
-                     
-                           window.location.href=baseURL
+                            var URLactual = window.location;
+
+                           window.location.href=URLactual
                         },
                         error: function() {
                             

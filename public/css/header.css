@@ -1,4 +1,4 @@
-/* Google Fonts - Cabin */
+
 @import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap");
 
 * {
@@ -230,7 +230,7 @@ a:hover {
         max-width: 400px;
     }
 }
-@media screen and (max-width: 956px) {
+@media screen and (max-width: 992px) {
     #sidebar-links {
         display: block; /* Muestra el contenedor en pantallas pequeñas */
     }

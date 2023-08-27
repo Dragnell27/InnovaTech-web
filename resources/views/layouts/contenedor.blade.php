@@ -154,7 +154,9 @@
                 </div>
             </div>
         </nav>
+
     </header>
+    @include('components.cart.cartAlert')
     <div id="componente">
         @yield('component')
     </div>

@@ -328,6 +328,7 @@ class CarritoController extends Controller
             dd($th);
 
         }
+        Session::put('msj_exitoso',$producto );
         return response()->json([
             "msj_exitoso"=>$producto,
         ]);
