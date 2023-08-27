@@ -117,10 +117,10 @@
     <script src="{{ asset('js/categories.js') }}"></script>
     {{-- agrego el js del carrito --}}
     <script src="{{ asset('js/carrito.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script>>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
     @yield('js')
     <script src="{{ asset('js/preloader.js') }}"></script>
-    <!-- Bootstrap JS -->
+    {{--  <!-- Bootstrap JS -->  --}}
 
 </body>
 

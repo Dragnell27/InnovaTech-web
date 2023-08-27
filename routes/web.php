@@ -36,13 +36,14 @@ use App\Http\Controllers\CategoryController;
 Route::get('/faqs', function () {
     return view('components.PQRS.FAQS');
 })->name('faqs');
+//ruta de about
+
+Route::get('/aboutUs', function () {
+    return view('aboutExample');
+})->name('aboutUs');
 
 
-///AQUI ACABAN LAS RUTAS DE PQRS
 
-// Route::get('/pqrs', [PqrsdController::class, 'index'])->name('pqrs.index');
-// Route::get('/pqrs/create', [PqrsdController::class, 'create'])->name('pqrs.create');
-// Route::post('/pqrs', [PqrsdController::class, 'store'])->name('pqrs.store');
 //RUTA INDIVIDUAL DE PRODUCTOS//
 Route::get('productos/{id}', [ProductosController::class , 'show'])->name('productos.show');
 

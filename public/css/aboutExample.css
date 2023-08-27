@@ -1,0 +1,63 @@
+
+body {
+    font-family: 'Open Sans', sans-serif;
+
+    
+}
+
+
+h2 {
+    padding-top:50px;
+    text-transform: uppercase;  
+    padding-bottom:20px;  
+    color:black;
+}
+h3 {
+    padding-top:30px;
+     padding-bottom:40px;
+     text-align:center;
+     font-weight:900;
+     text-transform:uppercase;
+}
+section {
+    padding-top:30px;
+    padding-bottom:40px;
+}
+
+
+p {
+    padding:10px 0px;
+}
+/*=====================================
+  HEADERS STYLES 
+    ===================================*/
+
+
+.header-sec {
+  
+    padding-top: 10px;
+    padding-bottom: 60px;
+    background: url(../img/head.jpg) no-repeat center center;
+    padding: 0;
+    -webkit-background-size: cover;
+    background-size: cover;
+    color:white;
+    background-attachment:fixed;
+}
+.header-sec .overlay{
+    background:rgba(67, 87, 77, 0.9);
+min-height: 500px;
+}
+    .header-sec h2 {
+        color:white;
+        padding-top:150px;
+    }
+
+  
+
+
+.card{
+    padding: 10px;
+    margin: 10px 10px;
+    
+}
