@@ -7,19 +7,19 @@ try {
             for (const compra in data) {
                 if (data.hasOwnProperty(compra)){
                     const venta = data[compra];
-                    var datos = '<div class="card mb-2"><div class="row">';
+                    var datos = '<div class="card mb-5"><div class="row">';
                     for (const sales of venta) {
                         console.log(sales);
                         var fecha = (sales.fecha).split('T')[0];
                         switch (sales.estado) {
                             case "Recibido":
-                                var colorElement = "#1CE838";
+                                var colorElement = "#36B50D";
                                 break;
                             case "Entregado":
                                 var colorElement = "#3364FF";
                                 break;
                             case "Pendiente":
-                            var colorElement = "#E87807";
+                            var colorElement = "#FF8B00";
                                  break;
                             case "Cancelado":
                             var colorElement = "#FF0505";
