@@ -102,9 +102,9 @@ const form = document.querySelector("#formulario");
 form.addEventListener("submit",(e)=>{
    
     e.preventDefault();
-    const pattern = new RegExp('^[A-Z]+$', 'i');
+    // const pattern = new RegExp('^[A-Z]+$', 'i');
 const phone = document.querySelector("#phone");
-if(phone.value.length < 10  || phone.value.length >10 || pattern.test(phone.value)){
+if(phone.value.length < 10  || phone.value.length >10 ){
     Swal.fire('El Numero de Teléfono Debe Tener 10 Digitos!')
 
 }else{
