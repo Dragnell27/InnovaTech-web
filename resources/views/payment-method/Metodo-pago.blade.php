@@ -77,32 +77,10 @@
                     <br>
                     <div id="paypal-button-container"></div>
                     <script>
-                    var jsVariable = "<?php echo $total; ?>"
-                    console.log(jsVariable);
+                     jsVariable = "<?php echo $total; ?>"
+                  
                     </script>
-                <script>
-                    paypal.Buttons({
-                        style:{
-                            color: 'blue',
-                            label: 'pay'
-                        },
-                        createOrder: function(data,actions){
-                            return actions.order.create({
-                                purchase_units: [{
-                                    amount: {
-                                        value: jsVariable
-                                    }
-                                }]
-                            });
-                        },
-                        onApprove: function(data, actions){
-                            actions.order.capture().then(function(detalles){
-                                console.log(detalles);
-                                windows.location.href="";
-                            });
-                        },
-                    }).render('#paypal-button-container');
-                </script>
+               <script src="{{ asset('js/pay.js') }}"></script>
             </main>
         </div>
     </div>
