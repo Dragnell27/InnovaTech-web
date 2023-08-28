@@ -19,6 +19,7 @@ use App\Models\Param;
 use App\Models\Product;
 use App\Models\Wishlist;
 use App\Http\Controllers\CategoryController;
+use App\Models\Carrusel;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,14 +64,15 @@ Route::POST("/mySales",[App\Http\Controllers\CarritoController::class,'mySales']
 ///   Rutas confirmadas   ///
 /////////////////////////////
 Route::get('/', function () {
-    $products = Product::all();
+    $products = Product::where("param_state",5)->get();
     $colors = Param::where('paramtype_id', 11)->get();
+    $carrusel = Carrusel::orderBy('position')->where("param_state",5)->get();
     $favoritos = [];
 
     if (Auth::check()) {
         $favoritos = Wishlist::where('user_id', Auth::user()->id)->get();
     }
-    return view('index',compact('products', 'colors', 'favoritos'));
+    return view('index',compact('products', 'colors', 'favoritos','carrusel'));
 })->name('index');
 
 //Ruta de jaider, sirve para cargar los tipos de docuemnto en el registro
@@ -90,6 +92,7 @@ Route::middleware('auth')->resource('perfil/direcciones', AddressController::cla
 
 
 //Camilo Alzate Ruta que llama el primer paso de compra
+Route::post('/updateUser/{id}', [UserController::class, 'updateUser']);
 Route::get('/departments/{id}',[ParamController::class, 'nameDepartment']);
 Route::get('/type_documents/{paramtype_id}',[ParamController::class,'tipoDocumet']);
 Route::view('payment-method/1','payment-method/pasoUnoMpago')->name('pasoUno')->middleware('auth');
@@ -104,7 +107,9 @@ Route::resource('/users', UserController::class);
 Route::view('/sales/shopping', 'sales/shopping')->name('shopping');
 
 //ruta jaider, lista de deseos
-Route::resource('/wishlist', WishlistController::class);
+Route::get('/wishlist', [WishlistController::class, 'index'])->name("wishlist.index")->middleware("auth");
+Route::post('/wishlist', [WishlistController::class,"store"]);
+Route::delete('/wishlist/{id}', [WishlistController::class,"destroy"])->name("wishlist.destroy");
 
 //ruta para faqs
 // Route::post('/faqs/{id}', [faqsController::class, 'store'])->name('faqs.store');

@@ -104,7 +104,21 @@ class UserController extends Controller
         return redirect(route('users.show', Auth::user()->id));
     }
 
-
+    public function UpdateUser(Request $request,$id){
+try {
+    $request->validate([
+        'phone' => ['required', 'numeric', 'digits:10'],
+        'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
+    ]);
+    $user = User::findOrFail($id);
+    $user->phone = $request['phone'];
+    $user->email = $request['email'];
+    $user->save();
+    return response()->json(['message'=>'Datos guardados'],200);
+} catch (\Exception $e) {
+   return response()->json(['error'=>$e->getMessage()],500);
+}
+    }
     /**
      * Remove the resource from storage.
      */

@@ -41,13 +41,14 @@ class CategoryController extends Controller
         try {
             $categoryData = Category::with('products')->where('param_category', $id)->get();
             $products = $categoryData;
+            $categoryName = $categoryData->first();
 
             $favoritos = [];
             if (Auth::check()) {
                 $favoritos = Wishlist::where('user_id', Auth::user()->id)->get();
             }
 
-            return view('components.Categories.category', compact('products','favoritos'));
+            return view('components.Categories.category', compact('products','favoritos','categoryName'));
         } catch (\Exception $e) {
             // Manejo del error
             dd($e->getMessage()); // Muestra el mensaje de error en la página
