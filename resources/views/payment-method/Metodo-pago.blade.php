@@ -78,7 +78,6 @@
                     <div id="paypal-button-container"></div>
                     <script>
                      jsVariable = "<?php echo $total; ?>"
-                  
                     </script>
                <script src="{{ asset('js/pay.js') }}"></script>
             </main>

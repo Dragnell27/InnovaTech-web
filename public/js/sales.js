@@ -31,7 +31,7 @@ try {
                         datos += `
                         <div class=" border-bottom col-12 row mb-2">
                         <div class="col-md-3 p-3">
-                        <img src="https://innovatechcol.com.co/img/productos/${images[0]}" alt="Producto" class="img-fluid">
+                        <img src="{{ asset("img/productos/"${images[0]})}}" alt="Producto" class="img-fluid">
                         </div>
 
                         <div class="col-md-9 card-body p-3 justify-content-center align-items-center">
