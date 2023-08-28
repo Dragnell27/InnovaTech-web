@@ -2,7 +2,7 @@
 window.addEventListener("load",()=>{
     console.log(jsVariable);
     const key = "9558aeb5f1e4e4b45a976b89a61c3fda62da04c1";
-    const url =  `https://api.getgeoapi.com/v2/currency/convert?api_key=${key}&from=COP&to=USD&amount=393740&format=json`;
+    const url =  `https://api.getgeoapi.com/v2/currency/convert?api_key=${key}&from=COP&to=USD&amount=${jsVariable}&format=json`;
 
     fetch(url)
     .then(response => response.json())
