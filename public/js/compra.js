@@ -269,38 +269,53 @@ $(document).ready(function(){
     const guardarDatos=$('.savaDate');
     const AddDireccion=$('.AddDireccion');
     const addAddres=$('#agregarDireccion');
-   
+    let isButtonDisabled = false;
     abrirEdit.click(function(e){
     e.preventDefault();
+    
     guardarDatos.click(function (e) {
         e.preventDefault();
-        const numTel=$('#numTel').val();
-        const emailData= $('#input-email').val();
-        $.ajax({
-            method:'post',
-            url:"/updateUser/"+id,
-            data:{
-                _token: token,
-                phone:numTel,   
-                email:emailData 
-            },
-            success: function(response) {
-                // Manejar la respuesta del servidor en caso de éxito
-            console.log('Actualización exitosa:', response);
+        if (!isButtonDisabled) {
+            isButtonDisabled=true
+            guardarDatos.prop('disable',true)
+            const numTel=$('#editPhone').val();
+            const emailData= $('#editEmail').val();
+            $.ajax({
+                method:'post',
+                url:"/updateUser/"+id,
+                data:{
+                    _token: token,
+                    phone:numTel,   
+                    email:emailData 
+                },
+                success: function(response) {
+                    $('#input-email').val(emailData);
+                    $('#numTel').val(numTel);
+                   swal.fire({
+                    position:'top-center',
+                    icon:'success',
+                    title:'Modificado correctamente',
+                    showConfirmButton:false,
+                    timer:1500
+                   });
+                    userdit.removeClass('userdit--openEdit');
+                    setTimeout(() => {
+                        isButtonDisabled=false;
+                        guardarDatos.prop('disable',false)
+                    }, 1000);
+                   
+                },
+                error: function(xhr, status, error) {
+                    // Manejar errores en caso de falla
+                    isButtonDisabled = false;
+                    guardarDatos.prop('disabled', false);
+                    console.error('Error en la solicitud:', error);
+                }
+    
+            });
 
-                $('#input-email').text(emailData);
-                $('#numTel').text(numTel);
-                console.log(emailData);
-                console.log(numTel);
-                userdit.removeClass('userdit--openEdit');
-               
-            },
-            error: function(xhr, status, error) {
-                // Manejar errores en caso de falla
-                console.error('Error en la solicitud:', error);
-            }
-
-        });
+        }
+       
     });
     userdit.addClass('userdit--openEdit');
     $('#addAddress').hide();
