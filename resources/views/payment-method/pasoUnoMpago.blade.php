@@ -8,7 +8,7 @@
 <section class="mt-2" style="font-family: 'Roboto', sans-serif;">
     <div class="container ml-5">
         <div class="row g-5 pl-5 ml-5">
-            @include('components.cart.cart-resume')
+            @include( 'components.cart.cart-resume')
             <div class="col-md-7 col-lg-8">
 
                 <h2 style="color:black">
@@ -156,7 +156,7 @@
 
                                         <div class="container-fluid h-100 d-flex align-items-center justify-content-center">
                                             <div class="col-8">
-                                                <label for="address2" class="form-label mt-2 ">Dirección</label>
+                                                <label for="address2" class="form-label mt-2 ">Detalle</label>
                                                 <input type="text" class="intputs text-center" id="floor" readonly
                                                     onselectstart="return false;">
 
