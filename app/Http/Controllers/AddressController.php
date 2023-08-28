@@ -25,7 +25,7 @@ class AddressController extends Controller
             }
         }
         $deparments = Param::where('paramtype_id', 6)->get();
-        return view('profile.address.index', compact('filter','deparments'));
+        return view('profile.address.index', compact('filter', 'deparments'));
     }
 
     /**
@@ -60,27 +60,35 @@ class AddressController extends Controller
             'hood' => 'required',
             'address' => 'required',
             'floor' => 'required',
-            'param_city' => 'required',' numeric',
-            'department' => 'required ','numeric',
+            'param_city' => 'required', ' numeric',
+            'department' => 'required ', 'numeric',
         ]);
 
         $datos = Address::where('user_id', Auth::user()->id)->where('param_state', 5)->get();
         if ($datos->count() >= 3) {
-            return redirect()->route('direcciones.index')->with([
-                'message' => 'Limite alcanzado!',
-                'text' => 'Alcanzaste el limite de direcciones',
-                'type' => 'warning',
-            ]);
+            if (request()->ajax()) {
+                return response()->json(['mensaje' => 'Limite alcanzado',]);
+            } else {
+                return redirect()->route('direcciones.index')->with([
+                    'message' => 'Limite alcanzado!',
+                    'text' => 'Alcanzaste el limite de direcciones',
+                    'type' => 'warning',
+                ]);
+            }
         } else {
             $datos = request()->except('_token', 'department');
             $datos['user_id'] = Auth::user()->id;
             $datos['param_state'] = 5;
             Address::insert($datos);
-            return redirect()->route('direcciones.index')->with([
-                'message' => 'Direccion creada!',
-                'text' => '',
-                'type' => 'success'
-            ]);
+            if (request()->ajax()) {
+                return response()->json(['success' => true]);
+            } else {
+                return redirect()->route('direcciones.index')->with([
+                    'message' => 'Direccion creada!',
+                    'text' => '',
+                    'type' => 'success'
+                ]);
+            }
         }
     }
 
@@ -112,7 +120,7 @@ class AddressController extends Controller
             'department' => $department,
         ];
         $cities = Param::where('paramtype_id', 7)->where('param_foreign', $data['department']['id'])->get();
-        return view('profile.address.edit', compact('departments','cities','data'));
+        return view('profile.address.edit', compact('departments', 'cities', 'data'));
     }
 
     /**
@@ -124,8 +132,8 @@ class AddressController extends Controller
             'hood' => 'required',
             'address' => 'required',
             'floor' => 'required',
-            'param_city' => 'required',' numeric',
-            'department' => 'required ','numeric',
+            'param_city' => 'required', ' numeric',
+            'department' => 'required ', 'numeric',
         ]);
 
         $address = Address::findOrFail($id);

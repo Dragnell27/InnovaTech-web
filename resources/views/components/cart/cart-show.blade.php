@@ -6,8 +6,8 @@
     <head>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="stylesheet" href="{{ asset('css/carrito.css') }}">
-         
-        
+
+
     </head>
     <section>
         <header>
@@ -16,15 +16,15 @@
       @if (Session::has('msj'))
 
       <?php
-      $user_id = Auth::user()->id; 
+      $user_id = Auth::user()->id;
       $itemsSession = json_decode(Session::get('msj'));
 
       Cart::session($user_id)->clear();
       foreach ($itemsSession as $key => $value) {
-    
-   
 
-          
+
+
+
              Cart::session($user_id)->add(array(
                 'id' => $value->product_id,   //inique row ID
                 'name' => $value->name,
@@ -36,33 +36,33 @@
                     'desc'=>$value->description,
 
                 ),
-            ));         
+            ));
         }
         Session::forget('cart');
         Session::put("cart",Cart::session($user_id)->getContent());
         Session::forget('msj');
-        
+
       ?>
-          
+
       @endif
         <main style="margin-bottom: 200px">
             @if (Session::has('msj_destroy'))
             <?php
-          
-            
+
+
             $totalPrice =0;
             $cart = Session::get("cart");
-            
+
              foreach ($cart as $key => $value) {
                 if($value->attributes["discount"]>0){
                     $descuento   =  ($value->price * $value->attributes["discount"]) /100;
-                    $totalPrice +=  ($value->price - $descuento) * $value->quantity ; 
+                    $totalPrice +=  ($value->price - $descuento) * $value->quantity ;
             }else{
                 $totalPrice += $value->price * $value->quantity;
             }
         }
             ?>
-           
+
             <script>
 
                 window.addEventListener("load",()=>{
@@ -72,11 +72,11 @@
                         title: 'Se eliminó el producto',
                         showConfirmButton: false,
                         timer: 3000
-                      })    
+                      })
                 })
-                
+
             </script>
-                
+
             @endif
 
             <?php
@@ -84,7 +84,7 @@
             ?>
             @if (Auth::check())
                 <?php
-                
+
                 $CartItems = Cart::session(Auth::user()->id)->getContent();
                 $CartCount = Cart::session(Auth::user()->id)
                     ->getContent()
@@ -92,10 +92,10 @@
                 ?>
             @else
                 <?php
-                
+
                 $CartItems = Cart::getContent();
                 $CartCount = Cart::getContent()->count();
-                
+
                 ?>
             @endif
             @if ($CartCount <= 0)
@@ -114,7 +114,7 @@
                 <section id="productSection" class="row">
                     <div class="col  row ">
                         <div class="col col-sm-12  rounded order-md-first ">
-                            
+
                             @foreach ($CartItems as $items)
                                 @php
                                     $imagenes = explode(':', $items->attributes['image']);
@@ -122,7 +122,7 @@
                                 <div class="card mb-3" style="" id="cartItem">
                                     <div class="row g-0">
                                         <div class="col-md-4">
-                                            <img src="{{ $url . $imagenes[0] }}" class="img-fluid rounded-start"
+                                            <img src="{{ asset("img/productos/". $imagenes[0]) }}" class="img-fluid rounded-start"
                                                 alt="...">
                                         </div>
                                         <div class="col-md-8 col-12">
@@ -213,15 +213,15 @@
 
 
  <script>
-  
+
     window.onresize = () =>{
 
-        
+
         try {
             var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
             if (windowWidth <= 600) {
-                var myDiv; 
+                var myDiv;
                 myDiv = document.getElementById("resumenContainer");
                 myDiv.classList.add("col-sm-12");
             } else {
@@ -232,12 +232,12 @@
           } catch (exceptionVar) {
             var error = exceptionVar;
           }
-            
-            
-       
-        
+
+
+
+
     };
-</script> 
+</script>
     </section>
     @include('layouts.footer')
 

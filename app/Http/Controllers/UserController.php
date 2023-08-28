@@ -90,7 +90,6 @@ class UserController extends Controller
         $request->validate([
             'phone' => ['required', 'numeric', 'digits:10'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
-            'tipo_de_documento' => ['required', 'integer'],
         ]);
 
         $suscripcion = $request['accept_subscription'] ? 20 : 21;
@@ -101,7 +100,11 @@ class UserController extends Controller
         $user->param_suscription = $suscripcion;
         $user->save();
 
-        return redirect(route('users.show', Auth::user()->id));
+        return redirect(route('users.show', Auth::user()->id))->with([
+            'message' => 'Cambio de datos exitoso!',
+            'text' => '',
+            'type' => 'success'
+        ]);
     }
 
     public function UpdateUser(Request $request,$id){
@@ -109,7 +112,7 @@ try {
     $request->validate([
         'phone' => ['required', 'numeric', 'digits:10'],
         'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
-    ]);  
+    ]);
     $user = User::findOrFail($id);
     $user->phone = $request['phone'];
     $user->email = $request['email'];
@@ -166,10 +169,16 @@ try {
         if (Hash::check($request->old_password, $user->password)) {
             $user->password = Hash::make($request->new_password);
             $user->save();
-            return "cambio exitoso";
-            return redirect()->back()->with('success', 'Contraseña cambiada exitosamente.');
+            return redirect()->route('cambiar_contrasena')->with([
+                'message' => 'Cambio de contraseña exitoso!',
+                'text' => '',
+                'type' => 'success'
+            ]);
         }
-        return "cambio error";
-        return redirect()->back()->withErrors(['old_password' => 'La contraseña antigua no es correcta.']);
+        return redirect()->route('cambiar_contrasena')->with([
+            'message' => 'Error al cambiar la contraseña!',
+            'text' => '',
+            'type' => 'error'
+        ]);
     }
 }
