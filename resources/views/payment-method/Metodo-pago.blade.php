@@ -8,13 +8,13 @@
 
 <section>
     <script
-    src="https://www.paypal.com/sdk/js?client-id=AdXyZcBrnaPhQ2hUS17siCtJhGFNHDOF779CKIzNFK6m3amjOpjgjGr_otg1x47CfV72JY0gMIlzLWrp"> // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
+    src="https://www.paypal.com/sdk/js?client-id=AdXyZcBrnaPhQ2hUS17siCtJhGFNHDOF779CKIzNFK6m3amjOpjgjGr_otg1x47CfV72JY0gMIlzLWrp">
   </script>
-    <div class="container card col-md-6 fw-bolder mb-4 " style="background-color: #F8F8F8 ">
+    <div class="container card col-md-8 fw-bolder mb-4 " style="background-color: #F8F8F8 ">
         <div class=" text-center mt-4">
             <h3>Metodo de pago</h3>
         </div>
-        <div class="container  mb-3 ">
+        <div class="container  mb-3 d-flex justify-content-center">
             <main>
                 <div class="row g-5">
                     <div class="rounded " style="background-color: #F8F8F8;">
@@ -74,6 +74,7 @@
                             <span class="text-success"><?=$total?></span>
                         </li>
                     </ul>
+                    <br>
                     <div id="paypal-button-container"></div>
                     <script>
                     var jsVariable = "<?php echo $total; ?>"
@@ -106,6 +107,6 @@
         </div>
     </div>
 @endif
-    @extends('layouts.footer')
+@extends('layouts.footer')
 
 </section>
