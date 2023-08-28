@@ -8,8 +8,13 @@
 @section('title', 'Home')
 @section('component')
     <?php
-    $checked = Auth::check() ? 'true' : 'false';
-    $index = 0;
+    if (Auth::check()) {
+        $checked = 'true';
+        $index = 0;
+    } else {
+        $checked = 'false';
+        $index = 0;
+    }
     ?>
     <section>
         <div id="section">
@@ -136,7 +141,7 @@
                                 <img id="imgCard" class="ir-producto"
                                     data-url="{{ route('productos.show', $productos->id) }}" class="product-thumb"
                                     height="259px" width="259px"
-                                    src="{{ asset("img/productos/". $images[0]) }}">
+                                    src="{{ 'https://innovatechcol.com.co/img/productos/' . $images[0] }}">
                                 {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset(' productos/'.$images[0])}} " alt=""
                                     onclick="window.location.href='{{ route('productos') }}'"> --}}
                                 <button class="card-btn btn-cart" data-id="{{ $productos->id }}">Añadir al
