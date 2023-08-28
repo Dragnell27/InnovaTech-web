@@ -109,7 +109,7 @@ try {
     $request->validate([
         'phone' => ['required', 'numeric', 'digits:10'],
         'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
-    ]);
+    ]);  
     $user = User::findOrFail($id);
     $user->phone = $request['phone'];
     $user->email = $request['email'];
