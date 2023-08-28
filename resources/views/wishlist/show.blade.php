@@ -16,7 +16,7 @@
                         <div class="card " data-url="{{ route('productos.show', $lista->productos->id) }}">
                             <div class="row" role="button">
                                 <div class="col-md-3 col-12 d-flex justify-content-center align-items-center p-2">
-                                    <img src="{{ 'https://innovatechcol.com.co/img/productos/' . $images[0] }}"
+                                    <img src="{{ asset("img/productos/". $images[0]) }}"
                                         class="img-fluid rounded" alt="Imagen del Producto" width="150px">
                                 </div>
                                 <div class="col-md-9 col-12">
