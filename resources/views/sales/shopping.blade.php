@@ -2,6 +2,9 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/mis_compras.css') }}">
 <div class="container">
+    <div class="row justify-content-center">
+        <h1>Mis compras</h1>
+    </div>
     <div class="row justify-content-center " id="content">
     </div>
 </div>
@@ -11,6 +14,9 @@
     font-size: 18px;
 }
     .producto{
+    font-weight: bold;
+}
+    .compra{
     font-weight: bold;
 }
 
