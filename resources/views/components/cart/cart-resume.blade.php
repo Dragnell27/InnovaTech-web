@@ -21,6 +21,7 @@
 <?php
 $totalPrice = 0;?>
 
+
 @if (Auth::check())
 <?php
 
@@ -75,7 +76,7 @@ $CartCount = Cart::getContent()->count();
                 >$ <span id="resultado">{{ $totalPrice }}</span></span>
         </li>
     </ul>
-    <form class="card p-2">
+    <form class="card p-2" id="btnContainer">
         <div class="input-group">
 
            @if (Request::is('payment-method/1'))
@@ -89,11 +90,44 @@ $CartCount = Cart::getContent()->count();
             $urlButton="1";
            @endphp
            @endif
-            <a name="" id="" class="boton-resume" href="{{ url('payment-method/' . $urlButton) }}"
+            <a name="" id="btnPago" class="boton-resume" href="{{ url('payment-method/' . $urlButton) }}"
                 role="button">{{ $textButton }}
             </a>
         </div>
     </form>
 </div>
+<script>
+    try {
+        window.addEventListener("load",()=>{
+            const btn = ()=>{
+                const boton = document.querySelector("#btnPago").addEventListener("click",(e)=>{
+               
+                    if(example == "false" ){
+                        e.preventDefault(); 
+                    }
+                });
+            }
+            btn();
+          
+    
+            let direccionAdmin = document.getElementById('direciones');
+            if(direccionAdmin != null){
+                direccionAdmin.addEventListener('change', function(event){
+                    example = "true";
+                    const btn = document.getElementById("")
+                    console.log(example);
+                    btn();
+                })
+
+            }
+         
+        })
+      } catch (exceptionVar) {
+        
+      }
+    
+   
+
+</script>
 
 

@@ -5,6 +5,9 @@
 <head>
     <link rel="stylesheet" href="{{ asset('css/compra.css') }}">
 </head>
+<script>
+    var example = "false";
+</script>
 <section class="mt-2" style="font-family: 'Roboto', sans-serif;">
     <div class="container ml-5">
         <div class="row g-5 pl-5 ml-5">

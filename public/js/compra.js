@@ -174,6 +174,7 @@ async function mostrarForm(tipoLugar) {
     direcionesAdmin.selectedIndex=0;
 
     if (tipoLugar == "domicilios") {
+        document.getElementById("btnContainer").style.display = "block";
         btnAddAdress.style.display = 'none';
         formPunto.style.display = 'none';
         formDomicilios.style.display = 'none';
@@ -193,6 +194,7 @@ async function mostrarForm(tipoLugar) {
 
         }
     } else if (tipoLugar == "Pfisico") {
+        document.getElementById("btnContainer").style.display = "none";
         btnAddAdress.style.display = 'none';
         labelAddress.style.display='none';
         formPunto.style.display = 'none';
