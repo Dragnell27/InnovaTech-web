@@ -161,7 +161,9 @@ a:hover {
 }
 
 .spanText{
+    position: relative;
     margin-left: 5px;
+    top: 4px;
 }
 .links a{
     margin-left: 5px;
@@ -324,6 +326,12 @@ a:hover {
     }
 }
 
+/* CSS joan */
+.spansText{
+    top: 3px;
+    position: relative;
+    margin-left: 2px;
+}
 .divider{
     height: 30px;
     width: 1px;
