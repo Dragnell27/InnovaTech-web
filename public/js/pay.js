@@ -33,7 +33,7 @@ paypal.Buttons({
     onApprove: function(data, actions){
         actions.order.capture().then(function(detalles){
             console.log(detalles);
-            windows.location.href="";
+            window.location.href="";
         });
     },
 }).render('#paypal-button-container');
