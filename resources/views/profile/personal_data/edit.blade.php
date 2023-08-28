@@ -1,14 +1,14 @@
 @extends('layouts.profileMenu')
 @section('content')
     <h1>Editar datos personales</h1>
-    <form action="{{ route('users.update', Auth::user()->id) }}" method="post">
+    <form action="{{ route('users.update', Auth::user()->id) }}" method="post" id="editar-cuenta">
         @csrf
         @method('patch')
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="nombre" class="form-label">Nombre:</label>
-                <input type="text" class="form-control" id="nombre" value="{{ $user['first_name'] }}"
-                    name="first_name" placeholder="Ingresa tu nombre" readonly>
+                <input type="text" class="form-control" id="nombre" value="{{ $user['first_name'] }}" name="first_name"
+                    placeholder="Ingresa tu nombre" disabled>
                 @error('first_name')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
@@ -16,8 +16,8 @@
 
             <div class="col-md-6">
                 <label for="apellido" class="form-label">Apellido:</label>
-                <input type="text" class="form-control" id="apellido" value="{{ $user['last_name'] }}"
-                    name="last_name" placeholder="Ingresa tu apellido" readonly>
+                <input type="text" class="form-control" id="apellido" value="{{ $user['last_name'] }}" name="last_name"
+                    placeholder="Ingresa tu apellido" disabled>
                 @error('last_name')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
@@ -27,8 +27,7 @@
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="tipo_documento" class="form-label">Tipo de Documento:</label>
-                <select class="form-select" id="tipo_documento" name="tipo_de_documento" required>
-                    <option value="">--Seleccionar--</option>
+                <select class="form-select" id="tipo_documento" name="tipo_de_documento" required disabled>
                     @foreach ($document_types as $type)
                         <option value="{{ $type->id }}"
                             {{ old('tipo_de_documento', $user['document_type']['id']) == $type->id ? 'selected' : '' }}>
@@ -44,7 +43,7 @@
             <div class="col-md-6">
                 <label for="numero_documento" class="form-label">Número de Documento:</label>
                 <input type="text" value="{{ $user['document'] }}" class="form-control" id="numero_documento"
-                    name="número_de_documento" placeholder="Ingresa tu numero de documento" readonly>
+                    name="número_de_documento" placeholder="Ingresa tu numero de documento" disabled>
                 @error('número_de_documento')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
@@ -54,9 +53,8 @@
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="numero_telefono" class="form-label">Teléfono:</label>
-                <input type="tel" value="{{ old('phone', $user['phone']) }}" name="phone"
-                    class="form-control" id="numero_telefono" name="telefono" placeholder="Ingresa tu numero de telefono"
-                    required>
+                <input type="tel" value="{{ old('phone', $user['phone']) }}" name="phone" class="form-control"
+                    id="numero_telefono" name="telefono" placeholder="Ingresa tu numero de telefono" required>
                 @error('phone')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
@@ -64,8 +62,8 @@
 
             <div class="col-md-6">
                 <label for="email" class="form-label">Correo Electrónico:</label>
-                <input type="email" value="{{ old('email', $user['email']) }}" class="form-control"
-                    id="correo" name="email" placeholder="ejemplo@gmail.com" required>
+                <input type="email" value="{{ old('email', $user['email']) }}" class="form-control" id="correo"
+                    name="email" placeholder="ejemplo@gmail.com" required>
                 @error('email')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
@@ -87,4 +85,31 @@
             <button type="button" class="btn btn-danger" onclick="goBack()">Cancelar</button>
         </div>
     </form>
+
+    <script>
+        $('#editar-cuenta').submit(function(e) {
+            e.preventDefault();
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-primary ms-2',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: '¿Editar datos?',
+                text: '',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, Editar',
+                cancelButtonText: 'No, cancelar',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        });
+    </script>
 @endsection

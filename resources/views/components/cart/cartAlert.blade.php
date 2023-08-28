@@ -7,22 +7,22 @@
     </head>
 
 
-  
+
     <?php
-  
+
     $url ='https://innovatechcol.com.co/img/productos/';
     $imagenes = explode(":",session('msj_exitoso')["images"]);
-    
+
 
     if (Auth::check()) {
         $item = Cart::session(Auth::user()->id)->get(session('msj_exitoso')["id"]);
-     
-        
+
+
     } else {
 
         $item = Cart::get(session('msj_exitoso')["id"]);
-       
-       
+
+
     }
     ?>
     <div class="card border-success mb-3" id="CartAlert"
@@ -39,31 +39,31 @@
                 <input type="button" id="btnClose" class="btn-close" aria-label="Close">
             </div>
             <div class='col-sm-4 col-md-2' id="imgCart" >
-                <img src="{{ $url.$imagenes[0] }}""  class="img-fluid rounded-start">
+                <img src="{{ asset("img/productos/". $imagenes[0]) }}""  class="img-fluid rounded-start">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">Has agregado al carrito: {{ session('msj_exitoso')["name"] }}</h5>
                     <div class="row">
                         <span class="" style="display: flex">
-                            <span class=""> 
+                            <span class="">
                                  <button id="btnDecrement" class="changeQuantity" name="submitButton" value="-">-</button>
-                                
+
                             </span>
                             <span class="">
                                 <input width="20px" type="text" id="qty" value="{{ $item->quantity }}">
                                 <input type="hidden" name="id" id="hidden" value="{{ $item->id }}">
-                                
+
                             </span>
                             <span class="">
                                 <button id="btnIncrement" class="changeQuantity" name="submitButton" value="+">+</button>
                             </span>
-                          
-                          
-                            
+
+
+
                         </span>
                     </div>
-                   
+
                 </div>
                 <p class="card-text"><small class="text-body-secondary">Maximo 20 unidades</small></p>
                 <div class="row">

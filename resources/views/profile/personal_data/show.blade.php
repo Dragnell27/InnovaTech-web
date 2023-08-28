@@ -55,6 +55,22 @@
             </div>
         </div>
     </div>
+    @if (session('message') && session('type'))
+        <script>
+            const swalWithBootstrapButton = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-primary ms-2',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            });
+            swalWithBootstrapButton.fire(
+                '{{ session('message') }}',
+                '{{ session('text') }}',
+                '{{ session('type') }}'
+            );
+        </script>
+    @endif
     <script>
         $('.eliminar-cuenta').submit(function(e) {
             e.preventDefault();
