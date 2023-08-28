@@ -17,7 +17,7 @@
 
         <section>
 
-            <div >
+            <div>
                 @if ($products->isEmpty())
                     <div class="justify-content-center text-center mt-5">
                         <h1 class="">No hay productos en esta categoría.</h1>
@@ -51,51 +51,50 @@
                                 }
                             }
                         @endphp
-                       <div class="product-list" id='product-list'>
-                        <div class="product">
-                            <div class="product-content">
-                                <div class="product-left">
-                                    <img id="imgCard" class="ir-producto"
-                                        data-url="{{ route('productos.show', $productos->id) }}"
-                                        class="product-thumb" height="259px" width="259px"
-                                        src="{{ asset('images/airpods.png') }}">
-                                </div>
-                                <div class="product-center">
-                                    <h4 id="style2" class="titulo">{{ $productos->name }}</h4>
-                                    <p>{{ $productos->descripcion }}</p>
-                                </div>
-                                <div class="product-right">
-                                    <div class="price-row">
-                                        @if ($productos->discount == 0)
-                                        <span class="price" id="price">Precio: ${{ $productos->price }}</span>
-                                        @else
-                                        <span class="precioReal">${{ $precioDescuento }}</span>
-                                        <span class="descuento-valor">{{ $productos->discount }}% OFF</span>
-                                        <span class="actual-price" style="font-size: 20px">${{ $productos->price }}</span>
-                                        @endif
-                                        <button class="btn btn-danger btn-cart" data-id="{{ $productos->id }}">Añadir al Carrito</button>
+                        <div class="product-list" id='product-list'>
+                            <div class="product">
+                                <div class="product-content">
+                                    <div class="product-left">
+                                        <img id="imgCard" class="ir-producto"
+                                            data-url="{{ route('productos.show', $productos->id) }}" class="product-thumb"
+                                            height="259px" width="259px" src="{{ asset('images/airpods.png') }}">
                                     </div>
-                                    <button class="{{ $agregado_lista }} btn float-end mt-3" data-product_id="{{ $productos->id }}"
-                                        data-lista_id="{{ $lista_favortitos }}">
-                                        <svg width="16" height="16">
-                                            <path
-                                                d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
-                                        </svg>
-                                    </button>
+                                    <div class="product-center">
+                                        <h4 id="style2" class="titulo">{{ $productos->name }}</h4>
+                                        <p>{{ $productos->descripcion }}</p>
+                                    </div>
+                                    <div class="product-right">
+                                        <button class="{{ $agregado_lista }} btn float-end mt-3"
+                                            data-product_id="{{ $productos->id }}" data-lista_id="{{ $lista_favortitos }}">
+                                            <svg width="16" height="16">
+                                                <path
+                                                    d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
+                                            </svg>
+                                        </button>
+                                        <div class="price-row">
+                                            @if ($productos->discount == 0)
+                                                <span class="price" id="price">Precio: ${{ $productos->price }}</span>
+                                            @else
+                                                <span class="precioReal">${{ $precioDescuento }}</span>
+                                                <span class="descuento-valor">{{ $productos->discount }}% OFF</span>
+                                                <span class="actual-price"
+                                                    style="font-size: 20px">${{ $productos->price }}</span>
+                                            @endif
+                                            <button class="btn btn-danger btn-cart" data-id="{{ $productos->id }}">Añadir
+                                                al Carrito</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                        
-                        @endforeach
-                    @endif
-                </div>
-            </section>
-        </body>
-        <script>
-            var token = '{{ csrf_token() }}';
-        </script>
-        <script src="{{ asset('js/wishlist.js') }}"></script>
-        <script src="{{ asset('js/categories.js') }}"></script>
-    @endsection
+                    @endforeach
+                @endif
+            </div>
+        </section>
+    </body>
+    <script>
+        var token = '{{ csrf_token() }}';
+    </script>
+    <script src="{{ asset('js/wishlist.js') }}"></script>
+    <script src="{{ asset('js/categories.js') }}"></script>
+@endsection
