@@ -273,24 +273,24 @@
                                    <div class="row ">
                                     <div class="col-6 mb-2">
                                         <label for="">Ciudad<strong class="text-danger"> *</strong></label>
-                                        <select  class="form-select" id="AddCity">--seleccionar--</select>
+                                        <select  class="form-select" id="creataCity">--seleccionar--</select>
                                     </div>
                                     <div class="col-6 mb-2">
                                         <label for="">Departamento<strong class="text-danger"> *</strong></label>
-                                        <select  class="form-select" id="AddCity">--seleccionar--</select>
+                                        <select  class="form-select" id="createDepartmens">--seleccionar--</select>
                                     </div>
                                     <div class="col-6 mb-2">
                                         <label for="">Barrio<strong class="text-danger"> *</strong></label>
-                                       <input type="text" class="form-control text-center" placeholder="Digite Barrio">
+                                       <input type="text" class="form-control text-center" id="createHood" placeholder="Digite Barrio">
                                     </div>
                                     <div class="col-6 mb-2">
                                         <label for="">Dirección<strong class="text-danger"> *</strong></label>
-                                        <input type="text" class="form-control text-center" placeholder="Ejemplo: Cra # Bis ">
+                                        <input type="text" class="form-control text-center" id="createAddress" placeholder="Ejemplo: Cra # Bis ">
                                     </div>
                                     <div class="container-fluid h-100 d-flex align-items-center justify-content-center">
                                         <div class="col-6">
                                             <label for="">Detalle</label>
-                                            <input type="text" class="form-control text-center" placeholder="Ejemplo: piso,torre,casa... ">
+                                            <input type="text" class="form-control text-center" id="crateFloor" placeholder="Ejemplo: piso,torre,casa... ">
                                         </div>
                                     </div>
                                    </div>

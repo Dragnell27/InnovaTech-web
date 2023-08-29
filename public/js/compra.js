@@ -343,7 +343,7 @@ $(document).ready(function(){
         AddDireccion.click(function(e){
             if (!isButtonDisabled) {
                     isButtonDisabled=true;
-                    AddDireccion.prop('disable',true);
+                    AddDireccion.prop('disabled',true);
                     $.ajax({
                         method:'post',
                         url:'perfil/direcciones'
