@@ -372,49 +372,91 @@ window.addEventListener('load', async () => {
                         const createCity=$('#createCity').val();
                         const createHood=$('#createHood').val();
                         const createAddress=$('#createAddress').val();
-                        const crateFloor=$('#crateFloor').val();
-                        $.ajax({
-                            method:'post',
-                            url:'/perfil/direcciones',
-                            data:{
-                                _token:token,
-                                address:createAddress,
-                                hood:createHood,
-                                floor:crateFloor,
-                                param_city:createCity,
-                                department:createDepartmens
-                            },
-                            success:function (response) {
+                        const createFloor=$('#createFloor').val();
 
-                                swal.fire({
-                                    position:'top-center',
-                                    icon:'success',
-                                    title:'Dirección Creada',
-                                    showConfirmButton:false,
-                                    timer:2500
-                                   });
-                        userdit.removeClass('userdit--openEdit');
+                        if (createDepartmens==''||createCity==''||
+                        createHood=='' || createAddress=='') {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Por favor, complete todos los campos.',
+                            });
+                            $('.mensaje-aviso').css('display', 'block');
+                            isButtonDisabled = false;
+                            AddDireccion.prop('disabled', false);
+                            return;
+                        }else{
 
-                        if (numDirecciones >= 3) {
-                            $("#agregarDireccion, #agregarDireccion2").prop('disabled', true);
+                            $('.mensaje-aviso').hide();
+                            $.ajax({
+                                method:'post',
+                                url:'/perfil/direcciones',
+                                data:{
+                                    _token:token,
+                                    address:createAddress,
+                                    hood:createHood,
+                                    floor: createFloor,
+                                    param_city:createCity,
+                                    department:createDepartmens
+                                },
+                                success:function (response) {
+
+                                    swal.fire({
+                                        position:'top-center',
+                                        icon:'success',
+                                        title:'Dirección Creada',
+                                        showConfirmButton:false,
+                                        timer:2500
+                                       });
+                            userdit.removeClass('userdit--openEdit');
+
+
+                                      window.location.reload();
+                                      setTimeout(() => {
+                                        isButtonDisabled=false;
+                                        AddDireccion.prop('disabled',false)
+                                    }, 1000);
+
+                                },
+                                error: function(xhr, status, error) {
+                                    // Manejar errores en caso de falla
+                                    isButtonDisabled = false;
+                                    AddDireccion.prop('disabled', false);
+                                    console.error('Error en la solicitud:', error);
+                                }
+                            });
+
                         }
-                                  window.location.reload();
-                                  setTimeout(() => {
-                                    isButtonDisabled=false;
-                                    AddDireccion.prop('disabled',false)
-                                }, 1000);
 
-                            },
-                            error: function(xhr, status, error) {
-                                // Manejar errores en caso de falla
-                                isButtonDisabled = false;
-                                AddDireccion.prop('disabled', false);
-                                console.error('Error en la solicitud:', error);
-                            }
-                        });
+
+
                 }
 
             });
+            $('#createDepartmens').on('input', function() {
+                if ($(this).val() !== "") {
+                    $('#mensaje-Departamento').css('display', 'none');
+                }
+            });
+            $('#createCity').on('input',function(){
+                if ($(this).val() !== "") {
+                    $('#mensaje-Ciudad').css('display', 'none');
+                }
+
+            });
+            $('#createHood').on('input',function () {
+                if ($(this).val() !== "") {
+                    $('#mensaje-barrio').css('display', 'none');
+                }
+
+            });
+            $('#createAddress').on('input',function () {
+                if ($(this).val() !== "") {
+                    $('#mensaje-Direccion').css('display', 'none');
+                }
+
+            });
+
             userdit.addClass('userdit--openEdit');
 
             $('#addAddress').show();

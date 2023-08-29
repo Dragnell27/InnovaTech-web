@@ -311,7 +311,7 @@ content: "Editar datos";
     justify-content: center;
     position: relative;
     min-width: 250px;
- 
+
     height: 50px;
 }
 .seleccionar{
@@ -348,10 +348,7 @@ content: "Editar datos";
   color: red;
   font-size: 14px;
 }
-input:invalid + .mensaje-aviso,
-select:invalid + .mensaje-aviso {
-  display: block;
-}
+
 /* .primerSelect .icon{
     width: 40px;
     height: 100%;

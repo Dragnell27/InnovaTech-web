@@ -325,7 +325,7 @@
                                             class="container-fluid h-100 d-flex align-items-center justify-content-center">
                                             <div class="col-6">
                                                 <label for="">Detalle</label>
-                                                <input type="text" class="form-control text-center" id="crateFloor"
+                                                <input type="text" class="form-control text-center" id="createFloor"
                                                     placeholder="Ejemplo: piso,torre,casa... ">
                                             </div>
                                         </div>
