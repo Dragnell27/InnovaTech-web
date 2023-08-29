@@ -19,7 +19,7 @@ class CategoryController extends Controller
     public function index()
 
     {
-        return CategoryCollection::collection(DB::table("params")->where("paramtype_id", "12")->where("param_state", "5")->get());
+        return CategoryCollection::collection(DB::table("params")->join("products","products.param_category", "=", "params.id")->select("params.id","params.name")->distinct("name")->where("params.paramtype_id", "12")->where("params.param_state", "5")->get());
         // return CategoryResource::collection(Category::all());
 
     }
