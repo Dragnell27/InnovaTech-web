@@ -28,18 +28,21 @@
     <div class="card border-success mb-3" id="CartAlert"
         style="max-width:600px; margin: 10% auto; position: absolute; z-index: 999; top: 45%; left: 50% ;transform: translate(-50%, -50%);">
         <div class="row g-0">
-            <div class="card-header text-center row">
+            <div class="card-header text-center row" id="card-header">
                 <h5 class="col">
-                    <span class="text-center" style="width: 30px;">
-                        <svg style="width: 30px; height: 30px; margin-right: 5px;" role="img" aria-label="Success:">
-                            <use xlink:href="#check-circle-fill" />
-                        </svg>
-                    </span>Producto agregado correctamente!!
+                    <span class="text-center" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16" id="svgCart">
+                            <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+                            <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                          </svg>
+                    </span>
+                    <span class="text-center">¡Se agregó a tu carro!</span>
+                    
                 </h5>
-                <input type="button" id="btnClose" class="btn-close" aria-label="Close">
+                <input type="button" id="btnClose" class="btn-close" aria-label="Close" style="display: none">
             </div>
             <div class='col-sm-4 col-md-2' id="imgCart" >
-                <img src="{{ asset("img/productos/". $imagenes[0]) }}""  class="img-fluid rounded-start">
+                <img src="{{ asset('img/productos/'. $imagenes[0]) }}"  class="img-fluid rounded-start">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -65,15 +68,14 @@
                     </div>
 
                 </div>
-                <p class="card-text"><small class="text-body-secondary">Maximo 20 unidades</small></p>
+                <p class="card-text" id="maxSize"><small class="text-body-secondary">Maximo 20 unidades</small></p>
                 <div class="row">
                     <a style="cursor: pointer ;" id="btnSeguir"
                         class="icon-link icon-link-hover link-secondary link-underline-success link-underline-opacity-25 col">Seguir
                         comprando</a>
                     <form method="get" action="{{ Route('cart.show') }}" class="col">
                         <div class="">
-                            <input type="submit" name="" id="" value="Ir al carro" class="btn btn-dark"
-                                style="border-radius: 20px;">
+                            <input type="submit" name="" id="btnGoCart" value="Ir al carro" class="btn btn-dark">
                         </div>
                     </form>
                 </div>

@@ -96,13 +96,16 @@
 
 
   #CartAlert{
-    padding: 10px;
+    padding: 20px 25px;
   }
 
 
 /* CSS del carrito JOAN */
 
-
+#btnGoCart{
+  border-radius: 20px;
+  margin-left: 20%;
+}
 
 /* CSS de cart-show */
 
@@ -117,4 +120,31 @@
 
 #productSection{
   display: flex ;
+}
+
+#btnSeguir{
+  cursor: pointer;
+  margin-left: 10%;
+}
+#card-header{
+  background-color: white !important;
+}
+@media screen and (max-width:600px) {
+  #svgCart{
+    display: none;
+  }
+  
+}
+@media  (max-width:530px) {
+  #btnGoCart{
+   margin-top: 10px;
+  }
+  
+}
+
+@media  (max-width:512px) {
+  #maxSize{
+   margin-left: 12%;
+  }
+  
 }
