@@ -97,9 +97,15 @@ Route::middleware('auth')->resource('perfil/direcciones', AddressController::cla
 Route::post('/updateUser/{id}', [UserController::class, 'updateUser']);
 Route::get('/departments/{id}',[ParamController::class, 'nameDepartment']);
 Route::get('/type_documents/{paramtype_id}',[ParamController::class,'tipoDocumet']);
-Route::view('payment-method/1','payment-method/pasoUnoMpago')->name('pasoUno')->middleware('auth');
-//Ruta que llama Metodo de pago
+
+// Route::view('payment-method/1','payment-method/pasoUnoMpago')->name('pasoUno')->middleware('auth');
+//Ruta que llama Metodo Ade pago
 Route::view('payment-method/Metodo-pago','payment-method/Metodo-pago')->name('Mpago')->middleware('auth');
+
+Route::get('payment-method/Metodo-pago',function(){
+    $departaments = Param::where('paramtype_id', 6)->get();
+    return view('payment-method/pasoUnoMpago',compact('departaments'));
+})->name('Mpago')->middleware("auth");
 
 
 //ruta jaider, manejo de usuarios;}
