@@ -157,6 +157,3 @@ Route::resource('/shopping', SalesController::class);
 
 //ruta para sugerencias de busqueda
 Route::get('/sugerencias', [ProductosController::class, 'sugerencias_busqueda'])->name('sujerencias.busqueda');
-
-//Ruta de pagos con paypal
-Route::get('/paypal/pay/{orderId}','pay\PaypalController@process')->name('paypal.process');
