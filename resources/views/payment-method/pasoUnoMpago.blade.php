@@ -8,7 +8,7 @@
 <script>
     var example = "false";
 </script>
-<section class="mt-2" style="font-family: 'Roboto', sans-serif;">
+<section  style="font-family: 'Roboto', sans-serif; margin-top:10%">
     <div class="container ml-5">
         <div class="row g-5 pl-5 ml-5">
             @include( 'components.cart.cart-resume')
@@ -30,9 +30,10 @@
                     <p class="form_parrafo">Verificalos para seguir con la compra
                     </p>
                 </strong>
+
                 <div class="row g-3">
                     <form action="" method="post" style=" min-width: 100px;max-width: 100%;max-height: 100%;">
-                        <div class="containe">
+                        <div class="container">
                             <div class="row">
                                 <div class="col-sm-6 text-center ">
                                     <label for="firstName" class="form-label">Nombre</label>
@@ -68,7 +69,6 @@
 
                     <div class="row g-3">
                         <div class="col-12">
-
                             <div class="selectBox">
                                 <div class="select" id="select">
                                     <div class="contenedorSelect">
@@ -76,6 +76,7 @@
                                             <p><strong class="descripcion">Elige como quieres tu entrega
                                                 </strong></p>
                                     </div>
+
                                     <img src="{{ asset('img/abajo.png') }}" style="width: 40px;">
                                 </div>
                                 <div class="opciones" id="opciones">
@@ -88,7 +89,7 @@
                                                     <h5 class="titulo">Domicilio</h5>
                                                     <p class="descripcion">pide tu producto desde la
                                                         comodidad de tu
-                                                        hogar<i class="bi bi-house-door-fill"></i> </p>
+                                                        hogar </p>
                                                 </div>
                                             </div>
                                         </button>
@@ -167,7 +168,7 @@
                                         </div>
 
                                     </div>
-                                  
+
                                 </div>
                             </form>
                             <div class="container  d-flex justify-content-center align-items-center">
@@ -189,11 +190,19 @@
                                         <div class="mb-2">
                                             <div class="mb-3">
                                                 <h4>
-                                                    <label for="" class="form-label">Puntos
+                                                <img src="{{ asset('img/shopping-store.png') }}">
+
+                                                    <label for="" class="form-label">
+
+                                                        Puntos
                                                         Físicos</label>
                                                 </h4>
+                                                <strong id="labelPfisico" style="display:block;">
+                                                    <p class="form_parrafo">Selecciona la Dirección y continua tu  compra
+                                                    </p>
+                                                </strong>
                                                 <select class="selectAddress mb-2" id="direcionesAdmin">
-                                                    <option value="-1"> Elige Punto Físico</option>
+                                                    <option value="-1">Elige Punto Físico</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -205,6 +214,7 @@
                         <div class="col-12 mb-4">
                             <form action="" id="formPuntoFisico" style="display: none">
                                 <div class="container">
+
                                     <div class="row g-3">
                                         <div class="col-6">
                                             <label for="address2" class="form-label mt-2 ">Ciudad</label>
@@ -231,10 +241,8 @@
 
                                         </div>
                                     <div class="">
-                                        <a href="#" id="okPfisico" ><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                                          </svg></a>
-                                        </div>  
+                                        <a href="#" id="okPfisico" >Continuar Compra</a>
+                                        </div>
                                     </div>
                             </form>
                         </div>
@@ -342,7 +350,7 @@
                 document.getElementById("createCity").innerHTML = opciones;
             }).catch(error => console.error(error));
         });
-    
+
 </script>
 <script src="{{ asset('js/compra.js') }}"></script>
 @endsection
