@@ -162,6 +162,7 @@ async function AddressAdmin(){
 };
 
 async function mostrarForm(tipoLugar) {
+   try {
     const formDirecciones = document.getElementById('formDirecciones');
     const formDomicilios = document.getElementById('FormDomicilios');
     const formPunto = document.getElementById('formPuntoFisico');
@@ -170,11 +171,13 @@ async function mostrarForm(tipoLugar) {
     const seleccionarpuntoFisico = document.getElementById('puntoFisico');
     const btnAddAdress = document.getElementById('agregarDireccion');
     const labelAddress= document.getElementById('labelAdress');
+    const btnAddAdress2=document.getElementById('agregarDireccion2');
     seleccionarDireccion.selectedIndex=0;
     direcionesAdmin.selectedIndex=0;
 
     if (tipoLugar == "domicilios") {
         document.getElementById("btnContainer").style.display = "block";
+        btnAddAdress2.style.display='block';
         btnAddAdress.style.display = 'none';
         formPunto.style.display = 'none';
         formDomicilios.style.display = 'none';
@@ -183,6 +186,7 @@ async function mostrarForm(tipoLugar) {
         seleccionarpuntoFisico.style.display = 'none';
         labelAddress.style.display='none';
 
+
         if (myGlobalAddress.length>0) {
             formDomicilios.style.display = 'block';
             seleccionarDireccion.style.display = 'block';
@@ -190,12 +194,15 @@ async function mostrarForm(tipoLugar) {
         }else{
             btnAddAdress.style.display = 'block';
         labelAddress.style.display='block';
+        btnAddAdress2.style.display='none';
+
 
 
         }
     } else if (tipoLugar == "Pfisico") {
         document.getElementById("btnContainer").style.display = "none";
         btnAddAdress.style.display = 'none';
+        btnAddAdress2.style.display='none';
         labelAddress.style.display='none';
         formPunto.style.display = 'none';
         formDomicilios.style.display = 'none';
@@ -206,6 +213,9 @@ async function mostrarForm(tipoLugar) {
 
 
     }
+   } catch (error) {
+    
+   }
 
 };
 const select = document.querySelector('#select');
@@ -231,13 +241,17 @@ select.addEventListener('click', () => {
 
 
 window.addEventListener('load', async () => {
-const formDirecciones = document.getElementById('formDirecciones');
+try {
+    const formDirecciones = document.getElementById('formDirecciones');
 const seleccionarDireccion = document.getElementById('direciones');
 const btnAddAdress = document.getElementById('agregarDireccion');
 const labelAddress= document.getElementById('labelAdress');
 
 myGlobalAddress = await cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress,labelAddress);
 await AddressAdmin();
+} catch (error) {
+    
+}
 
 
 });
@@ -270,7 +284,8 @@ $(document).ready(function(){
     const closeEdit =$('.closeEdit ');
     const guardarDatos=$('.savaDate');
     const AddDireccion=$('.AddDireccion');
-    const addAddres=$('#agregarDireccion');
+
+
     let isButtonDisabled = false;
     abrirEdit.click(function(e){
     e.preventDefault();
@@ -278,8 +293,8 @@ $(document).ready(function(){
     guardarDatos.click(function (e) {
         e.preventDefault();
         if (!isButtonDisabled) {
-            isButtonDisabled=true
-            guardarDatos.prop('disable',true)
+            isButtonDisabled=true;
+            guardarDatos.prop('disable',true);
             const numTel=$('#editPhone').val();
             const emailData= $('#editEmail').val();
             $.ajax({
@@ -323,8 +338,18 @@ $(document).ready(function(){
     $('#addAddress').hide();
         $('#userUpdateFomr').show();
     });
-    addAddres.click(function (e) { 
+    $("#agregarDireccion,#agregarDireccion2").on("click",function (e) { 
         e.preventDefault();
+        AddDireccion.click(function(e){
+            if (!isButtonDisabled) {
+                    isButtonDisabled=true;
+                    AddDireccion.prop('disable',true);
+                    $.ajax({
+                        method:'post',
+                        url:'perfil/direcciones'
+                    });
+            }
+        });
     userdit.addClass('userdit--openEdit');
 
         $('#addAddress').show();
