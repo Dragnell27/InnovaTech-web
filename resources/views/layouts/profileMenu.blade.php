@@ -73,16 +73,17 @@
             const toggleNone = $("#toggleNone");
             const menu = $("#menu");
             $(document).on("click", function(event) {
-                if (!menu.is(event.target) && menu.is(":visible")) {
-                    menu.hide();
+                if (menu.hasClass('active') && !menu.is(event.target)) {
+                    menu.toggleClass('active');
                 }
             });
             toggleBlock.on("click", function(event) {
                 event.stopPropagation();
-                menu.show();
+                menu.toggleClass('active');
             });
-            toggleNone.on("click", function() {
-                menu.hide();
+            toggleNone.on("click", function(event) {
+                event.stopPropagation();
+                menu.toggleClass('active');
             });
         });
     </script>
