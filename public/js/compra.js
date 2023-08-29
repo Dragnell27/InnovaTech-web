@@ -113,7 +113,7 @@ async function cargarDirecciones(seleccionarDireccion,formDirecciones,btnAddAdre
         });
         return addresses;
 
-        
+
     } catch (error) {
         console.error(`Error al obtener datos de la API: ${error}`);
         return[];
@@ -204,6 +204,12 @@ async function mostrarForm(tipoLugar) {
 
 
     }
+<<<<<<< HEAD
+=======
+   } catch (error) {
+
+   }
+>>>>>>> 0357752bbdaf2a012f70c9956390e7dfe8fbf607
 
 };
 const select = document.querySelector('#select');
@@ -236,6 +242,12 @@ const labelAddress= document.getElementById('labelAdress');
 
 myGlobalAddress = await cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress,labelAddress);
 await AddressAdmin();
+<<<<<<< HEAD
+=======
+} catch (error) {
+
+}
+>>>>>>> 0357752bbdaf2a012f70c9956390e7dfe8fbf607
 
 
 });
@@ -272,7 +284,7 @@ $(document).ready(function(){
     let isButtonDisabled = false;
     abrirEdit.click(function(e){
     e.preventDefault();
-    
+
     guardarDatos.click(function (e) {
         e.preventDefault();
         if (!isButtonDisabled) {
@@ -285,8 +297,8 @@ $(document).ready(function(){
                 url:"/updateUser/"+id,
                 data:{
                     _token: token,
-                    phone:numTel,   
-                    email:emailData 
+                    phone:numTel,
+                    email:emailData
                 },
                 success: function(response) {
                     $('#input-email').val(emailData);
@@ -303,7 +315,7 @@ $(document).ready(function(){
                         isButtonDisabled=false;
                         guardarDatos.prop('disable',false)
                     }, 1000);
-                   
+
                 },
                 error: function(xhr, status, error) {
                     // Manejar errores en caso de falla
@@ -311,26 +323,127 @@ $(document).ready(function(){
                     guardarDatos.prop('disabled', false);
                     console.error('Error en la solicitud:', error);
                 }
-    
+
             });
 
         }
-       
     });
     userdit.addClass('userdit--openEdit');
     $('#addAddress').hide();
         $('#userUpdateFomr').show();
     });
+<<<<<<< HEAD
     addAddres.click(function (e) { 
         e.preventDefault();
     userdit.addClass('userdit--openEdit');
 
         $('#addAddress').show();
         $('#userUpdateFomr').hide();
+=======
+    var numDirecciones = 0;
+    $("#agregarDireccion,#agregarDireccion2").on("click",function (e) {
+        e.preventDefault();
+        if (numDirecciones>=3) {
+           Swal.fire({
+            icon:'error',
+            title:'ops...',
+            text:'Limite de direcciones alcanzada',
+           });
+           userdit.remove('userdit--openEdit');
+
+           $('#addAddress').hide();
+           $('#userUpdateFomr').hide();
+
+        }if(numDirecciones<=3){
+            AddDireccion.click(function(e){
+                if (!isButtonDisabled) {
+                        isButtonDisabled=true;
+                        AddDireccion.prop('disabled',true);
+                        const createDepartmens=$('#createDepartmens').val();
+                        const createCity=$('#createCity').val();
+                        const createHood=$('#createHood').val();
+                        const createAddress=$('#createAddress').val();
+                        const crateFloor=$('#crateFloor').val();
+                        $.ajax({
+                            method:'post',
+                            url:'/perfil/direcciones',
+                            data:{
+                                _token:token,
+                                address:createAddress,
+                                hood:createHood,
+                                floor:crateFloor,
+                                param_city:createCity,
+                                department:createDepartmens
+                            },
+                            success:function (response) {
+
+                                swal.fire({
+                                    position:'top-center',
+                                    icon:'success',
+                                    title:'Dirección Creada',
+                                    showConfirmButton:false,
+                                    timer:2500
+                                   });
+                        userdit.removeClass('userdit--openEdit');
+
+                                  window.location.reload();
+                                  setTimeout(() => {
+                                    isButtonDisabled=false;
+                                    AddDireccion.prop('disabled',false)
+                                }, 1000);
+
+                            },
+                            error: function(xhr, status, error) {
+                                // Manejar errores en caso de falla
+                                isButtonDisabled = false;
+                                AddDireccion.prop('disabled', false);
+                                console.error('Error en la solicitud:', error);
+                            }
+                        });
+                }
+
+            });
+            userdit.addClass('userdit--openEdit');
+
+        $('#addAddress').show();
+        $('#userUpdateFomr').hide();
+        }
+
+
+
+>>>>>>> 0357752bbdaf2a012f70c9956390e7dfe8fbf607
 
      });
     closeEdit.click( function(e){
         e.preventDefault();
         userdit.removeClass('userdit--openEdit');
         });
+<<<<<<< HEAD
     });
+=======
+        okFactura.click(function(e){
+           modal.addClass('modal--openModal');
+           $('#factura').show();
+
+           cerrar.click( function(e){
+            e.preventDefault();
+            modal.removeClass('modal--openModal');
+            });
+            Aceptar.click(function(e){
+                e.preventDefault();
+                swal.fire({
+                position:'top-center',
+                icon:'success',
+                title:'Compra exitosa',
+                showConfirmButton:false,
+                timer:1500
+               });
+               modal.removeClass('modal--openModal');
+
+            })
+
+        });
+    });
+
+
+>>>>>>> 0357752bbdaf2a012f70c9956390e7dfe8fbf607
