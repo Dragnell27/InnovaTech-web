@@ -26,7 +26,7 @@
    
 </head>
 
-
+@include('components.cart.cartAlert')
 
 <body>
     <header>
@@ -56,7 +56,13 @@
                                 </a>
                             </li>
                         @else
-                            <li class="links"><a class="ocultar" href="{{ route('login') }}">Iniciar Sesion</a></li>
+                            <li class="links"><a class="ocultar" href="{{ route('login') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                    <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                  </svg>
+                                <span class="spanText">
+                                    Iniciar Sesion</span></a></li>
                         @endauth ()
                         <li class="links justify-content-center align-items-center">
                             <a class="ocultar" href="{{ route('wishlist.index') }}"  style="display: flex;  align-items: center;">
@@ -71,10 +77,13 @@
                           
                             <li  class="links">
                                 <form action="{{ Route('cart.show') }}" method="get">
-                                    <div id="icono" class=" ">
-                                        <button type="submit" id="btnCarrito" class="" style="margin-top: 0 !important; height: 27px !important; width: 40px !important; margin-left:3px" >
-                                            <img src="{{ asset('img/carro_compra.png') }}"  width="25px" height="25px"
-                                                alt="">
+                                  
+                                        <button type="submit" id="btnCarrito" class="" style="margin-top: 0 !important; height: 27px !important; width: 45px !important; margin-left:3px" >
+                                            {{--  <img src="{{ asset('img/carro_compra.png') }}"  width="25px" height="25px"
+                                                alt="">  --}}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                                  </svg>
                                             <span class="" id="counter"> 
                                                 @if (Auth::check())
                                                     <?php $CartCount = Cart::session(Auth::user()->id)
@@ -94,14 +103,15 @@
                                             margin-left: 3px;
                                             " href="" class="links">Carrito</a></span>
                                        
-                                    </div>
+                                  
                                 </form>
                              
                             </li>
                             
                      
                         @auth
-                            <li class="links"><a href="{{ route('logout') }}"> <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                            <li class="links"><a href="{{ route('logout') }}"> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="27"  style="margin-left: 2px" height="27" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
                                 <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                               </svg>
@@ -129,10 +139,10 @@
                 @else
                     <li class="links">
                         <a href="{{ route('login') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
-                                <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                              </svg>
 
                             <span class="spansText">Iniciar sesión</span>
                       </a>
@@ -148,10 +158,14 @@
                 {{--  carrito del home  --}}
                  <li  class="links">
                     <form action="{{ Route('cart.show') }}" method="get">
-                        <div id="icono" class=" ">
-                            <button type="submit" id="btnCarrito" class="" style="margin-top: 0 !important; height: 30px !important; width: 60px !important; margin-bottom: 7px;">
-                                <img src="{{ asset('img/carro_compra.png') }}"  style="margin-top: 5px; color: black;" width="27px" height="27px"
-                                    alt="">  
+                      
+                            <button type="submit" id="btnCarrito" class="" style="margin-top: 0 !important; height: 30px !important; width: 60px !important; ">
+                                
+                                {{--  <img src="{{ asset('img/carro_compra.png') }}"  style="margin-top: 5px; color: black;" width="27px" height="27px"
+                                    alt="">    --}}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                      </svg>
                                    
                                 <span class="" id="counter"> 
                                     @if (Auth::check())
@@ -168,7 +182,7 @@
                             </button>
                             
                            
-                        </div>
+                      
                     </form>
                  
                 </li>
@@ -213,7 +227,7 @@
         </nav>
 
     </header>
-    @include('components.cart.cartAlert')
+    
     <div id="componente">
         @yield('component')
     </div>

@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="product-center">
                                         <h4 id="style2" class="titulo">{{ $productos->name }}</h4>
-                                        <p>{{ $productos->descripcion }}</p>
+                                        <p>{{ $productos->description }}</p>
                                     </div>
                                     <div class="product-right">
                                         <button class="{{ $agregado_lista }} btn float-end mt-3"
