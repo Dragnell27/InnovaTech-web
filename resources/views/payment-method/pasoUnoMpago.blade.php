@@ -261,7 +261,7 @@
                                         </div>
 
                                         <div class="float-end mb-5">
-                                            <input type="submit" value="Confirmar compra" class="savaDate">
+                                            <input type="submit" value="Editar datos" class="savaDate">
                                             <button type="button" class=" closeEdit ">Cancelar</button>
                                         </div>
                                     </div>
@@ -271,13 +271,16 @@
                                <h4 class="mb-2">Agrega tu dirección preferencia</h4>
                                 <div class="container mb-2">
                                    <div class="row ">
+                                       <div class="col-6 mb-2">
+                                           <label for="">Departamento<strong class="text-danger"> *</strong></label>
+                                           <select  class="form-select text-center" id="createDepartmens"> <option value="">--Seleccionar--</option>
+                                            @foreach ($departaments as $departament)
+                                                <option value="{{ $departament->id }}">{{ $departament->name }}</option>
+                                            @endforeach</select>
+                                       </div>
                                     <div class="col-6 mb-2">
                                         <label for="">Ciudad<strong class="text-danger"> *</strong></label>
-                                        <select  class="form-select" id="creataCity">--seleccionar--</select>
-                                    </div>
-                                    <div class="col-6 mb-2">
-                                        <label for="">Departamento<strong class="text-danger"> *</strong></label>
-                                        <select  class="form-select" id="createDepartmens">--seleccionar--</select>
+                                        <select  class="form-select text-center" id="createCity"><option value="">--seleccionar--</option></select>
                                     </div>
                                     <div class="col-6 mb-2">
                                         <label for="">Barrio<strong class="text-danger"> *</strong></label>
@@ -316,7 +319,29 @@
     const urlAddress = BasUrl + "/api/address_user/" + id;
     const urlAddressAdmin = BasUrl + "/api/direccionesAdmin/";
     const token = '{{ csrf_token() }}';
+        var cities = "{{ route('cities') }}"
+        document.getElementById("createDepartmens").addEventListener("change", (e) => {
+            console.log(e.target.value);
+            fetch(cities, {
+                method: 'POST',
+                body: JSON.stringify({
+                    "texto": e.target.value
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': token
+                }
 
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                var opciones = '<option value="">-- Seleccionar --</option>';
+                for (let i in data.city) {
+                    opciones += `<option value="${data.city[i].id}">${data.city[i].name}</option>`;
+                }
+                document.getElementById("createCity").innerHTML = opciones;
+            }).catch(error => console.error(error));
+        });
     
 </script>
 <script src="{{ asset('js/compra.js') }}"></script>

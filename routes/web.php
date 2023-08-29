@@ -102,7 +102,7 @@ Route::get('/type_documents/{paramtype_id}',[ParamController::class,'tipoDocumet
 //Ruta que llama Metodo Ade pago
 Route::view('payment-method/Metodo-pago','payment-method/Metodo-pago')->name('Mpago')->middleware('auth');
 
-Route::get('payment-method/Metodo-pago',function(){
+Route::get('payment-method/1',function(){
     $departaments = Param::where('paramtype_id', 6)->get();
     return view('payment-method/pasoUnoMpago',compact('departaments'));
 })->name('Mpago')->middleware("auth");

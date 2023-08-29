@@ -297,7 +297,7 @@ $(document).ready(function(){
         e.preventDefault();
         if (!isButtonDisabled) {
             isButtonDisabled=true;
-            guardarDatos.prop('disable',true);
+            guardarDatos.prop('disabled',true);
             const numTel=$('#editPhone').val();
             const emailData= $('#editEmail').val();
             $.ajax({
@@ -321,7 +321,7 @@ $(document).ready(function(){
                     userdit.removeClass('userdit--openEdit');
                     setTimeout(() => {
                         isButtonDisabled=false;
-                        guardarDatos.prop('disable',false)
+                        guardarDatos.prop('disabled',false)
                     }, 1000);
                    
                 },
@@ -341,22 +341,77 @@ $(document).ready(function(){
     $('#addAddress').hide();
         $('#userUpdateFomr').show();
     });
+    var numDirecciones = 0;
     $("#agregarDireccion,#agregarDireccion2").on("click",function (e) { 
         e.preventDefault();
-        AddDireccion.click(function(e){
-            if (!isButtonDisabled) {
-                    isButtonDisabled=true;
-                    AddDireccion.prop('disabled',true);
-                    $.ajax({
-                        method:'post',
-                        url:'perfil/direcciones'
-                    });
-            }
-        });
-    userdit.addClass('userdit--openEdit');
+        if (numDirecciones>=3) {
+           Swal.fire({
+            icon:'error',
+            title:'ops...',
+            text:'Limite de direcciones alcanzada',
+           });
+           userdit.remove('userdit--openEdit');
+
+           $('#addAddress').hide();
+           $('#userUpdateFomr').hide(); 
+
+        }if(numDirecciones<=3){
+            AddDireccion.click(function(e){
+                if (!isButtonDisabled) {
+                        isButtonDisabled=true;
+                        AddDireccion.prop('disabled',true);
+                        const createDepartmens=$('#createDepartmens').val();
+                        const createCity=$('#createCity').val();
+                        const createHood=$('#createHood').val();
+                        const createAddress=$('#createAddress').val();
+                        const crateFloor=$('#crateFloor').val();
+                        $.ajax({
+                            method:'post',
+                            url:'/perfil/direcciones',
+                            data:{
+                                _token:token,
+                                address:createAddress,
+                                hood:createHood,
+                                floor:crateFloor,
+                                param_city:createCity,
+                                department:createDepartmens
+                            },
+                            success:function (response) {
+                               
+                                swal.fire({
+                                    position:'top-center',
+                                    icon:'success',
+                                    title:'Dirección Creada',
+                                    showConfirmButton:false,
+                                    timer:2500
+                                   });
+                        userdit.removeClass('userdit--openEdit');
+                                
+                                  window.location.reload();
+                                  setTimeout(() => {
+                                    isButtonDisabled=false;
+                                    AddDireccion.prop('disabled',false)
+                                }, 1000);
+    
+                            },
+                            error: function(xhr, status, error) {
+                                // Manejar errores en caso de falla
+                                isButtonDisabled = false;
+                                AddDireccion.prop('disabled', false);
+                                console.error('Error en la solicitud:', error);
+                            }
+                        });
+                }
+                
+            });
+            userdit.addClass('userdit--openEdit');
 
         $('#addAddress').show();
         $('#userUpdateFomr').hide();
+        }
+       
+        
+    
 
      });
     closeEdit.click( function(e){
