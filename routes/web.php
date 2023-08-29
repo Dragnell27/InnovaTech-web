@@ -20,7 +20,8 @@ use App\Models\Product;
 use App\Models\Wishlist;
 use App\Http\Controllers\CategoryController;
 use App\Models\Carrusel;
-use App\Http\Controllers\Pay\PaypalController;
+use App\Http\Controllers\PayController;
+use Illuminate\Support\Facades\File;
 
 /*
 |--------------------------------------------------------------------------
@@ -157,3 +158,5 @@ Route::resource('/shopping', SalesController::class);
 
 //ruta para sugerencias de busqueda
 Route::get('/sugerencias', [ProductosController::class, 'sugerencias_busqueda'])->name('sujerencias.busqueda');
+Route::post('/save-details', [PayController::class, 'save']);
+Route::get('/get-details', [PayController::class, 'mostrar']);

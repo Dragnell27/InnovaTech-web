@@ -31,24 +31,15 @@ paypal.Buttons({
         });
     },
     onApprove: function(data, actions) {
-        return fetch('/paypal/process/' + data.orderID)
-        .then(res => res.json())
-        .then(function(orderData) {
-            var errorDetail = Array.isArray(orderData.details) && orderData.details[0];
-
-            if (errorDetail && errorDetail.issue === 'INSTRUMENT_DECLINED') {
-                return actions.restart();
-            }
-
-            if (errorDetail) {
-                var msg = 'Sorry, your transaction could not be processed.';
-                if (errorDetail.description) msg += '\n\n' + errorDetail.description;
-                if (orderData.debug_id) msg += ' (' + orderData.debug_id + ')';
-                return alert(msg);
-            }
-            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-            var transaction = orderData.purchase_units[0].payments.captures[0];
-            alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+        return actions.order.capture().then(function(details) {
+        console.log(details);
+        Swal.fire({
+            position: 'center',
+            showConfirmButton:true,
+            icon: 'success',
+            title: 'Compra Exitosa',
+            })
+            window.location.href = "/get-details";
         });
-    },
+    }
 }).render('#paypal-button-container');
