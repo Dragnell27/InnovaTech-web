@@ -1,3 +1,8 @@
+#container {
+    margin-top: 100px;
+    
+}
+
 .desplegable {
     cursor: pointer;
     border: none;
@@ -34,6 +39,11 @@
 #margin-t{
     margin-left: 10%;
 }
+.footer {
+    /* display: initial; */
+    /* margin-top: 100%; */
+}
+
 
 @media (min-width: 768px) {
     #margin{
