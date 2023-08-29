@@ -22,8 +22,8 @@
                     d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z" />
             </svg>
         </button>
-        <div>
-            <div style="width: 300px;" class="menu-container" id="menu">
+        <div class="row">
+            <div class="menu-container col-7 col-md-3" id="menu">
                 <button id="toggleNone" class="btn text-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                         class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
@@ -57,9 +57,9 @@
                     </div>
                 </a>
             </div>
-        </div>
-        <div class="px-5 main-container" style="width: 100%;">
-            @yield('content')
+            <div class="px-5 main-container col-12 col-md-9">
+                @yield('content')
+            </div>
         </div>
     </div>
     <script>

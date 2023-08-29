@@ -78,7 +78,6 @@
         const csrfToken = "{{ csrf_token() }}";
         var cities = "{{ route('cities') }}"
         document.getElementById("perfilDepartamento").addEventListener("change", (e) => {
-            console.log(e.target.value);
             fetch(cities, {
                 method: 'POST',
                 body: JSON.stringify({

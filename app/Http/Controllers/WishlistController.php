@@ -14,7 +14,7 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        $wishlist = Wishlist::where('user_id', Auth::user()->id)->with('productos')->get();
+        $wishlist = Wishlist::where('user_id', Auth::user()->id)->where("param_state",5)->with('productos')->get();
         return view('wishlist.show', compact('wishlist'));
     }
 
@@ -75,7 +75,8 @@ class WishlistController extends Controller
     public function destroy($id)
     {
         $lista = wishlist::findOrFail($id);
-        $lista->delete();
+        $lista->param_state = 6;
+        $lista->save();
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         } else {

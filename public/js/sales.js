@@ -1,11 +1,11 @@
 try {
-    fetch('/api/shopping/'+id)
+    fetch('/api/shopping/' + id)
         .then(response => response.json())
         .then(data => {
             var contenedor = '';
             var datos;
             for (const compra in data) {
-                if (data.hasOwnProperty(compra)){
+                if (data.hasOwnProperty(compra)) {
                     const venta = data[compra];
                     var datos = '<div class="card mb-5"><div class="row">';
                     for (const sales of venta) {
@@ -19,10 +19,10 @@ try {
                                 var colorElement = "#3364FF";
                                 break;
                             case "Pendiente":
-                            var colorElement = "#FF7000";
-                                 break;
+                                var colorElement = "#FF7000";
+                                break;
                             case "Cancelado":
-                            var colorElement = "#FF001B";
+                                var colorElement = "#FF001B";
                                 break;
                             default:
                                 break;
@@ -31,7 +31,7 @@ try {
                         datos += `
                         <div class=" border-bottom col-12 row mb-2">
                         <div class="col-md-3 p-3">
-                        <img src="{{ asset("img/productos/"${images[0]})}}" alt="Producto" class="img-fluid">
+                        <img src="https://innovatechcol.com.co/img/productos/${images[0]}" alt="Producto" class="img-fluid">
                         </div>
 
                         <div class="col-md-9 card-body p-3 justify-content-center align-items-center">
@@ -43,11 +43,11 @@ try {
                       <a href="show_product "> <button class="btn btn-primary">Ver producto</button></a>
                     </div></div></div>`;
                     }
-                    datos+= '</div></div>';
-                    contenedor+=datos;
+                    datos += '</div></div>';
+                    contenedor += datos;
                 }
             }
-            contenedor+= '';
+            contenedor += '';
             document.getElementById('content').innerHTML = contenedor; // Establecer el contenido HTML del elemento
 
             console.log(data);
