@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Http\Resources\category\CategoryCollection;
 use App\Http\Resources\category\CategoryResource;
+use App\Models\Param;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,7 +42,7 @@ class CategoryController extends Controller
         try {
             $categoryData = Category::with('products')->where('param_category', $id)->get();
             $products = $categoryData;
-            $name = DB::table("Params")->select("name")->where('id',$id)->first();
+            $name = Param::select("name")->where('id',$id)->first();
 
             $favoritos = [];
             if (Auth::check()) {
