@@ -13,7 +13,6 @@
         <div class="row g-5 pl-5 ml-5">
             @include( 'components.cart.cart-resume')
             <div class="col-md-7 col-lg-8">
-
                 <h2 style="color:black">
                     Tus datos <a class="abrirEdit" style="border: 0; background: none; font-size: 30px;cursor:pointer;"
                         href="#">
@@ -168,12 +167,18 @@
                                         </div>
 
                                     </div>
+                                  
+                                </div>
                             </form>
+                            <div class="container  d-flex justify-content-center align-items-center">
+                            <a name="" id="agregarDireccion2" class="btn btn-primary mt-2 w-50" href="#"
+                            role="button" style="display:none;">Agregar Dirección</a>
+                            </div>
                         </div>
                         <label id="labelAdress" style="font-size: 20px;display:none;">¿Aun no tienes direcciones?</label>
                             <div class="container  d-flex justify-content-center align-items-center">
-                                                   
-                                <a name="" id="agregarDireccion" class=" " href="#" style="display:none;"
+                                <a name="" id="agregarDireccion" class="btn btn-primary" href="#" style="display:none;width: 80%;
+                                font-weight: 500;"
                                 role="button">Agregar Dirección</a>
                             </div>
 
@@ -225,7 +230,11 @@
                                                 onselectstart="return false;">
 
                                         </div>
-
+                                    <div class="">
+                                        <a href="#" id="okPfisico" ><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                          </svg></a>
+                                        </div>  
                                     </div>
                             </form>
                         </div>
@@ -293,7 +302,7 @@
                             </form>
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -307,7 +316,7 @@
     const urlAddress = BasUrl + "/api/address_user/" + id;
     const urlAddressAdmin = BasUrl + "/api/direccionesAdmin/";
     const token = '{{ csrf_token() }}';
- 
+
 </script>
 <script src="{{ asset('js/compra.js') }}"></script>
 @endsection
