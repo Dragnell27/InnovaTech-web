@@ -7,6 +7,7 @@
 @extends('layouts.contenedor')
 @section('title', 'Home')
 @section('component')
+@include('components.cart.cartAlert')
     <?php
     $checked = Auth::check() ? 'true' : 'false';
     $index = 0;
@@ -205,31 +206,9 @@
         </section>
         <script>
             var token = '{{ csrf_token() }}';
-            window.addEventListener("load", async () => {
-                isChecked = "{{ $checked }}";
-                if (isChecked == "true") {
-                    var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-                    // Datos que se enviarán en la solicitud (incluyendo el token CSRF)
-                    var datos = '_token=' + token + '&valor=mi-valor-de-sesion';
-
-                    $.ajax({
-                        type: "post",
-                        url: "/mySales",
-                        data: datos,
-                        dataType: "JSON",
-                        success: function(data) {
-                            document.getElementById("counter").innerHTML = data.length;
-
-                        },
-                        error: function(data) {
-                            console.log("error");
-
-                        }
-                    });
-                }
-            })
+            
         </script>
+        <script src="{{ asset('js/counter.js') }}"></script>
 
         <script src="{{ asset('js/wishlist.js') }}"></script>
         <script src="{{ asset('js/cartas.js') }}"></script>

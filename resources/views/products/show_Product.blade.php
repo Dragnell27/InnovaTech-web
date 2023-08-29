@@ -28,6 +28,7 @@ if(Auth::check()){
 
 
 ?>
+@include('components.cart.cartAlert')
   
     <section class="bg-light">
         @php
