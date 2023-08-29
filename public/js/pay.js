@@ -39,7 +39,7 @@ paypal.Buttons({
             icon: 'success',
             title: 'Compra Exitosa',
             })
-            window.location.href = "/get-details";
+            window.location.href = "/";
         });
     }
 }).render('#paypal-button-container');
