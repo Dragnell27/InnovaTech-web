@@ -284,7 +284,10 @@ $(document).ready(function(){
     const closeEdit =$('.closeEdit ');
     const guardarDatos=$('.savaDate');
     const AddDireccion=$('.AddDireccion');
-
+    const okFactura=$('#okPfisico');
+    const modal=$('.modal');
+    const cerrar=$('.cerrar');
+    const Aceptar=$('.Aceptar');
 
     let isButtonDisabled = false;
     abrirEdit.click(function(e){
@@ -360,4 +363,29 @@ $(document).ready(function(){
         e.preventDefault();
         userdit.removeClass('userdit--openEdit');
         });
+        okFactura.click(function(e){
+           modal.addClass('modal--openModal');
+           $('#factura').show();
+
+           cerrar.click( function(e){
+            e.preventDefault();
+            modal.removeClass('modal--openModal');
+            });
+            Aceptar.click(function(e){
+                e.preventDefault();
+                swal.fire({
+                position:'top-center',
+                icon:'success',
+                title:'Compra exitosa',
+                showConfirmButton:false,
+                timer:1500
+               });
+               modal.removeClass('modal--openModal');
+
+            })
+
+        });
     });
+
+   
+    
