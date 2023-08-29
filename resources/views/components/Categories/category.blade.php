@@ -11,8 +11,8 @@
 @section('component')
 
     <body>
-        @if ($categoryName)
-            <h1>{{ $categoryName->Category }}</h1>
+        @if ($name)
+            <h1>{{ $name->name }}</h1>
         @endif
 
         <section>
