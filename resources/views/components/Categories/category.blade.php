@@ -12,7 +12,7 @@
 
     <body>
         @if ($name)
-            <h1>{{ $name->name }}</h1>
+            <h1 class="ms-3">{{ $name->name }}</h1>
         @endif
 
         <section>
@@ -36,11 +36,11 @@
                             $images = explode(':', $productos->images);
                             $descuento = ($productos->price * $productos->discount) / 100;
                             $precioDescuento = $productos->price - $descuento;
-                            
+
                             $lista_favortitos = 0;
-                            
+
                             $agregado_lista = 'no_agregado_favoritos';
-                            
+
                             if (Auth::check()) {
                                 foreach ($favoritos as $favorito => $f) {
                                     if ($f->product_id == $productos->id) {
@@ -57,7 +57,7 @@
                                     <div class="product-left">
                                         <img id="imgCard" class="ir-producto"
                                             data-url="{{ route('productos.show', $productos->id) }}" class="product-thumb"
-                                            height="259px" width="259px" src="{{ asset('images/airpods.png') }}">
+                                            height="259px" width="259px" src="{{ asset('img/productos/' . $images[0]) }}">
                                     </div>
                                     <div class="product-center">
                                         <h4 id="style2" class="titulo">{{ $productos->name }}</h4>

@@ -22,19 +22,19 @@
 
 <?php
 $check = "false";
-if(Auth::check()){ 
+if(Auth::check()){
     $check = "true";
 }
 
 
 ?>
 @include('components.cart.cartAlert')
-  
+
     <section class="bg-light">
         @php
             $images = explode(':', $productos->images);
 
-            
+
 
         @endphp
         <div class="container">
@@ -42,12 +42,12 @@ if(Auth::check()){
 
                 <div class="col-lg-5 mt-5">
                     <div class="imgContainer ">
-                        <img id="imgBox" src="{{ 'https://innovatechcol.com.co/img/productos/' . $images[0] }}"
+                        <img id="imgBox" src="{{ asset("img/productos/". $images[0] )}}"
                             alt="{{ $productos->description }}">
                     </div>
                     <div class="small-product">
                         @foreach ($images as $img)
-                            <img id="imageOne" src="{{ 'https://innovatechcol.com.co/img/productos/' . $img }}"
+                            <img id="imageOne" src="{{ asset("img/productos/". $img ) }}"
                                 alt="Producto Imagen 2" onclick="myFunction(this)" width="100px" height="100px">
                         @endforeach
                     </div>
@@ -187,7 +187,7 @@ if(Auth::check()){
                 </div>
             </div>
 
-           
+
     </section>
     <script>
         var BASE = "{{ url('/') }}";
