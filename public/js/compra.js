@@ -113,7 +113,7 @@ async function cargarDirecciones(seleccionarDireccion,formDirecciones,btnAddAdre
         });
         return addresses;
 
-        
+
     } catch (error) {
         console.error(`Error al obtener datos de la API: ${error}`);
         return[];
@@ -214,7 +214,7 @@ async function mostrarForm(tipoLugar) {
 
     }
    } catch (error) {
-    
+
    }
 
 };
@@ -250,7 +250,7 @@ const labelAddress= document.getElementById('labelAdress');
 myGlobalAddress = await cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress,labelAddress);
 await AddressAdmin();
 } catch (error) {
-    
+
 }
 
 
@@ -292,7 +292,7 @@ $(document).ready(function(){
     let isButtonDisabled = false;
     abrirEdit.click(function(e){
     e.preventDefault();
-    
+
     guardarDatos.click(function (e) {
         e.preventDefault();
         if (!isButtonDisabled) {
@@ -305,8 +305,8 @@ $(document).ready(function(){
                 url:"/updateUser/"+id,
                 data:{
                     _token: token,
-                    phone:numTel,   
-                    email:emailData 
+                    phone:numTel,
+                    email:emailData
                 },
                 success: function(response) {
                     $('#input-email').val(emailData);
@@ -323,7 +323,7 @@ $(document).ready(function(){
                         isButtonDisabled=false;
                         guardarDatos.prop('disabled',false)
                     }, 1000);
-                   
+
                 },
                 error: function(xhr, status, error) {
                     // Manejar errores en caso de falla
@@ -331,18 +331,17 @@ $(document).ready(function(){
                     guardarDatos.prop('disabled', false);
                     console.error('Error en la solicitud:', error);
                 }
-    
+
             });
 
         }
-       
     });
     userdit.addClass('userdit--openEdit');
     $('#addAddress').hide();
         $('#userUpdateFomr').show();
     });
     var numDirecciones = 0;
-    $("#agregarDireccion,#agregarDireccion2").on("click",function (e) { 
+    $("#agregarDireccion,#agregarDireccion2").on("click",function (e) {
         e.preventDefault();
         if (numDirecciones>=3) {
            Swal.fire({
@@ -353,7 +352,7 @@ $(document).ready(function(){
            userdit.remove('userdit--openEdit');
 
            $('#addAddress').hide();
-           $('#userUpdateFomr').hide(); 
+           $('#userUpdateFomr').hide();
 
         }if(numDirecciones<=3){
             AddDireccion.click(function(e){
@@ -377,7 +376,7 @@ $(document).ready(function(){
                                 department:createDepartmens
                             },
                             success:function (response) {
-                               
+
                                 swal.fire({
                                     position:'top-center',
                                     icon:'success',
@@ -386,13 +385,13 @@ $(document).ready(function(){
                                     timer:2500
                                    });
                         userdit.removeClass('userdit--openEdit');
-                                
+
                                   window.location.reload();
                                   setTimeout(() => {
                                     isButtonDisabled=false;
                                     AddDireccion.prop('disabled',false)
                                 }, 1000);
-    
+
                             },
                             error: function(xhr, status, error) {
                                 // Manejar errores en caso de falla
@@ -402,16 +401,16 @@ $(document).ready(function(){
                             }
                         });
                 }
-                
+
             });
             userdit.addClass('userdit--openEdit');
 
         $('#addAddress').show();
         $('#userUpdateFomr').hide();
         }
-       
-        
-    
+
+
+
 
      });
     closeEdit.click( function(e){
@@ -442,5 +441,4 @@ $(document).ready(function(){
         });
     });
 
-   
-    
+
