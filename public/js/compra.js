@@ -162,7 +162,6 @@ async function AddressAdmin(){
 };
 
 async function mostrarForm(tipoLugar) {
-   try {
     const formDirecciones = document.getElementById('formDirecciones');
     const formDomicilios = document.getElementById('FormDomicilios');
     const formPunto = document.getElementById('formPuntoFisico');
@@ -171,13 +170,10 @@ async function mostrarForm(tipoLugar) {
     const seleccionarpuntoFisico = document.getElementById('puntoFisico');
     const btnAddAdress = document.getElementById('agregarDireccion');
     const labelAddress= document.getElementById('labelAdress');
-    const btnAddAdress2=document.getElementById('agregarDireccion2');
     seleccionarDireccion.selectedIndex=0;
     direcionesAdmin.selectedIndex=0;
 
     if (tipoLugar == "domicilios") {
-        document.getElementById("btnContainer").style.display = "block";
-        btnAddAdress2.style.display='block';
         btnAddAdress.style.display = 'none';
         formPunto.style.display = 'none';
         formDomicilios.style.display = 'none';
@@ -186,7 +182,6 @@ async function mostrarForm(tipoLugar) {
         seleccionarpuntoFisico.style.display = 'none';
         labelAddress.style.display='none';
 
-
         if (myGlobalAddress.length>0) {
             formDomicilios.style.display = 'block';
             seleccionarDireccion.style.display = 'block';
@@ -194,15 +189,11 @@ async function mostrarForm(tipoLugar) {
         }else{
             btnAddAdress.style.display = 'block';
         labelAddress.style.display='block';
-        btnAddAdress2.style.display='none';
-
 
 
         }
     } else if (tipoLugar == "Pfisico") {
-        document.getElementById("btnContainer").style.display = "none";
         btnAddAdress.style.display = 'none';
-        btnAddAdress2.style.display='none';
         labelAddress.style.display='none';
         formPunto.style.display = 'none';
         formDomicilios.style.display = 'none';
@@ -213,9 +204,6 @@ async function mostrarForm(tipoLugar) {
 
 
     }
-   } catch (error) {
-    
-   }
 
 };
 const select = document.querySelector('#select');
@@ -241,17 +229,13 @@ select.addEventListener('click', () => {
 
 
 window.addEventListener('load', async () => {
-try {
-    const formDirecciones = document.getElementById('formDirecciones');
+const formDirecciones = document.getElementById('formDirecciones');
 const seleccionarDireccion = document.getElementById('direciones');
 const btnAddAdress = document.getElementById('agregarDireccion');
 const labelAddress= document.getElementById('labelAdress');
 
 myGlobalAddress = await cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress,labelAddress);
 await AddressAdmin();
-} catch (error) {
-    
-}
 
 
 });
@@ -284,11 +268,7 @@ $(document).ready(function(){
     const closeEdit =$('.closeEdit ');
     const guardarDatos=$('.savaDate');
     const AddDireccion=$('.AddDireccion');
-    const okFactura=$('#okPfisico');
-    const modal=$('.modal');
-    const cerrar=$('.cerrar');
-    const Aceptar=$('.Aceptar');
-
+    const addAddres=$('#agregarDireccion');
     let isButtonDisabled = false;
     abrirEdit.click(function(e){
     e.preventDefault();
@@ -296,8 +276,8 @@ $(document).ready(function(){
     guardarDatos.click(function (e) {
         e.preventDefault();
         if (!isButtonDisabled) {
-            isButtonDisabled=true;
-            guardarDatos.prop('disabled',true);
+            isButtonDisabled=true
+            guardarDatos.prop('disable',true)
             const numTel=$('#editPhone').val();
             const emailData= $('#editEmail').val();
             $.ajax({
@@ -321,7 +301,7 @@ $(document).ready(function(){
                     userdit.removeClass('userdit--openEdit');
                     setTimeout(() => {
                         isButtonDisabled=false;
-                        guardarDatos.prop('disabled',false)
+                        guardarDatos.prop('disable',false)
                     }, 1000);
                    
                 },
@@ -341,106 +321,16 @@ $(document).ready(function(){
     $('#addAddress').hide();
         $('#userUpdateFomr').show();
     });
-    var numDirecciones = 0;
-    $("#agregarDireccion,#agregarDireccion2").on("click",function (e) { 
+    addAddres.click(function (e) { 
         e.preventDefault();
-        if (numDirecciones>=3) {
-           Swal.fire({
-            icon:'error',
-            title:'ops...',
-            text:'Limite de direcciones alcanzada',
-           });
-           userdit.remove('userdit--openEdit');
-
-           $('#addAddress').hide();
-           $('#userUpdateFomr').hide(); 
-
-        }if(numDirecciones<=3){
-            AddDireccion.click(function(e){
-                if (!isButtonDisabled) {
-                        isButtonDisabled=true;
-                        AddDireccion.prop('disabled',true);
-                        const createDepartmens=$('#createDepartmens').val();
-                        const createCity=$('#createCity').val();
-                        const createHood=$('#createHood').val();
-                        const createAddress=$('#createAddress').val();
-                        const crateFloor=$('#crateFloor').val();
-                        $.ajax({
-                            method:'post',
-                            url:'/perfil/direcciones',
-                            data:{
-                                _token:token,
-                                address:createAddress,
-                                hood:createHood,
-                                floor:crateFloor,
-                                param_city:createCity,
-                                department:createDepartmens
-                            },
-                            success:function (response) {
-                               
-                                swal.fire({
-                                    position:'top-center',
-                                    icon:'success',
-                                    title:'Dirección Creada',
-                                    showConfirmButton:false,
-                                    timer:2500
-                                   });
-                        userdit.removeClass('userdit--openEdit');
-                                
-                                  window.location.reload();
-                                  setTimeout(() => {
-                                    isButtonDisabled=false;
-                                    AddDireccion.prop('disabled',false)
-                                }, 1000);
-    
-                            },
-                            error: function(xhr, status, error) {
-                                // Manejar errores en caso de falla
-                                isButtonDisabled = false;
-                                AddDireccion.prop('disabled', false);
-                                console.error('Error en la solicitud:', error);
-                            }
-                        });
-                }
-                
-            });
-            userdit.addClass('userdit--openEdit');
+    userdit.addClass('userdit--openEdit');
 
         $('#addAddress').show();
         $('#userUpdateFomr').hide();
-        }
-       
-        
-    
 
      });
     closeEdit.click( function(e){
         e.preventDefault();
         userdit.removeClass('userdit--openEdit');
         });
-        okFactura.click(function(e){
-           modal.addClass('modal--openModal');
-           $('#factura').show();
-
-           cerrar.click( function(e){
-            e.preventDefault();
-            modal.removeClass('modal--openModal');
-            });
-            Aceptar.click(function(e){
-                e.preventDefault();
-                swal.fire({
-                position:'top-center',
-                icon:'success',
-                title:'Compra exitosa',
-                showConfirmButton:false,
-                timer:1500
-               });
-               modal.removeClass('modal--openModal');
-
-            })
-
-        });
     });
-
-   
-    

@@ -2,9 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const preloader = document.querySelector(".centrado");
 
     window.onload = function () {
-        $(document).ready(function() {
-            $(".centrado").css("display", "none");
-        });
+        preloader.style.display = "none";
     };
 
     var isOnline = navigator.onLine;
