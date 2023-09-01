@@ -4,6 +4,7 @@
 
     <head>
         <link rel="stylesheet" href="{{ asset('css/carrito.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/cart-alert.css') }}">
     </head>
 
 
@@ -13,20 +14,14 @@
     $url ='https://innovatechcol.com.co/img/productos/';
     $imagenes = explode(":",session('msj_exitoso')["images"]);
 
+    {{--  if Auth::check()? $item = Cart::session(Auth::user()->id)->get(session('msj_exitoso')["id"]): $item = Cart::get(session('msj_exitoso')["id"]);  --}}
 
-    if (Auth::check()) {
-        $item = Cart::session(Auth::user()->id)->get(session('msj_exitoso')["id"]);
-
-
-    } else {
-
-        $item = Cart::get(session('msj_exitoso')["id"]);
-
-
-    }
+    if (Auth::check()) {$item = Cart::session(Auth::user()->id)->get(session('msj_exitoso')["id"]);} else {$item = Cart::get(session('msj_exitoso')["id"]);}
     ?>
-    <div class="card border-success mb-3" id="CartAlert"
-        style="max-width:600px; margin: 10% auto; position: absolute; z-index: 999; top: 45%; left: 50% ;transform: translate(-50%, -50%);">
+
+    <div id="modalCart">
+        <div class="card border-success mb-3" id="CartAlert"
+        style="max-width:600px; margin: 10% auto; position: absolute; z-index: 999; top: 25%; left: 50% ;transform: translate(-50%, -50%);">
         <div class="row g-0">
             <div class="card-header text-center row" id="card-header">
                 <h5 class="col">
@@ -82,4 +77,7 @@
             </div>
         </div>
     </div>
+
+    </div>
+    
 @endif

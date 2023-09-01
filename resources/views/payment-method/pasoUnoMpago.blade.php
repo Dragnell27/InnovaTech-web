@@ -240,7 +240,7 @@
                         </div>
 
                     </div>
-                    <div class="userdit " id="userModal">
+                    <div class="userdit " id="userModal" style="z-index: 999">
                         <div class=" editContainer">
                             <form  id="userUpdateFomr" style="display: none">
                                 <div class="container col-12">

@@ -204,13 +204,6 @@ async function mostrarForm(tipoLugar) {
 
 
     }
-<<<<<<< HEAD
-=======
-   } catch (error) {
-
-   }
->>>>>>> 0357752bbdaf2a012f70c9956390e7dfe8fbf607
-
 };
 const select = document.querySelector('#select');
 const opciones = document.querySelector('#opciones');
@@ -242,14 +235,6 @@ const labelAddress= document.getElementById('labelAdress');
 
 myGlobalAddress = await cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress,labelAddress);
 await AddressAdmin();
-<<<<<<< HEAD
-=======
-} catch (error) {
-
-}
->>>>>>> 0357752bbdaf2a012f70c9956390e7dfe8fbf607
-
-
 });
 
 fetch(url)
@@ -332,14 +317,6 @@ $(document).ready(function(){
     $('#addAddress').hide();
         $('#userUpdateFomr').show();
     });
-<<<<<<< HEAD
-    addAddres.click(function (e) { 
-        e.preventDefault();
-    userdit.addClass('userdit--openEdit');
-
-        $('#addAddress').show();
-        $('#userUpdateFomr').hide();
-=======
     var numDirecciones = 0;
     $("#agregarDireccion,#agregarDireccion2").on("click",function (e) {
         e.preventDefault();
@@ -411,16 +388,14 @@ $(document).ready(function(){
 
 
 
->>>>>>> 0357752bbdaf2a012f70c9956390e7dfe8fbf607
 
      });
     closeEdit.click( function(e){
         e.preventDefault();
         userdit.removeClass('userdit--openEdit');
         });
-<<<<<<< HEAD
     });
-=======
+
         okFactura.click(function(e){
            modal.addClass('modal--openModal');
            $('#factura').show();
@@ -443,7 +418,7 @@ $(document).ready(function(){
             })
 
         });
-    });
+    
 
 
->>>>>>> 0357752bbdaf2a012f70c9956390e7dfe8fbf607
+

@@ -1,11 +1,12 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-const cartIcon = document.querySelector("#icono");
+const cartIcon = document.querySelector("#btnCarrito");
+
 cartIcon.addEventListener("mouseover",()=>{
-    document.querySelector("#cartLink").style.color = "red";
+    document.querySelector("#svgCart").style.color = "red";
 })
 cartIcon.addEventListener("mouseout",()=>{
-    document.querySelector("#cartLink").style.color = "black";
+    document.querySelector("#svgCart").style.color = "black";
 })
 
 
