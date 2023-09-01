@@ -2,20 +2,25 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <div id="divfooter">
         <div class="modovertical1" id="infofooter">
-            <div>
-                <img id="logo" src="{{ asset('img/logo-i.png') }}">
-            </div>
-            <div id="descripcionfooter">
-                <p style="color: white;">NIT 900.726.066-7 <br>CLL 52 3-80 LOCAL 210 CC. Unico Outlet, Cali.<br>
-                    Ventas@innovatechdeoccidente.com <br> +57 3117622089</p>
-        <section>
-              <a class="btn btn-lg text-white btn-floating no-focus-outline" href="https://www.facebook.com/profile.php?id=100066452395079&mibextid=LQQJ4d" role="button" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
-              <a class="btn btn-lg text-white btn-floating no-focus-outline" href="https://api.whatsapp.com/send?phone=+573117622089&text=Hola" role="button" target="_blank"><i class='bx bxl-whatsapp' ></i></a>
-              <a class="btn btn-lg text-white btn-floating no-focus-outline" href="https://instagram.com/innovatechcol?igshid=MzRlODBiNWFlZA==" role="button" target="_blank"><i class='bx bxl-instagram'></i></a>
-        </section>
-            </div>
+                <div>
+                  <img id="logo" src="{{ asset('img/logo-i.png') }}">
+                </div>
+
+                <div id="descripcionfooter">
+                         <p style="color: white;">NIT 900.726.066-7 <br>Local 210 CC.Unico Outlet, Cali.<br>
+                         Ventas@innovatechdeoccidente.com</p>            
+                </div>
+             <section>
+                <a class="btn btn-lg text-white btn-floating no-focus-outline" href="https://www.facebook.com/profile.php?id=100066452395079&mibextid=LQQJ4d" role="button" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+                <a class="btn btn-lg text-white btn-floating no-focus-outline" href="https://api.whatsapp.com/send?phone=+573117622089&text=Hola" role="button" target="_blank"><i class='bx bxl-whatsapp' ></i></a>
+                <a class="btn btn-lg text-white btn-floating no-focus-outline" href="https://instagram.com/innovatechcol?igshid=MzRlODBiNWFlZA==" role="button" target="_blank"><i class='bx bxl-instagram'></i></a>
+             </section>
         </div>
-        <div class="modovertical2" id="mover-mapa">
+        
+         <div>
+
+         </div>
+         <div class="modovertical2" id="mover-mapa">
             <b>
                 <center>
                     <h4 style="color: white;">Nuestra Ubicación</h4>
@@ -27,6 +32,8 @@
                 allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
-    <div class="text-center p-2" style="background-color: #666666 ">
-    <b style="color: white">© 2023 - TODOS LOS DERECHOS RESERVADOS</b>
+
+    <div class="text-center p-1" style="background-color: #666666 ">
+    <b style="color: white">© 2023 - TODOS LOS DERECHOS SON RESERVADOS</b>
+    </div>
 </footer>

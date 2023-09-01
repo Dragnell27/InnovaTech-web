@@ -294,13 +294,15 @@ Seccion-Productos
 footer
 ------------*/
 #divfooter {
-    background-color: #373636;
+    background-color: #2c2e2e;
     padding: 20px 20px 40px 20px;
-    height: 350px;
+    height: 270px;
     display: flex;
     flex-direction: row;
 }
-
+#mover-mapa{
+    width: 80%;
+}
 .modovertical {
     display: flex;
     flex-direction: column;
@@ -312,37 +314,40 @@ footer
     flex-direction: column;
     width: 80%;
     margin-right: 10px;
+    margin-bottom: 5px;
 }
 
 .modovertical2 {
     display: flex;
     flex-direction: column;
-    width: 120%;
+    width: 100%;
     margin-right: 10px;
 }
 
 #logo {
-    border-radius: 20px;
-    width: 280px;
-    height: 110px;
+    border-radius: 15px;
+    width: 240px;
+    height: 80px;
     margin-bottom: 20px;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
 #infofooter {
     font-family: 'Cabin', sans-serif;
-    padding: 20px;
+    padding: 15px;
 }
 
 #descripcionfooter {
     color: white;
+    height: 80px;
 }
 
 #map {
-    border-radius: 20px;
+    border-radius: 15px;
     width: 100%;
-    height: 250px;
+    height: 200px;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+    
 }
 
 .no-focus-outline:focus,
@@ -350,6 +355,10 @@ footer
     outline: none !important;
     box-shadow: none !important;
 }
+.btn.btn-lg {
+    font-size: 28px; 
+}
+
 
 /* CARRITO */
 .imagen {
