@@ -111,6 +111,7 @@ window.addEventListener("load",()=>{
    const btn = document.querySelectorAll('.btn-cart');
    btn.forEach(boton=>{
         boton.addEventListener("click",()=>{
+            boton.value = "Cargando..."
             const productId =boton.getAttribute('data-id');
             data ={
                 "id": productId,
@@ -127,9 +128,10 @@ window.addEventListener("load",()=>{
                         method: 'GET',
                         data: data,
                         success: function(response) {
+                           
                             var URLactual = window.location;
 
-                           window.location.href=URLactual
+                            window.location.href=URLactual
                         },
                         error: function() {
                             
@@ -140,6 +142,8 @@ window.addEventListener("load",()=>{
                   
 
                 }
+            }).done(()=>{
+                boton.value = "Añadir al carrito"
             });
 
 
