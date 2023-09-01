@@ -119,10 +119,10 @@
                                 @php
                                     $imagenes = explode(':', $items->attributes['image']);
                                 @endphp
-                                <div class="card mb-3" style="" id="cartItem">
+                                <div class="card mb-2 " style="" id="cartItem">
                                     <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img src="{{ asset("img/productos/". $imagenes[0]) }}" class="img-fluid rounded-start"
+                                        <div class="col-md-3 col-12 d-flex justify-content-center align-items-center p-2">
+                                            <img  width="150px" src="{{ asset('img/productos/'. $imagenes[0]) }}" class="img-fluid rounded"
                                                 alt="...">
                                         </div>
                                         <div class="col-md-8 col-12">
@@ -155,14 +155,20 @@
                                                                 <span style="text-decoration: line-through;">{{ $items->price }}</span>
                                                             </div>
                                                         @else
+                                                        <div>
                                                             <input type="hidden" name="ProductPrice"
-                                                                id="ProductPrice{{ $items->id }}"
-                                                                value="{{ $items->price }}" />
+                                                            id="ProductPrice{{ $items->id }}"
+                                                            value="{{ $items->price }}" />
+                                                        </div>
+                                                        <div>
                                                             <strong>
                                                                 <span>$<span id="priceP{{ $items->id }}"
                                                                         class="priceP price">{{ $items->price }}</span>
                                                                 </span>
                                                             </strong>
+                                                        </div>
+                                                           
+                                                           
                                                         @endif
 
                                                         <button id="btnDecrement" class="qtyChanger" name="submitButton"
@@ -181,7 +187,7 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <p class="card-text"  style="padding: 10px; margin:10px; color:red !important; ">
+                                                <p class="card-text" id="btnDeleteCart" style="padding: 10px; margin:10px; color:red !important; ">
                                                     <small class="text-body-secondary">
                                                         <a class="btnEliminarCart"
                                                             href="{{ route('cart.destroy', $items->id) }}">Eliminar</a>
@@ -215,7 +221,7 @@
  <script src="{{ asset('js/cart-show.js') }}">
 
 </script>
-    </section>
-    @include('layouts.footer')
+   
+
 
 @endsection
