@@ -20,8 +20,8 @@
     ?>
 
     <div id="modalCart">
-        <div class="card border-success mb-3" id="CartAlert"
-        style="max-width:600px; margin: 10% auto; position: absolute; z-index: 999; top: 25%; left: 50% ;transform: translate(-50%, -50%);">
+        <div class="card border-dark mb-4" id="CartAlert"
+        style="">
         <div class="row g-0">
             <div class="card-header text-center row" id="card-header">
                 <h5 class="col">
@@ -34,13 +34,13 @@
                     <span class="text-center">¡Se agregó a tu carro!</span>
                     
                 </h5>
-                <input type="button" id="btnClose" class="btn-close" aria-label="Close" style="display: none">
+                <input type="button" id="btnClose" class="btn-close" aria-label="Close" style="">
             </div>
             <div class='col-sm-4 col-md-2' id="imgCart" >
                 <img src="{{ asset('img/productos/'. $imagenes[0]) }}"  class="img-fluid rounded-start">
             </div>
             <div class="col-md-8">
-                <div class="card-body">
+                <div class="card-body" id="card-body">
                     <h5 class="card-title">Has agregado al carrito: {{ session('msj_exitoso')["name"] }}</h5>
                     <div class="row">
                         <span class="" style="display: flex">
@@ -65,11 +65,13 @@
                 </div>
                 <p class="card-text" id="maxSize"><small class="text-body-secondary">Maximo 20 unidades</small></p>
                 <div class="row">
+{{--                      
                     <a style="cursor: pointer ;" id="btnSeguir"
                         class="icon-link icon-link-hover link-secondary link-underline-success link-underline-opacity-25 col">Seguir
-                        comprando</a>
+                        comprando</a>  --}}
+
                     <form method="get" action="{{ Route('cart.show') }}" class="col">
-                        <div class="">
+                        <div class="cont">
                             <input type="submit" name="" id="btnGoCart" value="Ir al carro" class="btn btn-dark">
                         </div>
                     </form>

@@ -104,7 +104,8 @@
 
 #btnGoCart{
   border-radius: 20px;
-  margin-left: 20%;
+  width: 100%; /* El input ocupará todo el ancho del div */
+  max-width: 300px;
 }
 
 /* CSS de cart-show */
@@ -142,8 +143,13 @@
   
 }
 
+#maxSize{
+  left: 30%;
+position: relative;
+}
 @media  (max-width:512px) {
   #maxSize{
+    left: 0;
    margin-left: 12%;
   }
   

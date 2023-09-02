@@ -79,6 +79,7 @@ $(document).ready(function () {
     //JS para mostrar la alerta del carrito
     $("#btnClose").click(function (e) {
         document.getElementById("CartAlert").style.display = "NONE";
+        document.getElementById("modalCart").style.display = "NONE";
         $.ajax({
             type: "GET",
             url: "/cart-forget",

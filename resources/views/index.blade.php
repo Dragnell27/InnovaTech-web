@@ -13,7 +13,7 @@
     $index = 0;
     ?>
     <section>
-        <div id="section" style="margin-top: 100px">
+        <div id="section" style="padding-top: 100px">
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @foreach ($carrusel as $carr)

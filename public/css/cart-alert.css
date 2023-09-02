@@ -9,3 +9,37 @@
     margin-top: 0 !important;
 
 }
+#CartAlert{
+    max-width:600px; 
+    margin: 10% auto; 
+    position: absolute;
+    z-index: 999;
+    top: 25%;
+    left: 50% ;
+    transform: translate(-50%, -50%);
+}
+@media (max-width:1116px){
+    #CartAlert{
+        top: 45%;
+
+    }
+}
+@media (max-width:720px){
+    #CartAlert{
+        top: 45%;
+
+    }
+}
+.cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#card-body{
+    margin-left: 20%;
+}
+@media(max-width:766px){
+    #card-body{
+        margin-left: 0;
+    }
+}
