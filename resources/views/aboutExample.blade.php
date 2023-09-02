@@ -14,7 +14,7 @@
 
                     <h2 data-scroll-reveal="enter from the bottom after 0.1s">
                         <strong>
-                           <span style="color: red">In</span>nova tech occidente
+                           <span id="spanIn" style="">In</span>nova tech occidente
                         </strong>
                         <strong>
                             <p style="color: white">¿Quienes somos?</p>
@@ -47,7 +47,7 @@
 
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 
-                <h3 data-scroll-reveal="enter from the bottom after 0.1s">
+                <h3 style="color: red" data-scroll-reveal="enter from the bottom after 0.1s">
                     <strong>
                         ¿Quieres saber mas de nosotros?
                     </strong>
@@ -94,7 +94,7 @@
 
             <div class="col-lg-5 col-md-5 col-sm-5 card" data-scroll-reveal="enter from the bottom after 0.2s">
                 <i class=" fa fa-database fa-5x "></i>
-                <h4><strong> Donde estamos ubicados </strong></h4>
+                <h4 class="media-heading"><strong> Donde estamos ubicados </strong></h4>
                 <p>
                     Tenemos distintas sedes en las cuales nos puedes encontrar. Las cuales estan ubicadaas en Cali, Yumbo, Dosquebradas y Pasto 
                 </p>
@@ -102,7 +102,7 @@
 
             <div class="col-lg-5 col-md-5 col-sm-5 card" data-scroll-reveal="enter from the bottom after 0.8s">
                 <i class=" fa fa-send fa-5x "></i>
-                <h4><strong> Nuestro equipo </strong></h4>
+                <h4 class="media-heading"><strong> Nuestro equipo </strong></h4>
                 <p>
                     Contamos además con el personal técnico calificado para la reparación de sus dispositivos y brindarte la mejor atención para cumplir con tus necesidades técnologicas.
                 </p>
@@ -112,4 +112,3 @@
     </div>
 
 </section>
-@include('layouts.footer')

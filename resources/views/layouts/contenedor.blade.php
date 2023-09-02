@@ -25,7 +25,7 @@
 
 
 
-<body>
+<body style="margin-top: 40px;">
     <header>
         <nav class="nav">
             <div class="class">

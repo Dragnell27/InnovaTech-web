@@ -61,3 +61,13 @@ min-height: 500px;
     margin: 10px 10px;
     
 }
+#spanIn{
+    color: red;
+    background-color:white;
+    border-radius:5px;
+    height: 20px;
+}
+
+.media-heading{
+    color: red;
+}
