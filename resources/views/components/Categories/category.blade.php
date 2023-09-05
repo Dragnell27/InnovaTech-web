@@ -15,7 +15,7 @@
             <div id="colum_1">
                 @if ($name)
                     <h1>{{ $name->name }}</h1>
-                    <h6 class="text-dark">esta categoria contiene () productos</h6>
+                    <h6 class="text-dark">Esta categoría contiene ({{ $products->count() }}) productos</h6>
                 @endif
             </div>
             <div id="colum_2">

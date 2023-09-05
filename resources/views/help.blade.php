@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div>
+<div id="container">
     <div id= "margin"><h1> Como podemos ayudarte</h1></div>
 
     <div class="container mb-5" id= "margin-t">
@@ -42,7 +42,7 @@
             </div>
 
             <!--"Contacto" -->
-            <button class="desplegable" onclick="toggleDesplegable('contacto')"><span class="simbolo">•</span>Cómo Comprar un Producto</button>
+            <button class="desplegable" onclick="toggleDesplegable('contacto')"><span class="simbolo">•</span>Cómo Contactarnos</button>
             <div id="contacto" class="contenido-desplegable">
                 <h2 class="text-dark">Mas dudas</h2>
                 <p>Si necesitas mas asesorias:</p>
@@ -56,9 +56,12 @@
 
         </div>
     </div>
+   
 </div>
 
+<div class="footer">
     @include('layouts.footer')
+</div>
 
-    <script src="{{ asset('js/help.js') }}"></script>
 </body>
+<script src="{{ asset('js/help.js') }}"></script>

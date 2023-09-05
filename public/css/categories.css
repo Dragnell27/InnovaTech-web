@@ -1,5 +1,5 @@
 #container {
-
+    margin-top: 100px;
     display: inline-block;
     justify-content: space-between;
     align-items: flex-start;
@@ -83,6 +83,7 @@
 
 @media (min-width: 768px) {
     #container {
+    margin-top: 100px;
     display: flex;
     }
     .product-content {
