@@ -16,6 +16,7 @@
       @if (Session::has('msj'))
 
       <?php
+  
       $user_id = Auth::user()->id;
       $itemsSession = json_decode(Session::get('msj'));
 

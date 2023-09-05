@@ -120,6 +120,11 @@ a {
     list-style: none;
     transition: background-color 0.5s;
 }
+#btnCarrito:hover{
+    color: red;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}
 a:hover {
     color: red;
     text-decoration: none;

@@ -406,6 +406,18 @@ public function validarCompra($usuario){
                 "param_status"=>6,
             ]);
 
+            //verificar si la compra ya esta vacia 
+            
+            $compras = sales_detail::where("sale_id",$Sid)->where("param_status",5)->get();
+            $total = 0;
+            foreach ($compras as $key => $value) {
+                $total += $value->qty;
+            }
+            if($total <= 0){
+                Sales::where("user_id",$userId)->where("param_shipping",14)->where("param_status",5)->update(["param_status"=>6]);
+
+            }
+
             Session::forget('cart');
             Session::put("cart",Cart::session($userId)->getContent());
        
