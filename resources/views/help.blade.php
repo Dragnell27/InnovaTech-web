@@ -48,8 +48,8 @@
                 <p>Si necesitas mas asesorias:</p>
                 <ol>
                     <li>Busca el icono de contacto</li>
-                    <li></li>
-                    <li></li>
+                    <li>si tienes alguna duda o inquietud (Pedidos,Devoluciones,Etc.)</li>
+                    <li>Llena nuestro formulario y listo nuestro equipo de trabajo te respondera la solicitud lo mas pronto posible</li>
                 </ol>
             </div>
 
@@ -64,4 +64,5 @@
 </div>
 
 </body>
+
 <script src="{{ asset('js/help.js') }}"></script>
