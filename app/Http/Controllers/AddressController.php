@@ -59,7 +59,7 @@ class AddressController extends Controller
         $request->validate([
             'hood' => 'required',
             'address' => 'required',
-            'floor' => 'required',
+            'floor',
             'param_city' => 'required', ' numeric',
             'department' => 'required ', 'numeric',
         ]);
@@ -131,7 +131,7 @@ class AddressController extends Controller
         $request->validate([
             'hood' => 'required',
             'address' => 'required',
-            'floor' => 'required',
+            'floor',
             'param_city' => 'required', ' numeric',
             'department' => 'required ', 'numeric',
         ]);

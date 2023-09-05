@@ -494,7 +494,6 @@ window.addEventListener('load', async () => {
 
              })
 
-
      });
 
 
