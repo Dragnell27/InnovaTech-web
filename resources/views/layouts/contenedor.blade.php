@@ -225,7 +225,7 @@
 
     </header>
 
-    <div id="componente">
+    <div id="componente" style="margin-top: 100px">
         @yield('component')
     </div>
 
