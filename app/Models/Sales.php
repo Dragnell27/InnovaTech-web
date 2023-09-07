@@ -10,3 +10,4 @@ class Sales extends Model
     protected $table = 'sales';
 
 }
+

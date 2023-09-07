@@ -20,7 +20,7 @@ try {
                                 break;
                             case "Pendiente":
                             var colorElement = "#FF7000";
-                                 break;
+                                break;
                             case "Cancelado":
                             var colorElement = "#FF001B";
                                 break;
@@ -40,7 +40,7 @@ try {
                         <p class="mt-2 compra">Fecha de compra: ${fecha}</p>
 
                     <div class="col-12 text-end p-3">
-                      <a href="show_product "> <button class="btn btn-primary">Ver producto</button></a>
+                    <a href="show_product "> <button class="btn btn-primary">Ver producto</button></a>
                     </div></div></div>`;
                     }
                     datos+= '</div></div>';

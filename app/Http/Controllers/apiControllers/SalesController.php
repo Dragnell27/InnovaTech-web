@@ -5,7 +5,9 @@ namespace App\Http\Controllers\apiControllers;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SalesResources;
 use App\Models\Sales;
+use Sale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
@@ -40,7 +42,8 @@ class SalesController extends Controller
     public function show($id)
     {
         $resultado = SalesResources::collection(DB::table('sales')->where('user_id',$id)->get());
-        return view('sales/shopping',['resultado'=>$resultado]);
+        return view('sales/shopping',['compra'=>$resultado]);
+
     }
 
     /*
