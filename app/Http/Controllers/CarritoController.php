@@ -39,6 +39,7 @@ class CarritoController extends Controller
             return response()->json($productos);
      }
 
+
     public function index()
     {
 
@@ -89,13 +90,7 @@ class CarritoController extends Controller
 
             $direccionId;
 
-            if ($direccion) {
-                $direccionId = $direccion->id;
-                # code...
-            }else{
-                $direccionId = null;
-
-                  }
+            $direccionId = $direccion ? $direccionId = $direccion->id : $direccionId = null;
 
                 //Aqui valido si el usuario ya tiene datos en el carrito
             if ($result->isEmpty()) {
@@ -182,9 +177,11 @@ class CarritoController extends Controller
 
            ));
 
-
+          
            Session::forget('cart');
            Session::put("cart",Cart::getContent());
+           Session::forget('nolog');
+           Session::put("nolog",Cart::getContent());
         }
 
 
@@ -225,15 +222,7 @@ class CarritoController extends Controller
                  //Validar si el usuario ya tiene productos  en carrito
                  $result = Sales::where("user_id",$user_id)->where("param_shipping",14)->where("param_status",5)->get();
                  $direccionId;
-
-            if ($direccion) {
-                $direccionId = $direccion->id;
-                # code...
-            }else{
-                $direccionId = null;
-
-                  }
-
+                 $direccionId = $direccion ? $direccionId = $direccion->id : $direccionId = null;
                  //Mientras se arregla la base de datos debo crear una dirrecion
                 if($result->isEmpty()) {
                     $sale = new Sales;
@@ -323,6 +312,7 @@ class CarritoController extends Controller
 
                      ),
                  ));
+                 Session::put("nolog",Cart::getContent());
                 //  session(["cart"=>Cart::getContent()]);
                  Session::put("cart",Cart::getContent());
 
@@ -426,6 +416,9 @@ public function validarCompra($usuario){
 
            Session::forget('cart');
            Session::put("cart",Cart::getContent());
+
+           Session::forget('nolog');
+           Session::put("nolog",Cart::getContent());
          
           }
 

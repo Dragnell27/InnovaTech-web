@@ -208,7 +208,7 @@
             var token = '{{ csrf_token() }}';
             
         </script>
-        <script src="{{ asset('js/counter.js') }}"></script>
+    
 
         <script src="{{ asset('js/wishlist.js') }}"></script>
         <script src="{{ asset('js/cartas.js') }}"></script>

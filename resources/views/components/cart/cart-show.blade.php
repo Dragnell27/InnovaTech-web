@@ -13,39 +13,7 @@
         <header>
             <!-- place navbar here -->
         </header>
-      @if (Session::has('msj'))
-
-      <?php
-  
-      $user_id = Auth::user()->id;
-      $itemsSession = json_decode(Session::get('msj'));
-
-      Cart::session($user_id)->clear();
-      foreach ($itemsSession as $key => $value) {
-
-
-
-
-             Cart::session($user_id)->add(array(
-                'id' => $value->product_id,   //inique row ID
-                'name' => $value->name,
-                'price' =>$value->price,
-                'quantity' => $value->qty,
-                'attributes' => array(
-                    'discount'=> $value->discount,
-                    'image'=>$value->images,
-                    'desc'=>$value->description,
-
-                ),
-            ));
-        }
-        Session::forget('cart');
-        Session::put("cart",Cart::session($user_id)->getContent());
-        Session::forget('msj');
-
-      ?>
-
-      @endif
+     
         <main style="margin-bottom: 200px">
             @if (Session::has('msj_destroy'))
             <?php
