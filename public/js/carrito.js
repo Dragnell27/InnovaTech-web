@@ -112,7 +112,8 @@ window.addEventListener("load",()=>{
    const btn = document.querySelectorAll('.btn-cart');
    btn.forEach(boton=>{
         boton.addEventListener("click",()=>{
-            boton.value = "Cargando..."
+
+            boton.innerHTML = "Cargando..."
             const productId =boton.getAttribute('data-id');
             data ={
                 "id": productId,
@@ -137,14 +138,14 @@ window.addEventListener("load",()=>{
                         error: function() {
                             
                         }
+                    }).done(()=>{
+                        boton.innerHTML = "Añadir al carrito"
                     });
                 }, 
                 error: function(data) {
                   
 
                 }
-            }).done(()=>{
-                boton.value = "Añadir al carrito"
             });
 
 

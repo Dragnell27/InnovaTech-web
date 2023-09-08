@@ -14,7 +14,7 @@
             <!-- place navbar here -->
         </header>
      
-        <main style="margin-bottom: 200px">
+        <main style="">
             @if (Session::has('msj_destroy'))
             <?php
 
