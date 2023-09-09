@@ -22,6 +22,8 @@ use App\Http\Controllers\CategoryController;
 use App\Models\Carrusel;
 use App\Http\Controllers\PayController;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\facturas;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,9 +99,15 @@ Route::middleware('auth')->resource('perfil/direcciones', AddressController::cla
 Route::post('/updateUser/{id}', [UserController::class, 'updateUser']);
 Route::get('/departments/{id}',[ParamController::class, 'nameDepartment']);
 Route::get('/type_documents/{paramtype_id}',[ParamController::class,'tipoDocumet']);
+//Camilo Alzate Ruta que llama el primer paso de compra
+Route::post('/sendEmail/{id}',[UserController::class,'enviarEmail']);
+// Route::post('/sendEmail',function($id){
+//     $email= User::where('id',$id)->value('email');
+//     Mail::to($email)->send(new facturas);
+// return response()->json(['enviado correctamente ']);
 
-// Route::view('payment-method/1','payment-method/pasoUnoMpago')->name('pasoUno')->middleware('auth');
-//Ruta que llama Metodo Ade pago
+// })->name('sendEmail');
+//Ruta que llama Metodo de pago
 Route::view('payment-method/Metodo-pago','payment-method/Metodo-pago')->name('Mpago')->middleware('auth');
 
 Route::get('payment-method/1',function(){

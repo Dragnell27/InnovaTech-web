@@ -11,9 +11,26 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\facturas;
 
 class UserController extends Controller
 {
+    public function enviarEmail($id)
+    {
+       try {
+        $user= User::find($id);
+        $email=$user->email;
+        if (!$email) {
+            return 'el correo no existe';
+        }
+        Mail::to($email)->send(new facturas($user));
+    } catch (\Throwable $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+        
+    }
+    }
+
     /**
      * Show the form for creating the resource.
      */
@@ -181,4 +198,5 @@ try {
             'type' => 'error'
         ]);
     }
+
 }

@@ -484,17 +484,28 @@ window.addEventListener('load', async () => {
              Aceptar.click(function(e){
                  e.preventDefault();
                  swal.fire({
-                 position:'top-center',
                  icon:'success',
                  title:'Compra exitosa',
                  showConfirmButton:false,
                  timer:1500
                 });
                 modal.removeClass('modal--openModal');
-
-             })
+                $.ajax({
+                    method:'post',
+                    url:'/sendEmail/'+id,
+                    data:{
+                       _token: token
+                    },
+                    success:function (response){
+                        console.log('Correo electrónico enviado con éxito.');
+                    },
+                   error:function(xhr, status, error){
+                    console.error('Error al enviar el correo electrónico:', error);
+                   }
+             });
 
      });
+    });
 
 
 
