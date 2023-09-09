@@ -7,13 +7,13 @@
 @extends('layouts.contenedor')
 @section('title', 'Home')
 @section('component')
-@include('components.cart.cartAlert')
+    @include('components.cart.cartAlert')
     <?php
     $checked = Auth::check() ? 'true' : 'false';
     $index = 0;
     ?>
     <section>
-        <div id="section" >
+        <div id="section">
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @foreach ($carrusel as $carr)
@@ -126,20 +126,17 @@
                             $colores = substr($colores, 0, -2);
                         @endphp
                         <div class="product-card">
-                            <div class="product-image">
-                                <button class="{{ $agregado_lista }} btn float-end" data-product_id="{{ $productos->id }}"
+                            <div class="product-image d-flex align-items-center justify-content-center p-0">
+                                <button class="{{ $agregado_lista }} btn float-end lista-deseos" data-product_id="{{ $productos->id }}"
                                     data-lista_id="{{ $lista_favortitos }}">
                                     <svg width="16" height="16">
                                         <path
                                             d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
                                     </svg>
                                 </button>
-                                <img id="imgCard" class="ir-producto"
+                                <img id="imgCard" class="ir-producto img-fluid"
                                     data-url="{{ route('productos.show', $productos->id) }}" class="product-thumb"
-                                    height="259px" width="259px"
-                                    src="{{ asset("img/productos/". $images[0]) }}">
-                                {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset(' productos/'.$images[0])}} " alt=""
-                                    onclick="window.location.href='{{ route('productos') }}'"> --}}
+                                    src="{{ asset('img/productos/' . $images[0]) }}">
                                 <button class="card-btn btn-cart" data-id="{{ $productos->id }}">Añadir al
                                     Carrito</button>
                             </div>
@@ -206,9 +203,8 @@
         </section>
         <script>
             var token = '{{ csrf_token() }}';
-            
         </script>
-    
+
 
         <script src="{{ asset('js/wishlist.js') }}"></script>
         <script src="{{ asset('js/cartas.js') }}"></script>

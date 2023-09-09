@@ -1,4 +1,4 @@
-@include('preloader')
+{{-- @include('preloader') --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,8 +43,8 @@
                     <span class="fs-4 fw-semibold" id="categoryText">Categorias</span>
 
                 </a>
-                
-              
+
+
                 <div class="sidebar" style="background-color: white; top:11%;" id="sidebar">
                     {{--  <a href="#"
                         class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
@@ -249,7 +249,7 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     @yield('js')
     <script src="{{ asset('js/preloader.js') }}"></script>
-   
+
 
 </body>
 

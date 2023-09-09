@@ -78,9 +78,8 @@
   border-radius: 20px;
   }
   .imgContainer img{
-  height: 460;
   border-radius: 20px;
-  max-width: 100%;
+  width: 100%;
   }
   .imgContainer{
     padding: 10px;
