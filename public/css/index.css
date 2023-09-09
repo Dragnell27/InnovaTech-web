@@ -10,13 +10,15 @@ header {
 #carrusel {
     margin-bottom: 50px;
 }
+.carousel{
+    margin-top: -20px;
+}
 
 .carousel-item img {
     height: auto;
     max-width: 100%;
     aspect-ratio: 21/7;
     object-fit: cover;
-    margin-top: 41px;
     z-index: 1;
 }
 
@@ -103,10 +105,8 @@ Seccion-Productos
 }
 
 .product-container {
-    padding: 7vw;
     display: flex;
     overflow-x: auto;
-    gap: 40px;
     scroll-behavior: smooth;
     overflow-y: hidden;
 }

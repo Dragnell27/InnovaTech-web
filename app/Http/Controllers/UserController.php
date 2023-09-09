@@ -27,7 +27,7 @@ class UserController extends Controller
         Mail::to($email)->send(new facturas($user));
     } catch (\Throwable $e) {
         return response()->json(['error' => $e->getMessage()], 500);
-        
+
     }
     }
 
@@ -113,7 +113,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->phone = $request['phone'];
         $user->email = $request['email'];
-        $user->param_type = $request['tipo_de_documento'];
         $user->param_suscription = $suscripcion;
         $user->save();
 
