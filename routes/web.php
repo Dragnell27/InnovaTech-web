@@ -68,13 +68,13 @@ Route::POST("/mySales",[App\Http\Controllers\CarritoController::class,'mySales']
 ///   Rutas confirmadas   ///
 /////////////////////////////
 Route::get('/', function () {
-    $products = Product::where("param_state",5)->get();
+    $products = Product::where("param_state",5)->paginate(10);
     $colors = Param::where('paramtype_id', 11)->get();
     $carrusel = Carrusel::orderBy('position')->where("param_state",5)->get();
     $favoritos = [];
 
     if (Auth::check()) {
-        $favoritos = Wishlist::where('user_id', Auth::user()->id)->get();
+        $favoritos = Wishlist::where('user_id', Auth::user()->id)->where('param_state',5)->get();
     }
     return view('index',compact('products', 'colors', 'favoritos','carrusel'));
 })->name('index');

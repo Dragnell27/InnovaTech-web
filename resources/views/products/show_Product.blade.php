@@ -42,12 +42,12 @@ if(Auth::check()){
 
                 <div class="col-lg-5 mt-5">
                     <div class="imgContainer ">
-                        <img id="imgBox" src="{{ asset("img/productos/". $images[0] )}}"
+                        <img id="imgBox" class="img-fluid" src="{{ asset("img/productos/". $images[0] )}}"
                             alt="{{ $productos->description }}">
                     </div>
                     <div class="small-product">
                         @foreach ($images as $img)
-                            <img id="imageOne" src="{{ asset("img/productos/". $img ) }}"
+                            <img class="img-fluid" id="imageOne" src="{{ asset("img/productos/". $img ) }}"
                                 alt="Producto Imagen 2" onclick="myFunction(this)" width="100px" height="100px">
                         @endforeach
                     </div>

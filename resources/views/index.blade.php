@@ -1,3 +1,4 @@
+@component('components.cart.SendToCart')
 <head>
     <link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
     <script>
@@ -7,13 +8,13 @@
 @extends('layouts.contenedor')
 @section('title', 'Home')
 @section('component')
-@include('components.cart.cartAlert')
+    @include('components.cart.cartAlert')
     <?php
     $checked = Auth::check() ? 'true' : 'false';
     $index = 0;
     ?>
     <section>
-        <div id="section" >
+        <div id="section">
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @foreach ($carrusel as $carr)
@@ -94,7 +95,7 @@
                 <button class="pre-btn"><img src="{{ asset('img/arrow.png') }}" alt=""></button>
                 <button class="nxt-btn"><img src="{{ asset('img/arrow.png') }}" alt=""></button>
 
-                <div class="product-container">
+                <div class="product-container ps-5">
                     @foreach ($products as $productos)
                         @php
                             $images = explode(':', $productos->images);
@@ -126,98 +127,90 @@
                             $colores = substr($colores, 0, -2);
                         @endphp
                         <div class="product-card">
-                            <div class="product-image">
-                                <button class="{{ $agregado_lista }} btn float-end" data-product_id="{{ $productos->id }}"
-                                    data-lista_id="{{ $lista_favortitos }}">
+                            <div class="product-image d-flex align-items-center justify-content-center p-0">
+                                <button class="{{ $agregado_lista }} btn float-end lista-deseos"
+                                    data-product_id="{{ $productos->id }}" data-lista_id="{{ $lista_favortitos }}">
                                     <svg width="16" height="16">
                                         <path
                                             d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
                                     </svg>
                                 </button>
-                                <img id="imgCard" class="ir-producto"
+                                <img id="imgCard" class="ir-producto img-fluid"
                                     data-url="{{ route('productos.show', $productos->id) }}" class="product-thumb"
-                                    height="259px" width="259px"
-                                    src="{{ asset("img/productos/". $images[0]) }}">
-                                {{-- <img id="imgCard" class="product-thumb" alt="" src="{{asset(' productos/'.$images[0])}} " alt=""
-                                    onclick="window.location.href='{{ route('productos') }}'"> --}}
+                                    src="{{ asset('img/productos/' . $images[0]) }}">
                                 <button class="card-btn btn-cart" data-id="{{ $productos->id }}">Añadir al
                                     Carrito</button>
                             </div>
-                            @component('components.cart.SendToCart')
-
-                                <div class="product-info ir-producto" data-url="{{ route('productos.show', $productos->id) }}">
-                                    <h4 class="product-brand" id="name">{{ $productos->name }}</h4>
-                                    <p class="product-short-description" id="desc">{{ $productos->description }}</p>
-                                    @php
-                                        $descuento = ($productos->price * $productos->discount) / 100;
-                                        $precioDescuento = $productos->price - $descuento;
-                                    @endphp
-                                    @if ($productos->discount == 0)
-                                        <span class="price" id="price">${{ $productos->price }}</span>
-                                    @else
-                                        <span class="precioReal">${{ $precioDescuento }}</span>
-                                        <br>
-                                        <span class="descuento-valor">{{ $productos->discount }}% OFF</span>
-                                        <span class="actual-price">${{ $productos->price }}</span>
-                                    @endif
+                            <div class="product-info ir-producto" data-url="{{ route('productos.show', $productos->id) }}">
+                                <h4 class="product-brand" id="name">{{ $productos->name }}</h4>
+                                <p class="product-short-description" id="desc">{{ $productos->description }}</p>
+                                @php
+                                    $descuento = ($productos->price * $productos->discount) / 100;
+                                    $precioDescuento = $productos->price - $descuento;
+                                @endphp
+                                @if ($productos->discount == 0)
+                                    <span class="price" id="price">${{ $productos->price }}</span>
+                                @else
+                                    <span class="precioReal">${{ $precioDescuento }}</span>
                                     <br>
-
-                                </div>
+                                    <span class="descuento-valor">{{ $productos->discount }}% OFF</span>
+                                    <span class="actual-price">${{ $productos->price }}</span>
+                                @endif
+                                <br>
                             </div>
-                        @endforeach
-                    </div>
-
-                </section>
-                <br>
-                <div class="red-div">
-                    <h2>Informacion</h2>
+                        </div>
+                    @endforeach
                 </div>
+            </section>
+        </div>
+    </section>
+    <br>
+    <div class="red-div">
+        <h2>Informacion</h2>
+    </div>
 
 
-                <div id="contenedorbotones">
-                    <div class="row d-flex flex-row justify-content-center flex-wrap">
-                        <div class=" col-md-3 col-sm-6 col-12 text-center  ">
-                            <a href="/aboutUs" class="btn btn-link btn-image">
-                                <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones"
-                                    alt="..." src="{{ asset('img/Sobre-Nosotros.png') }}" width="120"
-                                    height="120" role="img">
-                            </a>
-                            <h4 class="fw-normal my-4">Sobre nosotros</h4>
-                        </div>
+    <div id="contenedorbotones">
+        <div class="row d-flex flex-row justify-content-center flex-wrap">
+            <div class=" col-md-3 col-sm-6 col-12 text-center  ">
+                <a href="/aboutUs" class="btn btn-link btn-image">
+                    <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones" alt="..."
+                        src="{{ asset('img/Sobre-Nosotros.png') }}" width="120" height="120" role="img">
+                </a>
+                <h4 class="fw-normal my-4">Sobre nosotros</h4>
+            </div>
 
-                        <div class=" col-md-3 col-sm-6 col-12 text-center ">
-                            <a href="/contact" class="btn btn-link btn-image">
-                                <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones"
-                                    alt="..." src="{{ asset('img/Contacto.jpg') }}" width="120" height="120"
-                                    role="img">
-                            </a>
-                            <h4 class="fw-normal my-4">Contacto</h4>
-                        </div>
-                        <div class=" col-md-3 col-sm-6 col-12 text-center ">
-                            <a href="/help" class="btn btn-link btn-image">
-                                <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones tamaño"
-                                    alt="..." src="{{ asset('img/ayuda.png') }}" width="120" height="120"
-                                    role="img">
-                            </a>
-                            <h4 class="fw-normal my-4">Ayuda</h4>
-                        </div>
-                    </div>
-                </div>
-        </section>
-        <script>
-            var token = '{{ csrf_token() }}';
-            
-        </script>
-    
-
-        <script src="{{ asset('js/wishlist.js') }}"></script>
-        <script src="{{ asset('js/cartas.js') }}"></script>
-        <script src="{{ asset('js/producto.js') }}"></script>
-        {{-- <script src="{{ asset('js/carrousel.js') }}"></script> --}}
+            <div class=" col-md-3 col-sm-6 col-12 text-center ">
+                <a href="/contact" class="btn btn-link btn-image">
+                    <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones" alt="..."
+                        src="{{ asset('img/Contacto.jpg') }}" width="120" height="120" role="img">
+                </a>
+                <h4 class="fw-normal my-4">Contacto</h4>
+            </div>
+            <div class=" col-md-3 col-sm-6 col-12 text-center ">
+                <a href="/help" class="btn btn-link btn-image">
+                    <img class="bd-placeholder-img rounded-circle img-thumbnail border-dark sombra-botones tamaño"
+                        alt="..." src="{{ asset('img/ayuda.png') }}" width="120" height="120"
+                        role="img">
+                </a>
+                <h4 class="fw-normal my-4">Ayuda</h4>
+            </div>
+        </div>
+    </div>
+    </section>
+    <script>
+        var token = '{{ csrf_token() }}';
+    </script>
 
 
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        @include('components.PQRS.FAQS')
-        @include('layouts.footer')
+    <script src="{{ asset('js/wishlist.js') }}"></script>
+    <script src="{{ asset('js/cartas.js') }}"></script>
+    <script src="{{ asset('js/producto.js') }}"></script>
+    {{-- <script src="{{ asset('js/carrousel.js') }}"></script> --}}
 
-    @endsection
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    @include('components.PQRS.FAQS')
+    @include('layouts.footer')
+
+@endsection
