@@ -1,7 +1,8 @@
 <style>
-    *{
+    * {
         font-family: sans-serif;
     }
+
     .modal {
         position: fixed;
         top: 0;
@@ -40,6 +41,7 @@
         grid-auto-columns: 100%;
         transform: var(--transform);
         transition: var(--trasition);
+        overflow: auto;
     }
 
     .cerrar {
@@ -99,33 +101,67 @@
             font-size: 30px
         }
     }
-    .tabla{
-        text-align:center,
-        border-collapse:collapse,
-        width:100%
+
+    table {
+        color: black;
+        font-size: 14px;
+        table-layout: fixed;
+        border-collapse: collapse;
+        background-color: #f8f8f8;
+        overflow: auto;
+        text-align: center;
     }
-    #contenedortable{
-        display: flex;
-        align-content: center;
-        justify-content: center;
-        border: solid 2px rgb(255, 255, 255 0.2)
-    }
-    .nameTD{
+
+    thead {
+        color: #fff;
+        background: rgb(243 0 0 / 79%);
 
     }
-    .nameTH{
 
+    th {
+        padding: 20px 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    td {
+        padding: 15px;
+        border-bottom: border: solid 2px rgb(0 0 0 / 65%);
+        ;
+    }
+
+    tbody tr {
+        font-size: 12px;
+
+        font-weight: 700;
+        text-transform: uppercase;
+
+    }
+
+    tbody tr:hover {
+        box-shadow: 0 2px 5px rgb(253 8 8 / 79%);
+    }
+
+    .PrecioTotal {
+        width: 300px;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgb(253 8 8 / 79%);
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
     }
 </style>
 <section>
     <div class="modal" id="factura">
-        <div class="modal_container" style="margin-top:5%">
-            <img src="{{ asset('img/logo-i.png') }}" id="imagen-logo" style="margin-bottom: 11px;">
+        <div class="modal_container mb-2" style="margin-top:5%">
+            <img src="{{ asset('img/logo-i.png') }}" id="imagen-logo">
             <h1 class="tituloF">Recibo de Compra</h1>
             <div class="container text-center">
                 <div class="row">
                     <div class="col-6">
-                        <span>Factura No: <strong id="idFactura">ID FACTURA</strong> </span>
+                        <span>Factura No: <strong id="idFactura">00ID FACTURA</strong> </span>
                     </div>
                     <div class="col-6">
                         <span>Fecha de facturación: <strong id="fechaFactura">DIA/MES/AÑO</strong> </span>
@@ -141,31 +177,12 @@
                     </div>
                 </div>
             </div>
+            <div class="table-resposive">
+                <table class="table" style=" border: solid 2px rgb(0 0 0 / 65%); ">
+                    <thead>
+                        <tr>
+                            <th class="nameTH">No.</th>
 
-            <div class="container" >
-                <table id="contenedortable">
-                    <thead>
-                        <tr>
-                          <th class="nameTH">Producto</th>
-                            <th class="nameTH">Precio </th>
-                            <th class="nameTH">Cantidad </th>
-                            <th class="nameTH">total </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Maus</td>
-                            <td>1000</td>
-                            <td>2</td>
-                            <td>2000</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            {{-- <div class="table-resposive">
-                <table class="tabla">
-                    <thead>
-                        <tr>
                             <th class="nameTH">Producto</th>
                             <th class="nameTH">Precio </th>
                             <th class="nameTH">Cantidad </th>
@@ -175,7 +192,9 @@
                     </thead>
 
                     <tbody>
+
                         <tr>
+                            <td class="nameTD">1</td>
                             <td class="nameTD">televisor</td>
                             <td class="nameTD">100000</td>
                             <td class="nameTD">1</td>
@@ -183,13 +202,17 @@
                         </tr>
                     </tbody>
                 </table>
-                <span>Precio total(COP)
-                    <td>10000</td>
 
-                </span>
-            </div> --}}
+            </div>
 
-            <div class="mb-4">
+            <div class="PrecioTotal">
+                <span>Precio total(COP):
+                    <strong>$10000</strong>
+            </div>
+
+            </span>
+
+            <div class="mb-2">
                 <input type="submit" value="Confirmar Compra" class="Aceptar">
                 <input type="submit" value="Cancelar" class="cerrar ">
             </div>
