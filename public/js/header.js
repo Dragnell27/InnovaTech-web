@@ -46,6 +46,11 @@ cartIcon.addEventListener("mouseout",()=>{
 });
 
 function toggleSidebar() {
+    const img = document.querySelector("#menu-logo");
+    const close = document.querySelector("#menu-close");
+    close.classList.toggle('inactive');
+    img.classList.toggle('inactive');
+ 
     var sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('active');
 }

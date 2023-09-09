@@ -115,6 +115,10 @@
   padding: 10px;
   margin-left: 40px;
 }
+.cartItem{
+  /* max-height: 250px !important; */
+  box-shadow: 1px 1px 1px gray;
+}
 
 /* Nuevo css para dividir el resumen */
 
