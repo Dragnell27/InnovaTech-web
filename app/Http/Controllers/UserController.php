@@ -85,6 +85,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::user()->id;
+        if ($id != $user) {
+            return redirect(route('users.show',$user))->with([
+                'message' => 'Acceso denegado!',
+                'text' => 'No tienes acceso para estar ahí.',
+                'type' => 'error'
+            ]);
+        }
         $user = User::where('id', $id)->with('document_type')->first();
         return view('profile.personal_data.show', compact('user'));
     }
@@ -94,6 +102,15 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user()->id;
+
+        if ($id != $user) {
+            return redirect(route('users.edit',$user))->with([
+                'message' => 'Acceso denegado!',
+                'text' => 'No tienes acceso para estar ahí.',
+                'type' => 'error'
+            ]);
+        }
         $user = User::where('id', $id)->with('document_type')->first();
         $document_types = Param::where('paramtype_id', 15)->get();
         return view('profile.personal_data.edit', compact('user'), compact('document_types'));

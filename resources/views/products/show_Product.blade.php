@@ -9,32 +9,30 @@
         <link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
 
 
-<style>
-    .inactive{
-        display: none;
-      }
-      .card-header{
-        display: flex;
-        justify-content: space-between;
-      }
-</style>
+        <style>
+            .inactive {
+                display: none;
+            }
+
+            .card-header {
+                display: flex;
+                justify-content: space-between;
+            }
+        </style>
     </head>
 
-<?php
-$check = "false";
-if(Auth::check()){
-    $check = "true";
-}
+    <?php
+    $check = 'false';
+    if (Auth::check()) {
+        $check = 'true';
+    }
 
-
-?>
-@include('components.cart.cartAlert')
+    ?>
+    @include('components.cart.cartAlert')
 
     <section class="bg-light">
         @php
             $images = explode(':', $productos->images);
-
-
 
         @endphp
         <div class="container">
@@ -42,12 +40,12 @@ if(Auth::check()){
 
                 <div class="col-lg-5 mt-5">
                     <div class="imgContainer ">
-                        <img id="imgBox" class="img-fluid" src="{{ asset("img/productos/". $images[0] )}}"
+                        <img id="imgBox" class="img-fluid" src="{{ asset('img/productos/' . $images[0]) }}"
                             alt="{{ $productos->description }}">
                     </div>
                     <div class="small-product">
                         @foreach ($images as $img)
-                            <img class="img-fluid" id="imageOne" src="{{ asset("img/productos/". $img ) }}"
+                            <img class="img-fluid" id="imageOne" src="{{ asset('img/productos/' . $img) }}"
                                 alt="Producto Imagen 2" onclick="myFunction(this)" width="100px" height="100px">
                         @endforeach
                     </div>
@@ -96,23 +94,24 @@ if(Auth::check()){
                                 </div>
                                 <div class="text-right col-6">
 
-                                    @if ($productos->discount == 0)
-                                        <h4 class="mt-4"><strong><label>＄{{ $productos->price }}</label></strong>
-                                        </h4>
-                                    @else
-                                        @php
-                                            $descuento = ($productos->price * $productos->discount) / 100;
-                                            $precioDescuento = $productos->price - $descuento;
-                                        @endphp
-                                        <h4><strong><label>＄{{ $precioDescuento }}</label></strong> <span
-                                                class="elevating-span ml-2">-{{ $productos->discount }}%</span>
-                                        </h4>
-                                        <h5>
-                                            <label
-                                                class="text-muted"style="text-decoration: line-through;">＄{{ $productos->price }}</label>
-
-                                        </h5>
+                                    @php
+                                        $precioDescuento = $productos->price - ($productos->price / 100) * $productos->discount;
+                                    @endphp
+                                    @if ($productos->discount > 0)
+                                        <div class="text-decoration-line-through text-danger descuento">
+                                            $ {{ $productos->price }}
+                                        </div>
                                     @endif
+                                    <div>
+                                        <span class="h5">
+                                            $ {{ $precioDescuento }}
+                                        </span>
+                                        @if ($productos->discount > 0)
+                                            <strong class="text-success">
+                                                {{ $productos->discount }}% OFF
+                                            </strong>
+                                        @endif
+                                    </div>
                                 </div>
 
                             </div>
@@ -168,16 +167,17 @@ if(Auth::check()){
                         </div>
                         <input type="hidden" id="product_id" name="product_id" value="{{ $productos->id }}">
                         <input type="hidden" id="num_star" name="starts">
-                        <input type="submit" value="Agregar Comentario" class="btn" style="background: #e70000; color: #fff;">
+                        <input type="submit" value="Agregar Comentario" class="btn"
+                            style="background: #e70000; color: #fff;">
                     </form>
                 </div>
             </div>
             <br>
-{{--  Section de ver comentarios  --}}
-            <section class="container" >
+            {{--  Section de ver comentarios  --}}
+            <section class="container">
                 <h3 id="commentTitle">Opiniones del producto</h3>
                 <div class="row" id="commentSection">
-                    <div id="comments-cont" class="col col-md-12" ></div>
+                    <div id="comments-cont" class="col col-md-12"></div>
                 </div>
             </section>
 
@@ -192,11 +192,10 @@ if(Auth::check()){
     <script>
         var BASE = "{{ url('/') }}";
         var token = '{{ csrf_token() }}';
-        var userCheck = "{{ $check}}";
+        var userCheck = "{{ $check }}";
     </script>
     <script src="{{ asset('js/wishlist.js') }}"></script>
     <script src="{{ asset('js/producto.js') }}"></script>
     <script src="{{ asset('js/comments.js') }}"></script>
     @include('layouts.footer')
 @endsection
-

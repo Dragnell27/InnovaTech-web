@@ -1,12 +1,13 @@
 @component('components.cart.SendToCart')
-<head>
-    <link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
-    <script>
-        var baseURL = "{{ url('/') }}";
-    </script>
-</head>
-@extends('layouts.contenedor')
-@section('title', 'Home')
+
+    <head>
+        <link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
+        <script>
+            var baseURL = "{{ url('/') }}";
+        </script>
+    </head>
+    @extends('layouts.contenedor')
+    @section('title', 'Home')
 @section('component')
     @include('components.cart.cartAlert')
     <?php
@@ -145,17 +146,23 @@
                                 <h4 class="product-brand" id="name">{{ $productos->name }}</h4>
                                 <p class="product-short-description" id="desc">{{ $productos->description }}</p>
                                 @php
-                                    $descuento = ($productos->price * $productos->discount) / 100;
-                                    $precioDescuento = $productos->price - $descuento;
+                                    $precioDescuento = $productos->price - ($productos->price / 100) * $productos->discount;
                                 @endphp
-                                @if ($productos->discount == 0)
-                                    <span class="price" id="price">${{ $productos->price }}</span>
-                                @else
-                                    <span class="precioReal">${{ $precioDescuento }}</span>
-                                    <br>
-                                    <span class="descuento-valor">{{ $productos->discount }}% OFF</span>
-                                    <span class="actual-price">${{ $productos->price }}</span>
+                                @if ($productos->discount > 0)
+                                    <div class="text-decoration-line-through text-danger descuento">
+                                        $ {{ $productos->price }}
+                                    </div>
                                 @endif
+                                <div>
+                                    <span class="h5">
+                                        $ {{ $precioDescuento }}
+                                    </span>
+                                    @if ($productos->discount > 0)
+                                        <strong class="text-success">
+                                            {{ $productos->discount }}% OFF
+                                        </strong>
+                                    @endif
+                                </div>
                                 <br>
                             </div>
                         </div>

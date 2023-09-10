@@ -15,6 +15,8 @@ class ProductosController extends Controller
 {
     public function search(Request $request)
     {
+
+
         $query = $request['query'];
         $querys = explode(' ', $query);
         $arrayTags = [];
@@ -84,7 +86,7 @@ class ProductosController extends Controller
         $colors = Param::where('paramtype_id', 11)->get();
         $favoritos = [];
         if (Auth::check()) {
-            $favoritos = Wishlist::where('user_id', Auth::user()->id)->get();
+            $favoritos = Wishlist::where('user_id', Auth::user()->id)->where('param_state',5)->get();
         }
         $comments = "";
         if (Auth::check()) {
