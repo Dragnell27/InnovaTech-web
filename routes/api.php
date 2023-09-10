@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\apiControllers\SalesController;
+use App\Http\Controllers\apiControllers\BillController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentController;
@@ -53,3 +54,6 @@ Route::apiResource('comment', CommentController::class);
 //@Jhonmurillo
 Route::apiResource('/sale', SalesController::class);
 Route::apiResource('/shopping', Sale_detail::class);
+
+//api para la factura
+Route::apiResource("/bill",BillController::class);
