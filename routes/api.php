@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Sale_detail;
 use App\Http\Controllers\Salescontroller as ControllersSalescontroller;
-use App\Http\Controllers\Pay\PaypalController;
+use App\Http\Controllers\PayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,3 +53,4 @@ Route::apiResource('comment', CommentController::class);
 //@Jhonmurillo
 Route::apiResource('/sale', SalesController::class);
 Route::apiResource('/shopping', Sale_detail::class);
+Route::apiResource('pay', PayController::class);

@@ -80,7 +80,7 @@
   }
 </style>
 <div class="modal" id="factura">
-   
+
     <div class="modal_container">
         <div style="margin-left: 105%;margin-top: -10%;">
             <a href="" class="cerrar "> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
@@ -103,9 +103,9 @@
                         -------------------------------------
                         <div class="mb-4">
                             <input type="submit" value="Confirmar Compra" class="Aceptar">
-                          
+
                         </div>
-        
+
     </div>
 </div>
 

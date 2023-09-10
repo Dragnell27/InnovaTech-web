@@ -42,7 +42,7 @@ class Sale_detail extends Controller
      */
     public function show($id)
     {
-        $sales = Sales::where('user_id',$id)->get();
+        $sales = Sales::where('user_id',$id)->where("param_status",5)->get();
         $arrSales = [];
 
         foreach ($sales as $sale){

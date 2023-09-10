@@ -166,3 +166,6 @@ Route::resource('/shopping', SalesController::class);
 Route::get('/sugerencias', [ProductosController::class, 'sugerencias_busqueda'])->name('sujerencias.busqueda');
 Route::post('/save-details', [PayController::class, 'save']);
 Route::get('/get-details', [PayController::class, 'mostrar']);
+
+//ruta de pago
+Route::put('/pago/{id}', [PayController::class, 'update'])->name('pago.update');
