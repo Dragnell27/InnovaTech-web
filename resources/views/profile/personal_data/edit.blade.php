@@ -82,7 +82,7 @@
         </div>
         <div class="float-end mb-5">
             <input type="submit" value="Guardar datos" class="btn-primary btn">
-            <button type="button" class="btn btn-danger" onclick="goBack()">Cancelar</button>
+            <a class="btn btn-danger" href="{{ route('users.show', Auth::user()->id) }}">Cancelar</a>
         </div>
     </form>
 
@@ -112,4 +112,20 @@
             })
         });
     </script>
+    @if (session('message') && session('type'))
+        <script>
+            const swalWithBootstrapButton = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-primary ms-2',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            });
+            swalWithBootstrapButton.fire(
+                '{{ session('message') }}',
+                '{{ session('text') }}',
+                '{{ session('type') }}'
+            );
+        </script>
+    @endif
 @endsection

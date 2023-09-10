@@ -46,7 +46,7 @@ class CategoryController extends Controller
 
             $favoritos = [];
             if (Auth::check()) {
-                $favoritos = Wishlist::where('user_id', Auth::user()->id)->get();
+                $favoritos = Wishlist::where('user_id', Auth::user()->id)->where('param_state',5)->get();
             }
 
             return view('components.Categories.category', compact('products','favoritos','name'));

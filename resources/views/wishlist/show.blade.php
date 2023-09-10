@@ -4,7 +4,7 @@
 @extends('layouts.contenedor')
 @section('title', 'Lista de deseos')
 @section('component')
-    <div class="container">
+    <div class="px-5">
         <div class="row justify-content-center">
             @if (count($wishlist) > 0)
                 @foreach ($wishlist as $lista)
@@ -12,14 +12,14 @@
                         $images = explode(':', $lista->productos->images);
                         $precioVenta = $lista->productos->price - ($lista->productos->price / 100) * $lista->productos->discount;
                     @endphp
-                    <div class="col-10 mb-2">
+                    <div class="col-12 mb-2">
                         <div class="card " data-url="{{ route('productos.show', $lista->productos->id) }}">
                             <div class="row" role="button">
-                                <div class="col-md-3 col-12 d-flex justify-content-center align-items-center p-2">
+                                <div class="col-md-2 col-12 d-flex justify-content-center align-items-center p-2" style="height: 150px">
                                     <img src="{{ asset("img/productos/". $images[0]) }}"
-                                        class="img-fluid rounded" alt="Imagen del Producto" width="150px">
+                                        class="img-fluid rounded" alt="Imagen del Producto" width="130px">
                                 </div>
-                                <div class="col-md-9 col-12">
+                                <div class="col-md-10 col-12">
                                     <div class="card-body">
                                         <div>
                                             <div>

@@ -11,9 +11,26 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\facturas;
 
 class UserController extends Controller
 {
+    public function enviarEmail($id)
+    {
+       try {
+        $user= User::find($id);
+        $email=$user->email;
+        if (!$email) {
+            return 'el correo no existe';
+        }
+        Mail::to($email)->send(new facturas($user));
+    } catch (\Throwable $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+
+    }
+    }
+
     /**
      * Show the form for creating the resource.
      */
@@ -68,6 +85,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::user()->id;
+        if ($id != $user) {
+            return redirect(route('users.show',$user))->with([
+                'message' => 'Acceso denegado!',
+                'text' => 'No tienes acceso para estar ahí.',
+                'type' => 'error'
+            ]);
+        }
         $user = User::where('id', $id)->with('document_type')->first();
         return view('profile.personal_data.show', compact('user'));
     }
@@ -77,6 +102,15 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user()->id;
+
+        if ($id != $user) {
+            return redirect(route('users.edit',$user))->with([
+                'message' => 'Acceso denegado!',
+                'text' => 'No tienes acceso para estar ahí.',
+                'type' => 'error'
+            ]);
+        }
         $user = User::where('id', $id)->with('document_type')->first();
         $document_types = Param::where('paramtype_id', 15)->get();
         return view('profile.personal_data.edit', compact('user'), compact('document_types'));
@@ -96,7 +130,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->phone = $request['phone'];
         $user->email = $request['email'];
-        $user->param_type = $request['tipo_de_documento'];
         $user->param_suscription = $suscripcion;
         $user->save();
 
@@ -181,4 +214,5 @@ try {
             'type' => 'error'
         ]);
     }
+
 }

@@ -25,8 +25,7 @@
 
 #btn-menu {
     position: relative;
-    /* top: 20px; */
-    /* left: 20px; */
+   
     z-index: 999999;
 }
 
@@ -332,6 +331,16 @@ a:hover {
 }
 
 /* CSS joan */
+
+#categoryText{
+    padding:7px 5px;
+    cursor: pointer;
+    color: #dc2d22;
+}
+#menu-close{
+    color: red;
+  cursor: pointer;
+}
 .spansText{
     top: 3px;
     position: relative;

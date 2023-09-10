@@ -14,7 +14,7 @@
     $url ='https://innovatechcol.com.co/img/productos/';
     $imagenes = explode(":",session('msj_exitoso')["images"]);
 
-    {{--  if Auth::check()? $item = Cart::session(Auth::user()->id)->get(session('msj_exitoso')["id"]): $item = Cart::get(session('msj_exitoso')["id"]);  --}}
+    // {{--  if Auth::check()? $item = Cart::session(Auth::user()->id)->get(session('msj_exitoso')["id"]): $item = Cart::get(session('msj_exitoso')["id"]);  --}}
 
     if (Auth::check()) {$item = Cart::session(Auth::user()->id)->get(session('msj_exitoso')["id"]);} else {$item = Cart::get(session('msj_exitoso')["id"]);}
     ?>
@@ -32,7 +32,7 @@
                           </svg>
                     </span>
                     <span class="text-center">¡Se agregó a tu carro!</span>
-                    
+
                 </h5>
                 <input type="button" id="btnClose" class="btn-close" aria-label="Close" style="">
             </div>
@@ -65,7 +65,7 @@
                 </div>
                 <p class="card-text" id="maxSize"><small class="text-body-secondary">Maximo 20 unidades</small></p>
                 <div class="row">
-{{--                      
+{{--
                     <a style="cursor: pointer ;" id="btnSeguir"
                         class="icon-link icon-link-hover link-secondary link-underline-success link-underline-opacity-25 col">Seguir
                         comprando</a>  --}}
@@ -81,5 +81,5 @@
     </div>
 
     </div>
-    
+
 @endif

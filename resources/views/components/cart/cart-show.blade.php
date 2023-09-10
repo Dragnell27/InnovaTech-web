@@ -88,9 +88,9 @@
                                 @php
                                     $imagenes = explode(':', $items->attributes['image']);
                                 @endphp
-                                <div class="card mb-2 " style="" id="cartItem">
+                                <div class="card mb-2 cartItem" style="" id="cartItem">
                                     <div class="row g-0">
-                                        <div class="col-md-3 col-12 d-flex justify-content-center align-items-center p-2">
+                                        <div class="col-md-3 d-flex justify-content-center align-items-center p-2">
                                             <img  width="150px" src="{{ asset('img/productos/'. $imagenes[0]) }}" class="img-fluid rounded"
                                                 alt="...">
                                         </div>
