@@ -176,11 +176,13 @@
                             </strong></span>
                     </div>
                     <div class="col-6 mt-2">
-                        <span>Cliente: <strong id="NamePeople"></strong></span>
+                        <span>Cliente: <strong id="NamePeople">{{Auth::user()->first_name  }} {{Auth::user()->last_name  }} </strong></span>
+                        
+                        {{--  Esto fue lo que modifique para mostra el nombre del usuario  --}}
 
                     </div>
                     <div class="col-6 mt-2">
-                        <span>No.Identificación: <strong id="idDocument"></strong></span>
+                        <span>No.Identificación: <strong id="idDocument">{{ Auth::user()->document }}</strong></span>
 
                     </div>
                     <div class="container  d-flex justify-content-center align-items-center mt-2">
@@ -229,26 +231,26 @@
     <script>
         const bill = "{{ url('/') }}" + "/api/bill/" + "{{ Auth::user()->id }}";
 
-        const url2 = "{{ url('/') }}" + "/api/users/" + "{{ Auth::user()->id }}";
-        fetch(url2)
-            .then(function(response) {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(function(data) {
-                const user = data.data[0];
-                const NamePeople = user.first_name + ' ' + user.last_name;
-                document.getElementById('NamePeople').innerHTML = NamePeople;
-                const typeId = user.document;
-                document.getElementById('idDocument').innerHTML = typeId;
-            })
-
-            .catch(function(error) {
-                console.log(error);
-            });
-            
+        //const url2 = "{{ url('/') }}" + "/api/users/" + "{{ Auth::user()->id }}";
+        //fetch(url2)
+        //    .then(function(response) {
+        //        if (!response.ok) {
+        //            throw new Error('Network response was not ok');
+        //        }
+        //        return response.json();
+        //    })
+        //    .then(function(data) {
+        //        const user = data.data[0];
+        //      //  {{--  const NamePeople = user.first_name + ' ' + user.last_name;
+        //       // document.getElementById('NamePeople').innerHTML = NamePeople;  --}}
+        //        const typeId = user.document;
+        //        document.getElementById('idDocument').innerHTML = typeId;
+        //    })
+//
+        //    .catch(function(error) {
+        //        console.log(error);
+        //    });
+        //    
             //AQUI ESTOY CONSUMIENDO EL API DE BILLS
             $(document).ready(function() {
                 $.ajax({
@@ -257,19 +259,22 @@
             dataType: 'json',
             success: function(data) {
                 const bills = data.data[0];
-                console.log(bills);
+             
                 $('#idFactura').text('00' + bills.bill_id);
                 const tbody = $('#IdDatos');
                 let No = 1;
+//Solo agregue este foreach
+                data.data.forEach((item) => {
                     const row = $('<tr>');
-                    const Num = $('<td>').text(No++);
-                    const productName = $('<td>').text(bills.product_name);
-                    const productPrice = $('<td>').text(bills.price);
-                    const productQuaty = $('<td>').text(bills.qty);
-                    const total = bills.price * bills.qty;
-                    const productTotal = $('<td>').text(total);
-                        row.append(Num,productName,productPrice,productQuaty,productTotal);
-                        tbody.append(row);
+                        const Num = $('<td>').text(No++);
+                        const productName = $('<td>').text(item.product_name);
+                        const productPrice = $('<td>').text(item.price);
+                        const productQuaty = $('<td>').text(item.qty);
+                        const total = item.price * item.qty;
+                        const productTotal = $('<td>').text(total);
+                            row.append(Num,productName,productPrice,productQuaty,productTotal);
+                            tbody.append(row);                    
+                 });
 
                         //SE SUPONE QUE AQUI EMPIEZA ACREAR FILAS Y AGREGAR EL CONTENIDO DE BILLS
                 //         for (let i = 0; i < bills.length; i++) {
