@@ -112,7 +112,17 @@ class AddressController extends Controller
      */
     public function edit($id)
     {
+
+
         $address = Address::with('city')->findOrFail($id);
+        $user = Auth::user()->id;
+        if ($address->user_id != $user || $address->param_state != 5) {
+            return redirect(route('direcciones.index'))->with([
+                'message' => 'Acceso denegado!',
+                'text' => 'No tienes acceso para estar ahí.',
+                'type' => 'error'
+            ]);
+        }
         $department = Param::find($address->city->param_foreign);
         $departments = Param::where('paramtype_id', 6)->get();
         $data = [
