@@ -352,6 +352,7 @@
     const url = BasUrl + "/api/users/" + id;
     const urlAddress = BasUrl + "/api/address_user/" + id;
     const urlAddressAdmin = BasUrl + "/api/direccionesAdmin/";
+    
     const token = '{{ csrf_token() }}';
     var cities = "{{ route('cities') }}"
     document.getElementById("createDepartmens").addEventListener("change", (e) => {

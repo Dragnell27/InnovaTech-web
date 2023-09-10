@@ -146,7 +146,9 @@ async function AddressAdmin(){
                 document.getElementById("hoodAdmin").value=addressData2.hood;
                 document.getElementById("addressAdmin").value=addressData2.address;
                 document.getElementById("floorAdmin").value=addressData2.floor;
-
+                const DireccionFactura=addressCity.city_name +", "+ addressData2.hood + ",  "+ addressData2.address +","+addressData2.floor ;
+                const idDireccion=document.getElementById('idDireccion');
+                idDireccion.textContent=DireccionFactura;
                 document.getElementById('formPuntoFisico').style.display="block";
             }
             catch (error) {
@@ -268,27 +270,32 @@ window.addEventListener('load', async () => {
 
 
     });
-    fetch(url)
-    .then(function (response){
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
-    return response.json();
-    })
-    .then(function (data) {
-        const user = data.data[0];
-        document.getElementById('firstName').value = user.first_name;
-        document.getElementById('lastName').value = user.last_name;
-        const typeId = user.document_type.name + ' ' + user.document;
-        document.getElementById('identificacion').value = typeId;
-        $('#input-email').val(user.email);
-        $('#numTel').val(user.phone);
-        $('#editPhone').val(user.phone);
-        $('#editEmail').val(user.email);
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
+
+
+        fetch(url)
+        .then(function (response){
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+        })
+        .then(function (data) {
+            const user = data.data[0];
+            document.getElementById('firstName').value = user.first_name;
+            document.getElementById('lastName').value = user.last_name;
+            const typeId = user.document_type.name + ' ' + user.document;
+            document.getElementById('identificacion').value = typeId;
+            $('#input-email').val(user.email);
+            $('#numTel').val(user.phone);
+            $('#editPhone').val(user.phone);
+            $('#editEmail').val(user.email);
+
+        })
+
+        .catch(function (error) {
+            console.log(error);
+        });
+
 
     $(document).ready(function(){
         const abrirEdit=$('.abrirEdit');
@@ -469,10 +476,14 @@ window.addEventListener('load', async () => {
         userdit.removeClass('userdit--openEdit');
         });
     });
-    const okFactura=$('#okPfisico');
+
+        const okFactura=$('#okPfisico');
     const modal=$('.modal');
     const cerrar=$('.cerrar');
     const Aceptar=$('.Aceptar');
+    const NombrePersona= $('#NamePeople');
+    const NoDoc=$('#idDocument');
+
         okFactura.click(function(e){
             modal.addClass('modal--openModal');
             $('#factura').show();
@@ -481,6 +492,8 @@ window.addEventListener('load', async () => {
              e.preventDefault();
              modal.removeClass('modal--openModal');
              });
+
+
              Aceptar.click(function(e){
                  e.preventDefault();
                  swal.fire({
@@ -490,22 +503,24 @@ window.addEventListener('load', async () => {
                  timer:1500
                 });
                 modal.removeClass('modal--openModal');
-                $.ajax({
-                    method:'post',
-                    url:'/sendEmail/'+id,
-                    data:{
-                       _token: token
-                    },
-                    success:function (response){
-                        console.log('Correo electrónico enviado con éxito.');
-                    },
-                   error:function(xhr, status, error){
-                    console.error('Error al enviar el correo electrónico:', error);
-                   }
-             });
+            //     $.ajax({
+            //         method:'post',
+            //         url:'/sendEmail/'+id,
+            //         data:{
+            //            _token: token
+            //         },
+            //         success:function (response){
+            //             console.log('Correo electrónico enviado con éxito.');
+            //         },
+            //        error:function(xhr, status, error){
+            //         console.error('Error al enviar el correo electrónico:', error);
+            //        }
+            //  });
+
 
      });
     });
+
 
 
 

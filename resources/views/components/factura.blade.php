@@ -93,7 +93,7 @@
     .tituloF {
         margin-bottom: -10px;
         font-weight: 700px;
-        font-size: 50px
+        font-size: 50px;
     }
 
     @media screen and (max-width:768px) {
@@ -142,18 +142,25 @@
         box-shadow: 0 2px 5px rgb(253 8 8 / 79%);
     }
 
+    @media screen and (max-width:1009px) {
+        table {
+            font-size: 12px;
+        }
+
+    }
+
     .PrecioTotal {
         width: 300px;
         background-color: #ffffff;
         border: 1px solid #ccc;
         border-radius: 5px;
-        box-shadow: 0 2px 5px rgb(253 8 8 / 79%);
         margin: 0 auto;
         padding: 20px;
         text-align: center;
     }
 </style>
 <section>
+
     <div class="modal" id="factura">
         <div class="modal_container mb-2" style="margin-top:5%">
             <img src="{{ asset('img/logo-i.png') }}" id="imagen-logo">
@@ -161,20 +168,26 @@
             <div class="container text-center">
                 <div class="row">
                     <div class="col-6">
-                        <span>Factura No: <strong id="idFactura">00ID FACTURA</strong> </span>
+                        <span>Factura No: <strong id="idFactura"></strong> </span>
                     </div>
                     <div class="col-6">
-                        <span>Fecha de facturación: <strong id="fechaFactura">DIA/MES/AÑO</strong> </span>
+
+                        <span>Fecha de facturación: <strong id="fechaFactura"><?= $fecha = date('m/d/y') ?>
+                            </strong></span>
+                    </div>
+                    <div class="col-6 mt-2">
+                        <span>Cliente: <strong id="NamePeople"></strong></span>
+
+                    </div>
+                    <div class="col-6 mt-2">
+                        <span>No.Identificación: <strong id="idDocument"></strong></span>
+
                     </div>
                     <div class="container  d-flex justify-content-center align-items-center mt-2">
-                        <span>Cliente: <strong id="NamePeople">Nombre De la persona</strong></span>
+                        <span> Lugar de envio y/o Entrega: <strong id="idDireccion"></strong></span>
+
                     </div>
-                    <div class="col-6">
-                        <span>No.Identificación: <strong id="idDocument">Documento</strong></span>
-                    </div>
-                    <div class="col-6">
-                        <span> Lugar de envio y/o Entrega: <strong id="idDireccion">Dirección</strong></span>
-                    </div>
+
                 </div>
             </div>
             <div class="table-resposive">
@@ -191,15 +204,8 @@
                         </tr>
                     </thead>
 
-                    <tbody>
-
-                        <tr>
-                            <td class="nameTD">1</td>
-                            <td class="nameTD">televisor</td>
-                            <td class="nameTD">100000</td>
-                            <td class="nameTD">1</td>
-                            <td class="nameTD">10000</td>
-                        </tr>
+                    <tbody id="IdDatos">
+                        {{-- AQUI SE VAN AGREGANDO LOS DATOS  --}}
                     </tbody>
                 </table>
 
@@ -207,7 +213,7 @@
 
             <div class="PrecioTotal">
                 <span>Precio total(COP):
-                    <strong>$10000</strong>
+                    <strong style="color: green">$10000</strong>
             </div>
 
             </span>
@@ -219,5 +225,73 @@
 
         </div>
     </div>
+    <script src="{{ asset('js/JQuery.min.js') }}"></script>
+    <script>
+        const bill = "{{ url('/') }}" + "/api/bill/" + "{{ Auth::user()->id }}";
 
+        const url2 = "{{ url('/') }}" + "/api/users/" + "{{ Auth::user()->id }}";
+        fetch(url2)
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(function(data) {
+                const user = data.data[0];
+                const NamePeople = user.first_name + ' ' + user.last_name;
+                document.getElementById('NamePeople').innerHTML = NamePeople;
+                const typeId = user.document;
+                document.getElementById('idDocument').innerHTML = typeId;
+            })
+
+            .catch(function(error) {
+                console.log(error);
+            });
+            
+            //AQUI ESTOY CONSUMIENDO EL API DE BILLS
+            $(document).ready(function() {
+                $.ajax({
+            url: bill,
+            method: 'get',
+            dataType: 'json',
+            success: function(data) {
+                const bills = data.data[0];
+                console.log(bills);
+                $('#idFactura').text('00' + bills.bill_id);
+                const tbody = $('#IdDatos');
+                let No = 1;
+                    const row = $('<tr>');
+                    const Num = $('<td>').text(No++);
+                    const productName = $('<td>').text(bills.product_name);
+                    const productPrice = $('<td>').text(bills.price);
+                    const productQuaty = $('<td>').text(bills.qty);
+                    const total = bills.price * bills.qty;
+                    const productTotal = $('<td>').text(total);
+                        row.append(Num,productName,productPrice,productQuaty,productTotal);
+                        tbody.append(row);
+
+                        //SE SUPONE QUE AQUI EMPIEZA ACREAR FILAS Y AGREGAR EL CONTENIDO DE BILLS
+                //         for (let i = 0; i < bills.length; i++) {
+                //     const producto = bills[i];
+                //     const row = $('<tr>');
+                //     const Num = $('<td>').text(No++);
+                //     const productName = $('<td>').text(producto.product_name);
+                //     const productPrice = $('<td>').text(producto.price);
+                //     const productQuaty = $('<td>').text(producto.qty);
+                //     const total = producto.price * producto.qty;
+                //     const productTotal = $('<td>').text(total);
+                //         row.append(Num,productName,productPrice,productQuaty,productTotal);
+                //         tbody.append(row);
+                //    }
+
+            },
+            error: function(error) {
+        console.error('Error en la solicitud AJAX:', error);
+    }
+        });
+
+});
+
+    </script>
 </section>
