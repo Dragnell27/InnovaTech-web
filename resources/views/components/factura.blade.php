@@ -177,7 +177,7 @@
                     </div>
                     <div class="col-6 mt-2">
                         <span>Cliente: <strong id="NamePeople">{{Auth::user()->first_name  }} {{Auth::user()->last_name  }} </strong></span>
-                        
+
                         {{--  Esto fue lo que modifique para mostra el nombre del usuario  --}}
 
                     </div>
@@ -215,7 +215,7 @@
 
             <div class="PrecioTotal">
                 <span>Precio total(COP):
-                    <strong style="color: green">$10000</strong>
+                    <strong id="total" style="color: green">$10000</strong>
             </div>
 
             </span>
@@ -250,7 +250,7 @@
         //    .catch(function(error) {
         //        console.log(error);
         //    });
-        //    
+        //
             //AQUI ESTOY CONSUMIENDO EL API DE BILLS
             $(document).ready(function() {
                 $.ajax({
@@ -259,7 +259,7 @@
             dataType: 'json',
             success: function(data) {
                 const bills = data.data[0];
-             
+
                 $('#idFactura').text('00' + bills.bill_id);
                 const tbody = $('#IdDatos');
                 let No = 1;
@@ -273,7 +273,7 @@
                         const total = item.price * item.qty;
                         const productTotal = $('<td>').text(total);
                             row.append(Num,productName,productPrice,productQuaty,productTotal);
-                            tbody.append(row);                    
+                            tbody.append(row);
                  });
 
                         //SE SUPONE QUE AQUI EMPIEZA ACREAR FILAS Y AGREGAR EL CONTENIDO DE BILLS
@@ -298,5 +298,8 @@
 
 });
 
+    </script>
+    <script>
+        var id = {{ Auth::user()->id }};
     </script>
 </section>

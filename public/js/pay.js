@@ -41,7 +41,17 @@ paypal.Buttons({
                 showConfirmButton:true,
               }).then((result )=>{
                 if(result.isConfirmed){
-                    window.location.href = "/";
+                    const modal=$('.modal');
+                    modal.addClass('modal--openModal');
+                    $('#factura').show();
+                    fetch('api/bill/'+id)
+                    .then(response =>{
+                        if(response.ok){
+                            console.log("Cambiado correctamente");
+                        }else{
+                            console.log("No se pudo cambiar, codigo de estado:" + response.status);
+                        }
+                    })
                 }
               })
 

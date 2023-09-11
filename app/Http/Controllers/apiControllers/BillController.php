@@ -7,6 +7,9 @@ use App\Models\Sales;
 use App\Models\sales_detail;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BillResource;
+use Darryldecode\Cart\Cart;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class BillController extends Controller
 {
@@ -28,7 +31,7 @@ class BillController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     */
+     */ 
     public function store(Request $request)
     {
         //
@@ -49,7 +52,7 @@ class BillController extends Controller
         ->get());
 
         return $data;
-       
+
     }
 
     /**
@@ -63,11 +66,16 @@ class BillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,$id)
     {
-        //
+        $cambio = 10;
+        Sales::where("user_id", $id)->where("param_status",5)->where("param_shipping",14)
+        ->update(["param_shipping" => $cambio]);
+            $seccion = app('session');
+            if($seccion->has('cart')){
+                $seccion->forget('cart');
+            }
     }
-
     /**
      * Remove the specified resource from storage.
      */

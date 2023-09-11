@@ -8,6 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Sale_detail;
 use App\Http\Controllers\Salescontroller as ControllersSalescontroller;
 use App\Http\Controllers\Pay\PaypalController;
+use LaravelLang\Publisher\Console\Update;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,5 @@ Route::apiResource('comment', CommentController::class);
 //@Jhonmurillo
 Route::apiResource('/sale', SalesController::class);
 Route::apiResource('/shopping', Sale_detail::class);
-
 //api para la factura
 Route::apiResource("/bill",BillController::class);

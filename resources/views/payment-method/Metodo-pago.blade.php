@@ -83,6 +83,7 @@
             </main>
         </div>
     </div>
+    @include('components.factura')
 @endif
 @extends('layouts.footer')
 
