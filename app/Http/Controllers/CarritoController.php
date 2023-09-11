@@ -19,7 +19,7 @@ class CarritoController extends Controller
      public function mySales(){
 
         $productos = null;
-        //Auth::user()->id; 
+        //Auth::user()->id;
         $userId = Auth::user()->id;//id el usuario
 
             $result = Sales::where("user_id",$userId)->where("param_shipping",14)->where("param_status",5)->get();
@@ -34,7 +34,7 @@ class CarritoController extends Controller
 
                 $productos = $updatedProducts;
             }
-        
+
             Session::put('msj', json_encode($productos));
             return response()->json($productos);
      }
@@ -177,7 +177,7 @@ class CarritoController extends Controller
 
            ));
 
-          
+
            Session::forget('cart');
            Session::put("cart",Cart::getContent());
            Session::forget('nolog');
@@ -354,9 +354,9 @@ public function validarCompra($usuario){
     {
         $products;
         Session::forget('msj_exitoso');
-       
+
         return view('components.cart.cart-show');
-       
+
     }
 
     /**
@@ -381,7 +381,7 @@ public function validarCompra($usuario){
     public function destroy(string $id)
     {
         //
-        
+
         Session::forget('msj');
           if (Auth::check()) {
             $userId = Auth::user()->id;
@@ -396,8 +396,8 @@ public function validarCompra($usuario){
                 "param_status"=>6,
             ]);
 
-            //verificar si la compra ya esta vacia 
-            
+            //verificar si la compra ya esta vacia
+
             $compras = sales_detail::where("sale_id",$Sid)->where("param_status",5)->get();
             $total = 0;
             foreach ($compras as $key => $value) {
@@ -410,7 +410,7 @@ public function validarCompra($usuario){
 
             Session::forget('cart');
             Session::put("cart",Cart::session($userId)->getContent());
-       
+
           }else{
             Cart::remove($id);
 
@@ -419,7 +419,7 @@ public function validarCompra($usuario){
 
            Session::forget('nolog');
            Session::put("nolog",Cart::getContent());
-         
+
           }
 
         return redirect()->route("cart.show")->with("msj_destroy","El elemento fue eliminado");
