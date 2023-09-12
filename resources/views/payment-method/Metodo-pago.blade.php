@@ -84,11 +84,20 @@
                         </li>
                     </ul>
                     <br>
-                    <div id="paypal-button-container"></div>
                     <script>
                      jsVariable = "<?php echo $total; ?>"
                     </script>
-               <script src="{{ asset('js/pay.js') }}"></script>
+                <script src="{{asset('js/pay.js')}}"></script>
+                <script
+                  src="https://checkout.wompi.co/widget.js"
+                  data-render="button"
+                  data-public-key="pub_test_pkJWFCBCVgr3jnSgq4s4FjT1KGTn6xtN"
+                  data-currency="COP"
+                  data-amount-in-cents="4950000"
+                  data-reference="4XMPGKWWPKWQ"
+                  data-signature:integrity="37c8407747e595535433ef8f6a811d853cd943046624a0ec04662b17bbf33bf5"
+                  >
+                </script>
             </main>
         </div>
     </div>
