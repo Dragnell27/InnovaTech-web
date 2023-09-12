@@ -3,30 +3,32 @@
 <link rel="stylesheet" href="{{ asset('css/mis_compras.css') }}">
 <style>
     .estado-texto {
-    font-weight: bold;
-    font-size: 18px;
-}
-    .producto{
-    font-weight: bold;
-}
-    .compra{
-    font-weight: bold;
-}
-
-    .estado-texto.entregado{
-    color: green;
-}
-
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .producto {
+        font-weight: bold;
+    }
+    .compra {
+        font-weight: bold;
+    }
+    .estado-texto.entregado {
+        color: green;
+    }
     .Pendiente {
-    color: yellow;
-}
+        color: yellow;
+    }
 </style>
 <script>
     var id = {{ Auth::user()->id }};
 </script>
 @if(Auth::user())
 <?php
-$Salescount = DB::table('sales')->where('user_id', Auth::user()->id)->count();
+$Salescount = DB::table('sales')
+    ->where('user_id', Auth::user()->id)
+    ->where('param_status', 5)
+    ->whereNotIn('param_shipping', [14])
+    ->count();
 ?>
 @endif
 @if ($Salescount > 0)
@@ -38,19 +40,16 @@ $Salescount = DB::table('sales')->where('user_id', Auth::user()->id)->count();
         <h1>Mis compras</h1>
     </div>
     <div class="row justify-content-center " id="content">
+        <!-- Aquí puedes agregar contenido relacionado con las compras si las hay -->
     </div>
 </div>
 <script src="{{ asset('js/sales.js') }}"></script>
 @else
 <div class="container">
-</script>
-<div class="text-center mt-5">
-    <img src="{{ asset('img/sin compras.png') }}" alt="sin compra">
-    <h1>No tienes compras</h1>
+    <div class="text-center mt-5">
+        <img src="{{ asset('img/sin compras.png') }}" alt="sin compra">
+        <h1>No tienes compras</h1>
+    </div>
 </div>
 @endif
 @endsection
-
-
-
-
