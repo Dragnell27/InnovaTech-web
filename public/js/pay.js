@@ -15,7 +15,6 @@ window.addEventListener("load",()=>{
 
 })
 
-
 paypal.Buttons({
     style:{
         color: 'blue',
@@ -38,6 +37,7 @@ paypal.Buttons({
                 position: 'center',
                 icon: 'success',
                 title: 'Compra exitosa',
+                confirmButton :"Ver factura",
                 showConfirmButton:true,
               }).then((result )=>{
                 if(result.isConfirmed){

@@ -299,7 +299,4 @@
 });
 
     </script>
-    <script>
-        var id = {{ Auth::user()->id }};
-    </script>
 </section>

@@ -20,7 +20,16 @@
                     <div class="rounded " style="background-color: #F8F8F8;">
                         <h4 class="d-flex justify-content-between align-items-center mt-2">
                             <span class="text-danger">Resumen de compra</span>
-                            <span class="badge bg-danger rounded-pill">3</span>
+                            @if(Auth::check())
+                            <?php
+                                $conteo = Cart::session(Auth::user()->id)->getContent()->count();
+                            ?>
+                            @else
+                            <?php
+                            $conteo = Cart::getContent()->count();
+                            ?>
+                            @endif
+                            <span class="badge bg-danger rounded-pill">{{ $conteo }}</span>
                         </h4>
                     </div>
                     <?php

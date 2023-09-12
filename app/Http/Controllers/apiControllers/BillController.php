@@ -10,6 +10,7 @@ use App\Http\Resources\BillResource;
 use Darryldecode\Cart\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
 
 class BillController extends Controller
 {
@@ -31,7 +32,7 @@ class BillController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     */ 
+     */
     public function store(Request $request)
     {
         //
@@ -54,6 +55,12 @@ class BillController extends Controller
         return $data;
 
     }
+    public function actualizar($id){
+        $userid = $id;
+        Sales::where("user_id",$userid)->where("param_status",5)->where("param_shipping",14)
+        ->update(["param_shipping" => 10]);
+        Session::forget('cart');
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -66,15 +73,9 @@ class BillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, String $id)
     {
-        $cambio = 10;
-        Sales::where("user_id", $id)->where("param_status",5)->where("param_shipping",14)
-        ->update(["param_shipping" => $cambio]);
-            $seccion = app('session');
-            if($seccion->has('cart')){
-                $seccion->forget('cart');
-            }
+        //
     }
     /**
      * Remove the specified resource from storage.
