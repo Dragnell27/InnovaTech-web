@@ -81,6 +81,27 @@
     display: initial;
 }
 
+.product-center {
+    /* Estilo general de la tarjeta */
+    width: 300px; /* Ajusta el ancho según tus necesidades */
+    padding: 10px;
+    overflow: hidden; /* Oculta el desbordamiento de contenido */
+  }
+  
+  .description-scroll {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .product-center:hover .description-scroll {
+    overflow: auto;
+    white-space: normal;
+  }
+  
+
 @media (min-width: 768px) {
     #container {
     margin-top: 100px;

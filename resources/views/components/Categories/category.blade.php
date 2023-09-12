@@ -17,6 +17,9 @@
                     <h1>{{ $name->name }}</h1>
                     <h6 class="text-dark">Esta categoría contiene ({{ $products->count() }}) productos</h6>
                 @endif
+                <div>
+                    
+                </div>
             </div>
             <div id="colum_2">
                 <section>
@@ -67,8 +70,12 @@
                                             </div>
                                             <div class="product-center">
                                                 <h4 id="style2" class="titulo">{{ $productos->name }}</h4>
-                                                <p>{{ $productos->description }}</p>
-                                            </div>
+                                                <div class="description-scroll">
+                                                  {{ $productos->description }}
+                                                </div>
+                                              </div>
+                                              
+                                              
                                             <div class="product-right">
                                                 <button class="{{ $agregado_lista }} btn float-end mt-3"
                                                     data-product_id="{{ $productos->id }}"
@@ -112,5 +119,4 @@
         var token = '{{ csrf_token() }}';
     </script>
     <script src="{{ asset('js/wishlist.js') }}"></script>
-    <script src="{{ asset('js/categories.js') }}"></script>
 @endsection
