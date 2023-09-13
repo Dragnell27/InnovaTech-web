@@ -12,7 +12,7 @@ if(Auth::check()){
 ?>
 <div id="item-container">
     <div id="contact-title">
-        <h1>Contáctanos</h1>
+        <h1 style="color: #fff5ee">Contáctanos</h1>
     </div>
 </div>
 <div class="container">

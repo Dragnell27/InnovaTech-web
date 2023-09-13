@@ -46,11 +46,10 @@
 
 
                 <div class="sidebar" style="background-color: white; top:11%;" id="sidebar">
-                    {{--  <a href="#"
-                        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                        <span class="fs-4"><img src="{{ asset('img/logo-i.png') }}" height="50px" style="margin: 1px"></span>
-                    </a>  --}}
+                    
+                 
                     <ul id="sidebar-links">
+                       
                         @auth
                             <li class="links">
                                 <a class="ocultar" href="{{ route('users.show', Auth::user()->id) }}">
@@ -72,9 +71,7 @@
                         @endauth ()
                         <li class="links justify-content-center align-items-center">
                             <a class="ocultar" href="{{ route('wishlist.index') }}"  style="display: flex;  align-items: center;">
-                                {{--  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
-                                    <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
-                                </svg>  --}}
+                           
                                 <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27"   fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                                   </svg>
@@ -88,8 +85,7 @@
                                 <form action="{{ Route('cart.show') }}" method="get">
 
                                         <button type="submit" id="btnCarrito" class="" style="margin-top: 0 !important; height: 27px !important; width: 45px !important; margin-left:3px" >
-                                            {{--  <img src="{{ asset('img/carro_compra.png') }}"  width="25px" height="25px"
-                                                alt="">  --}}
+                                      
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                                                     <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                                                   </svg>
@@ -129,6 +125,8 @@
                     </ul>
                     <hr class="hr-sidebar">
                     <div class="categories-container" id="categorySidebar">
+                        
+                        
 
                     </div>
                 </div>
@@ -211,14 +209,14 @@
 
               </svg></i>
               <i class="uil search-icon inactive" id="search-close">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                   </svg>
+              
             </i>
             <div class="search-box">
-                <i class="uil search-icon" id="search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <i class="uil search-icon" id="search" >
+                    <svg  id="search-iconsito" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                   </svg>
                 </i>
