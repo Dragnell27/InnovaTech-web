@@ -281,8 +281,8 @@ a:hover {
         margin-left: 0;
     }
     #query{
-      
-        margin-left: 0;
+
+        margin-left: 0 !important;
     }
     #sidebar-links {
         display: block; /* Muestra el contenedor en pantallas pequeñas */
