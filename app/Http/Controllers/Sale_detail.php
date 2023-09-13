@@ -42,16 +42,16 @@ class Sale_detail extends Controller
      */
     public function show($id)
     {
-        $sales = Sales::where('user_id',$id)->where("param_status",5)->whereNotIn('param_shipping',14)->get();
+        $sales = Sales::where('user_id',$id)->where("param_status",5)->where("param_shipping","!=",14)->get();
         $arrSales = [];
 
         foreach ($sales as $sale){
-
             $details = Sales_detail::where('sale_id', $sale->id)->get();
             foreach ($details as $date){
              $producto = product::where('products.id',$date->product_id)
-            ->get();
-            $estado = Param::where('params.id',$date->param_status)->get();
+             ->get();
+             $estado =  Sales::where('sales.id',$date->sale_id)->get();
+            // $estado = Param::where('params.id',$date->param_status)->get();
             $fecha = Sales_detail::where('created_at',$date->created_at)->get();
 
                 $arrSales[$sale->id][] = [
@@ -60,7 +60,7 @@ class Sale_detail extends Controller
                     'producto' =>$producto[0]->name,
                     'imagen'=>$producto[0]->images,
                     'qty' => $date->qty,
-                    'estado' =>$estado[0]->name,
+                    'estado' =>$estado[0]->param_shipping,
                     'fecha' =>$fecha[0]->created_at,
                 ];
             }

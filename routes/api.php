@@ -53,6 +53,7 @@ Route::get('/direccionesAdmin', [App\Http\Controllers\apiControllers\ApiAddress:
 Route::apiResource('comment', CommentController::class);
 
 //@Jhonmurillo
+//api de compras y pasarella de pago
 Route::apiResource('/sale', SalesController::class);
 Route::apiResource('/shopping', Sale_detail::class);
 Route::patch("/bill/{id}", [BillController::class,"actualizar"]);

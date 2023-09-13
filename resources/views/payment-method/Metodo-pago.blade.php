@@ -86,17 +86,28 @@
                     <br>
                     <script>
                      jsVariable = "<?php echo $total; ?>"
-                    </script>
-                <script src="{{asset('js/pay.js')}}"></script>
+                     </script>
                 <script
-                  src="https://checkout.wompi.co/widget.js"
-                  data-render="button"
-                  data-public-key="pub_test_pkJWFCBCVgr3jnSgq4s4FjT1KGTn6xtN"
-                  data-currency="COP"
-                  data-amount-in-cents="4950000"
-                  data-reference="4XMPGKWWPKWQ"
-                  data-signature:integrity="37c8407747e595535433ef8f6a811d853cd943046624a0ec04662b17bbf33bf5"
-                  >
+                src="https://checkout.wompi.co/widget.js"
+                data-render="button"
+                data-public-key="pub_test_pkJWFCBCVgr3jnSgq4s4FjT1KGTn6xtN"
+                data-currency="COP"
+                data-amount-in-cents="4950000"
+                data-reference="4XMPGKWWPKWQ"
+                data-signature:integrity="test_integrity_xh3X1tevWpLr1SgvMeWgAbgZupELw3wB"
+                >
+                </script>
+                <script>
+                    var pagar = jsVariable*100;
+                    var elemento = document.querySelector('script[src="https://checkout.wompi.co/widget.js"]');
+                    if(elemento){
+                        elemento.onload = function(){
+                            console.log("El script de Wompi se ha cargado");
+                            elemento.setAttribute('data-amount-in-cents',pagar.toString());
+                        };
+                    }else{
+                        console.log('no se pudo encontrar el elemento');
+                    }
                 </script>
             </main>
         </div>

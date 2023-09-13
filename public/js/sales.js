@@ -12,6 +12,22 @@ try {
                         console.log(sales);
                         var fecha = (sales.fecha).split('T')[0];
                         switch (sales.estado) {
+                            case 10:
+                                var estate = "Pendiente";
+                                break;
+                            case 11:
+                                var estate = "Cancelado";
+                                break;
+                            case 12:
+                            var estate = "Entregado";
+                                break;
+                            case 13:
+                            var estate = "Recibido";
+                                break;
+                            default:
+                                break;
+                        }
+                        switch (estate) {
                             case "Recibido":
                                 var colorElement = "#36B50D";
                                 break;
@@ -36,7 +52,7 @@ try {
 
                         <div class="col-md-9 card-body p-3 justify-content-center align-items-center">
                         <h3 class="mt-4 producto">${sales.producto}</h3>
-                        <font color="${colorElement}"><p class="mt-3 estado-texto">${sales.estado} </p></font>
+                        <font color="${colorElement}"><p class="mt-3 estado-texto">${estate} </p></font>
                         <p class="mt-2 compra">Fecha de compra: ${fecha}</p>
 
                     <div class="col-12 text-end p-3">
