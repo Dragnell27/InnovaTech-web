@@ -1,4 +1,4 @@
-{{-- @include('preloader') --}}
+@include('preloader')
 <!DOCTYPE html>
 <html lang="es">
 <head>
