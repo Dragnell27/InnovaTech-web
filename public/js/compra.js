@@ -496,12 +496,7 @@ window.addEventListener('load', async () => {
 
              Aceptar.click(function(e){
                  e.preventDefault();
-                 swal.fire({
-                 icon:'success',
-                 title:'Compra exitosa',
-                 showConfirmButton:false,
-                 timer:1500
-                });
+               
                 modal.removeClass('modal--openModal');
             //     $.ajax({
             //         method:'post',
@@ -516,7 +511,29 @@ window.addEventListener('load', async () => {
             //         console.error('Error al enviar el correo electrónico:', error);
             //        }
             //  });
+        $.ajax({
+            method:'patch',
+           url:bill2,
+            data:{
+                _token: token
+            },
+            success:function (response){
+                swal.fire({
+                    icon:'success',
+                    title:'Compra exitosa',
+                    showConfirmButton:false,
+                    timer:1500
+                   });
+                     window.location.href='/';
+                            
+                        },
+                       error:function(xhr, status, error){
+                        console.error('Error al comprar:', error);
+                        window.location.reload();
 
+                       }
+
+        });
 
      });
     });

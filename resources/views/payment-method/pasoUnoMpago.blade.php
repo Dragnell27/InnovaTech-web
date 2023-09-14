@@ -352,6 +352,7 @@
     const url = BasUrl + "/api/users/" + id;
     const urlAddress = BasUrl + "/api/address_user/" + id;
     const urlAddressAdmin = BasUrl + "/api/direccionesAdmin/";
+    const bill2= basUrl +'/api/bill/' +Id 
     
     const token = '{{ csrf_token() }}';
     var cities = "{{ route('cities') }}"

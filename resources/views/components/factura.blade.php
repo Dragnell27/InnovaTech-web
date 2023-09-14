@@ -231,26 +231,6 @@
     <script>
         const bill = "{{ url('/') }}" + "/api/bill/" + "{{ Auth::user()->id }}";
 
-        //const url2 = "{{ url('/') }}" + "/api/users/" + "{{ Auth::user()->id }}";
-        //fetch(url2)
-        //    .then(function(response) {
-        //        if (!response.ok) {
-        //            throw new Error('Network response was not ok');
-        //        }
-        //        return response.json();
-        //    })
-        //    .then(function(data) {
-        //        const user = data.data[0];
-        //      //  {{--  const NamePeople = user.first_name + ' ' + user.last_name;
-        //       // document.getElementById('NamePeople').innerHTML = NamePeople;  --}}
-        //        const typeId = user.document;
-        //        document.getElementById('idDocument').innerHTML = typeId;
-        //    })
-//
-        //    .catch(function(error) {
-        //        console.log(error);
-        //    });
-        //
             //AQUI ESTOY CONSUMIENDO EL API DE BILLS
             $(document).ready(function() {
                 $.ajax({
@@ -276,19 +256,7 @@
                             tbody.append(row);
                  });
 
-                        //SE SUPONE QUE AQUI EMPIEZA ACREAR FILAS Y AGREGAR EL CONTENIDO DE BILLS
-                //         for (let i = 0; i < bills.length; i++) {
-                //     const producto = bills[i];
-                //     const row = $('<tr>');
-                //     const Num = $('<td>').text(No++);
-                //     const productName = $('<td>').text(producto.product_name);
-                //     const productPrice = $('<td>').text(producto.price);
-                //     const productQuaty = $('<td>').text(producto.qty);
-                //     const total = producto.price * producto.qty;
-                //     const productTotal = $('<td>').text(total);
-                //         row.append(Num,productName,productPrice,productQuaty,productTotal);
-                //         tbody.append(row);
-                //    }
+
 
             },
             error: function(error) {
