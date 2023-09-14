@@ -23,8 +23,10 @@
 
     <?php
     $check = 'false';
+    $id ="";
     if (Auth::check()) {
         $check = 'true';
+        $id = Auth::user()->id;
     }
 
     ?>
@@ -177,6 +179,7 @@
             <section class="container">
                 <h3 id="commentTitle">Opiniones del producto</h3>
                 <div class="row" id="commentSection">
+                    <div id="commentSection2"></div>
                     <div id="comments-cont" class="col col-md-12"></div>
                 </div>
             </section>
@@ -193,6 +196,7 @@
         var BASE = "{{ url('/') }}";
         var token = '{{ csrf_token() }}';
         var userCheck = "{{ $check }}";
+        var idUser = "{{ $id }}";
     </script>
     <script src="{{ asset('js/wishlist.js') }}"></script>
     <script src="{{ asset('js/producto.js') }}"></script>

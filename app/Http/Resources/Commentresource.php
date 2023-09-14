@@ -14,7 +14,7 @@ class Commentresource extends JsonResource
      * @return array<string, mixed>
      */
     public function bringName($id_user){
-        $name ="joan";
+        $name ="";
         
         $datos = DB::table("users")->select("first_name")->where("id",$id_user)->first();
         
@@ -30,6 +30,7 @@ class Commentresource extends JsonResource
             "hora"=>$this->created_at,
             "estrellas"=>$this->starts,
             "name"=>self::bringName($this->user_id),
+            "userId" => $this->user_id,
         ];
     }
 }

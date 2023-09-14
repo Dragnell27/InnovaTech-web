@@ -50,7 +50,11 @@ if (data.data.length <=0) {
     
         i++;
       //--------------------//
-
+      if(idUser == element.userId){    
+                 document.querySelector("#contenedorcomentarios").style.display = "None"; 
+                 document.querySelector("#commentSection2").innerHTML =`<p style="color: red;">Solo puedes dejar un comentario  </p>`; 
+              
+                     }
     //Creacion de div para los comentarios//
     
     const card = document.createElement("div");
@@ -84,7 +88,7 @@ if (data.data.length <=0) {
     const fecha = element.hora.split(" ");
     
 
-    card_Header.innerHTML="<span>"+fecha[0]+"</span>" + "<span> Usuario: "+element.name+"</span>";
+    card_Header.innerHTML="<span style='color:gray;' >"+fecha[0]+"</span>" + "<span style='color:gray;'> Por: "+element.name+"</span>";
     card_Body.innerHTML = "<span>"+element.comentario+"</span>"
 
     //-------appendchilds---//
@@ -100,27 +104,66 @@ if (data.data.length <=0) {
   
     });
 }
-    
-    
 
 
-    
-   
+const form = document.querySelector("#commentForm");
+form.addEventListener("submit",(e)=>{
+  e.preventDefault();
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger my-2'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: '¿Estas seguro?',
+        text: "No podras deshacer esta acción!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si,Guardar!',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+       form.submit();
+        
+          swalWithBootstrapButtons.fire(
+            'Guardado!',
+            'Tu comentario ha sido guardado!.',
+            'success'
+          )
+        
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelado',
+            'No has enviado tu comentario :)',
+            'info'
+          )
+        }
+      })
 
 });
+    
+});
+
+
 
 function handleClick(){
-   
+    commentContainer1 = document.querySelectorAll(".cardComment");
   
-    if(botonCargar.innerHTML  == "Ver menos"){
-        botonCargar.innerHTML = "Ver mas"
-    }else{
-        botonCargar.innerHTML = "Ver menos"
-
-    }
-    commentContainer.forEach((element)=>{
-        element.classList.toggle("inactive")
-    });
-}
-
-
+      if(botonCargar.innerHTML  == "Ver menos"){
+          botonCargar.innerHTML = "Ver mas"
+      }else{
+          botonCargar.innerHTML = "Ver menos"
+  
+      }
+      commentContainer1.forEach((element)=>{
+          element.classList.toggle("inactive")
+      });
+  }
+  
