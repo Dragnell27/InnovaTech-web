@@ -87,32 +87,24 @@
                     <script>
                      jsVariable = "<?php echo $total; ?>"
                      </script>
-                <script
-                src="https://checkout.wompi.co/widget.js"
-                data-render="button"
-                data-public-key="pub_test_pkJWFCBCVgr3jnSgq4s4FjT1KGTn6xtN"
-                data-currency="COP"
-                data-amount-in-cents="4950000"
-                data-reference="4XMPGKWWPKWQ"
-                data-signature:integrity="test_integrity_xh3X1tevWpLr1SgvMeWgAbgZupELw3wB"
-                >
-                </script>
-                <script>
-                    var pagar = jsVariable*100;
-                    var elemento = document.querySelector('script[src="https://checkout.wompi.co/widget.js"]');
-                    if(elemento){
-                        elemento.onload = function(){
-                            console.log("El script de Wompi se ha cargado");
-                            elemento.setAttribute('data-amount-in-cents',pagar.toString());
-                        };
-                    }else{
-                        console.log('no se pudo encontrar el elemento');
-                    }
-                </script>
+
+                     <form action="https://checkout.wompi.co/p/" method="GET">
+                        @csrf
+                        <!-- OBLIGATORIOS -->
+                        <input type="hidden" name="public-key" value="pub_test_pkJWFCBCVgr3jnSgq4s4FjT1KGTn6xtN" />
+                        <input type="hidden" name="currency" value="COP" />
+                        <input type="hidden" name="amount-in-cents" id="pagar" value="****" />
+                        <input type="hidden" name="reference" id="reference" value="*******" />
+                        <input type="hidden" name="signature:integrity" id="firma" value="*****"/>
+                        {{-- <input type="hidden" name="redirect-url" value="/resources/views/components/factura.blade.php" /> --}}
+
+                        <button type="submit" class="boton-icono btn btn-primary">
+                            <img src="{{ asset('img/wompi.png') }}" alt="Icono" class="wompi">Pagar con <b>Wompi</b></button>
+                    </form>
             </main>
         </div>
     </div>
-    @include('components.factura')
+    <script src="{{ asset('js/pay.js') }}"></script>
 @endif
 @extends('layouts.footer')
 

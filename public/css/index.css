@@ -371,7 +371,12 @@ footer
     font-size: 28px;
 }
 
-
+/* Diseño de botón wompi */
+.wompi {
+    width: 70px;
+    height: 40px;
+    /* margin-right: 5px; */
+}
 /* CARRITO */
 .imagen {
     background-color: pink;
@@ -585,5 +590,6 @@ footer
     right: 20%;
     bottom: 6%;
 }
+
 
 /* Aqui termina carrito */
