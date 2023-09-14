@@ -87,8 +87,8 @@
                     <script>
                      jsVariable = "<?php echo $total; ?>"
                      </script>
-
-                     <form action="https://checkout.wompi.co/p/" method="GET">
+                    <div id="paypal-button-container"></div>
+                     {{-- <form action="https://checkout.wompi.co/p/" method="GET">
                         @csrf
                         <!-- OBLIGATORIOS -->
                         <input type="hidden" name="public-key" value="pub_test_pkJWFCBCVgr3jnSgq4s4FjT1KGTn6xtN" />
@@ -98,13 +98,14 @@
                         <input type="hidden" name="signature:integrity" id="firma" value="*****"/>
                         {{-- <input type="hidden" name="redirect-url" value="/resources/views/components/factura.blade.php" /> --}}
 
-                        <button type="submit" class="boton-icono btn btn-primary">
+                        <button type="submit" class="boton-icono btn btn-primary col-12">
                             <img src="{{ asset('img/wompi.png') }}" alt="Icono" class="wompi">Pagar con <b>Wompi</b></button>
-                    </form>
+                    </form> --}}
             </main>
         </div>
     </div>
     <script src="{{ asset('js/pay.js') }}"></script>
+    @include('components.factura');
 @endif
 @extends('layouts.footer')
 
