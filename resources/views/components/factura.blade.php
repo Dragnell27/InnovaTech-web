@@ -29,7 +29,7 @@
     .modal_container {
         margin: auto;
         width: 50%;
-        min-width: 430px;
+        min-width: 400px;
         max-width: 100%;
         max-height: 100%;
         background-color: rgb(255, 255, 255);
@@ -110,6 +110,7 @@
         background-color: #f8f8f8;
         overflow: auto;
         text-align: center;
+
     }
 
     thead {
@@ -239,10 +240,10 @@
             dataType: 'json',
             success: function(data) {
                 const bills = data.data[0];
-
                 $('#idFactura').text('00' + bills.bill_id);
                 const tbody = $('#IdDatos');
                 let No = 1;
+                let totalFactura=0;
 //Solo agregue este foreach
                 data.data.forEach((item) => {
                     const row = $('<tr>');
@@ -252,10 +253,11 @@
                         const productQuaty = $('<td>').text(item.qty);
                         const total = item.price * item.qty;
                         const productTotal = $('<td>').text(total);
+                        totalFactura+=total;
                             row.append(Num,productName,productPrice,productQuaty,productTotal);
                             tbody.append(row);
                  });
-
+                 $('#total').text('$'+totalFactura.toFixed(2));
 
 
             },
