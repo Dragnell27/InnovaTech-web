@@ -13,7 +13,7 @@
         <header>
             <!-- place navbar here -->
         </header>
-     
+
         <main style="">
             @if (Session::has('msj_destroy'))
             <?php
@@ -136,8 +136,8 @@
                                                                 </span>
                                                             </strong>
                                                         </div>
-                                                           
-                                                           
+
+
                                                         @endif
 
                                                         <button id="btnDecrement" class="qtyChanger" name="submitButton"
@@ -187,10 +187,9 @@
         <!-- Bootstrap JavaScript Libraries -->
 
 
- <script src="{{ asset('js/cart-show.js') }}">
+<script src="{{ asset('js/cart-show.js') }}">
 
 </script>
-   
 
 
 @endsection

@@ -87,26 +87,38 @@
                     <script>
                      jsVariable = "<?php echo $total; ?>"
                      </script>
-                    <div id="paypal-button-container"></div>
-                     {{-- <form action="https://checkout.wompi.co/p/" method="GET">
-                        @csrf
-                        <!-- OBLIGATORIOS -->
-                        <input type="hidden" name="public-key" value="pub_test_pkJWFCBCVgr3jnSgq4s4FjT1KGTn6xtN" />
-                        <input type="hidden" name="currency" value="COP" />
-                        <input type="hidden" name="amount-in-cents" id="pagar" value="****" />
-                        <input type="hidden" name="reference" id="reference" value="*******" />
-                        <input type="hidden" name="signature:integrity" id="firma" value="*****"/>
-                        {{-- <input type="hidden" name="redirect-url" value="/resources/views/components/factura.blade.php" /> --}}
+                    {{-- <div id="paypal-button-container"></div> --}}
 
-                        <button type="submit" class="boton-icono btn btn-primary col-12">
-                            <img src="{{ asset('img/wompi.png') }}" alt="Icono" class="wompi">Pagar con <b>Wompi</b></button>
-                    </form> --}}
-            </main>
-        </div>
-    </div>
-    <script src="{{ asset('js/pay.js') }}"></script>
-    @include('components.factura');
+                    {{-- OBTENER NUMERO DE REFERENCIA --}}
+                    <?php
+                    $caracter = "ABCDEFGHJKLMNPQRSTUVWXYZ2356789";
+                    $result = "";
+                    for ($i = 0; $i < 4; $i++) {
+                        $result.= $caracter[rand(0, strlen($caracter) - 1)];
+                    }
+                    $referencia = $result.date('YmdHis');
+                    ?>
+
+                        {{-- PASARELA DE PAGOS CON WOMPI --}}
+                        <script
+                        src="https://checkout.wompi.co/widget.js"
+                        data-render="button"
+                        data-public-key="pub_test_pkJWFCBCVgr3jnSgq4s4FjT1KGTn6xtN"
+                        data-currency="COP"
+                        data-amount-in-cents="{{($total)*100}}"
+                        data-reference="{{ $referencia }}"
+                        data-redirect-url="{{ route('shopping',Auth::user()->id)}}"
+                        >
+                        </script>
+
+</main>
+</div>
+</div>
+<script src="{{ asset('js/pay.js') }}"></script>
+@include('components.factura');
 @endif
 @extends('layouts.footer')
 
 </section>
+
+{{-- data-signature:integrity="37c8407747e595535433ef8f6a811d853cd943046624a0ec04662b17bbf33bf5" --}}
