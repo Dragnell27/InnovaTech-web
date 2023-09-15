@@ -7,7 +7,7 @@ use App\Models\Sales;
 use App\Models\sales_detail;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BillResource;
-use Darryldecode\Cart\Cart;
+use Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
@@ -55,10 +55,15 @@ class BillController extends Controller
         return $data;
 
     }
-    public function actualizar(Request $request, $id){
-        Sales::where("user_id",$id)->where("param_status",5)->where("param_shipping",14)
+    public function actualizar($id){
+
+        Sales::where("user_id",$id)
+        ->where("param_status",5)
+        ->where("param_shipping",14)
         ->update(["param_shipping" => 10]);
-        $request->session()->forget('cart');
+        Cart::session($id)->clear();
+        Session::forget("cart");
+        return redirect()->route("index");
     }
 
     /**

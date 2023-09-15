@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\apiControllers\BillController;
 use App\Http\Controllers\ParamController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -183,3 +184,4 @@ Route::get('/get-details', [PayController::class, 'mostrar']);
 
 //ruta de pago
 Route::put('/pago/{id}', [PayController::class, 'update'])->name('pago.update');
+Route::get('/shooping/{id}', [BillController::class, 'actualizar'])->name('shopping');

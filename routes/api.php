@@ -56,6 +56,6 @@ Route::apiResource('comment', CommentController::class);
 //api de compras y pasarella de pago
 Route::apiResource('/sale', SalesController::class);
 Route::apiResource('/shopping', Sale_detail::class);
-Route::patch("/bill/{id}", [BillController::class,"actualizar"]);
+
 //api para la factura
 Route::apiResource("/bill",BillController::class);
