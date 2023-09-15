@@ -123,31 +123,33 @@
 
                         <button type="submit" class="btn btn-danger">Registrarse</button>
                     </form>
-
                 </div>
-    </body>
+            </div>
+        </div>
+    @endsection
+</body>
 
-    <script>
-        const csrfToken = "{{ csrf_token() }}";
-        document.addEventListener("DOMContentLoaded", function() {
-            var ruta = "{{ route('document_type') }}"
-            fetch(ruta, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-Token': csrfToken
-                }
+<script>
+    const csrfToken = "{{ csrf_token() }}";
+    document.addEventListener("DOMContentLoaded", function() {
+        var ruta = "{{ route('document_type') }}"
+        fetch(ruta, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken
+            }
 
-            }).then(response => {
-                return response.json();
-            }).then(data => {
-                var opciones = '<option value="">-- Seleccionar --</option>';
-                for (let i in data.type) {
-                    opciones += `<option value="${data.type[i].id}">${data.type[i].name}</option>`;
-                }
-                document.getElementById("tipo_documento").innerHTML = opciones;
-            }).catch(error => console.error(error));
-        });
-    </script>
+        }).then(response => {
+            return response.json();
+        }).then(data => {
+            var opciones = '<option value="">-- Seleccionar --</option>';
+            for (let i in data.type) {
+                opciones += `<option value="${data.type[i].id}">${data.type[i].name}</option>`;
+            }
+            document.getElementById("tipo_documento").innerHTML = opciones;
+        }).catch(error => console.error(error));
+    });
+</script>
 
-    </html>
+</html>

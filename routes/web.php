@@ -21,6 +21,7 @@ use App\Models\Wishlist;
 use App\Http\Controllers\CategoryController;
 use App\Models\Carrusel;
 use App\Http\Controllers\PayController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\facturas;
@@ -50,40 +51,40 @@ Route::get('/aboutUs', function () {
 
 
 //RUTA INDIVIDUAL DE PRODUCTOS//
-Route::get('productos/{id}', [ProductosController::class , 'show'])->name('productos.show');
+Route::get('productos/{id}', [ProductosController::class, 'show'])->name('productos.show');
 
 //Rutas del carrito//
 
-Route::get("/cart-forget",[App\Http\Controllers\CarritoController::class,'index'])->name("cart.forget");
-Route::get("/cart-show",[App\Http\Controllers\CarritoController::class,'show'])->name("cart.show");
-Route::get("/cart-added",[App\Http\Controllers\CarritoController::class,'create'])->name("cart.add");
-Route::get("/destroy/{idProducto}",[App\Http\Controllers\CarritoController::class,'destroy'])->name("cart.destroy");
-Route::POST('/Cart-Checkout',[App\Http\Controllers\CarritoController::class,'store'])->name("cart.store");
-Route::get("update-cart",[App\Http\Controllers\CarritoController::class,'updateCart'])->name("update-cart");
-ROUTE::view('components/cart/cart-show','components/cart/cart-show') ->name('cart');
-Route::POST("/mySales",[App\Http\Controllers\CarritoController::class,'mySales'])->name("my-sales");
+Route::get("/cart-forget", [App\Http\Controllers\CarritoController::class, 'index'])->name("cart.forget");
+Route::get("/cart-show", [App\Http\Controllers\CarritoController::class, 'show'])->name("cart.show");
+Route::get("/cart-added", [App\Http\Controllers\CarritoController::class, 'create'])->name("cart.add");
+Route::get("/destroy/{idProducto}", [App\Http\Controllers\CarritoController::class, 'destroy'])->name("cart.destroy");
+Route::POST('/Cart-Checkout', [App\Http\Controllers\CarritoController::class, 'store'])->name("cart.store");
+Route::get("update-cart", [App\Http\Controllers\CarritoController::class, 'updateCart'])->name("update-cart");
+ROUTE::view('components/cart/cart-show', 'components/cart/cart-show')->name('cart');
+Route::POST("/mySales", [App\Http\Controllers\CarritoController::class, 'mySales'])->name("my-sales");
 ///HASTA aqui//
 
 /////////////////////////////
 ///   Rutas confirmadas   ///
 /////////////////////////////
 Route::get('/', function () {
-    $products = Product::where("param_state",5)->paginate(10);
+    $products = Product::where("param_state", 5)->paginate(10);
     $colors = Param::where('paramtype_id', 11)->get();
-    $carrusel = Carrusel::orderBy('position')->where("param_state",5)->get();
+    $carrusel = Carrusel::orderBy('position')->where("param_state", 5)->get();
     $favoritos = [];
 
     if (Auth::check()) {
-        $favoritos = Wishlist::where('user_id', Auth::user()->id)->where('param_state',5)->get();
+        $favoritos = Wishlist::where('user_id', Auth::user()->id)->where('param_state', 5)->get();
     }
-    return view('index',compact('products', 'colors', 'favoritos','carrusel'));
+    return view('index', compact('products', 'colors', 'favoritos', 'carrusel'));
 })->name('index');
 
 //Ruta de jaider, sirve para cargar los tipos de docuemnto en el registro
-Route::post("document_types",[RegisterController::class, 'document_type'])->name("document_type");
+Route::post("document_types", [RegisterController::class, 'document_type'])->name("document_type");
 
 //Ruta de jaider, permite iniciar sesion y acceser al registro
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 //Ruta de jaider, trae los municipios
 Route::post('ciudades', [AddressController::class, 'cargarCiudades'])->name('cities');
@@ -97,10 +98,10 @@ Route::middleware('auth')->resource('perfil/direcciones', AddressController::cla
 
 //Camilo Alzate Ruta que llama el primer paso de compra
 Route::post('/updateUser/{id}', [UserController::class, 'updateUser']);
-Route::get('/departments/{id}',[ParamController::class, 'nameDepartment']);
-Route::get('/type_documents/{paramtype_id}',[ParamController::class,'tipoDocumet']);
+Route::get('/departments/{id}', [ParamController::class, 'nameDepartment']);
+Route::get('/type_documents/{paramtype_id}', [ParamController::class, 'tipoDocumet']);
 //Camilo Alzate Ruta que llama el primer paso de compra
-Route::post('/sendEmail/{id}',[UserController::class,'enviarEmail']);
+Route::post('/sendEmail/{id}', [UserController::class, 'enviarEmail']);
 // Route::post('/sendEmail',function($id){
 //     $email= User::where('id',$id)->value('email');
 //     Mail::to($email)->send(new facturas);
@@ -108,11 +109,11 @@ Route::post('/sendEmail/{id}',[UserController::class,'enviarEmail']);
 
 // })->name('sendEmail');
 //Ruta que llama Metodo de pago
-Route::view('payment-method/Metodo-pago','payment-method/Metodo-pago')->name('Mpago')->middleware('auth');
+Route::view('payment-method/Metodo-pago', 'payment-method/Metodo-pago')->name('Mpago')->middleware('auth');
 
-Route::get('payment-method/1',function(){
+Route::get('payment-method/1', function () {
     $departaments = Param::where('paramtype_id', 6)->get();
-    return view('payment-method/pasoUnoMpago',compact('departaments'));
+    return view('payment-method/pasoUnoMpago', compact('departaments'));
 })->name('Mpago')->middleware("auth");
 
 
@@ -124,8 +125,8 @@ Route::view('/sales/shopping', 'sales/shopping')->name('shopping');
 
 //ruta jaider, lista de deseos
 Route::get('/wishlist', [WishlistController::class, 'index'])->name("wishlist.index")->middleware("auth");
-Route::post('/wishlist', [WishlistController::class,"store"]);
-Route::delete('/wishlist/{id}', [WishlistController::class,"destroy"])->name("wishlist.destroy");
+Route::post('/wishlist', [WishlistController::class, "store"]);
+Route::delete('/wishlist/{id}', [WishlistController::class, "destroy"])->name("wishlist.destroy");
 
 //ruta para faqs
 // Route::post('/faqs/{id}', [faqsController::class, 'store'])->name('faqs.store');
@@ -139,7 +140,7 @@ Route::view('components/Categories/category/{id}', 'components/Categories/catego
 Route::get('api/category', [CategoryController::class, 'index'])->name('category.index'); // Devuelve todas las categorías
 Route::get('api/category/{category}', [CategoryController::class, 'show'])->name('category.show'); // Devuelve productos de
 //ruta para about
-Route::view('about','about')->name('about');
+Route::view('about', 'about')->name('about');
 
 //ruta help
 Route::get('/help', function () {
@@ -151,6 +152,11 @@ Route::resource('comentarios', CommentController::class);
 //Rutas para cambiar contraseña
 Route::post('/change-password', [UserController::class, 'changePassword'])->name('change.password');
 Route::get('/form_password', function () {
+    if (Auth::check()) {
+        if (Auth::user()->email_verified_at == "") {
+            return redirect()->route('verification.notice');
+        }
+    }
     return view('profile.contrasena.update');
 })->name('cambiar_contrasena')->middleware('auth');
 

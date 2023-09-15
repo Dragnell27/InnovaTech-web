@@ -13,22 +13,22 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\facturas;
+use MustVerifyEmail;
 
 class UserController extends Controller
 {
     public function enviarEmail($id)
     {
-       try {
-        $user= User::find($id);
-        $email=$user->email;
-        if (!$email) {
-            return 'el correo no existe';
+        try {
+            $user = User::find($id);
+            $email = $user->email;
+            if (!$email) {
+                return 'el correo no existe';
+            }
+            Mail::to($email)->send(new facturas($user));
+        } catch (\Throwable $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-        Mail::to($email)->send(new facturas($user));
-    } catch (\Throwable $e) {
-        return response()->json(['error' => $e->getMessage()], 500);
-
-    }
     }
 
     /**
@@ -64,18 +64,18 @@ class UserController extends Controller
         ]);
 
         $suscripcion = $request['accept_subscription'] ? 20 : 21;
-        $user = new User();
-        $user->document = $request['número_de_documento'];
-        $user->first_name = $request['first_name'];
-        $user->last_name = $request['last_name'];
-        $user->phone = $request['phone'];
-        $user->email = $request['email'];
-        $user->password = Hash::make($request['password']);
-        $user->param_type = $request['tipo_de_documento'];
-        $user->param_rol = 1;
-        $user->param_suscription = $suscripcion;
-        $user->param_state = 5;
-        $user->save();
+        $user = User::create([
+            'document' => $request['número_de_documento'],
+            'first_name' => $request['first_name'],
+            'last_name' => $request['last_name'],
+            'phone' => $request['phone'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'param_type' => $request['tipo_de_documento'],
+            'param_rol' => 1,
+            'param_suscription' => $suscripcion,
+            'param_state' => 5,
+        ]);
         Auth::login($user);
         return redirect(route('index'));
     }
@@ -85,9 +85,15 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        if (Auth::check()) {
+            if (Auth::user()->email_verified_at == "") {
+                return redirect()->route('verification.notice');
+            }
+        }
+
         $user = Auth::user()->id;
         if ($id != $user) {
-            return redirect(route('users.show',$user))->with([
+            return redirect(route('users.show', $user))->with([
                 'message' => 'Acceso denegado!',
                 'text' => 'No tienes acceso para estar ahí.',
                 'type' => 'error'
@@ -102,10 +108,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        if (Auth::check()) {
+            if (Auth::user()->email_verified_at == "") {
+                return redirect()->route('verification.notice');
+            }
+        }
         $user = Auth::user()->id;
-
         if ($id != $user) {
-            return redirect(route('users.edit',$user))->with([
+            return redirect(route('users.edit', $user))->with([
                 'message' => 'Acceso denegado!',
                 'text' => 'No tienes acceso para estar ahí.',
                 'type' => 'error'
@@ -140,20 +150,21 @@ class UserController extends Controller
         ]);
     }
 
-    public function UpdateUser(Request $request,$id){
-try {
-    $request->validate([
-        'phone' => ['required', 'numeric', 'digits:10'],
-        'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
-    ]);
-    $user = User::findOrFail($id);
-    $user->phone = $request['phone'];
-    $user->email = $request['email'];
-    $user->save();
-    return response()->json(['message'=>'Datos guardados'],200);
-} catch (\Exception $e) {
-   return response()->json(['error'=>$e->getMessage()],500);
-}
+    public function UpdateUser(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'phone' => ['required', 'numeric', 'digits:10'],
+                'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
+            ]);
+            $user = User::findOrFail($id);
+            $user->phone = $request['phone'];
+            $user->email = $request['email'];
+            $user->save();
+            return response()->json(['message' => 'Datos guardados'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
     /**
      * Remove the resource from storage.
@@ -214,5 +225,4 @@ try {
             'type' => 'error'
         ]);
     }
-
 }

@@ -17,6 +17,11 @@ class AddressController extends Controller
     public function index()
     {
         // $addresses = Http::get(env('API') . '/address/' . Auth::user()->id);
+        if (Auth::check()) {
+            if (Auth::user()->email_verified_at == "") {
+                return redirect()->route('verification.notice');
+            }
+        }
         $addresses = Address::where('user_id', Auth::user()->id)->with('city')->get();
         $filter = [];
         foreach ($addresses as $address) {
@@ -34,6 +39,11 @@ class AddressController extends Controller
     public function create()
     {
         // jaider
+        if (Auth::check()) {
+            if (Auth::user()->email_verified_at == "") {
+                return redirect()->route('verification.notice');
+            }
+        }
         $deparments = Param::where('paramtype_id', 6)->get();
         return view('profile.address.create', compact('deparments'));
     }
@@ -97,6 +107,11 @@ class AddressController extends Controller
      */
     public function show($id)
     {
+        if (Auth::check()) {
+            if (Auth::user()->email_verified_at == "") {
+                return redirect()->route('verification.notice');
+            }
+        }
         $addresses = Address::where('user_id', $id)->with('city')->get();
         $data = [];
         foreach ($addresses as $address) {
@@ -112,8 +127,11 @@ class AddressController extends Controller
      */
     public function edit($id)
     {
-
-
+        if (Auth::check()) {
+            if (Auth::user()->email_verified_at == "") {
+                return redirect()->route('verification.notice');
+            }
+        }
         $address = Address::with('city')->findOrFail($id);
         $user = Auth::user()->id;
         if ($address->user_id != $user || $address->param_state != 5) {
