@@ -477,66 +477,116 @@ window.addEventListener('load', async () => {
         });
     });
 
-        const okFactura=$('#okPfisico');
+    const okFactura=$('#okPfisico');
     const modal=$('.modal');
-    const cerrar=$('.cerrar');
-    const Aceptar=$('.Aceptar');
+
     const NombrePersona= $('#NamePeople');
     const NoDoc=$('#idDocument');
 
         okFactura.click(function(e){
-            modal.addClass('modal--openModal');
-            $('#factura').show();
+      swal.fire({
+        title: 'Confirmar compra!',
+        text: "Estas a solo pasos de realizar tu compra!",
+        icon:'info',
+        showCancelButton: true,
+        confirmButtonText: 'Comprar',
+        confirmButtonColor:'#5cb85c',
+        cancelButtonText: 'Cancelar',
+        cancelButtonColor:'#d33',
 
-            cerrar.click( function(e){
-             e.preventDefault();
-             modal.removeClass('modal--openModal');
-             });
 
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swal.fire({
+            title: 'Proceso de compra ',
+        text: "Por favor hacer click en el boton continuar ",
+            icon: 'info',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Continuar',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+          }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '¿Deseas ver tu recibo en pantalla?',
+                    text: "De igual forma este será enviado a tu correo.",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#808080',
+                    cancelButtonText:'Terminar compra',
+                    confirmButtonText: 'Ver recibo',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        modal.addClass('modal--openModal');
+                        $('#factura').show();
 
-             Aceptar.click(function(e){
-                 e.preventDefault();
-               
-                modal.removeClass('modal--openModal');
-            //     $.ajax({
-            //         method:'post',
-            //         url:'/sendEmail/'+id,
-            //         data:{
-            //            _token: token
-            //         },
-            //         success:function (response){
-            //             console.log('Correo electrónico enviado con éxito.');
-            //         },
-            //        error:function(xhr, status, error){
-            //         console.error('Error al enviar el correo electrónico:', error);
-            //        }
-            //  });
-        $.ajax({
-            method:'patch',
-           url:bill2,
-            data:{
-                _token: token
-            },
-            success:function (response){
-                swal.fire({
-                    icon:'success',
-                    title:'Compra exitosa',
-                    showConfirmButton:false,
-                    timer:1500
-                   });
-                     window.location.href='/';
-                            
-                        },
-                       error:function(xhr, status, error){
-                        console.error('Error al comprar:', error);
-                        window.location.reload();
+                        modal.on('click',function(event){
+                            if ($(event.target).hasClass('modal')) {
+                                modal.removeClass('modal--openModal');
+                                $.ajax({
+                                    method:'get',
+                                   url:'/shooping/'+id,
+                                    data:{
+                                        _token: token
+                                    },
+                                    success:function (response){
+                                        swal.fire({
+                                            icon:'success',
+                                            title:'Compra exitosa',
+                                            showConfirmButton:false,
+                                            timer:2500
+                                           });
+                                             window.location.href='/';
 
-                       }
+                                                },
+                                               error:function(xhr, status, error){
+                                                console.error('Error al comprar:', error);
+                                                window.location.reload();
 
-        });
+                                               }
 
-     });
-    });
+                                });
+                              }
+                        })
+                    }else {
+                        $.ajax({
+                            method:'get',
+                           url:'/shooping/'+id,
+                            data:{
+                                _token: token
+                            },
+                            success:function (response){
+                                swal.fire({
+                                    icon:'success',
+                                    title:'Compra exitosa',
+                                    showConfirmButton:false,
+                                    timer:2500
+                                   });
+                                     window.location.href='/';
+
+                                        },
+                                       error:function(xhr, status, error){
+                                        console.error('Error al comprar:', error);
+                                        window.location.reload();
+
+                                       }
+
+                        });
+
+                    }
+                  })
+            }
+          });
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        );
+      });
+
+         });
 
 
 

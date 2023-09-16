@@ -44,51 +44,6 @@
         overflow: auto;
     }
 
-    .cerrar {
-        display: inline-block;
-        text-decoration: none;
-    }
-
-    .cerrar:hover {
-        color: rgb(255, 6, 6);
-
-    }
-
-    .cerrar {
-        text-decoration: none;
-        color: white;
-        background-color: #f26250;
-        padding: 10px 20px;
-        border: 1px solid;
-        border-radius: 6px;
-        display: inline-block;
-        font-weight: 300px;
-        transition: background-color .3s;
-    }
-
-    .cerrar:hover {
-        color: #f26250;
-        background-color: white;
-    }
-
-    .Aceptar {
-        text-decoration: none;
-        color: white;
-        background-color: #4285f4;
-        padding: 10px 20px;
-        border: 1px solid;
-        border-radius: 6px;
-        display: inline-block;
-        font-weight: 500;
-        transition: background-color 0.3s, color 0.3s;
-        cursor: pointer;
-        outline: none;
-    }
-
-    .Aceptar:hover {
-        color: #4285f4;
-        background-color: white;
-    }
 
     .tituloF {
         margin-bottom: -10px;
@@ -221,11 +176,6 @@
 
             </span>
 
-            <div class="mb-2">
-                <input type="submit" value="Confirmar Compra" class="Aceptar">
-                <input type="submit" value="Cancelar" class="cerrar ">
-            </div>
-
         </div>
     </div>
     <script src="{{ asset('js/JQuery.min.js') }}"></script>
@@ -249,15 +199,22 @@
                     const row = $('<tr>');
                         const Num = $('<td>').text(No++);
                         const productName = $('<td>').text(item.product_name);
-                        const productPrice = $('<td>').text(item.price);
+                        const productPrice = $('<td>').text(item.price.toLocaleString('es-CO',{style:'currency', currency:'COP'}));
                         const productQuaty = $('<td>').text(item.qty);
                         const total = item.price * item.qty;
-                        const productTotal = $('<td>').text(total);
+                        const productTotal = $('<td>').text(total.toLocaleString('es-CO',{style:'currency', currency:'COP'}));
+
                         totalFactura+=total;
                             row.append(Num,productName,productPrice,productQuaty,productTotal);
                             tbody.append(row);
                  });
-                 $('#total').text('$'+totalFactura.toFixed(2));
+    const totalFacturaFormateado = totalFactura.toLocaleString('es-CO', {
+        style: 'currency',
+        currency: 'COP',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
+                 $('#total').text(totalFacturaFormateado);
 
 
             },
@@ -267,6 +224,7 @@
         });
 
 });
+
 
     </script>
 </section>
