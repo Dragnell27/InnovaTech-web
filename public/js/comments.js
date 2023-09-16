@@ -98,6 +98,7 @@ if (data.data.length <=0) {
       btn_delete.setAttribute("id",element.commentID)
       btn_delete.addEventListener("click",()=>handleDelete(cardFooter.dataset.id ))
       cardFooter.appendChild(btn_delete);
+     
     }
 
     //sacar la fecha del comentario
@@ -111,11 +112,11 @@ if (data.data.length <=0) {
     card.appendChild(card_Header);
     card_Body.appendChild(star_rating);
     card.appendChild(card_Body);
-    card.appendChild(cardFooter);
+  
     
     container.appendChild(card);
 
-
+(idUser == element.userId)?card.appendChild(cardFooter):"";
 
     //-------------------//
   
