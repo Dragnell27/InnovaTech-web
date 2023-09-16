@@ -81,6 +81,19 @@
     columns: 6;
     cursor: pointer;
 }
+#menu-close{
+    color: red;
+  cursor: pointer;
+}
+#menu-logo1 {
+    height: 30px;
+    columns: 6;
+    cursor: pointer;
+}
+#menu-close1{
+    color: red;
+  cursor: pointer;
+}
 .hr-sidebar {
     border: none;
     height: 5px;
@@ -370,10 +383,7 @@ a:hover {
     }
 
 }
-#menu-close{
-    color: red;
-  cursor: pointer;
-}
+
 .spansText{
     top: 3px;
     position: relative;
