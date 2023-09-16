@@ -9,7 +9,6 @@ try {
                     const venta = data[compra];
                     var datos = '<div class="card mb-5"><div class="row">';
                     for (const sales of venta) {
-                        console.log(sales);
                         var fecha = (sales.fecha).split('T')[0];
                         switch (sales.estado) {
                             case 10:
@@ -56,7 +55,7 @@ try {
                         <p class="mt-2 compra">Fecha de compra: ${fecha}</p>
 
                     <div class="col-12 text-end p-3">
-                    <a href=""> <button class="btn btn-primary">Ver producto</button></a>
+                    <a href="/productos/${sales.product_id}"> <button class="btn btn-primary">Ver producto</button></a>
                     </div></div></div>`;
                     }
                     datos+= '</div></div>';
@@ -65,8 +64,6 @@ try {
             }
             contenedor+= '';
             document.getElementById('content').innerHTML = contenedor; // Establecer el contenido HTML del elemento
-
-            console.log(data);
         })
 } catch (error) {
     console.log("No hay datos");

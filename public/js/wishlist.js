@@ -4,6 +4,18 @@ $(document).ready(function () {
         window.location.href = url;
     });
 });
+
+$(document).ready(function() {
+    $('#carouselExampleFade').hover(
+        function() {
+
+        },
+        function() {
+            
+        }
+    );
+});
+
 $(document).ready(function () {
     $(document).on('click', '.no_agregado_favoritos, .agregado_favoritos', function () {
         var button = $(this);
