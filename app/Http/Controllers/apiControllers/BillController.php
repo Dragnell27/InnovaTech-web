@@ -61,9 +61,11 @@ class BillController extends Controller
         ->where("param_status",5)
         ->where("param_shipping",14)
         ->update(["param_shipping" => 10]);
-        Cart::session($id)->clear();
+      
         Session::forget("cart");
-        Session::flash('success_mjs','Su compra ha sido éxitosa');
+        Session::put('success_mjs','Su compra ha sido éxitosa');
+        
+        Cart::session($id)->clear();
         return redirect()->route("index");
     }
 

@@ -257,6 +257,11 @@ Seccion-Productos
 .nxt-btn:hover img {
     opacity: 1;
 }
+.pre-btn:hover,
+.nxt-btn:hover{
+    background-color: rgb(216, 216, 216);
+    border-radius: 5px;
+}
 
 .collection-container {
     width: 100%;

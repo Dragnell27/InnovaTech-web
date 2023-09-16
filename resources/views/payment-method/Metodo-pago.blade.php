@@ -107,16 +107,17 @@
                         data-amount-in-cents="{{($total)*100}}"
                         data-reference="{{ $referencia }}"
                         data-redirect-url="{{ route('shopping.actualizar',Auth::user()->id)}}"
+                      
+                     
                         >
                         </script>
-                        <script>
-                            
-                        </script>
+                      
 
 </main>
 </div>
 </div>
-<script src="{{ asset('js/pay.js') }}"></script>
+<script src="{{ asset('js/pay.js') }}">
+</script>
 @include('components.factura');
 @endif
 @extends('layouts.footer')

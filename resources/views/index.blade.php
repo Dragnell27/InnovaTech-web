@@ -91,6 +91,24 @@
                 <h2>Productos Destacados</h2>
             </div>
 
+            <?php
+                if(Session::has("success_mjs")){
+           ?>
+           <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '{{ Session::get('success_mjs') }}',
+                confirmButton :"Ver mis compras",
+                showConfirmButton:true,
+            }).then((result )=>{
+                if(result.isConfirmed){
+                    window.location.href='/sales/shopping/'+"{{ Auth::user()->id }}";
+                }
+            });</script>        
+               <?php } ?>
+            
+           
             <section class="product" id="carrusel-personalizado">
 
                 <button class="pre-btn"><img src="{{ asset('img/arrow.png') }}" alt=""></button>
@@ -211,8 +229,8 @@
 
     @section('scripts')
 
-    <script>
-        @if(Session::has('success_mjs'))
+    {{--  <script>
+        
         Swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -225,7 +243,7 @@
                 }
             });
             @endif
-    </script>
+    </script>  --}}
     @endsection
 
     <script src="{{ asset('js/wishlist.js') }}"></script>
