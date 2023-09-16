@@ -184,4 +184,4 @@ Route::get('/get-details', [PayController::class, 'mostrar']);
 
 //ruta de pago
 Route::put('/pago/{id}', [PayController::class, 'update'])->name('pago.update');
-Route::get('/shopping/{id}', [BillController::class, 'actualizar'])->name('shopping');
+Route::get('/shooping/{id}', [BillController::class, 'actualizar'])->name('shopping.actualizar');

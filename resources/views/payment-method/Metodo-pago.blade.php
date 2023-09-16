@@ -98,7 +98,6 @@
                     }
                     $referencia = $result.date('YmdHis');
                     ?>
-
                         {{-- PASARELA DE PAGOS CON WOMPI --}}
                         <script
                         src="https://checkout.wompi.co/widget.js"
@@ -107,8 +106,11 @@
                         data-currency="COP"
                         data-amount-in-cents="{{($total)*100}}"
                         data-reference="{{ $referencia }}"
-                        data-redirect-url="{{ route('shopping',Auth::user()->id)}}"
+                        data-redirect-url="{{ route('shopping.actualizar',Auth::user()->id)}}"
                         >
+                        </script>
+                        <script>
+                            
                         </script>
 
 </main>

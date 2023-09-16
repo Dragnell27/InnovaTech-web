@@ -63,6 +63,7 @@ class BillController extends Controller
         ->update(["param_shipping" => 10]);
         Cart::session($id)->clear();
         Session::forget("cart");
+        Session::flash('success_mjs','Su compra ha sido éxitosa');
         return redirect()->route("index");
     }
 
