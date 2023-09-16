@@ -228,25 +228,6 @@
         var token = '{{ csrf_token() }}';
     </script>
 
-    @section('scripts')
-
-    {{--  <script>
-
-        Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: '{{ Session::get('success_mjs') }}',
-                confirmButton :"Ver mis compras",
-                showConfirmButton:true,
-            }).then((result )=>{
-                if(result.isConfirmed){
-                    window.location.href='/sales/shopping'Auth::user()->id;
-                }
-            });
-            @endif
-    </script>  --}}
-    @endsection
-
     <script src="{{ asset('js/wishlist.js') }}"></script>
     <script src="{{ asset('js/cartas.js') }}"></script>
     <script src="{{ asset('js/producto.js') }}"></script>

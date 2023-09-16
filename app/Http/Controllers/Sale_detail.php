@@ -57,6 +57,7 @@ class Sale_detail extends Controller
                 $arrSales[$sale->id][] = [
                     'id' => $date->id,
                     'sale_id' => $date->sale_id,
+                    'product_id'=>$producto[0]->id,
                     'producto' =>$producto[0]->name,
                     'imagen'=>$producto[0]->images,
                     'qty' => $date->qty,
