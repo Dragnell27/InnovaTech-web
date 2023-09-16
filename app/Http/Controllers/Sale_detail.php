@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Param;
-use App\Models\product;
+use App\Models\Product;
 use App\Models\Sales;
-use App\Models\Sales_detail;
+use App\Models\sales_detail;
 use DateTime;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -48,7 +48,7 @@ class Sale_detail extends Controller
         foreach ($sales as $sale){
             $details = Sales_detail::where('sale_id', $sale->id)->get();
             foreach ($details as $date){
-             $producto = product::where('products.id',$date->product_id)
+             $producto = Product::where('products.id',$date->product_id)
              ->get();
              $estado =  Sales::where('sales.id',$date->sale_id)->get();
             // $estado = Param::where('params.id',$date->param_status)->get();
