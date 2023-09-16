@@ -10,14 +10,7 @@
 
 
         <style>
-            .inactive {
-                display: none;
-            }
-
-            .card-header {
-                display: flex;
-                justify-content: space-between;
-            }
+          
         </style>
     </head>
 
@@ -158,7 +151,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="comment">Comentario:</label>
-                            <textarea class="form-control" name="comment" rows="3"></textarea>
+                            <textarea class="form-control" required name="comment" rows="3"></textarea>
                             <div class="star_rating">
                                 <i class="star">&#9734;</i>
                                 <i class="star">&#9734;</i>
@@ -168,10 +161,23 @@
                             </div>
                         </div>
                         <input type="hidden" id="product_id" name="product_id" value="{{ $productos->id }}">
-                        <input type="hidden" id="num_star" name="starts">
-                        <input type="submit" value="Agregar Comentario" class="btn"
+                        <input type="hidden" id="num_star" name="starts" value="null">
+
+                        @auth
+                            <input 
+                            type="submit"
+                            value="Agregar Comentario" 
+                            class="btn"  
                             style="background: #e70000; color: #fff;">
+                          @else
+                          <p style="color: #e70000">Inicia sesion para dejar tu comentario. <br>
+                             Te esperamos! &#128521;
+                            </p>
+                            
+                        @endauth
+                        
                     </form>
+
                 </div>
             </div>
             <br>

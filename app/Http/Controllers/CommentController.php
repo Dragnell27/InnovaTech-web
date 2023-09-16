@@ -50,7 +50,7 @@ class CommentController extends Controller
      */
     public function show($comment)
     {
-        $result = Commentresource::collection(DB::table('ratings')->where('product_id',$comment)->get());
+        $result = Commentresource::collection(DB::table('ratings')->where('product_id',$comment)->where("param_state", 5)->get());
         return $result;
     }
 
@@ -69,7 +69,8 @@ class CommentController extends Controller
     public function destroy($id)
     {
         $result = Comment::findOrFail($id);
-        $result->delete();
+        $result->param_state = 6;
+        $result->save();
         return ("Eliminado correctamente");
     }
 }

@@ -21,7 +21,8 @@ allStars.forEach((star, i) => {
         allStars.forEach((star, j) => {
             
             if (current_star_level >= j + 1) {
-                document.querySelector("#num_star").value  =current_star_level ;
+                document.querySelector("#num_star").value  = current_star_level ;
+              
                 star.innerHTML = '&#9733';
             } else {
                 star.innerHTML = '&#9734';

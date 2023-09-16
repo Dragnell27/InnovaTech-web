@@ -142,3 +142,21 @@
 
 
 
+/* CSS para comentarios */
+.inactive {
+  display: none;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+.my-2{
+  margin-right: 5px !important; 
+}
+.btn-link{ 
+  color: #ec5353;
+}
+.btn-link:hover{
+  color: red !important;
+}

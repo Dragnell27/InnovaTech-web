@@ -47,6 +47,7 @@ if (data.data.length <=0) {
     var i = 0;
 
     data.data.forEach(element => {
+   
     
         i++;
       //--------------------//
@@ -62,6 +63,10 @@ if (data.data.length <=0) {
     const card_Header = document.createElement("div");
     const card_Body = document.createElement("div");
     const star_rating = document.createElement("div");
+    const cardFooter = document.createElement("div");
+    const btn_delete = document.createElement("button");
+  
+    
 
     for (let i = 1; i <=5; i++) {
         if (i <=  element.estrellas) {
@@ -83,6 +88,17 @@ if (data.data.length <=0) {
     card_Header.classList = "card-header";
     card_Body.classList ="card-body";
     star_rating.classList ="star_rating";
+    cardFooter.classList="card-footer text-body-secondary"
+
+    //verificar si el usuario tiene un comentario para que lo pueda eliminar
+    if (idUser == element.userId) {
+      cardFooter.dataset.id =element.commentID
+      btn_delete.classList = "btn btn-link danger";
+      btn_delete.textContent="Eliminar comentario";
+      btn_delete.setAttribute("id",element.commentID)
+      btn_delete.addEventListener("click",()=>handleDelete(cardFooter.dataset.id ))
+      cardFooter.appendChild(btn_delete);
+    }
 
     //sacar la fecha del comentario
     const fecha = element.hora.split(" ");
@@ -95,6 +111,7 @@ if (data.data.length <=0) {
     card.appendChild(card_Header);
     card_Body.appendChild(star_rating);
     card.appendChild(card_Body);
+    card.appendChild(cardFooter);
     
     container.appendChild(card);
 
@@ -105,18 +122,59 @@ if (data.data.length <=0) {
     });
 }
 
+function handleDelete(id){
+  Swal.fire({
+    title: '¿Estas seguro?',
+    text: "No podras deshacer esta acción!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, por favor!',
+    cancelButtonText: "Cancelar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      
+    fetch(BASE + '/api/comment/' +id,{ method: 'DELETE'})
+    .then(()=>{
+      document.getElementById(id).innerHTML = "Cargando..."
+    }).finally(()=>{
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Tu comentario ha sido eliminado!',
+        showConfirmButton: false,
+        timer: 5000
+      }).then(()=>{ window.location.reload()})
+    })
+    .catch(error => console.log(error))
+      }//aqui acaba el fetch
+  })// aqui acaba el then del alert
 
+}
 const form = document.querySelector("#commentForm");
 form.addEventListener("submit",(e)=>{
   e.preventDefault();
-    const swalWithBootstrapButtons = Swal.mixin({
+ //verificar si ya tiene estrellas
+  if(document.querySelector("#num_star").value == "null"){
+    
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Debes calificar el producto!',
+    })
+
+
+  }else{
+      //ponerle clases al swalfire
+      const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
           confirmButton: 'btn btn-success',
           cancelButton: 'btn btn-danger my-2'
         },
         buttonsStyling: false
       })
-      
+
       swalWithBootstrapButtons.fire({
         title: '¿Estas seguro?',
         text: "No podras deshacer esta acción!",
@@ -127,7 +185,7 @@ form.addEventListener("submit",(e)=>{
         reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {
-       form.submit();
+      form.submit();
         
           swalWithBootstrapButtons.fire(
             'Guardado!',
@@ -136,7 +194,7 @@ form.addEventListener("submit",(e)=>{
           )
         
         } else if (
-          /* Read more about handling dismissals below */
+        
           result.dismiss === Swal.DismissReason.cancel
         ) {
           swalWithBootstrapButtons.fire(
@@ -145,8 +203,11 @@ form.addEventListener("submit",(e)=>{
             'info'
           )
         }
-      })
+      }); //Aqui acaba el swalfire
 
+  }
+
+  
 });
     
 });
