@@ -56,7 +56,7 @@ try {
                         <p class="mt-2 compra">Fecha de compra: ${fecha}</p>
 
                     <div class="col-12 text-end p-3">
-                    <a href="show_product "> <button class="btn btn-primary">Ver producto</button></a>
+                    <a href=""> <button class="btn btn-primary">Ver producto</button></a>
                     </div></div></div>`;
                     }
                     datos+= '</div></div>';

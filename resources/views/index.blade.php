@@ -99,16 +99,17 @@
                 position: 'center',
                 icon: 'success',
                 title: '{{ Session::get('success_mjs') }}',
-                confirmButton :"Ver mis compras",
+                confirmButtonText :"Ver mis compras",
                 showConfirmButton:true,
             }).then((result )=>{
                 if(result.isConfirmed){
-                    window.location.href='/sales/shopping/'+"{{ Auth::user()->id }}";
+                    window.location.href='/sales/shopping?'+"{{ Auth::user()->id }}";
                 }
-            });</script>        
-               <?php } ?>
-            
-           
+            });</script>
+               <?php
+            } Session::forget('success_mjs') ?>
+
+
             <section class="product" id="carrusel-personalizado">
 
                 <button class="pre-btn"><img src="{{ asset('img/arrow.png') }}" alt=""></button>
@@ -230,7 +231,7 @@
     @section('scripts')
 
     {{--  <script>
-        
+
         Swal.fire({
                 position: 'center',
                 icon: 'success',
