@@ -81,24 +81,16 @@
     display: initial;
 }
 
-.product-center {
-    /* Estilo general de la tarjeta */
-    width: 300px; /* Ajusta el ancho según tus necesidades */
-    padding: 10px;
-    overflow: hidden; /* Oculta el desbordamiento de contenido */
+.full-description {
+    display: none;
   }
   
-  .description-scroll {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
-    max-width: 100%;
+  .read-more {
+    cursor: pointer;
   }
   
-  .product-center:hover .description-scroll {
-    overflow: auto;
-    white-space: normal;
+  .read-more:hover + .full-description {
+    display: block;
   }
   
 

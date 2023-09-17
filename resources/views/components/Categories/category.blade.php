@@ -17,8 +17,8 @@
                     <h1>{{ $name->name }}</h1>
                     <h6 class="text-dark">Esta categoría contiene ({{ $products->count() }}) productos</h6>
                 @endif
-                <div>
-                    
+                <div id="categoriesContainer">
+
                 </div>
             </div>
             <div id="colum_2">
@@ -68,14 +68,23 @@
                                                     class="product-thumb" height="259px" width="259px"
                                                     src="{{ asset('img/productos/' . $images[0]) }}">
                                             </div>
+
                                             <div class="product-center">
                                                 <h4 id="style2" class="titulo">{{ $productos->name }}</h4>
-                                                <div class="description-scroll">
-                                                  {{ $productos->description }}
-                                                </div>
-                                              </div>
-                                              
-                                              
+                                                <p class="short-description">
+                                                    {{ substr($productos->description, 0, 100) }}{{ strlen($productos->description) > 100 ? '...' : '' }}
+                                                </p>
+                                                <a href="#" class="read-more">Leer más</a>
+                                                <p class="full-description">{{ $productos->description }}</p>
+                                            </div>
+
+
+
+
+
+
+
+
                                             <div class="product-right">
                                                 <button class="{{ $agregado_lista }} btn float-end mt-3"
                                                     data-product_id="{{ $productos->id }}"
@@ -111,12 +120,52 @@
             </div>
         </div>
         <div class="footer">
-        @include('layouts.footer')
-    </div>
+            @include('layouts.footer')
+        </div>
     </body>
 
     <script>
         var token = '{{ csrf_token() }}';
     </script>
     <script src="{{ asset('js/wishlist.js') }}"></script>
+    <script>
+        < script src = "https://code.jquery.com/jquery-3.6.0.min.js" >
+    </script>
+    <script>
+        $(document).ready(function () {
+        $(".read-more").click(function (e) {
+            e.preventDefault();
+            $(this).prev(".full-description").slideToggle();
+        });
+    });
+    </script>
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const categoriesContainer = document.getElementById(
+            'categoriesContainer'); // Obtén el elemento contenedor por su ID
+
+            fetch('/api/category') // Cambia la URL de la API según tu configuración
+                .then(response => response.json())
+                .then(categories => {
+                    categories.data.forEach(category => {
+                        const link = document.createElement('a');
+                        link.classList.add('nav-link');
+                        link.href = `category/${category.id}`;
+                        link.textContent = category.name;
+
+                        link.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            const categoryId = category.id;
+
+                            // Redirige al usuario a la URL de la vista de productos de la categoría
+                            window.location.href = `/api/category/${categoryId}`;
+                        });
+
+                        categoriesContainer.appendChild(link); // Agrega el enlace al contenedor deseado
+                    });
+                });
+        });
+    </script>
 @endsection
