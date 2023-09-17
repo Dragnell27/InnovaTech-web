@@ -15,7 +15,10 @@
   font-family:'Nunito',sans-serif;
 
   }
-
+.imageOne{
+  width: 100px !important;
+  height: 100px !important;
+}
   .btnAddCart{
      text-decoration:none;
      background:#e70000;

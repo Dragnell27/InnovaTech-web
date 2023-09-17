@@ -48,8 +48,12 @@
                     </div>
                     <div class="small-product">
                         @foreach ($images as $img)
-                            <img class="img-fluid" id="imageOne" src="{{ asset('img/productos/' . $img) }}"
-                                alt="Producto Imagen 2" onclick="myFunction(this)" width="100px" height="100px">
+                        <div>
+                            <img class="imageOne" id="imageOne" src="{{ asset('img/productos/' . $img) }}"
+                            alt="Producto Imagen 2" onclick="myFunction(this)" width="100px" height="100px">
+
+                        </div>
+                           
                         @endforeach
                     </div>
 

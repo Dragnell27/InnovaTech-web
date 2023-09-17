@@ -11,6 +11,7 @@
 @section('component')
 
     <body>
+        @include('components.cart.cartAlert')
         <div id="container">
             <div id="colum_1">
                 @if ($name)
