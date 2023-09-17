@@ -71,12 +71,11 @@
 
                                             <div class="product-center">
                                                 <h4 id="style2" class="titulo">{{ $productos->name }}</h4>
-                                                <p class="short-description">
-                                                    {{ substr($productos->description, 0, 100) }}{{ strlen($productos->description) > 100 ? '...' : '' }}
-                                                </p>
-                                                <a href="#" class="read-more">Leer más</a>
-                                                <p class="full-description">{{ $productos->description }}</p>
+                                                <p class="short-description">{{ substr($productos->description, 0, 100) }}{{ strlen($productos->description) > 100 ? '...' : '' }}</p>
+                                                <a href="#" class="read-more" data-product-id="{{ $productos->id }}">Leer más</a>
+                                                <p class="full-description" id="full-description-{{ $productos->id }}">{{ $productos->description }}</p>
                                             </div>
+                                            
 
 
 
@@ -135,7 +134,8 @@
         $(document).ready(function () {
         $(".read-more").click(function (e) {
             e.preventDefault();
-            $(this).prev(".full-description").slideToggle();
+            var productId = $(this).data("product-id");
+            $("#full-description-" + productId).slideToggle();
         });
     });
     </script>

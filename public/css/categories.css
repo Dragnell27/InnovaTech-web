@@ -89,9 +89,7 @@
     cursor: pointer;
   }
   
-  .read-more:hover + .full-description {
-    display: block;
-  }
+
   
 
 @media (min-width: 768px) {
