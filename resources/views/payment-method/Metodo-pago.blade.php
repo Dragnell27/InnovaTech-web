@@ -119,7 +119,6 @@
 @include('components.factura')
 </div>
 <script src="{{ asset('js/pay.js') }}">
-    const urlAddress = BasUrl + "/api/address_user/" + id;
 </script>
 {{-- <script src="{{ asset('js/compra.js')  }}"></script> --}}
 @endif

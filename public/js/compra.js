@@ -42,6 +42,7 @@ async function DepartmentsName(nameDepartment) {
 
 //DIRECCIONES
 let numDirecciones = 0;
+let direccion = "";
 async function cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress, labelAddress) {
     try {
         const response = await fetch(urlAddress);
@@ -85,9 +86,13 @@ async function cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAd
                     document.getElementById('hood').value = addressData.hood;
                     document.getElementById('address').value = addressData.address;
                     document.getElementById('floor').value = addressData.floor;
-                    const DireccionFactura = addressData.city_name + ", " + addressData.hood + ",  " + addressData.address + "," + addressData.floor;
-                    const idDireccion = document.getElementById('idDireccion');
-                    idDireccion.textContent = DireccionFactura;
+                    const DireccionFacturaD = addressData.city_name + ", " + addressData.hood + ",  " + addressData.address + "," + addressData.floor;
+                    if (window.location.pathname === 'Mpago') {
+                        textoDireccion = "Lugar de envío";
+                        direccion = DireccionFacturaD ;
+
+                      }
+                      document.getElementById('idDireccion').textContent = `${textoDireccion}: ${direccion}`;
                     formDirecciones.style.display = 'block';
 
                 } catch (error) {
@@ -104,7 +109,7 @@ async function cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAd
         return [];
     }
 };
-async function AddressAdmin(direccionAdmin, vista) {
+async function AddressAdmin() {
     try {
         const response2 = await fetch(urlAddressAdmin);
         const data2 = await response2.json();
@@ -130,9 +135,13 @@ async function AddressAdmin(direccionAdmin, vista) {
                     document.getElementById("hoodAdmin").value = addressData2.hood;
                     document.getElementById("addressAdmin").value = addressData2.address;
                     document.getElementById("floorAdmin").value = addressData2.floor;
-                    const DireccionFactura = addressCity.city_name + ", " + addressData2.hood + ",  " + addressData2.address + "," + addressData2.floor;
-                    const idDireccion = document.getElementById('idDireccion');
-                    idDireccion.textContent = DireccionFactura;
+                    const DireccionFacturaP = addressCity.city_name + ", " + addressData2.hood + ",  " + addressData2.address + "," + addressData2.floor;
+                    if (window.location.pathname === '/payment-method/1') {
+                        textoDireccion = "Lugar de entrega" ;
+                        direccion = DireccionFacturaP;
+
+                      }
+                      document.getElementById('idDireccion').textContent = `${textoDireccion}: ${direccion}`;
                     document.getElementById('formPuntoFisico').style.display = "block";
                 }
                 catch (error) {

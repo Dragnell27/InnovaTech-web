@@ -145,7 +145,8 @@
 
                     </div>
                     <div class="container d-flex justify-content-center align-items-center mt-2">
-                        <span> Lugar de envio y/o Entrega: <strong id="idDireccion"></strong></span>
+
+                        <span id="idDireccion"></span>
 
                     </div>
 

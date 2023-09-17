@@ -2,81 +2,22 @@
 
 const okFactura = $('#okPfisico');
 const modal = $('.modal');
-const cerrar= $('.btnCerrar');
+const cerrar = $('.btnCerrar');
 okFactura.click(function (e) {
-    swal.fire({
-        title: 'Confirmar compra!',
-        text: "Estas a solo pasos de realizar tu compra!",
-        icon: 'info',
-        showCancelButton: true,
-        confirmButtonText: 'Comprar',
-        confirmButtonColor: '#5cb85c',
-        cancelButtonText: 'Cancelar',
-        cancelButtonColor: '#d33',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            swal.fire({
-                title: '¿Deseas ver tu recibo en pantalla?',
-                text: "De igual forma este será enviado a tu correo.",
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#808080',
-                cancelButtonText: 'Terminar compra',
-                confirmButtonText: 'Ver recibo',
-                allowOutsideClick: false,
-                allowEscapeKey: false,
+    modal.addClass('modal--openModal');
+    $('#factura').show();
+    modal.on('click', function (event) {
+        if ($(event.target).hasClass('modal')) {
+            modal.removeClass('modal--openModal');
 
-            }).then((result) => {
-                function cerrarModal() {
-                    modal.removeClass('modal--openModal');
-                    $.ajax({
-                        method: 'get',
-                        url: '/shooping/' + id,
-                        data: {
-                            _token: token
-                        },
-                        success: function (response) {
-                            swal.fire({
-                                icon: 'success',
-                                title: 'Compra exitosa',
-                                showConfirmButton: false,
-                                timer: 2500
-                            });
-                            window.location.href = '/';
-
-                        },
-                        error: function (xhr, status, error) {
-                            console.error('Error al comprar:', error);
-                            window.location.reload();
-                        }
-
-                    });
-                 }
-                if (result.isConfirmed) {
-                    modal.addClass('modal--openModal');
-                    $('#factura').show();
-
-                    modal.on('click', function(event) {
-                        if ($(event.target).hasClass('modal')) {
-                            cerrarModal();
-                        }
-                        event.stopPropagation();
-                    });
-                    cerrar.on('click',function (event){
-                        cerrarModal();
-                        event.preventDefault();
-                    });
-
-                } else {
-                    cerrarModal();
-                }
-            });
-        } else if (
-            result.dismiss === Swal.DismissReason.cancel
-        );
+        }
+        event.stopPropagation();
     });
+    cerrar.on('click', function (event) {
+        modal.removeClass('modal--openModal');
 
+        event.preventDefault();
+    });
 });
 
 
