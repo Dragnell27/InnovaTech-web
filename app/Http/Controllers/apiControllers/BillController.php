@@ -55,12 +55,22 @@ class BillController extends Controller
         return $data;
 
     }
-    public function actualizar($id){
+    public function actualizar($id,$type){
+        
+            $method = 0;
+        if($type == "2286"){
+            $method = "2275";
+        }else if($type == "2285"){
+               $method = "2276";
 
+        }
         Sales::where("user_id",$id)
         ->where("param_status",5)
         ->where("param_shipping",14)
-        ->update(["param_shipping" => 10]);
+        ->update([
+            "param_shipping" => $type,
+            "param_paymethod"=> $method             
+        ]);
       
         Session::forget("cart");
         Session::put('success_mjs','Su compra ha sido éxitosa');

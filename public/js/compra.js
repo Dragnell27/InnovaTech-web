@@ -500,9 +500,10 @@ okFactura.click(function (e) {
             }).then((result) => {
                 function cerrarModal() {
                     modal.removeClass('modal--openModal');
+                    
                     $.ajax({
                         method: 'get',
-                        url: '/shooping/' + id,
+                        url: '/shooping/' + id + "/2286",
                         data: {
                             _token: token
                         },
@@ -518,7 +519,7 @@ okFactura.click(function (e) {
                         },
                         error: function (xhr, status, error) {
                             console.error('Error al comprar:', error);
-                            window.location.reload();
+                             window.location.reload();
                         }
 
                     });

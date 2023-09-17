@@ -106,7 +106,7 @@
                         data-currency="COP"
                         data-amount-in-cents="{{($total)*100}}"
                         data-reference="{{ $referencia }}"
-                        data-redirect-url="{{ route('shopping.actualizar',Auth::user()->id)}}"
+                        data-redirect-url="{{ route('shopping.actualizar', ['id' => Auth::user()->id, 'type' => 2285])}}"
 
 
                         >
