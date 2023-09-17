@@ -76,6 +76,7 @@ class UserController extends Controller
             'param_suscription' => $suscripcion,
             'param_state' => 5,
         ]);
+        $user->sendEmailVerificationNotification();
         Auth::login($user);
         return redirect(route('index'));
     }

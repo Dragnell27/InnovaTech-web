@@ -10,6 +10,7 @@
 
 
         <style>
+            
           
         </style>
     </head>
@@ -28,15 +29,22 @@
     <section class="bg-light">
         @php
             $images = explode(':', $productos->images);
-
+          
         @endphp
         <div class="container">
             <div class="row">
 
                 <div class="col-lg-5 mt-5">
-                    <div class="imgContainer ">
-                        <img id="imgBox" class="img-fluid" src="{{ asset('img/productos/' . $images[0]) }}"
-                            alt="{{ $productos->description }}">
+                    <div class="imgContainer">
+
+                            <img id="imgBox" class="img-fluid" src="{{ asset('img/productos/' . $images[0]) }}"alt="{{ $productos->description }}">
+                            @if ($productos->stock <= 0)
+                            <div id="out-of-stock" class="text-center" >
+                                PRODUCTO AGOTADO
+                                       </div>
+                                  
+                            @endif
+                          
                     </div>
                     <div class="small-product">
                         @foreach ($images as $img)
@@ -135,7 +143,12 @@
                             </div>
                         </div>
                         <div class="text-center mb-2">
-                            <button data-id="{{ $productos->id }}" class="btnAddCart btn-cart">Añadir al carrito</button>
+                            @if ($productos->stock > 0)
+                                <button data-id="{{ $productos->id }}" class="btnAddCart btn-cart">Añadir al carrito</button>
+                                @else
+                                 <p style="color: red"> Lo sentimos, este producto esta agotado</p>
+                            @endif
+                            
                         </div>
                     </div>
                 </div>
