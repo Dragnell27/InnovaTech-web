@@ -10,7 +10,7 @@
     <script
     src="https://www.paypal.com/sdk/js?client-id=AdXyZcBrnaPhQ2hUS17siCtJhGFNHDOF779CKIzNFK6m3amjOpjgjGr_otg1x47CfV72JY0gMIlzLWrp">
   </script>
-    <div class="container card col-md-8 fw-bolder mb-4 " style="background-color: #F8F8F8 ">
+    <div class="container card col-md-8 fw-bolder mb-4 " style="background-color: #F8F8F8; margin-top: 14%; ">
         <div class=" text-center mt-4">
             <h3>Metodo de pago</h3>
         </div>
@@ -107,20 +107,22 @@
                         data-amount-in-cents="{{($total)*100}}"
                         data-reference="{{ $referencia }}"
                         data-redirect-url="{{ route('shopping.actualizar',Auth::user()->id)}}"
-                      
-                     
+
+
                         >
                         </script>
-                      
+
 
 </main>
 </div>
+<a href="#" id="okPfisico">Continuar Compra</a>
+@include('components.factura')
 </div>
 <script src="{{ asset('js/pay.js') }}">
+    const urlAddress = BasUrl + "/api/address_user/" + id;
 </script>
-@include('components.factura');
+{{-- <script src="{{ asset('js/compra.js')  }}"></script> --}}
 @endif
-@extends('layouts.footer')
 
 </section>
 

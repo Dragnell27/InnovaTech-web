@@ -118,6 +118,9 @@
 <section>
 
     <div class="modal" id="factura">
+        <div style="top: 2%; right: 2%; position: absolute;"">
+          <a href="#" class="btnCerrar"><img src="{{ asset('img/cerrar.png') }}"style="width: 20px" alt=""></a>
+        </div>
         <div class="modal_container mb-2" style="margin-top:5%">
             <img src="{{ asset('img/logo-i.png') }}" id="imagen-logo">
             <h1 class="tituloF">Recibo de Compra</h1>
@@ -141,7 +144,7 @@
                         <span>No.Identificación: <strong id="idDocument">{{ Auth::user()->document }}</strong></span>
 
                     </div>
-                    <div class="container  d-flex justify-content-center align-items-center mt-2">
+                    <div class="container d-flex justify-content-center align-items-center mt-2">
                         <span> Lugar de envio y/o Entrega: <strong id="idDireccion"></strong></span>
 
                     </div>
