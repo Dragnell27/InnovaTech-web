@@ -72,10 +72,16 @@
 
                                             <div class="product-center">
                                                 <h4 id="style2" class="titulo">{{ $productos->name }}</h4>
-                                                <p class="short-description">{{ substr($productos->description, 0, 100) }}{{ strlen($productos->description) > 100 ? '...' : '' }}</p>
-                                                <a href="#" class="read-more" data-product-id="{{ $productos->id }}">Leer más</a>
-                                                <p class="full-description" id="full-description-{{ $productos->id }}">{{ $productos->description }}</p>
+                                                <div class="description-container">
+                                                    <p class="short-description">
+                                                        {{ substr($productos->description, 0, 100) }}{{ strlen($productos->description) > 100 ? '...' : '' }}
+                                                    </p>
+                                                    <p class="full-description" style="display: none;">
+                                                        {{ $productos->description }}</p>
+                                                </div>
+                                                <a href="#" class="read-more">Leer más</a>
                                             </div>
+
                                             
 
 
@@ -132,13 +138,14 @@
         < script src = "https://code.jquery.com/jquery-3.6.0.min.js" >
     </script>
     <script>
-        $(document).ready(function () {
-        $(".read-more").click(function (e) {
-            e.preventDefault();
-            var productId = $(this).data("product-id");
-            $("#full-description-" + productId).slideToggle();
+        $(document).ready(function() {
+            $(".read-more").click(function(e) {
+                e.preventDefault();
+                var container = $(this).closest(".product-center").find(".description-container");
+                container.find(".short-description").toggle();
+                container.find(".full-description").toggle();
+            });
         });
-    });
     </script>
 
     </script>
