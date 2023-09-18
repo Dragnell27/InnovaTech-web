@@ -26,8 +26,7 @@
 <?php
 $Salescount = DB::table('sales')
     ->where('user_id', Auth::user()->id)
-    ->where('param_status', 5)
-    ->whereNotIn('param_shipping', [14])
+    ->where('param_status', 10)
     ->count();
 ?>
 @endif
