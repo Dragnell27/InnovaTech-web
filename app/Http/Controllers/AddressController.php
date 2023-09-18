@@ -51,11 +51,20 @@ class AddressController extends Controller
     public function cargarCiudades(Request $request)
     {
         // jaider
-        $cities = Param::where('param_foreign', $request->texto)->get();
-        return response()->json(
-            [
+        $cities = null;
+        if($request->texto != ""){
+            $cities = Param::where('param_foreign', $request->texto)->get();
+            return response()->json(
+                [
                 'city' => $cities,
                 'success' => true,
+                ]
+            );
+        }
+        return response()->json(
+            [
+            'city' => $cities,
+            'success' => true,
             ]
         );
     }
