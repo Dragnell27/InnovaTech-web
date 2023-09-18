@@ -275,7 +275,7 @@
                 </i>
 
 
-                <form action="{{ route('products.search') }}" method="POST">
+                <form action="{{ route('products.search') }}" method="POST" id="searchForm">
                     @csrf
                     <input type="text" name="query" autocomplete="off" spellcheck="false" id="query"
                         placeholder="Buscar en innovatech..." />
@@ -289,15 +289,21 @@
 
     </header>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const codigo = urlParams.get('codigo');
-            if (codigo) {
-                window.location.href = 'https://www.ejemplo.com/pagina-interna';
-            }
+        $(document).ready(function() {
+            $("#searchForm").submit(function(event) {
+                if ($("#query").val().trim() === "") {
+                    event.preventDefault();
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        text: 'Por favor, ingresa un término de búsqueda.',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                }
+            });
         });
     </script>
-
     <div id="componente" style="margin-top: 100px">
         @yield('component')
     </div>
