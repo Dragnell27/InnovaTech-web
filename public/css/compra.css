@@ -191,7 +191,6 @@ color:#213f8f ;
   .editContainer{
       margin: auto;
       width: 50%;
-      min-width: 400px;
       max-width: 100%;
       max-height: 100%;
       background-color: rgb(255, 255, 255);
@@ -203,6 +202,16 @@ color:#213f8f ;
       grid-auto-columns: 100%;
       transform: var(--transform);
       transition: var(--trasition);
+  }
+  @media screen and (max-width: 400px) {
+    .editContainer {
+      width: 400px;
+      padding: 2em 1em;
+    }
+
+    .editContainer p {
+      font-size: 0.9em;
+    }
   }
   .closeEdit{
       text-decoration: none;
@@ -349,16 +358,3 @@ content: "Editar datos";
   font-size: 14px;
 }
 
-/* .primerSelect .icon{
-    width: 40px;
-    height: 100%;
-    position: absolute;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.icon img{
-    width: 30px;
-    color: white;
-} */

@@ -44,6 +44,27 @@
         overflow: auto;
     }
 
+    @media screen and (max-width: 700px) {
+        .modal_container {
+      width: 400px;
+      padding: 2em 1em;
+    }
+
+    .modal_container p {
+      font-size: 0.9em;
+    }
+  }
+    @media screen and (max-width: 400px) {
+        .modal_container {
+      width: 400px;
+      padding: 2em 1em;
+    }
+
+    .modal_container p {
+      font-size: 0.9em;
+    }
+  }
+
 
     .tituloF {
         margin-bottom: -10px;
@@ -122,6 +143,7 @@
           <a href="#" class="btnCerrar"><img src="{{ asset('img/cerrar.png') }}"style="width: 20px" alt=""></a>
         </div>
         <div class="modal_container mb-2" style="margin-top:5%">
+           <div class="col-12">
             <img src="{{ asset('img/logo-i.png') }}" id="imagen-logo">
             <h1 class="tituloF">Recibo de Compra</h1>
             <div class="container text-center">
@@ -176,9 +198,11 @@
             <div class="PrecioTotal">
                 <span>Precio total(COP):
                     <strong id="total" style="color: green">$10000</strong>
+            </span>
+           </div>
+
             </div>
 
-            </span>
 
         </div>
     </div>

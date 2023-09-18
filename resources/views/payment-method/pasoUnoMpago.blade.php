@@ -260,7 +260,7 @@
                     </div>
                     <div class="userdit " id="userModal" style="z-index: 999">
                         <div class=" editContainer">
-                            <form id="userUpdateFomr" style="display: none">
+                            <form id="userUpdateFomr" style="display: none;width: 100%;">
                                 <div class="container col-12">
                                     <h4 class="mb-2">Modificar tus datos </h4>
 
@@ -285,7 +285,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <form id="addAddress" style="display: none">
+                            <form id="addAddress" style="display: none;width: 100%;">
                                 <h4 class="mb-2">Agrega tu dirección preferencia</h4>
                                 <div class="container mb-2">
                                     <div class="row ">
