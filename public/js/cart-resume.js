@@ -7,6 +7,11 @@ try {
            
                 if(example == "false" ){
                     e.preventDefault(); 
+                    Swal.fire(
+                        '¿Tratas de avanzar?',
+                        'Debes seleccionar una direccion y/o tipo de entrega',
+                        'question'
+                      )
                 }
             });
         }

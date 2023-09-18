@@ -88,7 +88,7 @@
             </div>
             <br>
             <div class="red-div">
-                <h2>Productos Destacados</h2>
+                <h2>Productos Recientes</h2>
             </div>
 
             <?php
