@@ -35,7 +35,36 @@ class BillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $status = "";
+        $method="";
+        $compra = false;
+        $data = json_decode($request->getContent());
+        if(isset($data->data->transaction->id)&&isset($data->data->transaction->status)){
+            $status =$data->data->transaction->status;
+            $method = $data->data->transaction->payment_method_type;
+        }
+        switch ($method) {
+            case 'NEQUI':
+                $type = 2276;
+                break;
+            case 'CARD':
+                $type = 2277;
+            default:
+                $type = 2275;
+                break;
+        }
+
+        if($status == "APPROVED"){
+            $compra = true;
+            self::actualizar(Auth::user()->id, $type);
+        }else if($status == "DECLINED"){
+            $compra = false;
+        }
+        if($compra == true){
+            return response()->json(['message'=> 'Registro guardado correctamente'],200);
+        }else{
+            return response()->json(['message'=> 'Registro guardago correctamente'],400);
+        }
     }
 
     /**
@@ -56,12 +85,12 @@ class BillController extends Controller
 
     }
     public function actualizar($id,$type){
-        
-            $method = 0;
+
+        $method = 0;
         if($type == "2286"){
             $method = "2275";
         }else if($type == "2285"){
-               $method = "2276";
+            $method = "2276";
 
         }
         Sales::where("user_id",$id)
@@ -69,12 +98,13 @@ class BillController extends Controller
         ->where("param_shipping",14)
         ->update([
             "param_shipping" => $type,
-            "param_paymethod"=> $method             
+            "param_paymethod"=> $method,
+            "param_status"=>10,
         ]);
-      
+
         Session::forget("cart");
         Session::put('success_mjs','Su compra ha sido éxitosa');
-        
+
         Cart::session($id)->clear();
         return redirect()->route("index");
     }
