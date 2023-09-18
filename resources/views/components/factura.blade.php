@@ -67,6 +67,7 @@
 
 
     .tituloF {
+        color: #030303;
         margin-bottom: -10px;
         font-weight: 700px;
         font-size: 50px;
@@ -99,6 +100,7 @@
         padding: 20px 15px;
         font-weight: 700;
         text-transform: uppercase;
+        font-size: 10px
     }
 
     td {
@@ -142,10 +144,9 @@
         <div style="top: 2%; right: 2%; position: absolute;"">
           <a href="#" class="btnCerrar"><img src="{{ asset('img/cerrar.png') }}"style="width: 20px" alt=""></a>
         </div>
-        <div class="modal_container mb-2" style="margin-top:5%">
-           <div class="col-12">
+        <div class="modal_container mb-2 col-6" id="pdf" style="margin-top:5%">
             <img src="{{ asset('img/logo-i.png') }}" id="imagen-logo">
-            <h1 class="tituloF">Recibo de Compra</h1>
+            <h2 class="tituloF">Recibo de Compra</h2>
             <div class="container text-center">
                 <div class="row">
                     <div class="col-6">
@@ -174,7 +175,7 @@
 
                 </div>
             </div>
-            <div class="table-resposive">
+            <div class="table-resposive col-12">
                 <table class="table" style=" border: solid 2px rgb(0 0 0 / 65%); ">
                     <thead>
                         <tr>
@@ -201,12 +202,13 @@
             </span>
            </div>
 
-            </div>
+
 
 
         </div>
     </div>
     <script src="{{ asset('js/JQuery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         const bill = "{{ url('/') }}" + "/api/bill/" + "{{ Auth::user()->id }}";
 
@@ -255,4 +257,5 @@
 
 
     </script>
+
 </section>

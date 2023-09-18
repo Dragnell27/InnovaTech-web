@@ -1,24 +1,24 @@
 
 
-const okFactura = $('#okPfisico');
-const modal = $('.modal');
-const cerrar = $('.btnCerrar');
-okFactura.click(function (e) {
-    modal.addClass('modal--openModal');
-    $('#factura').show();
-    modal.on('click', function (event) {
-        if ($(event.target).hasClass('modal')) {
-            modal.removeClass('modal--openModal');
+// const okFactura = $('#okPfisico');
+// const modal = $('.modal');
+// const cerrar = $('.btnCerrar');
+// okFactura.click(function (e) {
+//     modal.addClass('modal--openModal');
+//     $('#factura').show();
+//     modal.on('click', function (event) {
+//         if ($(event.target).hasClass('modal')) {
+//             modal.removeClass('modal--openModal');
 
-        }
-        event.stopPropagation();
-    });
-    cerrar.on('click', function (event) {
-        modal.removeClass('modal--openModal');
+//         }
+//         event.stopPropagation();
+//     });
+//     cerrar.on('click', function (event) {
+//         modal.removeClass('modal--openModal');
 
-        event.preventDefault();
-    });
-});
+//         event.preventDefault();
+//     });
+// });
 
 
 

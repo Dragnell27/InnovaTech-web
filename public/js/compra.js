@@ -43,6 +43,7 @@ async function DepartmentsName(nameDepartment) {
 //DIRECCIONES
 let numDirecciones = 0;
 let direccion = "";
+let textoDireccion="";
 async function cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress, labelAddress) {
     try {
         const response = await fetch(urlAddress);
@@ -115,11 +116,15 @@ async function AddressAdmin() {
         const data2 = await response2.json();
         const addressAdmin = data2.data;
         let direccionAdmin = document.getElementById('direcionesAdmin');
-
+            let addressInactive = false;
         let html2 = ' <option value="-1"> Elige Punto Fisico</option>';
         for (let i = 0; i < addressAdmin.length; i++) {
             const addressData2 = addressAdmin[i];
             html2 += '<option value="' + i + '">Dirección ' + (i + 1) + ' - ' + addressData2.address + ' - ' + addressData2.hood + '</option>';
+            + '</option>';
+            if (addressData2.state == 6) {
+                addressInactive = true;
+            }
         }
         direccionAdmin.innerHTML = html2;
         direccionAdmin.addEventListener('change', async function (event) {
@@ -470,6 +475,13 @@ $(document).ready(function () {
     });
 });
 
+
+
+
+
+
+
+
 const okFactura = $('#okPfisico');
 const modal = $('.modal');
 const cerrar= $('.btnCerrar');
@@ -487,7 +499,7 @@ okFactura.click(function (e) {
         if (result.isConfirmed) {
             swal.fire({
                 title: '¿Deseas ver tu recibo en pantalla?',
-                text: "De igual forma este será enviado a tu correo.",
+                text: "De igual forma este será Descargado en tu dispositivo",
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -498,31 +510,77 @@ okFactura.click(function (e) {
                 allowEscapeKey: false,
 
             }).then((result) => {
-                function cerrarModal() {
-                    modal.removeClass('modal--openModal');
-                    
-                    $.ajax({
-                        method: 'get',
-                        url: '/shooping/' + id + "/2286",
-                        data: {
-                            _token: token
-                        },
-                        success: function (response) {
-                            swal.fire({
-                                icon: 'success',
-                                title: 'Compra exitosa',
-                                showConfirmButton: false,
-                                timer: 2500
+                 function PDF(){
+
+                    const content =document.getElementById('pdf');
+                    Swal.fire({
+                        title: 'Descargando',
+                        html: 'Espera un momento... <i class="bi bi-download"></i>',
+                        icon: 'info',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        timer: 2500,
+                    })
+                    html2pdf()
+                        .set({
+                            margin: 1,
+                            filename:'Factura.pdf',
+                            Image:{
+                                type:'jpeg',
+                                quality:8.98,
+                            },
+                            html2canvas:{
+                                scale:3,
+                                letterRendering:true,
+                            },
+                            jsPDF:{
+                                unit:'in',
+                                format:'a2',
+                                orientation:'portrait'
+                            }
+                        })
+                        .from(content)
+                        .save()
+                        .catch(err=>console.log(err))
+                        .finally()
+                        .then(()=>{
+                            modal.removeClass('modal--openModal');
+                            $('.centrado').show();
+                            $.ajax({
+                                method: 'get',
+                                url: '/shooping/' + id + "/2286",
+                                data: {
+                                    _token: token
+                                },beforeSend: function () {
+                                    $('.centrado').show();
+                                },
+                                success: function (response) {
+                                    $('.centrado').hide();
+                                    swal.fire({
+                                        icon: 'success',
+                                        title: 'Compra exitosa',
+                                        showConfirmButton: false,
+                                        timer: 3000
+                                    });
+
+                                    setTimeout(function () {
+                                        $('.centrado').show();
+                                        setTimeout(function () {
+                                            window.location.href = '/';
+                                        }, 1500);
+                                    }, 1500);
+                                },
+
+                                error: function (xhr, status, error) {
+                                    console.error('Error al comprar:', error);
+                                    $('.centrado').hide();
+                                }
+
                             });
-                            window.location.href = '/';
 
-                        },
-                        error: function (xhr, status, error) {
-                            console.error('Error al comprar:', error);
-                             window.location.reload();
-                        }
-
-                    });
+                        })
                  }
                 if (result.isConfirmed) {
                     modal.addClass('modal--openModal');
@@ -530,17 +588,21 @@ okFactura.click(function (e) {
 
                     modal.on('click', function(event) {
                         if ($(event.target).hasClass('modal')) {
-                            cerrarModal();
+                            PDF();
+
                         }
                         event.stopPropagation();
                     });
                     cerrar.on('click',function (event){
-                        cerrarModal();
                         event.preventDefault();
+
+                       PDF();
+
                     });
 
                 } else {
-                    cerrarModal();
+
+                    PDF();
                 }
             });
         } else if (

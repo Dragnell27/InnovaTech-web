@@ -115,8 +115,8 @@
 
 </main>
 </div>
-<a href="#" id="okPfisico">Continuar Compra</a>
-@include('components.factura')
+{{-- <a href="#" id="okPfisico">Continuar Compra</a>
+@include('components.factura') --}}
 </div>
 <script src="{{ asset('js/pay.js') }}">
 </script>
