@@ -28,13 +28,13 @@
 
                                             @if ($lista->productos->discount > 0)
                                                 <div class="text-decoration-line-through text-danger descuento">
-                                                    $ {{ $lista->productos->price }}
+                                                    $ {{ number_format($lista->productos->price, 0, ',', '.')}}
 
                                                 </div>
                                             @endif
                                             <div>
                                                 <span class="h5">
-                                                    $ {{ $precioVenta }}
+                                                    $ {{ number_format($precioVenta, 0, ',', '.') }}
                                                 </span>
                                                 @if ($lista->productos->discount > 0)
                                                     <strong class="text-success">

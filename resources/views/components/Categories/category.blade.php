@@ -100,12 +100,12 @@
                                                 <div class="price-row">
                                                     @if ($productos->discount > 0)
                                                         <div class="text-decoration-line-through text-danger descuento">
-                                                            $ {{ $productos->price }}
+                                                            $ {{ number_format($productos->price, 0, ',', '.') }}
                                                         </div>
                                                     @endif
                                                     <div>
                                                         <span class="h5">
-                                                            $ {{ $precioDescuento }}
+                                                            $ {{ number_format($precioDescuento, 0, ',', '.') }}
                                                         </span>
                                                         @if ($productos->discount > 0)
                                                             <strong class="text-success">
