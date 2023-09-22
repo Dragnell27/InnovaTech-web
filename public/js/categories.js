@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   
   
-  fetch('/api/category') // Cambia la URL de la API según tu configuración
+  fetch('api/category') 
       .then(response => response.json())
       .then(categories => {
           categories.data.forEach(category => {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   event.preventDefault();
                   const categoryId = category.id;
 
-                  // Redirige al usuario a la URL de la vista de productos de categoría
+                  
                   window.location.href = `/api/category/${categoryId}`;
               });
 

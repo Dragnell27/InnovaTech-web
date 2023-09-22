@@ -13,16 +13,21 @@
     <body>
         @include('components.cart.cartAlert')
         <div id="container">
-            <div id="colum_1">
-                @if ($name)
-                    <h1>{{ $name->name }}</h1>
-                    <h6 class="text-dark">Esta categoría contiene ({{ $products->count() }}) productos</h6>
-                @endif
-                <div id="categoriesContainer">
+            <div class="card">
+                <div class="card-body">
+                    @if ($name)
+                        <h1 class="card-title">{{ $name->name }}</h1>
+                        <h6 class="card-subtitle text-muted">Esta categoría contiene ({{ $products->count() }}) productos
+                        </h6>
+                    @endif
 
+                    <div id="categoriesContainer">
+                        <h3>Mas categorias:</h3>
+                        <!-- aparecen las categorias -->
+                    </div>
                 </div>
             </div>
-            <div id="colum_2">
+            <div class="container">
                 <section>
 
                     <div>
@@ -45,11 +50,11 @@
                                     $images = explode(':', $productos->images);
                                     $descuento = ($productos->price * $productos->discount) / 100;
                                     $precioDescuento = $productos->price - $descuento;
-
+                                    
                                     $lista_favortitos = 0;
-
+                                    
                                     $agregado_lista = 'no_agregado_favoritos';
-
+                                    
                                     if (Auth::check()) {
                                         foreach ($favoritos as $favorito => $f) {
                                             if ($f->product_id == $productos->id) {
@@ -59,9 +64,12 @@
                                             }
                                         }
                                     }
+                                    
+                                    $showReadMore = strlen($productos->description) > 100;
+                                    
                                 @endphp
                                 <div class="product-list" id='product-list'>
-                                    <div class="product">
+                                    <div class="card product">
                                         <div class="product-content">
                                             <div class="product-left">
                                                 <img id="imgCard" class="ir-producto"
@@ -74,12 +82,16 @@
                                                 <h4 id="style2" class="titulo">{{ $productos->name }}</h4>
                                                 <div class="description-container">
                                                     <p class="short-description">
-                                                        {{ substr($productos->description, 0, 100) }}{{ strlen($productos->description) > 100 ? '...' : '' }}
+                                                        {{ $showReadMore ? substr($productos->description, 0, 100) : $productos->description }}
                                                     </p>
-                                                    <p class="full-description" style="display: none;">
-                                                        {{ $productos->description }}</p>
+                                                    @if ($showReadMore)
+                                                        <p class="full-description" style="display: none;">
+                                                            {{ $productos->description }}
+                                                        </p>
+                                                        <a href="#" class="read-more">Leer más</a>
+                                                    @endif
                                                 </div>
-                                                <a href="#" class="read-more">Leer más</a>
+
                                             </div>
                                             <div class="product-right">
                                                 <button class="{{ $agregado_lista }} btn float-end mt-3"
@@ -114,8 +126,8 @@
                                                         @endif
                                                     </div>
                                                     <button class="btn mt-4 btn-danger btn-cart"
-                                                    data-id="{{ $productos->id }}">Añadir
-                                                    al Carrito</button>
+                                                        data-id="{{ $productos->id }}">Añadir
+                                                        al Carrito</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -143,8 +155,18 @@
             $(".read-more").click(function(e) {
                 e.preventDefault();
                 var container = $(this).closest(".product-center").find(".description-container");
-                container.find(".short-description").toggle();
-                container.find(".full-description").toggle();
+                var shortDescription = container.find(".short-description");
+                var fullDescription = container.find(".full-description");
+
+                fullDescription.toggle();
+                shortDescription.toggle();
+
+
+                if (fullDescription.is(":visible")) {
+                    $(this).text("Leer menos");
+                } else {
+                    $(this).text("Leer más");
+                }
             });
         });
     </script>
@@ -153,9 +175,9 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const categoriesContainer = document.getElementById(
-                'categoriesContainer'); // Obtén el elemento contenedor por su ID
+                'categoriesContainer');
 
-            fetch('/api/category') // Cambia la URL de la API según tu configuración
+            fetch('/api/category')
                 .then(response => response.json())
                 .then(categories => {
                     categories.data.forEach(category => {
@@ -168,11 +190,11 @@
                             event.preventDefault();
                             const categoryId = category.id;
 
-                            // Redirige al usuario a la URL de la vista de productos de la categoría
+
                             window.location.href = `/api/category/${categoryId}`;
                         });
 
-                        categoriesContainer.appendChild(link); // Agrega el enlace al contenedor deseado
+                        categoriesContainer.appendChild(link);
                     });
                 });
         });
