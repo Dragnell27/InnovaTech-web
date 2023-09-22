@@ -13,11 +13,11 @@
             <div>
                 @csrf
                 <input type="hidden" name="client_id" value="{{Auth::user()->id  }}">
-                <input type="text"name="name" class="forms form-control" id="name" placeholder="* Nombre *"
+                <input type="text"name="name" class="forms form-control" id="name" placeholder="* Nombre *" value="{{Auth::user()->first_name    }} {{ Auth::user()->last_name }}"
                     required>
                 <input type="tel" name="phone" class="forms form-control" id="phone"
-                    placeholder="* Telefono *" required>
-                <input type="email" name="email" class="forms form-control" id="email" placeholder="* Email *"
+                    placeholder="* Telefono *" required value="{{Auth::user()->phone  }}">
+                <input type="email" name="email" class="forms form-control" id="email" placeholder="* Email *" value="{{Auth::user()->email  }}"
                     required>
                 <select name="type" id="param_type" class=" form-select" required>
                     <option value="">Selecciona el tipo</option>

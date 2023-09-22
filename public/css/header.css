@@ -377,7 +377,7 @@ a:hover {
     cursor: pointer;
     color: #dc2d22;
 }
-@media (max-width:1102px) {
+@media (max-width:1117px) {
     #categoryText{
         display: none;
     }

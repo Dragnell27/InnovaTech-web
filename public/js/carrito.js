@@ -17,7 +17,7 @@ $(document).ready(function () {
 
                     var prod_id = $("#hidden").val();
                     var quantity = $("#qty").val();
-                    
+                 
                     var data = {
                         "prod_id": prod_id,
                         "quantity": quantity,
@@ -162,6 +162,7 @@ $(document).ready(function (){
         
         btns.forEach((btn)=>{
             btn.addEventListener("click",(e)=>{
+              
                 e.preventDefault()
                
                 Swal.fire({
@@ -174,7 +175,9 @@ $(document).ready(function (){
                     confirmButtonText: 'Si, eliminar !'
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        btn.innerHTML = "Cargando..."
                         var eliminar =  btn.getAttribute("href");
+                     
                         window.location.replace(eliminar);
                     }else{
                         Swal.fire(
@@ -219,7 +222,8 @@ $(document).ready(function (){
             case "+":
                  var newValue = Number(cantidad.value)+1;
                  if (newValue < 21) {
-                    spanResul.innerHTML = (Number(precio) + Number(precioActual) ).toFixed(2);
+
+                    spanResul.innerHTML = Math.trunc(Number(precio) + Number(precioActual) );
                     cantidad.value = newValue;
                   var quantity = cantidad.value;
                   var fixedPrice = document.getElementById("ProductPrice"+prod_id);
@@ -253,7 +257,7 @@ $(document).ready(function (){
                 var newValue = Number(cantidad.value)-1;
                
                 if (newValue > 0) {
-                    spanResul.innerHTML = (Number(precioActual) -Number(precio)  ).toFixed(2);
+                    spanResul.innerHTML = Math.trunc(Number(precioActual) -Number(precio)  );
                     cantidad.value = newValue;
                     var quantity = cantidad.value;
                     var fixedPrice = document.getElementById("ProductPrice"+prod_id);
@@ -289,37 +293,3 @@ $(document).ready(function (){
 
 
 });
-// //Funciones Camilo Alzate 
-// const buttonAum = document.getElementById("aumentar");
-// const buttonDis = document.getElementById("disminuir");
-// const cantidad = document.getElementById("cantidad");
-// const spanResul = document.getElementById("resultado");
-// const StrongPrecio = document.getElementById("precio");
-
-// let num = 0;
-
-// function aumentarNum(event) {
-//     event.preventDefault();
-//     if (num < 20) {
-//         num++;
-//         cantidad.textContent = num;
-//     }
-//     total();
-// }
-// function disminuirNum(event) {
-//     event.preventDefault();
-//     if (num > 1) {
-//         num--;
-//         cantidad.textContent = num;
-//     }
-//     total();
-// }
-
-// function total() {
-
-//     let total = Number(cantidad.innerHTML) * Number(StrongPrecio.innerHTML);
-//     spanResul.innerHTML = total;
-// }
-// buttonAum.addEventListener("click", aumentarNum);
-// buttonDis.addEventListener("click", disminuirNum);
-// total();
