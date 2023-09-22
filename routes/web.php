@@ -70,7 +70,7 @@ Route::POST("/mySales", [App\Http\Controllers\CarritoController::class, 'mySales
 ///   Rutas confirmadas   ///
 /////////////////////////////
 Route::get('/', function () {
-    $products = Product::where("param_state", 5)->paginate(10);
+    $products = Product::where("param_state", 5)->orderBy("id", "desc")->paginate(10);
     $colors = Param::where('paramtype_id', 11)->get();
     $carrusel = Carrusel::orderBy('position')->where("param_state", 5)->get();
     $favoritos = [];
