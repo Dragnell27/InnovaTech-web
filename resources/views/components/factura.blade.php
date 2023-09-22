@@ -200,7 +200,9 @@
                 <span>Precio total(COP):
                     <strong id="total" style="color: green">$10000</strong>
             </span>
-           </div>
+        </div>
+        <span>Porfavor mostrar este PDF en el punto Fisíco</span>
+
 
 
 
