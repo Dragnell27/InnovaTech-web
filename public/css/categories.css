@@ -6,20 +6,12 @@
     margin: 2%;
     
 }
-#colum_1 {
-    float: left; 
-}
 
-#colum_2 {
-    width: 100%; 
-    float: right; 
-    
-}
 .product-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 20px;
+    
 }
 
 .product {

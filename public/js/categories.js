@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   
   
-  fetch('api/category') 
+  fetch('/api/category') 
       .then(response => response.json())
       .then(categories => {
           categories.data.forEach(category => {

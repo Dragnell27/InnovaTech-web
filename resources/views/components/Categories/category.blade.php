@@ -21,16 +21,16 @@
                         </h6>
                     @endif
 
-                    <div id="categoriesContainer">
+                    <div id="categoriesContainer" class="d-none d-md-block">
                         <h3>Mas categorias:</h3>
                         <!-- aparecen las categorias -->
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div >
                 <section>
 
-                    <div>
+                    <div class="container mt-2">
                         @if ($products->isEmpty())
                             <div class="justify-content-center text-center mt-5">
                                 <h1 class="">No hay productos en esta categoría.</h1>
@@ -68,7 +68,7 @@
                                     $showReadMore = strlen($productos->description) > 100;
                                     
                                 @endphp
-                                <div class="product-list" id='product-list'>
+                                <div class="product-list" id='product-list' href="{{ route('productos.show', $productos->id) }}">
                                     <div class="card product">
                                         <div class="product-content">
                                             <div class="product-left">
