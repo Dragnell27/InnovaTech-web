@@ -406,3 +406,45 @@ a:hover {
     height: 45px;
     margin-left: 20px;
 }
+
+/* Css para sidebar */
+
+@media (max-height:1368px){
+    #sidebar{
+        top: 5.8% !important;
+    }
+
+}
+@media (height:915px){
+    #sidebar{
+        top: 8% !important;
+    }
+
+}
+@media (max-height:896px){
+    #sidebar{
+        top: 8% !important;
+    }
+
+}
+@media (max-height:720px){
+    #sidebar{
+        top: 9% !important;
+    }
+
+}
+@media (max-height:667px){
+    #sidebar{
+        top: 12% !important;
+    }
+
+}
+@media (max-height:653px){
+    #sidebar{
+        top: 10% !important;
+    }
+
+}
+
+
+

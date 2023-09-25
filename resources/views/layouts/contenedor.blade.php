@@ -60,7 +60,7 @@
                 </a>
 
 
-                <div class="sidebar" style="background-color: white; top:11%;" id="sidebar">
+                <div class="sidebar" style="background-color: white; top:10%;" id="sidebar">
 
 
                     <ul id="sidebar-links">
