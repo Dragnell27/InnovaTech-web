@@ -51,6 +51,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if(Auth::check()){
+            if (Auth::user()->param_state==6) {
+                Auth::logout();
+            }
+        }
         $request->validate([
             'número_de_documento' => ['required', 'numeric', 'digits_between:7,12'],
             'first_name' => ['required', 'string', 'max:255'],
@@ -86,6 +91,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        if(Auth::check()){
+            if (Auth::user()->param_state==6) {
+                Auth::logout();
+            }
+        }
+
         if (Auth::check()) {
             if (Auth::user()->email_verified_at == "") {
                 return redirect()->route('verification.notice');
@@ -109,6 +120,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::check()){
+            if (Auth::user()->param_state==6) {
+                Auth::logout();
+            }
+        }
+
         if (Auth::check()) {
             if (Auth::user()->email_verified_at == "") {
                 return redirect()->route('verification.notice');
@@ -208,6 +225,11 @@ class UserController extends Controller
 
     public function changePassword(Request $request)
     {
+        if(Auth::check()){
+            if (Auth::user()->param_state==6) {
+                Auth::logout();
+            }
+        }
         $user = User::find(Auth::user()->id);
 
         $request->validate([

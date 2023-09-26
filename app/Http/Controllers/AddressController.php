@@ -17,6 +17,11 @@ class AddressController extends Controller
     public function index()
     {
         // $addresses = Http::get(env('API') . '/address/' . Auth::user()->id);
+        if(Auth::check()){
+            if (Auth::user()->param_state==6) {
+                Auth::logout();
+            }
+        }
         if (Auth::check()) {
             if (Auth::user()->email_verified_at == "") {
                 return redirect()->route('verification.notice');
@@ -39,6 +44,11 @@ class AddressController extends Controller
     public function create()
     {
         // jaider
+        if(Auth::check()){
+            if (Auth::user()->param_state==6) {
+                Auth::logout();
+            }
+        }
         if (Auth::check()) {
             if (Auth::user()->email_verified_at == "") {
                 return redirect()->route('verification.notice');
@@ -74,7 +84,11 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-
+        if(Auth::check()){
+            if (Auth::user()->param_state==6) {
+                Auth::logout();
+            }
+        }
         $request->validate([
             'hood' => 'required',
             'address' => 'required',
@@ -116,6 +130,11 @@ class AddressController extends Controller
      */
     public function show($id)
     {
+        if(Auth::check()){
+            if (Auth::user()->param_state==6) {
+                Auth::logout();
+            }
+        }
         if (Auth::check()) {
             if (Auth::user()->email_verified_at == "") {
                 return redirect()->route('verification.notice');
@@ -136,6 +155,11 @@ class AddressController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::check()){
+            if (Auth::user()->param_state==6) {
+                Auth::logout();
+            }
+        }
         if (Auth::check()) {
             if (Auth::user()->email_verified_at == "") {
                 return redirect()->route('verification.notice');

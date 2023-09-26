@@ -52,7 +52,7 @@
 
         <div class="row mb-3">
             <div class="col-md-6">
-                <label for="numero_telefono" class="form-label">Teléfono:</label>
+                <label for="numero_telefono" class="form-label">Celular:</label>
                 <input type="tel" value="{{ old('phone', $user['phone']) }}" name="phone" class="form-control"
                     id="numero_telefono" name="telefono" placeholder="Ingresa tu numero de telefono" required>
                 @error('phone')
