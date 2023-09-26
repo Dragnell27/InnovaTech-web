@@ -175,7 +175,11 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         if ($user->param_rol == 2) {
-            return "no se puede eliminar la cuenta de administrador";
+            return redirect(route('users.show', Auth::user()->id))->with([
+                'message' => 'Error!',
+                'text' => 'No se puede eliminar la cuenta de administrador.',
+                'type' => 'error'
+            ]);
         } else {
             $newPassword = Str::random(10);
             $user->document = "user - " . $id;
