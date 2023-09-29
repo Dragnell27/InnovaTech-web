@@ -42,7 +42,7 @@ class Sale_detail extends Controller
      */
     public function show($id)
     {
-        $sales = Sales::where('user_id',$id)->where("param_status",10)->get();
+        $sales = Sales::where('user_id',$id)->where("param_status",10)->orWhere("param_status",11)->orWhere("param_status",12)->orWhere("param_status",13)->orderBy('created_at','ASC')->get();
         $arrSales = [];
 
         foreach ($sales as $sale){
@@ -66,7 +66,7 @@ class Sale_detail extends Controller
                 ];
             }
         }
-        return $arrSales;
+        return array_reverse($arrSales);
     }
 
     /**
