@@ -84,7 +84,7 @@ class BillController extends Controller
         return $data;
 
     }
-    public function actualizar($id,$type){
+    public function actualizar($id,$type,$id_address){
 
         $method = 0;
         if($type == "2286"){
@@ -100,6 +100,7 @@ class BillController extends Controller
             "param_shipping" => $type,
             "param_paymethod"=> $method,
             "param_status"=>10,
+            "address_id"=>$id_address,
         ]);
 
         Session::forget("cart");

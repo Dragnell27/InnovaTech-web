@@ -43,14 +43,15 @@ async function DepartmentsName(nameDepartment) {
 //DIRECCIONES
 let numDirecciones = 0;
 let direccion = "";
-let textoDireccion="";
+let textoDireccion = "";
+var html;
 async function cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAdress, labelAddress) {
     try {
         const response = await fetch(urlAddress);
         const data = await response.json();
         const addresses = data.data;
 
-        let html = '<option value="-1">Elige la direccion</option>';
+        html = '<option value="-1">Elige la direccion</option>';
         let addressInactive = false;
         for (let i = 0; i < addresses.length; i++) {
             numDirecciones++;
@@ -90,10 +91,10 @@ async function cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAd
                     const DireccionFacturaD = addressData.city_name + ", " + addressData.hood + ",  " + addressData.address + "," + addressData.floor;
                     if (window.location.pathname === 'Mpago') {
                         textoDireccion = "Lugar de envío";
-                        direccion = DireccionFacturaD ;
+                        direccion = DireccionFacturaD;
 
-                      }
-                      document.getElementById('idDireccion').textContent = `${textoDireccion}: ${direccion}`;
+                    }
+                    document.getElementById('idDireccion').textContent = `${textoDireccion}: ${direccion}`;
                     formDirecciones.style.display = 'block';
 
                 } catch (error) {
@@ -116,7 +117,7 @@ async function AddressAdmin() {
         const data2 = await response2.json();
         const addressAdmin = data2.data;
         let direccionAdmin = document.getElementById('direcionesAdmin');
-            let addressInactive = false;
+        let addressInactive = false;
         let html2 = ' <option value="-1"> Elige Punto Fisico</option>';
         for (let i = 0; i < addressAdmin.length; i++) {
             const addressData2 = addressAdmin[i];
@@ -142,11 +143,11 @@ async function AddressAdmin() {
                     document.getElementById("floorAdmin").value = addressData2.floor;
                     const DireccionFacturaP = addressCity.city_name + ", " + addressData2.hood + ",  " + addressData2.address + "," + addressData2.floor;
                     if (window.location.pathname === '/payment-method/1') {
-                        textoDireccion = "Lugar de entrega" ;
+                        textoDireccion = "Lugar de entrega";
                         direccion = DireccionFacturaP;
 
-                      }
-                      document.getElementById('idDireccion').textContent = `${textoDireccion}: ${direccion}`;
+                    }
+                    document.getElementById('idDireccion').textContent = `${textoDireccion}: ${direccion}`;
                     document.getElementById('formPuntoFisico').style.display = "block";
                 }
                 catch (error) {
@@ -484,7 +485,12 @@ $(document).ready(function () {
 
 const okFactura = $('#okPfisico');
 const modal = $('.modal');
-const cerrar= $('.btnCerrar');
+const cerrar = $('.btnCerrar');
+$('#direciones').change(function() {
+const id_address = $('#direciones').val();
+alert(id_address.val());
+console.log(html);
+})
 okFactura.click(function (e) {
     swal.fire({
         title: 'Confirmar compra!',
@@ -510,9 +516,9 @@ okFactura.click(function (e) {
                 allowEscapeKey: false,
 
             }).then((result) => {
-                 function PDF(){
+                function PDF() {
 
-                    const content =document.getElementById('pdf');
+                    const content = document.getElementById('pdf');
                     Swal.fire({
                         title: 'Descargando',
                         html: 'Espera un momento... <i class="bi bi-download"></i>',
@@ -526,34 +532,34 @@ okFactura.click(function (e) {
                     html2pdf()
                         .set({
                             margin: 1,
-                            filename:'Factura.pdf',
-                            Image:{
-                                type:'jpeg',
-                                quality:8.98,
+                            filename: 'Factura.pdf',
+                            Image: {
+                                type: 'jpeg',
+                                quality: 8.98,
                             },
-                            html2canvas:{
-                                scale:3,
-                                letterRendering:true,
+                            html2canvas: {
+                                scale: 3,
+                                letterRendering: true,
                             },
-                            jsPDF:{
-                                unit:'in',
-                                format:'a2',
-                                orientation:'portrait'
+                            jsPDF: {
+                                unit: 'in',
+                                format: 'a2',
+                                orientation: 'portrait'
                             }
                         })
                         .from(content)
                         .save()
-                        .catch(err=>console.log(err))
+                        .catch(err => console.log(err))
                         .finally()
-                        .then(()=>{
+                        .then(() => {
                             modal.removeClass('modal--openModal');
                             $('.centrado').show();
                             $.ajax({
                                 method: 'get',
-                                url: '/shooping/' + id + "/2286",
+                                url: '/shooping/' + id + "/2286/"+ id_address,
                                 data: {
                                     _token: token
-                                },beforeSend: function () {
+                                }, beforeSend: function () {
                                     $('.centrado').show();
                                 },
                                 success: function (response) {
@@ -581,22 +587,22 @@ okFactura.click(function (e) {
                             });
 
                         })
-                 }
+                }
                 if (result.isConfirmed) {
                     modal.addClass('modal--openModal');
                     $('#factura').show();
 
-                    modal.on('click', function(event) {
+                    modal.on('click', function (event) {
                         if ($(event.target).hasClass('modal')) {
                             PDF();
 
                         }
                         event.stopPropagation();
                     });
-                    cerrar.on('click',function (event){
+                    cerrar.on('click', function (event) {
                         event.preventDefault();
 
-                       PDF();
+                        PDF();
 
                     });
 
