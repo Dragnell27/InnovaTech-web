@@ -13,7 +13,7 @@
     <body>
         @include('components.cart.cartAlert')
         <div id="container">
-            <div class="card">
+            <div class="colum_1">
                 <div class="card-body">
                     @if ($name)
                         <h1 class="card-title">{{ $name->name }}</h1>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div >
+            <div id="colum_2" class="container" >
                 <section>
 
                     <div class="container mt-2">
@@ -69,7 +69,7 @@
                                     
                                 @endphp
                                 <div class="product-list" id='product-list' href="{{ route('productos.show', $productos->id) }}">
-                                    <div class="card product">
+                                    <div class="product">
                                         <div class="product-content">
                                             <div class="product-left">
                                                 <img id="imgCard" class="ir-producto"
@@ -138,9 +138,7 @@
                 </section>
             </div>
         </div>
-        <div class="footer">
-            @include('layouts.footer')
-        </div>
+      
     </body>
 
     <script>
