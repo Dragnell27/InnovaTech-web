@@ -21,9 +21,13 @@
                         </h6>
                     @endif
 
-                    <div id="categoriesContainer" class="d-none d-md-block">
-                        <h3>Mas categorias:</h3>
-                        <!-- aparecen las categorias -->
+                    <div id="categoriesContainer" class="card mt-3 d-none d-md-block">
+                        <div class="card-header">
+                            <h3 class="card-title">Más categorías</h3>
+                        </div>
+                        <div class="card-body">
+                            <!-- Contenido de las categorías -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -183,6 +187,8 @@
                         link.classList.add('nav-link');
                         link.href = `category/${category.id}`;
                         link.textContent = category.name;
+                        link.style.marginBottom = '20px';
+                        link.style.marginLeft = '10px';
 
                         link.addEventListener('click', function(event) {
                             event.preventDefault();
