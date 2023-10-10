@@ -8,6 +8,8 @@ use App\Models\sales_detail;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BillResource;
 use Cart;
+use App\Models\User;
+use App\Models\Address;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
@@ -42,6 +44,7 @@ class BillController extends Controller
         if(isset($data->data->transaction->id)&&isset($data->data->transaction->status)){
             $status =$data->data->transaction->status;
             $method = $data->data->transaction->payment_method_type;
+            $correo = $data->data->transaction->customer_email;
         }
         switch ($method) {
             case 'NEQUI':
@@ -55,9 +58,11 @@ class BillController extends Controller
         }
 
         if($status == "APPROVED"){
+            $id = User::where('email',$correo)->first('id');
+            $id_address = Address::where('user_id',$id)->first('address');
+            $this->actualizar($id,$type,$id_address);
             $compra = true;
-            self::actualizar(Auth::user()->id, $type);
-        }else if($status == "DECLINED"){
+        }else if($status == "ERROR"){
             $compra = false;
         }
         if($compra == true){
