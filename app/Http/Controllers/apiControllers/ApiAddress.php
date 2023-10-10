@@ -35,6 +35,6 @@ class ApiAddress extends Controller
         ->where("users.param_rol",2)
         ->where("address.param_state", 5)
         ->get();
-        return AddressCollection::collection($addresses);
+        return($addresses);
     }
 }

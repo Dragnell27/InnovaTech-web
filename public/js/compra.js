@@ -56,7 +56,8 @@ async function cargarDirecciones(seleccionarDireccion, formDirecciones, btnAddAd
         for (let i = 0; i < addresses.length; i++) {
             numDirecciones++;
             const addressData = addresses[i];
-            html += '<option value="' + i + '">Dirección ' + (i + 1) + ' - ' + addressData.address + ' - ' + addressData.hood + '</option>';
+            console.log(addressData);
+            html += '<option value="' + addressData.id + '">Dirección ' + (i + 1) + ' - ' + addressData.address + ' - ' + addressData.hood + '</option>';
             if (addressData.state == 6) {
                 addressInactive = true;
             }
@@ -116,8 +117,9 @@ async function AddressAdmin() {
         const response2 = await fetch(urlAddressAdmin);
         const data2 = await response2.json();
         const addressAdmin = data2.data;
-        let direccionAdmin = document.getElementById('direcionesAdmin');
+        console.log(addressAdmin);
         let addressInactive = false;
+var direccionAdmin = document.getElementById('direccionesAdmin');
         let html2 = ' <option value="-1"> Elige Punto Fisico</option>';
         for (let i = 0; i < addressAdmin.length; i++) {
             const addressData2 = addressAdmin[i];
@@ -168,14 +170,14 @@ async function mostrarForm(tipoLugar) {
         const formDirecciones = document.getElementById('formDirecciones');
         const formDomicilios = document.getElementById('FormDomicilios');
         const formPunto = document.getElementById('formPuntoFisico');
-        const direcionesAdmin = document.getElementById('direcionesAdmin');
-        const seleccionarDireccion = document.getElementById('direciones');
+        const direccionesAdmin = document.getElementById('direccionesAdmin');
+        const seleccionarDireccion = document.getElementById('direcciones');
         const seleccionarpuntoFisico = document.getElementById('puntoFisico');
         const btnAddAdress = document.getElementById('agregarDireccion');
         const labelAddress = document.getElementById('labelAdress');
         const btnAddAdress2 = document.getElementById('agregarDireccion2');
         seleccionarDireccion.selectedIndex = 0;
-        direcionesAdmin.selectedIndex = 0;
+        direccionesAdmin.selectedIndex = 0;
 
         if (tipoLugar == "domicilios") {
             document.getElementById("btnContainer").style.display = "block";
@@ -239,10 +241,10 @@ select.addEventListener('click', () => {
     select.classList.toggle('active');
     opciones.classList.toggle('active');
 });
-const direcionesAdmin = document.querySelector('#direcionesAdmin');
+const direccionesAdmin = document.querySelector('#direccionesAdmin');
 const labelPfisico = document.getElementById('labelPfisico');
-direcionesAdmin.addEventListener('change', function () {
-    if (direcionesAdmin.value == '-1') {
+direccionesAdmin.addEventListener('change', function () {
+    if (direccionesAdmin.value == '-1') {
         labelPfisico.style.display = 'block';
 
     } else {
@@ -257,7 +259,7 @@ direcionesAdmin.addEventListener('change', function () {
 window.addEventListener('load', async () => {
     try {
         const formDirecciones = document.getElementById('formDirecciones');
-        const seleccionarDireccion = document.getElementById('direciones');
+        const seleccionarDireccion = document.getElementById('direcciones');
         const btnAddAdress = document.getElementById('agregarDireccion');
         const labelAddress = document.getElementById('labelAdress');
 
@@ -486,11 +488,10 @@ $(document).ready(function () {
 const okFactura = $('#okPfisico');
 const modal = $('.modal');
 const cerrar = $('.btnCerrar');
-$('#direciones').change(function() {
-const id_address = $('#direciones').val();
-alert(id_address.val());
-console.log(html);
-})
+$('#direccionesAdmin').change(function() {
+    const id_address = $('#direccionesAdmin').val();
+    alert(id_address);
+    })
 okFactura.click(function (e) {
     swal.fire({
         title: 'Confirmar compra!',

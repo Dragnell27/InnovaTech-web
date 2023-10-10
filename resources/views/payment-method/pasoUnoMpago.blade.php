@@ -122,7 +122,7 @@
                                                 <label for="" class="form-label">Dirección</label>
                                             </h4>
                                             <div class="primerSelect">
-                                                <select class="seleccionar" id="direciones">
+                                                <select class="seleccionar" id="direcciones">
                                                     <option value="-1" >Elige la direccion</option>
                                                 </select>
                                                 {{-- <div class="icon">
@@ -210,7 +210,7 @@
                                                     </p>
                                                 </strong>
                                                 <div class="primerSelect">
-                                                    <select class="seleccionar" id="direcionesAdmin">
+                                                    <select class="seleccionar" id="direccionesAdmin">
                                                         <option value="-1">Elige Punto Físico</option>
                                                     </select>
                                                 </div>
