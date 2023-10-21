@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
 
 class BillController extends Controller
 {
+    private $transacion = false;
     /**
      * Display a listing of the resource.
      */
@@ -46,27 +47,33 @@ class BillController extends Controller
             $method = $data->data->transaction->payment_method_type;
             $correo = $data->data->transaction->customer_email;
         }
-        switch ($method) {
-            case 'NEQUI':
-                $type = 2276;
-                break;
-            case 'CARD':
-                $type = 2277;
-            default:
-                $type = 2275;
-                break;
-        }
-
+        // switch ($method) {
+        //     case 'NEQUI':
+        //         $type = 2276;
+        //         break;
+        //     case 'CARD':
+        //         $type = 2277;
+        //     default:
+        //         $type = 2275;
+        //         break;
+        // }
+        $respuesta ="";
         if($status == "APPROVED"){
             $id = User::where('email',$correo)->first('id');
             $id_address = Address::where('user_id',$id)->first('address');
-            $this->actualizar($id,$type,$id_address);
+            $respuesta = $this->actualizar($id,"2285");
             $compra = true;
-        }else if($status == "ERROR"){
+        }else if($status == "DECLINED"){
             $compra = false;
         }
         if($compra == true){
-            return response()->json(['message'=> 'Registro guardado correctamente'],200);
+            if($respuesta == true){
+                return response()->json(['message'=> 'Entro al if'],200);
+                Session::forget("cart");
+                Session::put('success_mjs','Su compra ha sido exitosa');
+                // Cart::session($id)->clear();
+            }
+            // return response()->json(['message'=> $respuesta],200);
         }else{
             return response()->json(['message'=> 'Registro guardago correctamente'],400);
         }
@@ -89,30 +96,24 @@ class BillController extends Controller
         return $data;
 
     }
-    public function actualizar($id,$type,$id_address){
+    public function actualizar($id,$type){
 
-        $method = 0;
-        if($type == "2286"){
-            $method = "2275";
-        }else if($type == "2285"){
-            $method = "2276";
+        $sales = Sales::where("user_id", $id->id)
+            ->where("param_status",5)
+            ->where("param_shipping",14)
+            ->first();
 
-        }
-        Sales::where("user_id",$id)
-        ->where("param_status",5)
-        ->where("param_shipping",14)
-        ->update([
-            "param_shipping" => $type,
-            "param_paymethod"=> $method,
-            "param_status"=>10,
-            "address_id"=>$id_address,
-        ]);
 
-        Session::forget("cart");
-        Session::put('success_mjs','Su compra ha sido éxitosa');
+        $sales->param_shipping = $type;
+        $sales->param_status = 10;
+        $sales->save();
+        $this->transacion = true;
+        return true;
+    }
 
-        Cart::session($id)->clear();
-        return redirect()->route("index");
+    public function borrado(){
+       $id = Auth::user()->id;
+       return $id;
     }
 
     /**

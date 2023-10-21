@@ -60,3 +60,4 @@ Route::apiResource('/shopping', Sale_detail::class);
 //api para la factura
 Route::apiResource("/bill",BillController::class);
 Route::post("/checkwompi", [App\Http\Controllers\apiControllers\BillController::class, "store"]);
+Route::get("/vista", [App\Http\Controllers\apiControllers\BillController::class, "borrado"]);
