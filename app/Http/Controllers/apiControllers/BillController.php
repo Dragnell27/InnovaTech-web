@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
 
 class BillController extends Controller
 {
-    private $transacion = false;
     /**
      * Display a listing of the resource.
      */
@@ -37,7 +36,7 @@ class BillController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {$id ="";
         $status = "";
         $method="";
         $compra = false;
@@ -68,14 +67,15 @@ class BillController extends Controller
         }
         if($compra == true){
             if($respuesta == true){
-                return response()->json(['message'=> 'Entro al if'],200);
+               
                 Session::forget("cart");
-                Session::put('success_mjs','Su compra ha sido exitosa');
-                // Cart::session($id)->clear();
+                Session::put('exitoso','Su compra ha sido exitosa');
+                Cart::session($id)->clear();
+                 return response()->json(['message'=> 'Entro al if'],200);
             }
             // return response()->json(['message'=> $respuesta],200);
         }else{
-            return response()->json(['message'=> 'Registro guardago correctamente'],400);
+            return response()->json(['message'=> 'Registro  erroneo'],400);
         }
     }
 
@@ -107,13 +107,15 @@ class BillController extends Controller
         $sales->param_shipping = $type;
         $sales->param_status = 10;
         $sales->save();
-        $this->transacion = true;
+        Session::put('proceso',"true");
         return true;
     }
 
     public function borrado(){
-       $id = Auth::user()->id;
-       return $id;
+        if(Session::has("proceso")){
+            $proceso = "true";
+        }
+        return $proceso;
     }
 
     /**

@@ -10,12 +10,11 @@
 
     </head>
     <section>
-     
+
 
         <main style="">
             @if (Session::has('msj_destroy'))
                 <?php
-                
                 
                 $totalPrice = 0;
                 $cart = Session::get('cart');
@@ -49,7 +48,7 @@
             @if (Auth::check())
                 <?php
                 
-                $CartItems = Cart::session(Auth::user()->id)->getContent();
+                $CartItems = Cart::session(Auth::user()->id)->();
                 $CartCount = Cart::session(Auth::user()->id)
                     ->getContent()
                     ->count();
@@ -61,6 +60,13 @@
                 $CartCount = Cart::getContent()->count();
                 
                 ?>
+            @endif
+
+            @if (Session::has('exitoso'))
+            $CartItems = null;
+            $CartCount = 0;
+          
+                
             @endif
             @if ($CartCount <= 0)
 
@@ -75,25 +81,25 @@
                     </h3>
 
                 </div>
-<section id="productSection" class="row">
-    <div class="col  row ">
-        <div class="col col-sm-12  rounded order-md-first ">
+                <section id="productSection" class="row">
+                    <div class="col  row ">
+                        <div class="col col-sm-12  rounded order-md-first ">
 
-            @foreach ($CartItems as $items)
-                @php
-                    $imagenes = explode(':', $items->attributes['image']);
-                @endphp
-            <div class="card mb-2 cartItem" style="" id="cartItem">
-                <div class="row g-0">
-                    <div class="col-md-3 d-flex justify-content-center align-items-center p-2">
-                        <img width="150px" src="{{ asset('img/productos/' . $imagenes[0]) }}"
+                            @foreach ($CartItems as $items)
+                                @php
+                                    $imagenes = explode(':', $items->attributes['image']);
+                                @endphp
+                                <div class="card mb-2 cartItem" style="" id="cartItem">
+                                    <div class="row g-0">
+                                        <div class="col-md-3 d-flex justify-content-center align-items-center p-2">
+                                            <img width="150px" src="{{ asset('img/productos/' . $imagenes[0]) }}"
                                                 class="img-fluid rounded" alt="...">
-                            </div>
-                                <div class="col-md-8 col-12">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $items->name }}</h5>
-                                            <div class="card-text">
-                                                <p>{{ $items->attributes['desc'] }}</p>
+                                        </div>
+                                        <div class="col-md-8 col-12">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $items->name }}</h5>
+                                                <div class="card-text">
+                                                    <p>{{ $items->attributes['desc'] }}</p>
                                                     <div>
                                                         @if ($items->attributes['discount'] > 0)
                                                             <?php
@@ -105,7 +111,7 @@
                                                                     value="{{ $items->price - $descuento }}" />
                                                                 <strong>
                                                                     $<span id="priceP{{ $items->id }}"
-                                                                        class="priceP price">{{ ($items->price - $descuento) }}
+                                                                        class="priceP price">{{ $items->price - $descuento }}
 
                                                                     </span>
                                                                 </strong>
@@ -118,7 +124,7 @@
                                                             <div>
                                                                 <span
                                                                     class="text-decoration-line-through text-danger descuento">
-                                                                    {{($items->price)  }}
+                                                                    {{ $items->price }}
                                                                 </span>
                                                             </div>
                                                         @else
